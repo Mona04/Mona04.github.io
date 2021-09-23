@@ -263,6 +263,6 @@ defaults:
       comments:
         provider: "disqus"
         disqus:
-            shortname: "Mona04"
+            shortname: "disqus_wg9lQe20Tt"
       share: false
       related: true
