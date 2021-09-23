@@ -258,11 +258,11 @@ defaults:
       type: posts
     values:
       layout: single
-      author_profile: true
+      author_profile: false
       read_time: true
       comments:
         provider: "disqus"
         disqus:
             shortname: "Mona04"
-      share: true
+      share: false
       related: true
