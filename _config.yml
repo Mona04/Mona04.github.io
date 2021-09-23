@@ -16,30 +16,30 @@ minimal_mistakes_skin    : "default" # "air", "aqua", "contrast", "dark", "dirt"
 
 # Site Settings
 locale                   : "ko"
-title                    : "Log For My Coding Life"
-title_separator          : "-"
+title                    : "Log | Study"
+title_separator          : "_"
 subtitle                 : # site tagline that appears below site title in masthead
 name                     : "Mona04"
-description              : "공부한거 정리하는 용도"
+description              : "공부한거 정리하는 용도. Game Programming. C++, DirectX, C#, Unreal, Unity ..."
 url                      : # the base hostname & protocol for your site e.g. "https://mmistakes.github.io"
 baseurl                  : # the subpath of your site, e.g. "/blog"
-repository               : # GitHub username/repo-name e.g. "mmistakes/minimal-mistakes"
+repository               : Mona04/Mona04.github.io # GitHub username/repo-name e.g. "mmistakes/minimal-mistakes"
 teaser                   : # path of fallback teaser image, e.g. "/assets/images/500x300.png"
 logo                     : # path of logo image to display in the masthead, e.g. "/assets/images/88x88.png"
 masthead_title           : # overrides the website title displayed in the masthead, use " " for no title
 # breadcrumbs            : false # true, false (default)
-words_per_minute         : 200
+words_per_minute         : 200   #최대 1분 소요 이런거 확인할 때 씀
 comments:
   provider               : "disqus" # false (default), "disqus", "discourse", "facebook", "staticman", "staticman_v2", "utterances", "giscus", "custom"
   disqus:
-    shortname            : "https-mona04-github-io"# https://help.disqus.com/customer/portal/articles/466208-what-s-a-shortname-
+    shortname            : "https-mona04-github-io" # https://help.disqus.com/customer/portal/articles/466208-what-s-a-shortname-
 reCaptcha:
   siteKey                :
   secret                 :
 atom_feed:
   path                   : # blank (default) uses feed.xml
   hide                   : # true, false (default)
-search                   : # true, false (default)
+search                   : true # true, false (default)
 search_full_content      : # true, false (default)
 search_provider          : # lunr (default), algolia, google
 algolia:
@@ -51,7 +51,7 @@ google:
   search_engine_id       : # YOUR_SEARCH_ENGINE_ID
   instant_search         : # false (default), true
 # SEO Related
-google_site_verification :
+google_site_verification : "F2oPZSOAKlxw2iAayxs8nQmb9hCG1xbwGenRruCQrVU"
 bing_site_verification   :
 yandex_site_verification :
 naver_site_verification  :
