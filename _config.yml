@@ -63,7 +63,7 @@ facebook:
   username               :
   app_id                 :
   publisher              :
-og_image                 : # Open Graph/Twitter default site image
+og_image                 : "/assets/images/logo.png" # Open Graph/Twitter default site image
 # For specifying social profiles
 # - https://developers.google.com/structured-data/customize/social-profiles
 social:
@@ -82,7 +82,7 @@ analytics:
 # Site Author
 author:
   name             : "Mona04"
-  avatar           : "/assets/images/iruru.jpg"
+  avatar           : "/assets/images/logo.png" 
   bio              : "개발자가 되자"
   location         : "Seoul.Korea"
   email            :
@@ -229,7 +229,6 @@ compress_html:
   ignore:
     envs: development
 
-
 # Defaults
 defaults:
   # _posts
@@ -238,8 +237,14 @@ defaults:
       type: posts
     values:
       layout: single
+      entries_layout: grid
+      classes: single
+      toc: true
+      toc_sticky: true
       author_profile: false
       read_time: true
       comments: true
       share: false
       related: true
+      sidebar:
+        nav: "navi"
