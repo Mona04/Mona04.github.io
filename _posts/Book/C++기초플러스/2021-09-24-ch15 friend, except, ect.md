@@ -1,7 +1,7 @@
 ---
 excerpt: "c++ 기초플러스 15장 요약본"
 categories: C++기초플러스
-tag: book
+tag: c++
 ---
 
 ## Friend, Nested Class
