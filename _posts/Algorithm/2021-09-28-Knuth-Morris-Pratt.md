@@ -1,7 +1,7 @@
 ---
 excerpt: "고급 알고리즘"
 categories: Algorithm
-tag: Algorithm, String
+tag: [PS_KMP, PS_String]
 ---
 ## KMP
 
@@ -154,6 +154,7 @@ for (int i = 1, j = 0; i < P.size(); i++)
 {
 	while (j > 0 && P[i] != P[j]) j = failTB[j - 1];
 	if (P[i] == P[j]) failTB[i] = ++j;
+	else failTB[i] = 0;
 }
 {% endhighlight %}
 
