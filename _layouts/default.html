@@ -24,9 +24,13 @@
     </div>
 
     {% if site.search == true %}
-      <div class="search-content">
-        {% include_cached search/search_form.html %}
-      </div>
+    <div class="search-content">
+      {% include_cached search/search_form.html %}
+    </div>
+    {% endif %}
+
+    {% if page.use_math %}
+      {% include mathjax_support.html %}
     {% endif %}
 
     <div id="footer" class="page__footer">
