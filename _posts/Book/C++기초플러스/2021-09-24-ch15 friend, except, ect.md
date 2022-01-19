@@ -162,17 +162,14 @@ public:
 #### 한정자 noexcept
 
 + noexcept 는 예외를 던지지 않곘다고 함수에 거는 __한정자__ 로 지금은 deprecated 될 throw __한정자__ 의 후예임.
-
 + 그냥 ```noexcept``` 이렇게도 되고 ```noexcept(true)``` 이렇게 bool 값도 넣음
 	(true 가 예외 없다는 것. false 가 명시적으로 예외 넣을거라는 것.)
-
+	+ 컴파일 상수로 ```m == 1``` 이런걸 넣어서 조절도 가능
 + 함수 내에서 try-catch 문이 있는건 상관없으나 함수 스택 밖으로 예외가 나가면 ```terminate()```를 호출함 ```void A() noexcept { throw 42;}``` 함수 호출 시 처럼.
-
 + 컴파일러가 암시적으로 noexcept 를 거는게 몇개가 있음.
 	1. 명시적으로 noexcept(false) 안한 소멸자. 
 		(Stack 을 푸는 과정에서 객체의 소멸자가 호출 될 수 있어서)
 	2. 컴파일러가 만든 기본 생성자. 복사/이동 생성자 및 대입연산.		
-
 + 사용하는 이유
 	+ 미비하나 컴파일러 최적화를 도움.
 	+ stl container 의 move semantics 이 적용하려면 이동 생성자에 noexcept 가 있어야 해서 없는경우 특정상황에 느려질 수 있음..([Visutal Studio 에선 아직 적용 안된듯](https://stackoverflow.com/questions/28627348/noexcept-and-copy-move-constructors))
