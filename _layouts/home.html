@@ -12,9 +12,16 @@ layout: archive
   {% assign posts = site.posts %}
 {% endif %}
 
+{% assign max_posts = 10 %}
+{% assign count_posts = 0 %}
+
 {% assign entries_layout = page.entries_layout | default: 'list' %}
 <div class="entries-{{ entries_layout }}">
   {% for post in posts %}
+    {% if count_posts >= max_posts %}
+      {% break %}
+    {% endif %}
+    {% assign count_posts = count_posts | plus: 1 %}
     {% include archive-single.html type=entries_layout %}
   {% endfor %}
 </div>

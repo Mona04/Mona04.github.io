@@ -4,3 +4,20 @@
 
 <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
 <script>mermaid.initialize({ startOnLoad: true });</script>
+<script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
+
+<script src="http://code.jquery.com/jquery-1.12.0.min.js"></script>
+<script>
+    function fn_spread(id) {
+        if ($('#Category'+id).is(":visible"))
+        {
+            $('#Category' + id).slideUp();
+            $('#Icon' + id).toggleClass("fas fa-angle-up");
+        }
+        else
+        {
+            $('#Category' + id).slideDown();
+            $('#Icon' + id).toggleClass("fas fa-angle-down");
+        }
+    }
+</script>

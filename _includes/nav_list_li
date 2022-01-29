@@ -1,0 +1,11 @@
+{% assign style = include.style %}
+{% assign node = include.node %}
+
+
+<span class={{ style }}>
+  <a href="{{ node.url | relative_url }}"{% if node.url == page.url %} class="active"{% endif %}>{{ node.title }}</a>
+  {% if node.children != null %}
+    <button class="nav__sub-button" onclick="fn_spread(`{{node.url | replace: "/", "-"}}`);"> 
+    <i class="fas fa-angle-up" id="{{"Icon" | append: nav2.url | replace: "/", "-"}}" ></i> </button>
+  {% endif %}
+</span>

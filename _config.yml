@@ -12,7 +12,7 @@
 
 # theme                  : "minimal-mistakes-jekyll"
 # remote_theme           : "mmistakes/minimal-mistakes"
-minimal_mistakes_skin    : "default" # "air", "aqua", "contrast", "dark", "dirt", "neon", "mint", "plum", "sunrise"
+minimal_mistakes_skin    : "dark" # "air", "aqua", "contrast", "dark", "dirt", "neon", "mint", "plum", "sunrise"
 
 # Site Settings
 locale                   : "ko"
@@ -81,17 +81,18 @@ analytics:
 
 # Site Author
 author:
-  name             : "Mona04"
-  avatar           : "/assets/images/logo.png" 
+  name            : "Mona04"
+  avatar          : "/assets/images/logo.png" 
   bio              : "개발자가 되자"
   location         : "Seoul.Korea"
-  email            :
+  email            : moksha1905@gmail.com
+  github          : Mona04
   links:
     - label: "Email"
-      icon: "mailto:moksha1905.com"
+      # icon: "mailto:moksha1905.com"
       # url: "mailto:your.name@email.com"
     - label: "GitHub"
-      icon: "ggggithub"
+      # icon: "ggggithub"
       # url: "https://github.com/"
 
 # Site Footer
@@ -209,6 +210,7 @@ category_archive:
 tag_archive:
   type: liquid
   path: /navi-tags/
+
 # https://github.com/jekyll/jekyll-archives
 # jekyll-archives:
 #   enabled:
@@ -241,7 +243,7 @@ defaults:
       classes: single
       toc: true
       toc_sticky: true
-      author_profile: false
+      author_profile: true
       read_time: true
       comments: true
       share: false

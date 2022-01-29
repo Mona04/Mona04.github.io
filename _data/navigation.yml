@@ -1,21 +1,39 @@
-# main links
-main:
-  # - title: "Quick-Start Guide"
-  #  url: https://mmistakes.github.io/minimal-mistakes/docs/quick-start-guide/
-  # - title: "About"
-  #   url: https://mmistakes.github.io/minimal-mistakes/about/
-  # - title: "Sample Posts"
-  #   url: /year-archive/
-  # - title: "Sample Collections"
-  #   url: /collection-archive/
-  # - title: "Sitemap"
-  #   url: /sitemap/
-  # Mains
-
-navi:
-  - title: Navigation
+## main linksmain:# - title: "Quick-Start Guide"#  url: https://mmistakes.github.io/minimal-mistakes/docs/quick-start-guide/# - title: "About"#   url: https://mmistakes.github.io/minimal-mistakes/about/# - title: "Sample Posts"#   url: /year-archive/# - title: "Sample Collections"#   url: /collection-archive/# - title: "Sitemap"#   url: /sitemap/# Mainsnavi:  - title: Portfolio ★    url: /navis/navi-portfolios/  - title: "Memo"    url: /Posts/memo/  - title: Tags    url: /navis/navi-tags/  - title: Categories    url: /navis/navi-categories/
     children:
-      - title: "Tags"
-        url: /navi-tags/
-      - title: "Categories"
-        url: /navi-categories/
+      - title: "Algorithm"
+        url: /Posts/Algorithm/
+        children:
+          - title: "BOG-Gold"
+            url: /Posts/Algorithm/BOG-Gold/
+          - title: "BOG-Platinum"
+            url: /Posts/Algorithm/BOG-Platinum/
+          - title: "BOG-Silver"
+            url: /Posts/Algorithm/BOG-Silver/
+          - title: "Concept"
+            url: /Posts/Algorithm/Concept/
+      - title: "Book"
+        url: /Posts/Book/
+        children:
+          - title: "C++PrimerPlus"
+            url: /Posts/Book/C++PrimerPlus/
+          - title: "UE4-Scripting-with-C++-Cookbook"
+            url: /Posts/Book/UE4-Scripting-with-C++-Cookbook/
+      - title: "c++"
+        url: /Posts/c++/
+      - title: "Jekyll"
+        url: /Posts/Jekyll/
+      - title: "Math"
+        url: /Posts/Math/
+      - title: "Memo"
+        url: /Posts/Memo/
+      - title: "OS"
+        url: /Posts/OS/
+      - title: "Portfolio"
+        url: /Posts/Portfolio/
+      - title: "System Hacking"
+        url: /Posts/System Hacking/
+      - title: "UE4"
+        url: /Posts/UE4/
+        children:
+          - title: "ALS"
+            url: /Posts/UE4/ALS/

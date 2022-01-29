@@ -7,43 +7,58 @@
    ========================================================================== */
 
 .breadcrumbs {
-  @include clearfix;
-  margin: 0 auto;
-  max-width: 100%;
-  padding-left: 1em;
-  padding-right: 1em;
-  font-family: $sans-serif;
-  -webkit-animation: $intro-transition;
-  animation: $intro-transition;
-  -webkit-animation-delay: 0.3s;
-  animation-delay: 0.3s;
-
-  @include breakpoint($x-large) {
-    max-width: $x-large;
-  }
-
-  ol {
-    padding: 0;
-    list-style: none;
-    font-size: $type-size-6;
-
-    @include breakpoint($large) {
-      float: right;
-      width: calc(100% - #{$right-sidebar-width-narrow});
-    }
+    @include clearfix;
+    margin: 0 auto;
+    max-width: 100%;
+    padding-left: 0;
+    padding-right: 1em;
+    font-family: $sans-serif;
+    display: flex;
+    //-webkit-animation: $intro-transition;
+    //animation: $intro-transition;
+    //-webkit-animation-delay: 0.3s;
+    //animation-delay: 0.3s;
 
     @include breakpoint($x-large) {
-      width: calc(100% - #{$right-sidebar-width});
+        max-width: $x-large;
     }
-  }
 
-  li {
-    display: inline;
-  }
+    i {
+        display: flex;
+        align-items: center;
+        margin-right: 5px;
+        font-size: $type-size-6;
+    }
 
-  .current {
-    font-weight: bold;
-  }
+    ol {
+        position: relative;
+        display: flex;
+        height: auto;
+        float: left;
+        margin: 0;
+        width: 100%;
+        clear: both;
+        padding: 0;
+        list-style: none;
+        font-size: $type-size-6;
+
+        @include breakpoint($large) {
+            float: right;
+            width: calc(100% - #{$right-sidebar-width-narrow});
+        }
+
+        @include breakpoint($x-large) {
+            width: calc(100% - #{$right-sidebar-width});
+        }
+    }
+
+    li {
+        display: inline;
+    }
+
+    .current {
+        font-weight: bold;
+    }
 }
 
 /*
@@ -481,49 +496,77 @@
 }
 
 .nav__title {
-  margin: 0;
-  padding: 0.5rem 0.75rem;
-  font-family: $sans-serif-narrow;
-  font-size: $type-size-5;
-  font-weight: bold;
+    margin: 0;
+    padding: 0.5rem 0.75rem;
+    font-family: $sans-serif-narrow;
+    font-size: $type-size-5;
+    font-weight: bold;
 }
 
-.nav__sub-title {
-  display: block;
-  margin: 0.5rem 0;
-  padding: 0.25rem 0;
-  font-family: $sans-serif-narrow;
-  font-size: $type-size-6;
-  font-weight: bold;
-  text-transform: uppercase;
-  border-bottom: 1px solid $border-color;
+.nav__sub-title, .nav__sub-title2, .nav__sub-title3 {
+    display: block;
+    margin: 0.5rem 0;
+    padding: 0.25rem 0;
+    font-family: $sans-serif-narrow;
+    font-size: $type-size-6;
+    font-weight: bold;
+    text-transform: uppercase;
+    border-bottom: 1px solid $border-color;
+    align-content: stretch;
+}
+
+.nav__sub-title2 { 
+    margin-left: 1em;
+    font-size: $type-size-7;
+    font-weight: normal;
+}
+.nav__sub-title3 {
+    margin-left: 2em;
+    font-size: $type-size-8;
+    font-weight: normal;
+}
+
+.nav__sub-button {
+    width: 100%;
+    float: right;
+    margin: 0;
+    margin-left: 0.5em;
+    border: none;
+    border-width: 0em;
+    outline: none;
+    font-size: $type-size-8;
+    background: rgba(0,0,0,0);
+}
+.nav__sub-button:hover {
+    background: rgba(0,0,0,0);
+}
+.nav__sub-button:focus {
+    outline: none;
 }
 
 /*
      Table of contents navigation
      ========================================================================== */
-
 .toc {
-  font-family: $sans-serif-narrow;
-  color: $gray;
-  background-color: $background-color;
-  border: 1px solid $border-color;
-  border-radius: $border-radius;
-  -webkit-box-shadow: $box-shadow;
-  box-shadow: $box-shadow;
+    font-family: $sans-serif-narrow;
+    color: $gray;
+    background-color: $background-color;
+    border: 1px solid $border-color;
+    border-radius: $border-radius;
+    -webkit-box-shadow: $box-shadow;
+    box-shadow: $box-shadow;
 
-  .nav__title {
-    color: #fff;
-    font-size: $type-size-6;
-    background: $primary-color;
-    border-top-left-radius: $border-radius;
-    border-top-right-radius: $border-radius;
-  }
-
-  // Scrollspy marks toc items as .active when they are in focus
-  .active a {
-    @include yiq-contrasted($active-color);
-  }
+    .nav__title {
+        color: #fff;
+        font-size: $type-size-6;
+        background: $primary-color;
+        border-top-left-radius: $border-radius;
+        border-top-right-radius: $border-radius;
+    }
+    // Scrollspy marks toc items as .active when they are in focus
+    .active a {
+        @include yiq-contrasted($active-color);
+    }
 }
 
 .toc__menu {
