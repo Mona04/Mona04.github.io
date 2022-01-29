@@ -13,7 +13,9 @@ Jerkll 는 디렉토리에 따라 Category 를 자동으로 분류함.
 
 <br/>
 
-그런데 Jerky - Minimal Mistakes Theme 은 네이버 블로그처럼 계층구조를 지원하지 않음.
+이렇게 Category 는 해주는데 Jerky - Minimal Mistakes Theme 은 네이버 블로그처럼 계층구조를 지원하지 않음.
+
+다시말해 모든 게시글을 다 보여준다는 것. 
 
 너무나도 꼬우므로 커스터마이즈에 들어감.
 
@@ -41,7 +43,15 @@ Jerkll 는 디렉토리에 따라 Category 를 자동으로 분류함.
 
 ```nav_list``` 라는 확장자 없는 파일에 있는 구문을 파라미터 적용해서 사용한다는 것임.
 
-저 부분을 수정하면 디렉토리를 만들 수 있을 것임.
+저 파일을 수정하면 디렉토리를 만들 수 있을 것임.
+
+[nav_list](https://github.com/Mona04/Mona04.github.io/blob/main/Posts/Jekyll/_posts/nav_list)
+
+[nav_list](https://github.com/Mona04/Mona04.github.io/blob/main/Posts/Jekyll/_posts/nav_list_li)
+
+위는 원래 있던 ```nav_list``` 를 수정한 것과 새로만든```nav_list_li```  임.
+
+
 
 
 
