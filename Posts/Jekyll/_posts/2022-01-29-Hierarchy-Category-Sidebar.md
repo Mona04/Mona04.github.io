@@ -80,25 +80,51 @@ Jerkll 는 디렉토리에 따라 Category 를 자동으로 분류함.
 
 아래의 코드를 ```_includes/head/custom.html``` 에 추가해서 클릭함수를 정의해줘야함.
 
+<details markdown="1">
+<summary>header js code</summary>
+
 {% highlight html %}
 <script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
 <script>
     function fn_spread(id) {
-        if ($('#Category'+id).is(":visible"))
+        if ($('#Category' + id).is(":visible") && $('#Category' + id).css("overflow") != "hidden")
         {
             $('#Category' + id).slideUp();
+            $('#Category' + id).css("max-height", "0%");
+            $('#Category' + id).css("opacity", "0%");
+            $('#Category' + id).css("z-index", "10");
+            $('#Category' + id).css("overflow", "hidden");
+            $('#Category' + id).css("display", "none");
+
             $('#Icon' + id).toggleClass("fas fa-angle-up");
         }
         else
         {
-            $('#Category' + id).slideDown();
+            $('#Category' + id).slideDown({
+                complete: function () {
+                    $('#Category' + id).css("overflow", "visible");
+                }
+            });
+            $('#Category' + id).css("max-height", "100%");
+            $('#Category' + id).css("opacity", "100%");
+            $('#Category' + id).css("z-index", "0");
+            $('#Category' + id).css("overflow", "visible");
+            $('#Category' + id).css("display", "block");
+    
             $('#Icon' + id).toggleClass("fas fa-angle-down");
         }
     }
 </script>
 {% endhighlight %}
+</details><br/>
 
-```id``` 를 어떻게 지정하는지가 핵심 포인트인데
+위에서 ```hidden``` 체크가 모바일 호환 때문에 굉장히 중요함.
++ 모바일 화면 등 화면크기가 작으면 Sidebar 가 Toggle Button 으로 접히고 열림
++ 이때 ```display``` 가 아니라 ```overflow:hidden;``` 으로 열고닫기 때문에 위 코드에서도 똑같이 적용시켜줘야함.<br/><br/>
+
+
+
+html 부분에선 ```id``` 를 어떻게 지정하는지가 핵심 포인트인데
 
 ```
 id="{\{"Icon" | append: nav2.url | replace: "/", "-"}\}"
@@ -172,7 +198,7 @@ id="{\{"Icon" | append: nav2.url | replace: "/", "-"}\}"
 2. 해당 디렉토리에 있으면 자동으로 그 부분만 펼쳐지게 해놓는 것.
   + 디렉토리 구조이므로 ```nav.url``` 이 ```Page.url``` 를 포함하면 됨.
   + 이때 대소문자가 자동으로 처리되는 부분이 있으므로 대문자로 통일함.
-  + Root 부분인 ```CATEGORIES``` 는 이 방법으로 안되서 야매로 처리
+  + Root 부분인 ```CATEGORIES``` 는 이 방법으로 안되서 야매로 처리	
 
 ### nav_list
 
@@ -212,7 +238,6 @@ id="{\{"Icon" | append: nav2.url | replace: "/", "-"}\}"
 2. Directory 정보 반영된 navigation.yml 
 
 두부분만 수정하면 계층형 카테고리를 GitBlog 에서 구현할 수 있음.
-
 
 
 
