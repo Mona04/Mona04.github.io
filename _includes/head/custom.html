@@ -9,14 +9,30 @@
 <script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
 <script>
     function fn_spread(id) {
-        if ($('#Category'+id).is(":visible"))
+        if ($('#Category' + id).is(":visible") && $('#Category' + id).css("overflow") != "hidden")
         {
             $('#Category' + id).slideUp();
+            $('#Category' + id).css("max-height", "0%");
+            $('#Category' + id).css("opacity", "0%");
+            $('#Category' + id).css("z-index", "10");
+            $('#Category' + id).css("overflow", "hidden");
+            $('#Category' + id).css("display", "none");
+
             $('#Icon' + id).toggleClass("fas fa-angle-up");
         }
         else
         {
-            $('#Category' + id).slideDown();
+            $('#Category' + id).slideDown({
+                complete: function () {
+                    $('#Category' + id).css("overflow", "visible");
+                }
+            });
+            $('#Category' + id).css("max-height", "100%");
+            $('#Category' + id).css("opacity", "100%");
+            $('#Category' + id).css("z-index", "0");
+            $('#Category' + id).css("overflow", "visible");
+            $('#Category' + id).css("display", "block");
+
             $('#Icon' + id).toggleClass("fas fa-angle-down");
         }
     }

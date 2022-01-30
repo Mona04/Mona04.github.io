@@ -475,9 +475,9 @@
     z-index: 10;
     -webkit-transition: 0.3s ease-in-out;
     transition: 0.3s ease-in-out;
-    -webkit-transform: translate(0, 10%);
-    -ms-transform: translate(0, 10%);
-    transform: translate(0, 10%);
+    //-webkit-transform: translate(0, 10%);
+    //-ms-transform: translate(0, 10%);
+    //transform: translate(0, 10%);
   }
 }
 

@@ -48,7 +48,8 @@ Jerkll 는 디렉토리에 따라 Category 를 자동으로 분류함.
 즉 저 파일을 수정하면 디렉토리를 커스터마이즈 가능함.
 + [nav_list](https://github.com/Mona04/Mona04.github.io/blob/main/Posts/Jekyll/_posts/nav_list)
 + [nav_list_li](https://github.com/Mona04/Mona04.github.io/blob/main/Posts/Jekyll/_posts/nav_list_li)
-+ 위는 원래 있던 ```nav_list``` 를 수정한 것과 새로만든```nav_list_li```  임.
++ [nav_list_ul](https://github.com/Mona04/Mona04.github.io/blob/main/Posts/Jekyll/_posts/nav_list_ul)
++ ```nav_list``` 는 원래있는걸  수정한 거고 나머지는 새로 만든 것임.
 
 디렉토리-카테고리 정보는 ```_daa/navigation.yml``` 에 있는데 자세한건 나중에 설명함.
 
@@ -162,6 +163,16 @@ id="{\{"Icon" | append: nav2.url | replace: "/", "-"}\}"
 
 {% endhighlight %}
 </details>
+
+### nav_list_ul
+
+2가지 역할이 있음.
+
+1. ```id``` 를 위에서 설명한대로 ```<ul>``` 에 부여하는 것. 얘가 접히게 됨.
+2. 해당 디렉토리에 있으면 자동으로 그 부분만 펼쳐지게 해놓는 것.
+  + 디렉토리 구조이므로 ```nav.url``` 이 ```Page.url``` 를 포함하면 됨.
+  + 이때 대소문자가 자동으로 처리되는 부분이 있으므로 대문자로 통일함.
+  + Root 부분인 ```CATEGORIES``` 는 이 방법으로 안되서 야매로 처리
 
 ### nav_list
 
