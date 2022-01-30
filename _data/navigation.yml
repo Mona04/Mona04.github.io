@@ -1,8 +1,33 @@
-## main linksmain:# - title: "Quick-Start Guide"#  url: https://mmistakes.github.io/minimal-mistakes/docs/quick-start-guide/# - title: "About"#   url: https://mmistakes.github.io/minimal-mistakes/about/# - title: "Sample Posts"#   url: /year-archive/# - title: "Sample Collections"#   url: /collection-archive/# - title: "Sitemap"#   url: /sitemap/# Mainsnavi:  - title: Portfolio ★    url: /Navis/navi-portfolios/  - title: "Memo"    url: /Posts/Memo/  - title: Tags    url: /Navis/navi-tags/  - title: Categories    url: /Navis/navi-categories/
+# main links
+main:
+# - title: "Quick-Start Guide"
+#  url: https://mmistakes.github.io/minimal-mistakes/docs/quick-start-guide/
+# - title: "About"
+#   url: https://mmistakes.github.io/minimal-mistakes/about/
+# - title: "Sample Posts"
+#   url: /year-archive/
+# - title: "Sample Collections"
+#   url: /collection-archive/
+# - title: "Sitemap"
+#   url: /sitemap/
+# Mains
+
+navi:
+  - title: Portfolio ★
+    url: /navi-portfolios/
+  - title: "Memo"
+    url: /Posts/Memo/
+  - title: Tags
+    url: /navi-tags/
+  - title: Categories
+    url: /navi-categories/
+
     children:
+
       - title: "Algorithm"
         url: /Posts/Algorithm/
         children:
+
           - title: "BOG-Gold"
             url: /Posts/Algorithm/BOG-Gold/
           - title: "BOG-Platinum"
@@ -14,6 +39,7 @@
       - title: "Book"
         url: /Posts/Book/
         children:
+
           - title: "C++PrimerPlus"
             url: /Posts/Book/C++PrimerPlus/
           - title: "UE4-Scripting-with-C++-Cookbook"
@@ -35,5 +61,6 @@
       - title: "UE4"
         url: /Posts/UE4/
         children:
+
           - title: "ALS"
             url: /Posts/UE4/ALS/

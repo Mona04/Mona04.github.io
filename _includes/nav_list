@@ -14,11 +14,11 @@
         {% endif %}
 
 
-        <ul class="nav__items" id="{{"Category" | append: nav.url | replace: "/", "-"}}" style="display: none;" >
+        {% include nav_list_ul node=nav %} 
         {% for nav2 in nav.children %}
           <li> 
             {% include nav_list_li node=nav2 style="nav__sub-title2" %}
-            <ul class="nav__items" id="{{"Category" | append: nav2.url | replace: "/", "-"}}" style="display: none;" >
+            {% include nav_list_ul node=nav2 %} 
               {% for nav3 in nav2.children %}
               <li> 
                   {% include nav_list_li node=nav3 style="nav__sub-title3" %} 

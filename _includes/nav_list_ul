@@ -1,0 +1,14 @@
+{% assign node = include.node %}
+
+<ul class="nav__items" 
+  id="{{"Category" | append: node.url | replace: "/", "-"}}" 
+  {% assign PageUpper = page.url | upcase %}
+  {% assign NodeUpper = node.url | upcase %}
+  {% if PageUpper contains NodeUpper %}  
+    style="display: block;"
+  {% elsif NodeUpper contains "NAVI-CATEGORIES" and PageUpper contains "POSTS" %}  
+    style="display: block;"
+  {% else %}  
+    style="display: none;" 
+  {% endif %} 
+>
