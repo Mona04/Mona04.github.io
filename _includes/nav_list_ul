@@ -6,7 +6,9 @@
   {% assign NodeUpper = node.url | upcase %}
   {% if PageUpper contains NodeUpper %}  
     style="display: block;"
-  {% elsif NodeUpper contains "NAVI-CATEGORIES" and PageUpper contains "POSTS" %}  
+  {% elsif PageUpper contains "PORTFOLIO" %}  
+    style="display: none;" 
+  {% elsif NodeUpper contains "NAVI-CATEGORIES" and PageUpper contains "POSTS"%}  
     style="display: block;"
   {% else %}  
     style="display: none;" 

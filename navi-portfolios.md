@@ -1,19 +1,20 @@
 ---
-title: My Fortfolio
+# Feel free to add content and custom Front Matter to this file.
+# To modify the layout, see https://jekyllrb.com/docs/themes/#overriding-theme-defaults
+
 layout: category
-entries_layout: grid
 author_profile: true
-sidebar: 
+sidebar:
   nav: "navi"
 ---
 
-아 취업하고시퍼
+아 취업하고 싶다
 
 
 <div>
 {% assign entries_layout = 'grid' %}
 {% for category in site.categories %}
-  {% if category[0] == "CATEGORY"%}
+  {% if category[0] == "Portfolio"%}
       <h2 class="archive__subtitle">{{ category[0] }}</h2>
       <div class="entries-{{ entries_layout }}">
         {% for post in category.last %}
@@ -24,3 +25,4 @@ sidebar:
   {% endif %}
 {% endfor %}
 </div>
+
