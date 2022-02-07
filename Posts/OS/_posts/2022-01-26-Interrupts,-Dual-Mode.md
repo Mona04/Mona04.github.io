@@ -98,9 +98,16 @@ Mode bit, Monitor bit 등으로 불리는 CPL 이 저장되는 위치는 운영�
 ### Privileged Instruction
 
 Kernel Mode 에서만 가능한 명령을  __Privileged Instruction(특권 명령)__ 이라 함.
++ 즉 어셈블리어에서 할 수 있는걸 생각하면 생각 외로 별로 없음.
 
-I/O 관련, Timer 관련, IPC(Inter Process Communication) 등 보안이 필요한 명령을 의미.
-+ 어셈블리어에서 할 수 있는걸 생각하면 생각 외로 별로 없음.
+보안이 필요한 명령들이 해당되며 아래 외에도 매우 많음.
++ I/O 관련 => ```in```, ```out```
++ Timer => Set Timer Value
++ Memory 관련 => MMU, ```allocate```, ```free```
++ IPC(Inter Process Communication)
++ User Mode Switch, Turn off Interrupts
+
+
 
 RISC-V 는 User / Privileged ISA 로 나누었음.
 + [Privileged ISA 에 관한 영상](https://youtu.be/fxLXvrLN5jA)
