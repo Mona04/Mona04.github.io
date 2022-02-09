@@ -97,6 +97,7 @@ GEM
     sawyer (0.8.2)
       addressable (>= 2.3.5)
       faraday (> 0.8, < 2.0)
+    wdm (0.1.1)
     webrick (1.7.0)
 
 PLATFORMS
@@ -106,6 +107,7 @@ DEPENDENCIES
   jekyll (~> 3.5)
   kramdown-parser-gfm (~> 1.1)
   minimal-mistakes-jekyll
+  wdm (>= 0.1.0)
   webrick (~> 1.7)
 
 BUNDLED WITH
