@@ -8,7 +8,8 @@ sidebar:
   nav: "navi"
 ---
 
-아 취업하고 싶다
+Tip 
++ 새로운 창으로 링크 열기 => ```ctrl + Click```
 
 
 <div>
@@ -25,4 +26,3 @@ sidebar:
   {% endif %}
 {% endfor %}
 </div>
-
