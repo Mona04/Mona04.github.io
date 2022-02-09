@@ -1,6 +1,5 @@
 ---
 excerpt: "c++ 에서 Reflection 구현하기"
-categories: c++
 tag: [c++]
 use_math: true
 ---
