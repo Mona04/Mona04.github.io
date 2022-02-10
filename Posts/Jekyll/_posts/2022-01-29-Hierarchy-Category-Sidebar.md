@@ -89,7 +89,7 @@ Jerkll 는 디렉토리에 따라 Category 를 자동으로 분류함.
     function fn_spread(id) {
         if ($('#Category' + id).is(":visible") && $('#Category' + id).css("overflow") != "hidden")
         {
-            $('#Category' + id).slideUp();
+            $('#Category' + id).stop().slideUp();
             $('#Category' + id).css("max-height", "0%");
             $('#Category' + id).css("opacity", "0%");
             $('#Category' + id).css("z-index", "10");
@@ -100,7 +100,7 @@ Jerkll 는 디렉토리에 따라 Category 를 자동으로 분류함.
         }
         else
         {
-            $('#Category' + id).slideDown({
+            $('#Category' + id).stop().slideDown({
                 complete: function () {
                     $('#Category' + id).css("overflow", "visible");
                 }
@@ -217,6 +217,24 @@ id="{\{"Icon" | append: nav2.url | replace: "/", "-"}\}"
 + 새로운 ```<ul>``` 안에는 Subdirectory 가 들어가게 됨.
 + 포문을 돌려 내려간 단계가 곧 표현가능한 계층의 갯수로 내가 만든건 2번만 돌리고 끝남.
 + 같은 구조로 계속 포문을 돌릴 수 있으므로 계층 추가도 쉽게 가능함.
+
+#### scss
+
+{% highlight css %}
+.sidebar::-webkit-scrollbar {
+    width: 0; /* Remove scrollbar space */
+    background: transparent; /* Optional: just make scrollbar invisible */
+}
+/* Optional: show position indicator in red */
+.sidebar::-webkit-scrollbar-thumb {
+    background: #FF0000;
+}
+{% endhighlight %}
+
+위를 ```_sidebar.scss``` 에 추가하면 스크롤바 없앨 수 있음.
+
+
+
 
 ## navigation.yml
 

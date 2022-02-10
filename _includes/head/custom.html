@@ -11,7 +11,7 @@
     function fn_spread(id) {
         if ($('#Category' + id).is(":visible") && $('#Category' + id).css("overflow") != "hidden")
         {
-            $('#Category' + id).slideUp();
+            $('#Category' + id).stop().slideUp();
             $('#Category' + id).css("max-height", "0%");
             $('#Category' + id).css("opacity", "0%");
             $('#Category' + id).css("z-index", "10");
@@ -22,7 +22,7 @@
         }
         else
         {
-            $('#Category' + id).slideDown({
+            $('#Category' + id).stop().slideDown({
                 complete: function () {
                     $('#Category' + id).css("overflow", "visible");
                 }

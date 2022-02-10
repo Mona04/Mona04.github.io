@@ -4,22 +4,32 @@
 
 layout: category
 author_profile: true
+read_time: true
 sidebar:
   nav: "navi"
 ---
 
-Tip 
-+ 새로운 창으로 링크 열기 => ```ctrl + Click```
+#### 자기소개
 
++ Game Programmer 가 되고 싶은 취업 준비생입니다.
++ ```Ue4```, ```hlsl```, ```c++```, ```wpf``` 위주로 공부 중입니다. 
++ 3D Cartoon Graphics Technique 를 추후 공부할 예정입니다. 
++ Reinforcement Learning 및 NPC 인공지능을 추후 공부할 예정입니다.
+
+#### Tip 
+
++ 새로운 탭으로 링크 열기 => ```ctrl + Click```
+
+<br/>
 
 <div>
 {% assign entries_layout = 'grid' %}
 {% for category in site.categories %}
   {% if category[0] == "Portfolio"%}
-      <h2 class="archive__subtitle">{{ category[0] }}</h2>
+      <h2 class="archive__subtitle">{{ category[0] }}s</h2>
       <div class="entries-{{ entries_layout }}">
         {% for post in category.last %}
-          {% include archive-single.html type=entries_layout %}
+          {% include archive-portfolio.html type=entries_layout %}
         {% endfor %}
       </div>
       <a href="#page-title" class="back-to-top">{{ site.data.ui-text[site.locale].back_to_top | default: 'Back to Top' }} &uarr;</a>
