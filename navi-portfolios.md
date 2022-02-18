@@ -13,8 +13,8 @@ sidebar:
 
 + Game Programmer 가 되고 싶은 취업 준비생입니다.
 + ```Ue4```, ```hlsl```, ```c++```, ```wpf``` 위주로 공부 중입니다. 
-+ 3D Cartoon Graphics Technique 를 추후 공부할 예정입니다. 
-+ Reinforcement Learning 및 NPC 인공지능을 추후 공부할 예정입니다.
+
+
 
 #### Tip 
 
