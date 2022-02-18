@@ -28,14 +28,14 @@ navi:
         url: /Posts/Algorithm/
         children:
 
-          - title: "BOG-Gold"
-            url: /Posts/Algorithm/BOG-Gold/
-          - title: "BOG-Platinum"
-            url: /Posts/Algorithm/BOG-Platinum/
-          - title: "BOG-Silver"
-            url: /Posts/Algorithm/BOG-Silver/
-          - title: "Concept"
-            url: /Posts/Algorithm/Concept/
+          - title: "BOJ-Gold"
+            url: /Posts/Algorithm/BOJ-Gold/
+          - title: "BOJ-Platinum"
+            url: /Posts/Algorithm/BOJ-Platinum/
+          - title: "BOJ-Silver"
+            url: /Posts/Algorithm/BOJ-Silver/
+          - title: "Number Theory"
+            url: /Posts/Algorithm/Number Theory/
       - title: "Book"
         url: /Posts/Book/
         children:

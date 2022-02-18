@@ -11,7 +11,7 @@ sidebar:
 <div>
 {% assign entries_layout = 'grid' %}
 {% for category in site.categories %}
-  {% if category[0] == "BOG-Silver"%}
+  {% if category[0] == "BOJ-Silver"%}
       <h2 class="archive__subtitle">{{ category[0] }}</h2>
       <div class="entries-{{ entries_layout }}">
         {% for post in category.last %}
