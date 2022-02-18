@@ -11,11 +11,11 @@ use_math: true
 read_time: false
 ---
 
-## [Github Repository](https://github.com/Mona04/Descending-Game)
+## [Github Repository](https://github.com/Mona04/MiniGame-CppConsole)
 
 ## Description
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/TWcySjsfLNE" frameborder="0" allowfullscreen></iframe>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/cJxZkF73nAk" frameborder="0" allowfullscreen></iframe>
 
 <br/>
 
