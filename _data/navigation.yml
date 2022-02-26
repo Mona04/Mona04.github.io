@@ -35,7 +35,7 @@ navi:
           - title: "BOJ-Silver"
             url: /Posts/Algorithm/BOJ-Silver/
           - title: "Number Theory"
-            url: /Posts/Algorithm/Number Theory/
+            url: /Posts/Algorithm/Algorithms Concept/
       - title: "Book"
         url: /Posts/Book/
         children:
