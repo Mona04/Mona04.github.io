@@ -1,0 +1,20 @@
+---
+excerpt: "Sprite 2D Adventure Game using CPP and DirectX."
+header:
+  teaser: /Posts/Portfolio/DirectX-2D/screenshot2.png
+  overlay_image: /Posts/Portfolio/DirectX-2D/screenshot.png
+  image_description: "In Game Capture."
+  actions:
+    - label: "Github Repository"
+      url: "https://github.com/Mona04/MiniGame-DirectX-2D"
+use_math: true
+read_time: false
+---
+
+## Description
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/6m-Btr6Jfgk" frameborder="0" allowfullscreen></iframe>
+
+<br/>
+
+[![Technical Documentation](/Posts/Portfolio/DirectX-2D/TechDoc.png)](/Posts/Portfolio/DirectX-2D/TechDoc.pdf)
