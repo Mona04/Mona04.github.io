@@ -46,6 +46,8 @@ navi:
             url: /Posts/Book/UE4-Scripting-with-C++-Cookbook/
       - title: "c++"
         url: /Posts/c++/
+      - title: "Graphics"
+        url: /Posts/Graphics/
       - title: "Jekyll"
         url: /Posts/Jekyll/
       - title: "Math"
