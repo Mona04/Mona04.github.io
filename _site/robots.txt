@@ -1,4 +1,0 @@
-User-agent: *
-Allow: /
-
-Sitemap: https://mona04.github.io/sitemap.xml
