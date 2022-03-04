@@ -1,0 +1,1335 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.24.0 by Michael Rose
+  Copyright 2013-2020 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="ko" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>            ch06 ,07 Input Interface _ Log      Study      </title>
+<meta name="description" content="c++로 개발하는 언리얼엔진4 ch06, 07 요약 및 정리">
+
+
+  <meta name="author" content="Mona04">
+  
+  <meta property="article:author" content="Mona04">
+  
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="ko">
+<meta property="og:site_name" content="Log | Study">
+<meta property="og:title" content="ch06 ,07 Input Interface">
+<meta property="og:url" content="http://localhost:4000/posts/book/ue4-scripting-with-c++-cookbook/ch06-,07-Input-Interface/">
+
+
+  <meta property="og:description" content="c++로 개발하는 언리얼엔진4 ch06, 07 요약 및 정리">
+
+
+
+  <meta property="og:image" content="http://localhost:4000/assets/images/logo.png">
+
+
+
+
+
+  <meta property="article:published_time" content="2021-10-18T00:00:00+09:00">
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="http://localhost:4000/posts/book/ue4-scripting-with-c++-cookbook/ch06-,07-Input-Interface/">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": "Mona04",
+      "url": "http://localhost:4000/"
+    
+  }
+</script>
+
+
+  <meta name="google-site-verification" content="F2oPZSOAKlxw2iAayxs8nQmb9hCG1xbwGenRruCQrVU" />
+
+
+
+
+
+  <meta name="naver-site-verification" content="0a38bc87a52a81a820d109d26a2039d3b5c93382">
+
+
+<!-- end _includes/seo.html -->
+
+
+
+  <link href="/feed.xml" type="application/atom+xml" rel="alternate" title="Log | Study Feed">
+
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css"></noscript>
+
+
+
+    <!-- start custom head snippets -->
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+<!-- end custom head snippets -->
+
+<script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+<script>mermaid.initialize({ startOnLoad: true });</script>
+<script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
+
+<script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
+<script>
+    function fn_spread(id) {
+        if ($('#Category' + id).is(":visible") && $('#Category' + id).css("overflow") != "hidden")
+        {
+            $('#Category' + id).stop().slideUp();
+            $('#Category' + id).css("max-height", "0%");
+            $('#Category' + id).css("opacity", "0%");
+            $('#Category' + id).css("z-index", "10");
+            $('#Category' + id).css("overflow", "hidden");
+            $('#Category' + id).css("display", "none");
+
+            $('#Icon' + id).toggleClass("fas fa-angle-up");
+        }
+        else
+        {
+            $('#Category' + id).stop().slideDown({
+                complete: function () {
+                    $('#Category' + id).css("overflow", "visible");
+                }
+            });
+            $('#Category' + id).css("max-height", "100%");
+            $('#Category' + id).css("opacity", "100%");
+            $('#Category' + id).css("z-index", "0");
+            $('#Category' + id).css("overflow", "visible");
+            $('#Category' + id).css("display", "block");
+
+            $('#Icon' + id).toggleClass("fas fa-angle-down");
+        }
+    }
+</script>
+  </head>
+
+  <body class="layout--single single">
+    <nav class="skip-links">
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          Log | Study
+          
+        </a>
+        <ul class="visible-links"></ul>
+        
+        <button class="search__toggle" type="button">
+          <span class="visually-hidden">Toggle search</span>
+          <i class="fas fa-search"></i>
+        </button>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">토글 메뉴</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+
+<div id="main" role="main">
+  
+    <div class="sidebar sticky">
+        
+
+
+<div itemscope itemtype="https://schema.org/Person">
+
+  
+    <div class="author__avatar">
+      
+        <img src="/assets/images/Profile.jpg" alt="Mona04" itemprop="image">
+      
+    </div>
+  
+
+  <div class="author__content">
+    
+      <h3 class="author__name" itemprop="name">Mona04</h3>
+    
+    
+      <div class="author__bio" itemprop="description">
+        <p>개발자가 되자</p>
+
+      </div>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">팔로우</button>
+    <ul class="author__urls social-icons">
+      
+        <li itemprop="homeLocation" itemscope itemtype="https://schema.org/Place">
+          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name">Seoul.Korea</span>
+        </li>
+      
+
+      
+        
+          
+        
+          
+        
+      
+
+      
+
+      
+        <li>
+          <a href="mailto:moksha1905@gmail.com">
+            <meta itemprop="email" content="moksha1905@gmail.com" />
+            <i class="fas fa-fw fa-envelope-square" aria-hidden="true"></i><span class="label">이메일</span>
+          </a>
+        </li>
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+        <li>
+          <a href="https://github.com/Mona04" itemprop="sameAs" rel="nofollow noopener noreferrer">
+            <i class="fab fa-fw fa-github" aria-hidden="true"></i><span class="label">GitHub</span>
+          </a>
+        </li>
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+
+          
+          
+            
+          
+          
+          
+          
+          
+            
+
+<nav class="nav__list">
+  
+  <input id="ac-toc" name="accordion-toc" type="checkbox" />
+  <label for="ac-toc">토글 메뉴</label>
+  <ul class="nav__items">
+    
+      <li>
+        
+          
+
+
+  
+  
+<span class=nav__sub-title>
+  <a href="/navi-portfolios/">Portfolio ★</a>
+  
+</span>
+        
+
+
+        
+
+<ul class="nav__items" 
+  id="Category-navi-portfolios-" 
+  
+  
+    
+    style="display: none;" 
+   
+> 
+        
+        </ul>
+
+      </li>
+    
+      <li>
+        
+          
+
+
+  
+  
+<span class=nav__sub-title>
+  <a href="/Posts/Memo/">Memo</a>
+  
+</span>
+        
+
+
+        
+
+<ul class="nav__items" 
+  id="Category-Posts-Memo-" 
+  
+  
+    
+    style="display: none;" 
+   
+> 
+        
+        </ul>
+
+      </li>
+    
+      <li>
+        
+          
+
+
+  
+  
+<span class=nav__sub-title>
+  <a href="/navi-tags/">Tags</a>
+  
+</span>
+        
+
+
+        
+
+<ul class="nav__items" 
+  id="Category-navi-tags-" 
+  
+  
+    
+    style="display: none;" 
+   
+> 
+        
+        </ul>
+
+      </li>
+    
+      <li>
+        
+          
+
+
+  
+  
+<span class=nav__sub-title>
+  <a href="/navi-categories/">Categories</a>
+  
+    <button class="nav__sub-button" onclick="fn_spread(`-navi-categories-`);"> 
+    <i class="fas fa-angle-up" id="Icon" ></i> </button>
+  
+</span>
+        
+
+
+        
+
+<ul class="nav__items" 
+  id="Category-navi-categories-" 
+  
+  
+    
+    style="display: block;"
+   
+> 
+        
+          <li> 
+            
+
+
+  
+  
+<span class=nav__sub-title2>
+  <a href="/Posts/Algorithm/">Algorithm</a>
+  
+    <button class="nav__sub-button" onclick="fn_spread(`-Posts-Algorithm-`);"> 
+    <i class="fas fa-angle-up" id="Icon-Posts-Algorithm-" ></i> </button>
+  
+</span>
+            
+
+<ul class="nav__items" 
+  id="Category-Posts-Algorithm-" 
+  
+  
+    
+    style="display: none;" 
+   
+> 
+              
+              <li> 
+                  
+
+
+  
+  
+<span class=nav__sub-title3>
+  <a href="/Posts/Algorithm/BOJ-Gold/">BOJ-Gold</a>
+  
+</span> 
+              </li>
+              
+              <li> 
+                  
+
+
+  
+  
+<span class=nav__sub-title3>
+  <a href="/Posts/Algorithm/BOJ-Platinum/">BOJ-Platinum</a>
+  
+</span> 
+              </li>
+              
+              <li> 
+                  
+
+
+  
+  
+<span class=nav__sub-title3>
+  <a href="/Posts/Algorithm/BOJ-Silver/">BOJ-Silver</a>
+  
+</span> 
+              </li>
+              
+              <li> 
+                  
+
+
+  
+  
+<span class=nav__sub-title3>
+  <a href="/Posts/Algorithm/Algorithms%20Concept/">Algorithms Concept</a>
+  
+</span> 
+              </li>
+              
+            </ul>
+          </li>
+        
+          <li> 
+            
+
+
+  
+  
+<span class=nav__sub-title2>
+  <a href="/Posts/Book/" class="active">Book</a>
+  
+    <button class="nav__sub-button" onclick="fn_spread(`-Posts-Book-`);"> 
+    <i class="fas fa-angle-up" id="Icon-Posts-Book-" ></i> </button>
+  
+</span>
+            
+
+<ul class="nav__items" 
+  id="Category-Posts-Book-" 
+  
+  
+    
+    style="display: block;"
+   
+> 
+              
+              <li> 
+                  
+
+
+  
+  
+<span class=nav__sub-title3>
+  <a href="/Posts/Book/C++PrimerPlus/">C++PrimerPlus</a>
+  
+</span> 
+              </li>
+              
+              <li> 
+                  
+
+
+  
+  
+<span class=nav__sub-title3>
+  <a href="/Posts/Book/UE4-Scripting-with-C++-Cookbook/" class="active">UE4-Scripting-with-C++-Cookbook</a>
+  
+</span> 
+              </li>
+              
+            </ul>
+          </li>
+        
+          <li> 
+            
+
+
+  
+  
+<span class=nav__sub-title2>
+  <a href="/Posts/c++/">c++</a>
+  
+</span>
+            
+
+<ul class="nav__items" 
+  id="Category-Posts-c++-" 
+  
+  
+    
+    style="display: none;" 
+   
+> 
+              
+            </ul>
+          </li>
+        
+          <li> 
+            
+
+
+  
+  
+<span class=nav__sub-title2>
+  <a href="/Posts/Graphics/">Graphics</a>
+  
+</span>
+            
+
+<ul class="nav__items" 
+  id="Category-Posts-Graphics-" 
+  
+  
+    
+    style="display: none;" 
+   
+> 
+              
+            </ul>
+          </li>
+        
+          <li> 
+            
+
+
+  
+  
+<span class=nav__sub-title2>
+  <a href="/Posts/Jekyll/">Jekyll</a>
+  
+</span>
+            
+
+<ul class="nav__items" 
+  id="Category-Posts-Jekyll-" 
+  
+  
+    
+    style="display: none;" 
+   
+> 
+              
+            </ul>
+          </li>
+        
+          <li> 
+            
+
+
+  
+  
+<span class=nav__sub-title2>
+  <a href="/Posts/Math/">Math</a>
+  
+</span>
+            
+
+<ul class="nav__items" 
+  id="Category-Posts-Math-" 
+  
+  
+    
+    style="display: none;" 
+   
+> 
+              
+            </ul>
+          </li>
+        
+          <li> 
+            
+
+
+  
+  
+<span class=nav__sub-title2>
+  <a href="/Posts/Memo/">Memo</a>
+  
+</span>
+            
+
+<ul class="nav__items" 
+  id="Category-Posts-Memo-" 
+  
+  
+    
+    style="display: none;" 
+   
+> 
+              
+            </ul>
+          </li>
+        
+          <li> 
+            
+
+
+  
+  
+<span class=nav__sub-title2>
+  <a href="/Posts/OS/">OS</a>
+  
+</span>
+            
+
+<ul class="nav__items" 
+  id="Category-Posts-OS-" 
+  
+  
+    
+    style="display: none;" 
+   
+> 
+              
+            </ul>
+          </li>
+        
+          <li> 
+            
+
+
+  
+  
+<span class=nav__sub-title2>
+  <a href="/Posts/Portfolio/">Portfolio</a>
+  
+</span>
+            
+
+<ul class="nav__items" 
+  id="Category-Posts-Portfolio-" 
+  
+  
+    
+    style="display: none;" 
+   
+> 
+              
+            </ul>
+          </li>
+        
+          <li> 
+            
+
+
+  
+  
+<span class=nav__sub-title2>
+  <a href="/Posts/System%20Hacking/">System Hacking</a>
+  
+</span>
+            
+
+<ul class="nav__items" 
+  id="Category-Posts-System Hacking-" 
+  
+  
+    
+    style="display: none;" 
+   
+> 
+              
+            </ul>
+          </li>
+        
+          <li> 
+            
+
+
+  
+  
+<span class=nav__sub-title2>
+  <a href="/Posts/UE4/">UE4</a>
+  
+    <button class="nav__sub-button" onclick="fn_spread(`-Posts-UE4-`);"> 
+    <i class="fas fa-angle-up" id="Icon-Posts-UE4-" ></i> </button>
+  
+</span>
+            
+
+<ul class="nav__items" 
+  id="Category-Posts-UE4-" 
+  
+  
+    
+    style="display: none;" 
+   
+> 
+              
+              <li> 
+                  
+
+
+  
+  
+<span class=nav__sub-title3>
+  <a href="/Posts/UE4/ALS/">ALS</a>
+  
+</span> 
+              </li>
+              
+            </ul>
+          </li>
+        
+        </ul>
+
+      </li>
+    
+  </ul>
+  <h1></h1>
+</nav>
+
+          
+        
+    </div>
+
+
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="ch06 ,07 Input Interface">
+    <meta itemprop="description" content="c++로 개발하는 언리얼엔진4 ch06, 07 요약 및 정리">
+    <meta itemprop="datePublished" content="2021-10-18T00:00:00+09:00">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">ch06 ,07 Input Interface
+</h1>
+          
+
+
+
+<nav class="breadcrumbs">
+  <i class="fas fa-fw fa-folder-open" aria-hidden="true"></i>
+  <ol itemscope itemtype="https://schema.org/BreadcrumbList">
+    
+    
+    
+    
+
+        
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+            <a href="http://localhost:4000/" itemprop="item"><span itemprop="name">Home</span></a>
+            <meta itemprop="position" content="1" />
+        </li>
+        <span class="sep">/</span>
+        
+        
+        
+          
+          <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+              <a href="/posts/"><span itemprop="name">Posts</span></a>
+              <meta itemprop="position" content="1" />
+          </li>
+          <span class="sep">/</span>
+        
+
+    
+
+        
+        
+        
+          
+          <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+              <a href="/posts/book/"><span itemprop="name">Book</span></a>
+              <meta itemprop="position" content="1" />
+          </li>
+          <span class="sep">/</span>
+        
+
+    
+
+        
+        
+        
+          
+          <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+              <a href="/posts/book/ue4-scripting-with-c++-cookbook/"><span itemprop="name">Ue4-scripting-with-c++-cookbook</span></a>
+              <meta itemprop="position" content="1" />
+          </li>
+          <span class="sep">/</span>
+        
+
+    
+
+        
+        
+        
+        
+
+    
+  </ol>
+</nav>
+
+<!--
+<nav class="breadcrumbs">
+  <i class="fas fa-fw fa-folder-open" aria-hidden="true"></i>
+  <ol itemscope itemtype="https://schema.org/BreadcrumbList" >
+    
+    
+    
+      
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <a href="http://localhost:4000/" itemprop="item"><span itemprop="name">Home</span></a>
+          <meta itemprop="position" content="1" />
+        </li>
+        <span class="sep">/</span>
+      
+      
+        
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+            <a href="/navi-categories/#posts" itemprop="item"><span itemprop="name">Posts</span></a>
+            <meta itemprop="position" content="2" />
+        </li>
+        <span class="sep">/</span>
+      
+    
+      
+      
+        
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+            <a href="/navi-categories/#book" itemprop="item"><span itemprop="name">Book</span></a>
+            <meta itemprop="position" content="3" />
+        </li>
+        <span class="sep">/</span>
+      
+    
+      
+      
+        
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+            <a href="/navi-categories/#ue4-scripting-with-c++-cookbook" itemprop="item"><span itemprop="name">Ue4 scripting with c++ cookbook</span></a>
+            <meta itemprop="position" content="4" />
+        </li>
+        <span class="sep">/</span>
+      
+    
+      
+      
+        <li class="current">ch06 ,07 Input Interface</li>
+      
+    
+  </ol>
+</nav>
+-->
+          
+
+    <p class="page__meta" style="margin-top: 0.5em; orphans: 0; widows: 0;">
+        
+
+        
+
+        
+        
+        
+        <span class="page__meta-readtime">
+            <i class="far fa-clock" aria-hidden="true"></i>
+            
+            6 분 소요
+            
+        </span>
+        
+    </p>
+
+
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+          <aside class="sidebar__right sticky">
+            <nav class="toc">
+              <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> On This Page</h4></header>
+              <ul class="toc__menu"><li><a href="#mapping">Mapping</a></li><li><a href="#interface">Interface</a><ul><li><a href="#2등분">2등분</a></li><li><a href="#bp-노출">BP 노출</a></li><li><a href="#주의사항">주의사항</a></li><li><a href="#순수가상함수">순수가상함수</a></li></ul></li><li><a href="#tactoriterator">TActorIterator</a></li></ul>
+             
+            </nav>
+          </aside>
+        
+        <h2 id="mapping">Mapping</h2>
+
+<figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="n">UPlayerInput</span><span class="o">::</span><span class="n">AddEngineDefinedAxisMapping</span><span class="p">(</span><span class="n">FInputAxisKeyMapping</span><span class="p">(</span><span class="s">"MoveRight"</span><span class="p">,</span> <span class="n">EKeys</span><span class="o">::</span><span class="n">Left</span><span class="p">));</span>
+<span class="n">UPlayerInput</span><span class="o">::</span><span class="n">AddEngineDefinedAxisMapping</span><span class="p">(</span><span class="n">FInputAxisKeyMapping</span><span class="p">(</span><span class="s">"MoveUp"</span><span class="p">,</span> <span class="n">EKeys</span><span class="o">::</span><span class="n">Up</span><span class="p">));</span>
+<span class="n">UPlayerInput</span><span class="o">::</span><span class="n">AddEngineDefinedActionMapping</span><span class="p">(</span><span class="n">FInputActionKeyMapping</span><span class="p">(</span><span class="s">"LeftClick"</span><span class="p">,</span> <span class="n">EKeys</span><span class="o">::</span><span class="n">RightMouseButton</span><span class="p">));</span></code></pre></figure>
+
+<p>프로젝트 설정에서도 할 수 있고 코드로는 <code class="language-plaintext highlighter-rouge">UPlayerInput</code> 을 들고와서 함.</p>
+
+<p>매핑을 위해서<code class="language-plaintext highlighter-rouge">PlayerController</code> 에서  <code class="language-plaintext highlighter-rouge">UPlayerInput</code> 를 들고와서 개개별로 매핑할 수 있고,  전역함수로 있는 <code class="language-plaintext highlighter-rouge">Engine</code> 붙은 함수를 바로 쓸 수도 있음.</p>
+
+<h2 id="interface">Interface</h2>
+
+<p><a href="https://unreal.gg-labs.com/wiki-archives/macros-and-data-types/interfaces-in-c++">언리얼 위키</a></p>
+
+<h3 id="2등분">2등분</h3>
+
+<p>Interface 의 Interface 상속시 각각 처리해줘야함.</p>
+
+<ul>
+  <li>UInterface
+    <ul>
+      <li>UHT 로 리플렉션 정보와 Blueprint 와의 연결코드 등이 채워짐</li>
+      <li>그러니 손댈 일은 거의 없음</li>
+    </ul>
+  </li>
+  <li>IInterface
+    <ul>
+      <li>Cpp 내의 Class 에 상속을 넣을 때 이걸 넣음.</li>
+      <li>실질적인 구현부분인  IInterface 로 나뉨</li>
+      <li>Blueprint 에 노출하기위해선 <code class="language-plaintext highlighter-rouge">UFUNCTION</code> 을 넣으면 됨.</li>
+      <li>기본적으로 virtual 안넣거나 BlueprintImplementableEvent 또는 BlueprintNativeEvent 가 아닌 함수는 UE 에서 지원을 안하며 컴파일 에러남</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="bp-노출">BP 노출</h3>
+
+<ul>
+  <li>Blueprint 에서 구현하고 싶을 시
+    <ul>
+      <li>BlueprintImplementableEvent 나 BlueprintNativeEvent 로 virtual 빼고 넣어주면 됨.</li>
+    </ul>
+  </li>
+  <li>Blueprint 에서 호출하고 싶을 시
+    <ul>
+      <li><strong>BlueprintCallable 을 위의 옵션 두개 중 하나랑 같이</strong> 넣어줘야함.</li>
+      <li>BlueprintCallable 단독으로만은 use cannot implement blueprint in interface” 라고 뜨는데 뭔지 모르겠음.</li>
+    </ul>
+  </li>
+  <li>Interface 는 BlueprintPureFunction 이 적용 안됨</li>
+  <li><strong>return value 가 없으면</strong> Event Graph 에서 처리가 되고, 있으면 Function 으로 인식함. ( 둘다 Override 는 가능 )</li>
+</ul>
+
+<h3 id="주의사항">주의사항</h3>
+
+<ul>
+  <li>호출 시
+    <ul>
+      <li>cpp 내에선 컴파일 시간에서 Blueprint 내의 함수를 알 수가 없음.</li>
+      <li>따라서 <strong>Blueprint 에서 적용된 함수를 사용하고 싶으면 <code class="language-plaintext highlighter-rouge">Execute_</code> Prefix 가 있는 스택틱 함수를 호출해야함</strong> .</li>
+      <li>이때 인자로 사용할 객체의 포인터를 받는데, <code class="language-plaintext highlighter-rouge">this</code> 등이 들어가면 됨.</li>
+    </ul>
+  </li>
+  <li>상속 확인 시
+    <ul>
+      <li>단순히 <code class="language-plaintext highlighter-rouge">Cast</code> 해도 cpp 기반은 확인 가능함.</li>
+      <li>BP 로 구현된 Interface 의 경우 아래와 같이 함.</li>
+      <li><code class="language-plaintext highlighter-rouge">if(iter-&gt;GetClass()-&gt;ImplementsInterface(UEX_Interface::StaticClass()))</code></li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="순수가상함수">순수가상함수</h3>
+
+<p>Interface 에서는 native cpp 의 순수가상함수를 쓸 수 있음.</p>
+
+<p>하지만 <code class="language-plaintext highlighter-rouge">UCLASS</code> 인 클래스에서는 그렇지 못하고 편법이 존재함.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>virtual void Begin_Equip() PURE_VIRTUAL(ACWeapon::Begin_Equip,);
+</code></pre></div></div>
+
+<p>pure 함수는 위처럼 하거나 <code class="language-plaintext highlighter-rouge">unimplemented();</code> 를 넣어주면 <code class="language-plaintext highlighter-rouge">debug assert</code> 등으로 구현되지 않은 클래스에 대해 컴파일 에러를 낼 수 있음.</p>
+
+<h2 id="tactoriterator">TActorIterator</h2>
+
+<figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="kt">int</span> <span class="n">counter</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="k">for</span> <span class="p">(</span><span class="n">TActorIterator</span><span class="o">&lt;</span><span class="n">AActor</span><span class="o">&gt;</span> <span class="n">iter</span><span class="p">(</span><span class="n">GetWorld</span><span class="p">());</span> <span class="o">!!</span><span class="n">iter</span><span class="p">;</span> <span class="o">++</span><span class="n">iter</span><span class="p">)</span>
+	<span class="n">counter</span><span class="o">++</span><span class="p">;</span>
+<span class="n">PFCPP</span><span class="o">::</span><span class="n">Log</span><span class="p">(</span><span class="n">FString</span><span class="o">::</span><span class="n">Printf</span><span class="p">(</span><span class="s">L"IEx_Interface Num is %d"</span><span class="p">,</span> <span class="n">counter</span><span class="p">));</span></code></pre></figure>
+
+<p>끝부분에 가면 알아서 <code class="language-plaintext highlighter-rouge">nullptr</code> 이 되므로 <code class="language-plaintext highlighter-rouge">end</code> 랑 비교 안하고 널확인만 하면 됨.</p>
+
+<p><code class="language-plaintext highlighter-rouge">AActor</code> 이하만 들고 올 수 있어서 Interface 같은거만 처리는 못함.</p>
+
+        
+      </section>
+      
+      <footer class="page__meta">
+        
+        
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> 태그: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/navi-tags/#ue4" class="page__taxonomy-item" rel="tag">UE4</a><span class="sep">, </span>
+    
+      <a href="/navi-tags/#vistual-studio" class="page__taxonomy-item" rel="tag">Vistual Studio</a>
+    
+    </span>
+  </p>
+
+
+
+
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> 카테고리: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/navi-categories/#book" class="page__taxonomy-item" rel="tag">Book</a><span class="sep">, </span>
+    
+      <a href="/navi-categories/#posts" class="page__taxonomy-item" rel="tag">Posts</a><span class="sep">, </span>
+    
+      <a href="/navi-categories/#ue4-scripting-with-c-cookbook" class="page__taxonomy-item" rel="tag">UE4-Scripting-with-C++-Cookbook</a>
+    
+    </span>
+  </p>
+
+
+        
+
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> 업데이트:</strong> <time datetime="2021-10-18T00:00:00+09:00">October 18, 2021</time></p>
+
+
+      </footer>
+
+      
+
+      
+  <nav class="pagination">
+    
+      <a href="/posts/book/ue4-scripting-with-c++-cookbook/ch05-Delegate/" class="pagination--pager" title="ch05 Delegate
+">이전</a>
+    
+    
+      <a href="/posts/book/ue4-scripting-with-c++-cookbook/ch08-Editor-1/" class="pagination--pager" title="ch08 Editor 1
+">다음</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h4 class="page__related-title">관련</h4>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/Posts/Portfolio/DirectX/screenshot2.png" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/posts/portfolio/DirectX-3D/" rel="permalink">DirectX 3D
+</a>
+      
+    </h2>
+    
+
+
+    <p class="archive__item-excerpt" itemprop="description">DirectX Project. Plan to make Unreal like results
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/Posts/Portfolio/UE4-CPP/screenshot2.png" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/posts/portfolio/UE4-CPP/" rel="permalink">UE4 CPP
+</a>
+      
+    </h2>
+    
+
+
+    <p class="archive__item-excerpt" itemprop="description">UE4 Toy Project
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/Posts/Portfolio/UE4-Blueprint/screenshot2.png" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/posts/portfolio/UE4-Blueprint/" rel="permalink">UE4 Blueprint
+</a>
+      
+    </h2>
+    
+
+
+    <p class="archive__item-excerpt" itemprop="description">UE4 Toy Game using Blueprint only.
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/posts/graphics/Graphics-Memo/" rel="permalink">Graphics Memo
+</a>
+      
+    </h2>
+    
+
+    <p class="page__meta" style="margin-top: 0.5em; orphans: 0; widows: 0;">
+        
+
+        
+
+        
+        
+        
+        <span class="page__meta-readtime">
+            <i class="far fa-clock" aria-hidden="true"></i>
+            
+            최대 1 분 소요
+            
+        </span>
+        
+    </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">복붙용
+</p>
+  </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+  
+</div>
+
+    </div>
+
+    
+    <div class="search-content">
+      <div class="search-content__inner-wrap"><form class="search-content__form" onkeydown="return event.key != 'Enter';">
+    <label class="sr-only" for="search">
+      Enter your search term...
+    </label>
+    <input type="search" id="search" class="search-input" tabindex="-1" placeholder="검색어를 입력하세요..." />
+  </form>
+  <div id="results" class="results"></div></div>
+
+    </div>
+    
+
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>팔로우:</strong></li>
+    
+
+    
+
+    
+      <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> 피드</a></li>
+    
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2022 Mona04. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+
+
+
+
+<script src="/assets/js/lunr/lunr.min.js"></script>
+<script src="/assets/js/lunr/lunr-store.js"></script>
+<script src="/assets/js/lunr/lunr-en.js"></script>
+
+
+
+
+    
+  <script>
+    var disqus_config = function () {
+      this.page.url = "http://localhost:4000/posts/book/ue4-scripting-with-c++-cookbook/ch06-,07-Input-Interface/";  /* Replace PAGE_URL with your page's canonical URL variable */
+      this.page.identifier = "/posts/book/ue4-scripting-with-c++-cookbook/ch06-,07-Input-Interface"; /* Replace PAGE_IDENTIFIER with your page's unique identifier variable */
+    };
+    (function() { /* DON'T EDIT BELOW THIS LINE */
+      var d = document, s = d.createElement('script');
+      s.src = 'https://https-mona04-github-io.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+  
+
+
+
+
+
+  </body>
+</html>

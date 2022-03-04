@@ -1,0 +1,1524 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.24.0 by Michael Rose
+  Copyright 2013-2020 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="ko" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>            ch15 friend, except, ect _ Log      Study      </title>
+<meta name="description" content="c++ 기초플러스 15장 요약본">
+
+
+  <meta name="author" content="Mona04">
+  
+  <meta property="article:author" content="Mona04">
+  
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="ko">
+<meta property="og:site_name" content="Log | Study">
+<meta property="og:title" content="ch15 friend, except, ect">
+<meta property="og:url" content="http://localhost:4000/posts/book/c++primerplus/ch15-friend,-except,-ect/">
+
+
+  <meta property="og:description" content="c++ 기초플러스 15장 요약본">
+
+
+
+  <meta property="og:image" content="http://localhost:4000/assets/images/logo.png">
+
+
+
+
+
+  <meta property="article:published_time" content="2021-09-24T00:00:00+09:00">
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="http://localhost:4000/posts/book/c++primerplus/ch15-friend,-except,-ect/">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": "Mona04",
+      "url": "http://localhost:4000/"
+    
+  }
+</script>
+
+
+  <meta name="google-site-verification" content="F2oPZSOAKlxw2iAayxs8nQmb9hCG1xbwGenRruCQrVU" />
+
+
+
+
+
+  <meta name="naver-site-verification" content="0a38bc87a52a81a820d109d26a2039d3b5c93382">
+
+
+<!-- end _includes/seo.html -->
+
+
+
+  <link href="/feed.xml" type="application/atom+xml" rel="alternate" title="Log | Study Feed">
+
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css"></noscript>
+
+
+
+    <!-- start custom head snippets -->
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+<!-- end custom head snippets -->
+
+<script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+<script>mermaid.initialize({ startOnLoad: true });</script>
+<script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
+
+<script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
+<script>
+    function fn_spread(id) {
+        if ($('#Category' + id).is(":visible") && $('#Category' + id).css("overflow") != "hidden")
+        {
+            $('#Category' + id).stop().slideUp();
+            $('#Category' + id).css("max-height", "0%");
+            $('#Category' + id).css("opacity", "0%");
+            $('#Category' + id).css("z-index", "10");
+            $('#Category' + id).css("overflow", "hidden");
+            $('#Category' + id).css("display", "none");
+
+            $('#Icon' + id).toggleClass("fas fa-angle-up");
+        }
+        else
+        {
+            $('#Category' + id).stop().slideDown({
+                complete: function () {
+                    $('#Category' + id).css("overflow", "visible");
+                }
+            });
+            $('#Category' + id).css("max-height", "100%");
+            $('#Category' + id).css("opacity", "100%");
+            $('#Category' + id).css("z-index", "0");
+            $('#Category' + id).css("overflow", "visible");
+            $('#Category' + id).css("display", "block");
+
+            $('#Icon' + id).toggleClass("fas fa-angle-down");
+        }
+    }
+</script>
+  </head>
+
+  <body class="layout--single single">
+    <nav class="skip-links">
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          Log | Study
+          
+        </a>
+        <ul class="visible-links"></ul>
+        
+        <button class="search__toggle" type="button">
+          <span class="visually-hidden">Toggle search</span>
+          <i class="fas fa-search"></i>
+        </button>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">토글 메뉴</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+
+<div id="main" role="main">
+  
+    <div class="sidebar sticky">
+        
+
+
+<div itemscope itemtype="https://schema.org/Person">
+
+  
+    <div class="author__avatar">
+      
+        <img src="/assets/images/Profile.jpg" alt="Mona04" itemprop="image">
+      
+    </div>
+  
+
+  <div class="author__content">
+    
+      <h3 class="author__name" itemprop="name">Mona04</h3>
+    
+    
+      <div class="author__bio" itemprop="description">
+        <p>개발자가 되자</p>
+
+      </div>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">팔로우</button>
+    <ul class="author__urls social-icons">
+      
+        <li itemprop="homeLocation" itemscope itemtype="https://schema.org/Place">
+          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name">Seoul.Korea</span>
+        </li>
+      
+
+      
+        
+          
+        
+          
+        
+      
+
+      
+
+      
+        <li>
+          <a href="mailto:moksha1905@gmail.com">
+            <meta itemprop="email" content="moksha1905@gmail.com" />
+            <i class="fas fa-fw fa-envelope-square" aria-hidden="true"></i><span class="label">이메일</span>
+          </a>
+        </li>
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+        <li>
+          <a href="https://github.com/Mona04" itemprop="sameAs" rel="nofollow noopener noreferrer">
+            <i class="fab fa-fw fa-github" aria-hidden="true"></i><span class="label">GitHub</span>
+          </a>
+        </li>
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+
+          
+          
+            
+          
+          
+          
+          
+          
+            
+
+<nav class="nav__list">
+  
+  <input id="ac-toc" name="accordion-toc" type="checkbox" />
+  <label for="ac-toc">토글 메뉴</label>
+  <ul class="nav__items">
+    
+      <li>
+        
+          
+
+
+  
+  
+<span class=nav__sub-title>
+  <a href="/navi-portfolios/">Portfolio ★</a>
+  
+</span>
+        
+
+
+        
+
+<ul class="nav__items" 
+  id="Category-navi-portfolios-" 
+  
+  
+    
+    style="display: none;" 
+   
+> 
+        
+        </ul>
+
+      </li>
+    
+      <li>
+        
+          
+
+
+  
+  
+<span class=nav__sub-title>
+  <a href="/Posts/Memo/">Memo</a>
+  
+</span>
+        
+
+
+        
+
+<ul class="nav__items" 
+  id="Category-Posts-Memo-" 
+  
+  
+    
+    style="display: none;" 
+   
+> 
+        
+        </ul>
+
+      </li>
+    
+      <li>
+        
+          
+
+
+  
+  
+<span class=nav__sub-title>
+  <a href="/navi-tags/">Tags</a>
+  
+</span>
+        
+
+
+        
+
+<ul class="nav__items" 
+  id="Category-navi-tags-" 
+  
+  
+    
+    style="display: none;" 
+   
+> 
+        
+        </ul>
+
+      </li>
+    
+      <li>
+        
+          
+
+
+  
+  
+<span class=nav__sub-title>
+  <a href="/navi-categories/">Categories</a>
+  
+    <button class="nav__sub-button" onclick="fn_spread(`-navi-categories-`);"> 
+    <i class="fas fa-angle-up" id="Icon" ></i> </button>
+  
+</span>
+        
+
+
+        
+
+<ul class="nav__items" 
+  id="Category-navi-categories-" 
+  
+  
+    
+    style="display: block;"
+   
+> 
+        
+          <li> 
+            
+
+
+  
+  
+<span class=nav__sub-title2>
+  <a href="/Posts/Algorithm/">Algorithm</a>
+  
+    <button class="nav__sub-button" onclick="fn_spread(`-Posts-Algorithm-`);"> 
+    <i class="fas fa-angle-up" id="Icon-Posts-Algorithm-" ></i> </button>
+  
+</span>
+            
+
+<ul class="nav__items" 
+  id="Category-Posts-Algorithm-" 
+  
+  
+    
+    style="display: none;" 
+   
+> 
+              
+              <li> 
+                  
+
+
+  
+  
+<span class=nav__sub-title3>
+  <a href="/Posts/Algorithm/BOJ-Gold/">BOJ-Gold</a>
+  
+</span> 
+              </li>
+              
+              <li> 
+                  
+
+
+  
+  
+<span class=nav__sub-title3>
+  <a href="/Posts/Algorithm/BOJ-Platinum/">BOJ-Platinum</a>
+  
+</span> 
+              </li>
+              
+              <li> 
+                  
+
+
+  
+  
+<span class=nav__sub-title3>
+  <a href="/Posts/Algorithm/BOJ-Silver/">BOJ-Silver</a>
+  
+</span> 
+              </li>
+              
+              <li> 
+                  
+
+
+  
+  
+<span class=nav__sub-title3>
+  <a href="/Posts/Algorithm/Algorithms%20Concept/">Algorithms Concept</a>
+  
+</span> 
+              </li>
+              
+            </ul>
+          </li>
+        
+          <li> 
+            
+
+
+  
+  
+<span class=nav__sub-title2>
+  <a href="/Posts/Book/" class="active">Book</a>
+  
+    <button class="nav__sub-button" onclick="fn_spread(`-Posts-Book-`);"> 
+    <i class="fas fa-angle-up" id="Icon-Posts-Book-" ></i> </button>
+  
+</span>
+            
+
+<ul class="nav__items" 
+  id="Category-Posts-Book-" 
+  
+  
+    
+    style="display: block;"
+   
+> 
+              
+              <li> 
+                  
+
+
+  
+  
+<span class=nav__sub-title3>
+  <a href="/Posts/Book/C++PrimerPlus/" class="active">C++PrimerPlus</a>
+  
+</span> 
+              </li>
+              
+              <li> 
+                  
+
+
+  
+  
+<span class=nav__sub-title3>
+  <a href="/Posts/Book/UE4-Scripting-with-C++-Cookbook/">UE4-Scripting-with-C++-Cookbook</a>
+  
+</span> 
+              </li>
+              
+            </ul>
+          </li>
+        
+          <li> 
+            
+
+
+  
+  
+<span class=nav__sub-title2>
+  <a href="/Posts/c++/">c++</a>
+  
+</span>
+            
+
+<ul class="nav__items" 
+  id="Category-Posts-c++-" 
+  
+  
+    
+    style="display: none;" 
+   
+> 
+              
+            </ul>
+          </li>
+        
+          <li> 
+            
+
+
+  
+  
+<span class=nav__sub-title2>
+  <a href="/Posts/Graphics/">Graphics</a>
+  
+</span>
+            
+
+<ul class="nav__items" 
+  id="Category-Posts-Graphics-" 
+  
+  
+    
+    style="display: none;" 
+   
+> 
+              
+            </ul>
+          </li>
+        
+          <li> 
+            
+
+
+  
+  
+<span class=nav__sub-title2>
+  <a href="/Posts/Jekyll/">Jekyll</a>
+  
+</span>
+            
+
+<ul class="nav__items" 
+  id="Category-Posts-Jekyll-" 
+  
+  
+    
+    style="display: none;" 
+   
+> 
+              
+            </ul>
+          </li>
+        
+          <li> 
+            
+
+
+  
+  
+<span class=nav__sub-title2>
+  <a href="/Posts/Math/">Math</a>
+  
+</span>
+            
+
+<ul class="nav__items" 
+  id="Category-Posts-Math-" 
+  
+  
+    
+    style="display: none;" 
+   
+> 
+              
+            </ul>
+          </li>
+        
+          <li> 
+            
+
+
+  
+  
+<span class=nav__sub-title2>
+  <a href="/Posts/Memo/">Memo</a>
+  
+</span>
+            
+
+<ul class="nav__items" 
+  id="Category-Posts-Memo-" 
+  
+  
+    
+    style="display: none;" 
+   
+> 
+              
+            </ul>
+          </li>
+        
+          <li> 
+            
+
+
+  
+  
+<span class=nav__sub-title2>
+  <a href="/Posts/OS/">OS</a>
+  
+</span>
+            
+
+<ul class="nav__items" 
+  id="Category-Posts-OS-" 
+  
+  
+    
+    style="display: none;" 
+   
+> 
+              
+            </ul>
+          </li>
+        
+          <li> 
+            
+
+
+  
+  
+<span class=nav__sub-title2>
+  <a href="/Posts/Portfolio/">Portfolio</a>
+  
+</span>
+            
+
+<ul class="nav__items" 
+  id="Category-Posts-Portfolio-" 
+  
+  
+    
+    style="display: none;" 
+   
+> 
+              
+            </ul>
+          </li>
+        
+          <li> 
+            
+
+
+  
+  
+<span class=nav__sub-title2>
+  <a href="/Posts/System%20Hacking/">System Hacking</a>
+  
+</span>
+            
+
+<ul class="nav__items" 
+  id="Category-Posts-System Hacking-" 
+  
+  
+    
+    style="display: none;" 
+   
+> 
+              
+            </ul>
+          </li>
+        
+          <li> 
+            
+
+
+  
+  
+<span class=nav__sub-title2>
+  <a href="/Posts/UE4/">UE4</a>
+  
+    <button class="nav__sub-button" onclick="fn_spread(`-Posts-UE4-`);"> 
+    <i class="fas fa-angle-up" id="Icon-Posts-UE4-" ></i> </button>
+  
+</span>
+            
+
+<ul class="nav__items" 
+  id="Category-Posts-UE4-" 
+  
+  
+    
+    style="display: none;" 
+   
+> 
+              
+              <li> 
+                  
+
+
+  
+  
+<span class=nav__sub-title3>
+  <a href="/Posts/UE4/ALS/">ALS</a>
+  
+</span> 
+              </li>
+              
+            </ul>
+          </li>
+        
+        </ul>
+
+      </li>
+    
+  </ul>
+  <h1></h1>
+</nav>
+
+          
+        
+    </div>
+
+
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="ch15 friend, except, ect">
+    <meta itemprop="description" content="c++ 기초플러스 15장 요약본">
+    <meta itemprop="datePublished" content="2021-09-24T00:00:00+09:00">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">ch15 friend, except, ect
+</h1>
+          
+
+
+
+<nav class="breadcrumbs">
+  <i class="fas fa-fw fa-folder-open" aria-hidden="true"></i>
+  <ol itemscope itemtype="https://schema.org/BreadcrumbList">
+    
+    
+    
+    
+
+        
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+            <a href="http://localhost:4000/" itemprop="item"><span itemprop="name">Home</span></a>
+            <meta itemprop="position" content="1" />
+        </li>
+        <span class="sep">/</span>
+        
+        
+        
+          
+          <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+              <a href="/posts/"><span itemprop="name">Posts</span></a>
+              <meta itemprop="position" content="1" />
+          </li>
+          <span class="sep">/</span>
+        
+
+    
+
+        
+        
+        
+          
+          <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+              <a href="/posts/book/"><span itemprop="name">Book</span></a>
+              <meta itemprop="position" content="1" />
+          </li>
+          <span class="sep">/</span>
+        
+
+    
+
+        
+        
+        
+          
+          <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+              <a href="/posts/book/c++primerplus/"><span itemprop="name">C++primerplus</span></a>
+              <meta itemprop="position" content="1" />
+          </li>
+          <span class="sep">/</span>
+        
+
+    
+
+        
+        
+        
+        
+
+    
+  </ol>
+</nav>
+
+<!--
+<nav class="breadcrumbs">
+  <i class="fas fa-fw fa-folder-open" aria-hidden="true"></i>
+  <ol itemscope itemtype="https://schema.org/BreadcrumbList" >
+    
+    
+    
+      
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <a href="http://localhost:4000/" itemprop="item"><span itemprop="name">Home</span></a>
+          <meta itemprop="position" content="1" />
+        </li>
+        <span class="sep">/</span>
+      
+      
+        
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+            <a href="/navi-categories/#posts" itemprop="item"><span itemprop="name">Posts</span></a>
+            <meta itemprop="position" content="2" />
+        </li>
+        <span class="sep">/</span>
+      
+    
+      
+      
+        
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+            <a href="/navi-categories/#book" itemprop="item"><span itemprop="name">Book</span></a>
+            <meta itemprop="position" content="3" />
+        </li>
+        <span class="sep">/</span>
+      
+    
+      
+      
+        
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+            <a href="/navi-categories/#c++primerplus" itemprop="item"><span itemprop="name">C++primerplus</span></a>
+            <meta itemprop="position" content="4" />
+        </li>
+        <span class="sep">/</span>
+      
+    
+      
+      
+        <li class="current">ch15 friend, except, ect</li>
+      
+    
+  </ol>
+</nav>
+-->
+          
+
+    <p class="page__meta" style="margin-top: 0.5em; orphans: 0; widows: 0;">
+        
+
+        
+
+        
+        
+        
+        <span class="page__meta-readtime">
+            <i class="far fa-clock" aria-hidden="true"></i>
+            
+            21 분 소요
+            
+        </span>
+        
+    </p>
+
+
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+          <aside class="sidebar__right sticky">
+            <nav class="toc">
+              <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> On This Page</h4></header>
+              <ul class="toc__menu"><li><a href="#friend-nested-class">Friend, Nested Class</a><ul><li><a href="#friend">Friend</a></li><li><a href="#nested-class">Nested Class</a></li></ul></li><li><a href="#exception">Exception</a><ul><li><a href="#exception-으로-뭘-보냄">exception 으로 뭘 보냄?</a></li><li><a href="#exception-의-제어">exception 의 제어</a></li><li><a href="#noexcept">noexcept</a></li></ul></li><li><a href="#rtti-runtime-type-identification">RTTI (Runtime Type Identification)</a></li><li><a href="#casting">Casting</a></li></ul>
+             
+            </nav>
+          </aside>
+        
+        <h2 id="friend-nested-class">Friend, Nested Class</h2>
+
+<figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="k">class</span> <span class="nc">List</span> <span class="p">{</span>
+<span class="nl">public:</span>
+	<span class="kt">int</span> <span class="n">GetFront</span><span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="n">begin</span><span class="p">.</span><span class="n">value</span><span class="p">;</span> <span class="p">}</span>  <span class="c1">// friend 로 value 접근하게 해야함.</span>
+
+<span class="nl">protected:</span>
+	<span class="k">class</span> <span class="nc">Item</span> <span class="p">{</span>
+		<span class="c1">//friend class List;           // 전방선언으로 떼울 수 있음</span>
+		<span class="k">friend</span> <span class="kt">int</span> <span class="n">List</span><span class="o">::</span><span class="n">GetFront</span><span class="p">();</span>   <span class="c1">// 메소드가 앞에 선언되어야 가능</span>
+		<span class="k">friend</span> <span class="n">ostream</span><span class="o">&amp;</span> <span class="k">operator</span><span class="o">&lt;&lt;</span><span class="p">(</span><span class="n">ostream</span><span class="o">&amp;</span> <span class="n">stream</span><span class="p">,</span> <span class="k">const</span> <span class="n">Item</span><span class="o">&amp;</span> <span class="n">in</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="n">stream</span> <span class="o">&lt;&lt;</span> <span class="n">in</span><span class="p">.</span><span class="n">value</span><span class="p">;</span> <span class="p">}</span>
+		<span class="kt">int</span> <span class="n">value</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span>
+		<span class="n">Item</span><span class="o">*</span> <span class="n">next</span><span class="p">;</span>
+	<span class="p">};</span>
+<span class="nl">private:</span>
+	<span class="n">Item</span> <span class="n">begin</span><span class="p">;</span>
+
+<span class="p">};</span></code></pre></figure>
+
+<h3 id="friend">Friend</h3>
+
+<p>특정 클래스가 다른 클래스가 <strong>자신의 접근 제한자(access specifier) 를 무시</strong> 하고 자신의 Method, Member 를 사용할  수 있게 <strong>열어주는 접근 제한자</strong>.</p>
+
+<p>클래스 내부에서 설정하고 밖에서 수정할 수 없기 때문에 객체지향에 유연성을 더해주면서 객체지향 프로그래밍 철학을 위반한게 아니라나 뭐라나.</p>
+
+<p>위 코드에선 <code class="language-plaintext highlighter-rouge">GetFront()</code> 를 위해선 List 가 Item 에 접근할 수 있어야 함.</p>
+
+<p>이를 위한 방법이  2가지가 있음.(더 있는지는 모름)</p>
+
+<ol>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">friend class List</code></p>
+
+    <p><code class="language-plaintext highlighter-rouge">class</code> 는 이미 전방선언 되어있으면 안적어도 됨</p>
+
+    <p>모든 멤버변수, 함수가 다 열림.</p>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">friend int List::GetFront()</code></p>
+
+    <p>메소드가 앞에 선언되어 있지 않으면 못써서 헤더 꼬일 수 있음.</p>
+  </li>
+</ol>
+
+<ul>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">friend ostream&amp; operator&lt;&lt;(ostream&amp; stream, const Item&amp; in);</code></p>
+
+    <p>클래스 메소드가 friend 일 수 없기 때문에 위 함수는 그냥 함수임</p>
+
+    <p>friend 는 <code class="language-plaintext highlighter-rouge">in.value</code> 에 접근을 허용하고 동시에 이게 그냥 함수임을 명시화 함.</p>
+
+    <p>만약 여러 클래스의 private 을 동시에 해야하는 함수는 위와같은 함수는 필수가 될 것.</p>
+  </li>
+</ul>
+
+<h3 id="nested-class">Nested Class</h3>
+
+<ul>
+  <li>위의 Item 이 바로 Nested Class(내포 클래스) 임</li>
+  <li>List 클래스 외부에서 Item 을 접근하려면 List::Item 이렇게 가야함</li>
+  <li>즉 public 안에 정의되어 있으면 그냥 namespace 가 class 라고 생각하면 됨.</li>
+  <li>protected 나 private 접근자에서 정의되었으면 접근자를 다른것과 똑같이 적용하면 됨.</li>
+  <li>예를들어 위는 protected 니까 가령 main 에선 List::Item 을 쓸 수 없음.</li>
+</ul>
+
+<h2 id="exception">Exception</h2>
+
+<p>예외처리하고 싶은 상황이 올 때 어떻게 함?</p>
+<ul>
+  <li>abort() 함    =&gt; cerr (에러로그 스트림) 에 “비정상적인 종료” 이런 메시지 보내고 종료</li>
+  <li>exit() 함       =&gt; 강종 =&gt; 이용자 빡침</li>
+  <li>예외코드     =&gt; define 혹은 전역변수 =&gt; 강종안하게 처리가능하나 코드관리가 어려움</li>
+  <li>try-catch 문 =&gt; 추천</li>
+</ul>
+
+<figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="kt">int</span> <span class="nf">HMean</span><span class="p">(</span><span class="kt">int</span> <span class="n">x</span><span class="p">,</span> <span class="kt">int</span> <span class="n">y</span><span class="p">)</span>
+<span class="p">{</span>
+	<span class="k">if</span> <span class="p">(</span><span class="n">x</span> <span class="o">==</span> <span class="o">-</span><span class="n">y</span><span class="p">)</span> <span class="k">throw</span> <span class="mf">3.141592</span><span class="n">f</span><span class="p">;</span>
+	<span class="k">return</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">x</span> <span class="o">*</span> <span class="n">y</span><span class="o">/</span><span class="p">(</span><span class="n">x</span> <span class="o">+</span> <span class="n">y</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+	<span class="kt">int</span> <span class="n">t</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+	<span class="k">while</span> <span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+	<span class="p">{</span>
+		<span class="k">try</span> <span class="p">{</span>
+			<span class="n">HMean</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="n">t</span><span class="o">--</span><span class="p">);</span>
+		<span class="p">}</span>
+		<span class="k">catch</span> <span class="p">(</span><span class="kt">int</span> <span class="n">a</span><span class="p">)</span> <span class="p">{</span>
+			<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">a</span><span class="p">;</span> 
+			<span class="k">break</span><span class="p">;</span>
+		<span class="p">}</span>
+		<span class="k">catch</span> <span class="p">(</span><span class="kt">float</span> <span class="n">a</span><span class="p">)</span> <span class="p">{</span>  <span class="c1">// &lt;= 얘가 호출됨</span>
+			<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">a</span><span class="p">;</span> 
+			<span class="k">break</span><span class="p">;</span>
+		<span class="p">}</span>
+		<span class="k">catch</span> <span class="p">(...)</span> <span class="p">{</span> <span class="c1">// catch all</span>
+			<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"다잡아"</span><span class="p">;</span>
+            <span class="k">break</span><span class="p">;</span>
+		<span class="p">}</span>
+	<span class="p">}</span>
+<span class="p">}</span></code></pre></figure>
+
+<h3 id="exception-으로-뭘-보냄">exception 으로 뭘 보냄?</h3>
+
+<ul>
+  <li>
+    <p>위처럼 <code class="language-plaintext highlighter-rouge">throw</code> 에 어떤 자료형을 넣어도 됨.</p>
+
+    <p>cf) <code class="language-plaintext highlighter-rouge">throw;</code> 도 가능한데 이건 re-throw current exception 임.</p>
+
+    <p>current exception 없으면 <code class="language-plaintext highlighter-rouge">terminate()</code> 함. <a href="https://stackoverflow.com/questions/2288692/what-happens-if-i-use-throw-without-an-exception-to-throw">참고</a></p>
+  </li>
+  <li>
+    <p>Overloading 때 적합한 자료형을 찾아서 함수가 호출되듯 catch 문의 자료형보고 알아서 찾아 들어감.</p>
+  </li>
+  <li>
+    <p>우리가 <code class="language-plaintext highlighter-rouge">throw</code> 옆에 보낸건 임시변수가 되며, catch 로 갈때 reference 로 받으면 복사없이 받고 아니면 복사본을 받게 됨.(또한 이렇게하면 파생클래스도 받음)</p>
+  </li>
+  <li>
+    <p><strong>던지는 자료형에 따라 catch 구분이 갈리므로</strong> 보통 객체를 <code class="language-plaintext highlighter-rouge">throw</code> 하게 됨</p>
+  </li>
+  <li>
+    <p>이때 자료형의 부모자식관계가 있다면 다형성 때문에 catch 의 순서도 고려해야함.</p>
+  </li>
+</ul>
+
+<h4 id="stdexception">std::exception</h4>
+
+<ul>
+  <li>
+    <p>자료형으로 catch 문 구문이 갈리니 객체로 보통 던짐.</p>
+  </li>
+  <li>
+    <p>근데 아무 자료형을 쓰면 이곳 저곳에서 호환이 어려움.</p>
+  </li>
+  <li>
+    <p>그래서 STL 은 예외용 자료형을 제공함.</p>
+
+    <p>예를들어 bad_alloc 같이 우리가 자주보는 예외도 모두 std:::exception 을 상속받음</p>
+  </li>
+</ul>
+
+<figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="k">class</span> <span class="nc">my_exception</span> <span class="o">:</span> <span class="n">std</span><span class="o">::</span><span class="n">exception</span>
+<span class="p">{</span>
+<span class="nl">public:</span>
+	<span class="k">const</span> <span class="kt">char</span><span class="o">*</span> <span class="n">what</span><span class="p">()</span> <span class="k">const</span> <span class="k">override</span> <span class="p">{</span> <span class="k">return</span> <span class="s">"내에러"</span><span class="p">;</span> <span class="p">}</span>
+<span class="p">};</span></code></pre></figure>
+
+<ul>
+  <li>
+    <p>위처럼 상속받아서 what 만 수정하면 됨.</p>
+  </li>
+  <li>
+    <p>std::bad_alloc 같이 stl 에 포함된 exception 을 상속받아서 그 예외 내에서 예외를 구분도 함.</p>
+  </li>
+</ul>
+
+<h3 id="exception-의-제어">exception 의 제어</h3>
+
+<ul>
+  <li>
+    <p>함수를 call 하면 stack 에 계속 쌓이는걸 알고 있을 거임.</p>
+  </li>
+  <li>
+    <p>예외를 발생시키면  try 블록 혹은 main 함수의 본체가 나올 때 까지 stack 을 계속 풀게됨</p>
+  </li>
+  <li>
+    <p>그래서 Stack 은 괜찮은데 try 구문 내에서 동적할당을 해체할 예정이었는데 예외가 발생하는 경우 메모리 관리에 주의해야함.</p>
+  </li>
+  <li>
+    <p>catch 를 실패하거나 따로 설정을 안하고 main 까지 가면 <code class="language-plaintext highlighter-rouge">terminate()</code> 를 수행함</p>
+
+    <p>main 에서 걸리면 <code class="language-plaintext highlighter-rouge">terminate()</code> 가 호출되고 <code class="language-plaintext highlighter-rouge">std::set_terminate()</code> 로 따로 설정을 안하면 <code class="language-plaintext highlighter-rouge">abort()</code> 를 call 함.
+  특히 catch 가 실패했을 땐 <code class="language-plaintext highlighter-rouge">unexpected()</code> 함수가 <code class="language-plaintext highlighter-rouge">terminate()</code> 를 콜하는데 <code class="language-plaintext highlighter-rouge">std::set_unexpected()</code> 로 다른 함수로 바꿀 수 있음. 이때 unexpected 는 예외를 던져야하는데 이때의 예외처리 규칙은 필요할 때 검색.</p>
+  </li>
+  <li>
+    <p>위 코드 예시에서 break 를 써서 while 문을 탈출하는 것처럼 catch 블록에  exception 발생시 들어가는걸 제외하면 그냥 코드 짜는거랑 나머지는 똑같음. loop 문 아닌데서 break 넣을 수 없고 이런거.</p>
+  </li>
+</ul>
+
+<h3 id="noexcept">noexcept</h3>
+
+<ul>
+  <li>
+    <p><a href="https://www.modernescpp.com/index.php/c-core-guidelines-the-noexcept-specifier-and-operator">이 문서에 책 대부분의 내용이 들어있으니 이거만 봐도 됨</a></p>
+  </li>
+  <li>
+    <p><a href="http://sweeper.egloos.com/3148916#:~:text=noexcept%20%ED%82%A4%EC%9B%8C%EB%93%9C%EB%8A%94%20%EC%97%B0%EC%82%B0%EC%9E%90%20%28operator%29%20%EC%9D%98%20%ED%98%95%ED%83%9C%EB%A1%9C%2C%20%EA%B7%B8%EB%A6%AC%EA%B3%A0%20%ED%95%9C%EC%A0%95%EC%9E%90,noexcept%EB%8A%94%20false%EB%A5%BC%20%EB%B0%98%ED%99%98%ED%95%98%EB%A9%B0%2C%20%EA%B7%B8%EB%A0%87%EC%A7%80%20%EC%95%8A%EC%9D%80%20%EA%B2%BD%EC%9A%B0%EC%97%94%20true%EB%A5%BC%20%EB%B0%98%ED%99%98%ED%95%9C%EB%8B%A4.">얘도 괜찮고</a></p>
+  </li>
+</ul>
+
+<h4 id="한정자-noexcept">한정자 noexcept</h4>
+
+<ul>
+  <li>noexcept 는 예외를 던지지 않곘다고 함수에 거는 <strong>한정자</strong> 로 지금은 deprecated 될 throw <strong>한정자</strong> 의 후예임.</li>
+  <li>그냥 <code class="language-plaintext highlighter-rouge">noexcept</code> 이렇게도 되고 <code class="language-plaintext highlighter-rouge">noexcept(true)</code> 이렇게 bool 값도 넣음
+  (true 가 예외 없다는 것. false 가 명시적으로 예외 넣을거라는 것.)
+    <ul>
+      <li>컴파일 상수로 <code class="language-plaintext highlighter-rouge">m == 1</code> 이런걸 넣어서 조절도 가능</li>
+    </ul>
+  </li>
+  <li>함수 내에서 try-catch 문이 있는건 상관없으나 함수 스택 밖으로 예외가 나가면 <code class="language-plaintext highlighter-rouge">terminate()</code>를 호출함 <code class="language-plaintext highlighter-rouge">void A() noexcept { throw 42;}</code> 함수 호출 시 처럼.</li>
+  <li>컴파일러가 암시적으로 noexcept 를 거는게 몇개가 있음.
+    <ol>
+      <li>명시적으로 noexcept(false) 안한 소멸자. 
+ (Stack 을 푸는 과정에서 객체의 소멸자가 호출 될 수 있어서)</li>
+      <li>컴파일러가 만든 기본 생성자. 복사/이동 생성자 및 대입연산.</li>
+    </ol>
+  </li>
+  <li>사용하는 이유
+    <ul>
+      <li>미비하나 컴파일러 최적화를 도움.</li>
+      <li>stl container 의 move semantics 이 적용하려면 이동 생성자에 noexcept 가 있어야 해서 없는경우 특정상황에 느려질 수 있음..(<a href="https://stackoverflow.com/questions/28627348/noexcept-and-copy-move-constructors">Visutal Studio 에선 아직 적용 안된듯</a>)</li>
+      <li>예외 뜨면 바로 <code class="language-plaintext highlighter-rouge">terminate()</code>로 보낼 마음이라서</li>
+    </ul>
+  </li>
+</ul>
+
+<h4 id="연산자-noexcept">연산자 noexcept</h4>
+
+<ul>
+  <li>
+    <p>noexcept <strong>연산자</strong> 도 있는데 <strong>컴파일 단계</strong> 에서 들어오는 식이 예외를 던지는지 판단해줌</p>
+
+    <p>이때 들어오는 것이 <strong>표현식</strong> 임에 주의하자. 변수나 타입이 아님.</p>
+  </li>
+</ul>
+
+<figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="nc">T</span><span class="p">&gt;</span> 
+<span class="n">T</span> <span class="nf">copy</span><span class="p">(</span><span class="n">T</span> <span class="k">const</span><span class="o">&amp;</span> <span class="n">src</span><span class="p">)</span> <span class="k">noexcept</span><span class="p">(</span><span class="k">noexcept</span><span class="p">(</span><span class="n">T</span><span class="p">(</span><span class="n">src</span><span class="p">))){</span>   
+  <span class="k">return</span> <span class="n">src</span><span class="p">;</span> 
+<span class="p">}</span>
+
+
+<span class="k">struct</span> <span class="nc">AAA</span> <span class="p">{</span>
+	<span class="kt">int</span> <span class="n">a</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span>
+	<span class="kt">void</span> <span class="n">Print</span><span class="p">()</span> <span class="p">{</span> <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">a</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span> <span class="p">}</span>
+	<span class="n">AAA</span><span class="p">()</span> <span class="p">{</span> <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"Create"</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span> <span class="p">}</span>
+	<span class="n">AAA</span><span class="p">(</span><span class="k">const</span> <span class="n">AAA</span><span class="o">&amp;</span> <span class="n">in</span><span class="p">)</span> <span class="p">{</span> <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"Copy"</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span> <span class="p">}</span>
+	<span class="n">AAA</span><span class="p">(</span><span class="k">const</span> <span class="n">AAA</span><span class="o">&amp;&amp;</span> <span class="n">in</span><span class="p">)</span> <span class="k">noexcept</span><span class="p">(</span><span class="nb">false</span><span class="p">)</span> <span class="p">{</span> <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"Move"</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span> <span class="p">}</span>
+<span class="p">};</span>
+
+<span class="kt">void</span> <span class="nf">Exceptable_Func</span><span class="p">()</span> <span class="k">noexcept</span><span class="p">(</span><span class="nb">false</span><span class="p">)</span> <span class="p">{}</span>
+<span class="kt">void</span> <span class="nf">Exceptable_Func2</span><span class="p">()</span> <span class="k">noexcept</span><span class="p">(</span><span class="k">noexcept</span><span class="p">(</span><span class="n">Exceptable_Func</span><span class="p">()))</span> <span class="p">{}</span>
+
+<span class="kt">void</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+	<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="k">noexcept</span><span class="p">(</span><span class="n">Exceptable_Func</span><span class="p">())</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span> <span class="c1">// print 0</span>
+	<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="k">noexcept</span><span class="p">(</span><span class="n">Exceptable_Func2</span><span class="p">())</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span> <span class="c1">// print 0</span>
+	<span class="n">AAA</span> <span class="n">a</span><span class="p">;</span>
+	<span class="n">AAA</span> <span class="n">b</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">move_if_noexcept</span><span class="p">(</span><span class="n">a</span><span class="p">);</span>  <span class="c1">// AAA 의 이동생성자가 noexcept(false) 라 복사생성함</span>
+<span class="p">}</span></code></pre></figure>
+
+<p>noexcept 안에 들어있는게 표현식인지 bool 값인지에 따라 연산자인지 한정자인지 쓰임이 갈라지는걸 확인할 수 있음.</p>
+
+<p><code class="language-plaintext highlighter-rouge">std::move_if_noexcept()</code> 는 <code class="language-plaintext highlighter-rouge">std::move</code> 랑 거의 같은데 지 이름처럼 noexcept 가 아니면 복사함. 그래서 위 코드는 복사생성자가 호출됨.</p>
+
+<h2 id="rtti-runtime-type-identification">RTTI (Runtime Type Identification)</h2>
+
+<p>상속관계로 다형성을 갖는 c++ 의 객체의 타입을 런터임에서 식별하는 기능.</p>
+
+<p>가상함수가 정의되면 객체에 들어가는 virtual table 을 이용한 기능임. (안해봤으면 가상함수 유뮤에 따라 sizeof 값이 어떻게 달라지는지 확인해보는 것도 좋음)</p>
+
+<p><code class="language-plaintext highlighter-rouge">dynamic_cast</code>, <code class="language-plaintext highlighter-rouge">typeid()</code>, <code class="language-plaintext highlighter-rouge">std::is_base_of&lt;T1 T2&gt;</code> 등이 있음.</p>
+
+<p>기본적으로 켜져있는데 꺼져있을 수도 있음. 그럼  Project Property -&gt; C/C++ -&gt; Language -&gt; Enable Runtime Type  Information 을 켜면 됨.</p>
+
+<h2 id="casting">Casting</h2>
+
+<p>static_cast, dynamic_cast, const_cast, reinterpret_cast 가 있음.</p>
+
+<p>c 에선 <code class="language-plaintext highlighter-rouge">(int*)(&amp;var)</code> 이런식으로 쓰는데 잘못하면 위험해져 c++ 에서 제공하는 타입 캐스팅방법임.</p>
+
+<p>static_cast 는 컴파일 시간에, dynamic_cast 는 런타임 시간에 형변환 가능한지 체크해줌.</p>
+
+<p>dynamic_cast 는 보통 up_casting 용임. pointer 뿐만 아니라 reference 도 해주는데 실패하면 nullptr 을 못주니 <code class="language-plaintext highlighter-rouge">bad_cast</code> 예외를 던짐.</p>
+
+<p>const cast 는 같은 타입의 포인터인데 const 만 붙였다 떼는 용도</p>
+
+<p>reinterpret_cast 는 자료형 맘대로 바꿀 수 있으며 void* 여기에 적용이 가능한게 큼. 함수포인터와 데이터보인터를 바꾼다거나 큰 포인터형을 작은 포인터형으로 못바꾸는 제약도 있어 C 의 타입 변환과 똑같진 않음.</p>
+
+
+        
+      </section>
+      
+      <footer class="page__meta">
+        
+        
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> 태그: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/navi-tags/#c" class="page__taxonomy-item" rel="tag">c++</a>
+    
+    </span>
+  </p>
+
+
+
+
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> 카테고리: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/navi-categories/#book" class="page__taxonomy-item" rel="tag">Book</a><span class="sep">, </span>
+    
+      <a href="/navi-categories/#c-primerplus" class="page__taxonomy-item" rel="tag">C++PrimerPlus</a><span class="sep">, </span>
+    
+      <a href="/navi-categories/#posts" class="page__taxonomy-item" rel="tag">Posts</a>
+    
+    </span>
+  </p>
+
+
+        
+
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> 업데이트:</strong> <time datetime="2021-09-24T00:00:00+09:00">September 24, 2021</time></p>
+
+
+      </footer>
+
+      
+
+      
+  <nav class="pagination">
+    
+      <a href="/posts/book/c++primerplus/ch14-%EC%83%81%EC%86%8D,-%ED%85%9C%ED%94%8C%EB%A6%BF/" class="pagination--pager" title="ch14 상속, 템플릿
+">이전</a>
+    
+    
+      <a href="/posts/book/c++primerplus/ch16-string/" class="pagination--pager" title="ch16 string
+">다음</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h4 class="page__related-title">관련</h4>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/Posts/Portfolio/DirectX/screenshot2.png" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/posts/portfolio/DirectX-3D/" rel="permalink">DirectX 3D
+</a>
+      
+    </h2>
+    
+
+
+    <p class="archive__item-excerpt" itemprop="description">DirectX Project. Plan to make Unreal like results
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/Posts/Portfolio/UE4-CPP/screenshot2.png" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/posts/portfolio/UE4-CPP/" rel="permalink">UE4 CPP
+</a>
+      
+    </h2>
+    
+
+
+    <p class="archive__item-excerpt" itemprop="description">UE4 Toy Project
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/Posts/Portfolio/UE4-Blueprint/screenshot2.png" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/posts/portfolio/UE4-Blueprint/" rel="permalink">UE4 Blueprint
+</a>
+      
+    </h2>
+    
+
+
+    <p class="archive__item-excerpt" itemprop="description">UE4 Toy Game using Blueprint only.
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/posts/graphics/Graphics-Memo/" rel="permalink">Graphics Memo
+</a>
+      
+    </h2>
+    
+
+    <p class="page__meta" style="margin-top: 0.5em; orphans: 0; widows: 0;">
+        
+
+        
+
+        
+        
+        
+        <span class="page__meta-readtime">
+            <i class="far fa-clock" aria-hidden="true"></i>
+            
+            최대 1 분 소요
+            
+        </span>
+        
+    </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">복붙용
+</p>
+  </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+  
+</div>
+
+    </div>
+
+    
+    <div class="search-content">
+      <div class="search-content__inner-wrap"><form class="search-content__form" onkeydown="return event.key != 'Enter';">
+    <label class="sr-only" for="search">
+      Enter your search term...
+    </label>
+    <input type="search" id="search" class="search-input" tabindex="-1" placeholder="검색어를 입력하세요..." />
+  </form>
+  <div id="results" class="results"></div></div>
+
+    </div>
+    
+
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>팔로우:</strong></li>
+    
+
+    
+
+    
+      <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> 피드</a></li>
+    
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2022 Mona04. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+
+
+
+
+<script src="/assets/js/lunr/lunr.min.js"></script>
+<script src="/assets/js/lunr/lunr-store.js"></script>
+<script src="/assets/js/lunr/lunr-en.js"></script>
+
+
+
+
+    
+  <script>
+    var disqus_config = function () {
+      this.page.url = "http://localhost:4000/posts/book/c++primerplus/ch15-friend,-except,-ect/";  /* Replace PAGE_URL with your page's canonical URL variable */
+      this.page.identifier = "/posts/book/c++primerplus/ch15 friend, except, ect"; /* Replace PAGE_IDENTIFIER with your page's unique identifier variable */
+    };
+    (function() { /* DON'T EDIT BELOW THIS LINE */
+      var d = document, s = d.createElement('script');
+      s.src = 'https://https-mona04-github-io.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+  
+
+
+
+
+
+  </body>
+</html>

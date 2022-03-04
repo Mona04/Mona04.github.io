@@ -1,0 +1,1345 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.24.0 by Michael Rose
+  Copyright 2013-2020 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="ko" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>            BOJ 1201) NMK _ Log      Study      </title>
+<meta name="description" content="구성적 문제">
+
+
+  <meta name="author" content="Mona04">
+  
+  <meta property="article:author" content="Mona04">
+  
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="ko">
+<meta property="og:site_name" content="Log | Study">
+<meta property="og:title" content="BOJ 1201) NMK">
+<meta property="og:url" content="http://localhost:4000/posts/algorithm/boj-platinum/BOJ-1201)-NMK/">
+
+
+  <meta property="og:description" content="구성적 문제">
+
+
+
+  <meta property="og:image" content="http://localhost:4000/assets/images/logo.png">
+
+
+
+
+
+  <meta property="article:published_time" content="2021-10-20T00:00:00+09:00">
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="http://localhost:4000/posts/algorithm/boj-platinum/BOJ-1201)-NMK/">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": "Mona04",
+      "url": "http://localhost:4000/"
+    
+  }
+</script>
+
+
+  <meta name="google-site-verification" content="F2oPZSOAKlxw2iAayxs8nQmb9hCG1xbwGenRruCQrVU" />
+
+
+
+
+
+  <meta name="naver-site-verification" content="0a38bc87a52a81a820d109d26a2039d3b5c93382">
+
+
+<!-- end _includes/seo.html -->
+
+
+
+  <link href="/feed.xml" type="application/atom+xml" rel="alternate" title="Log | Study Feed">
+
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css"></noscript>
+
+
+
+    <!-- start custom head snippets -->
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+<!-- end custom head snippets -->
+
+<script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+<script>mermaid.initialize({ startOnLoad: true });</script>
+<script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
+
+<script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
+<script>
+    function fn_spread(id) {
+        if ($('#Category' + id).is(":visible") && $('#Category' + id).css("overflow") != "hidden")
+        {
+            $('#Category' + id).stop().slideUp();
+            $('#Category' + id).css("max-height", "0%");
+            $('#Category' + id).css("opacity", "0%");
+            $('#Category' + id).css("z-index", "10");
+            $('#Category' + id).css("overflow", "hidden");
+            $('#Category' + id).css("display", "none");
+
+            $('#Icon' + id).toggleClass("fas fa-angle-up");
+        }
+        else
+        {
+            $('#Category' + id).stop().slideDown({
+                complete: function () {
+                    $('#Category' + id).css("overflow", "visible");
+                }
+            });
+            $('#Category' + id).css("max-height", "100%");
+            $('#Category' + id).css("opacity", "100%");
+            $('#Category' + id).css("z-index", "0");
+            $('#Category' + id).css("overflow", "visible");
+            $('#Category' + id).css("display", "block");
+
+            $('#Icon' + id).toggleClass("fas fa-angle-down");
+        }
+    }
+</script>
+  </head>
+
+  <body class="layout--single single">
+    <nav class="skip-links">
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          Log | Study
+          
+        </a>
+        <ul class="visible-links"></ul>
+        
+        <button class="search__toggle" type="button">
+          <span class="visually-hidden">Toggle search</span>
+          <i class="fas fa-search"></i>
+        </button>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">토글 메뉴</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+
+<div id="main" role="main">
+  
+    <div class="sidebar sticky">
+        
+
+
+<div itemscope itemtype="https://schema.org/Person">
+
+  
+    <div class="author__avatar">
+      
+        <img src="/assets/images/Profile.jpg" alt="Mona04" itemprop="image">
+      
+    </div>
+  
+
+  <div class="author__content">
+    
+      <h3 class="author__name" itemprop="name">Mona04</h3>
+    
+    
+      <div class="author__bio" itemprop="description">
+        <p>개발자가 되자</p>
+
+      </div>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">팔로우</button>
+    <ul class="author__urls social-icons">
+      
+        <li itemprop="homeLocation" itemscope itemtype="https://schema.org/Place">
+          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name">Seoul.Korea</span>
+        </li>
+      
+
+      
+        
+          
+        
+          
+        
+      
+
+      
+
+      
+        <li>
+          <a href="mailto:moksha1905@gmail.com">
+            <meta itemprop="email" content="moksha1905@gmail.com" />
+            <i class="fas fa-fw fa-envelope-square" aria-hidden="true"></i><span class="label">이메일</span>
+          </a>
+        </li>
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+        <li>
+          <a href="https://github.com/Mona04" itemprop="sameAs" rel="nofollow noopener noreferrer">
+            <i class="fab fa-fw fa-github" aria-hidden="true"></i><span class="label">GitHub</span>
+          </a>
+        </li>
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+
+          
+          
+            
+          
+          
+          
+          
+          
+            
+
+<nav class="nav__list">
+  
+  <input id="ac-toc" name="accordion-toc" type="checkbox" />
+  <label for="ac-toc">토글 메뉴</label>
+  <ul class="nav__items">
+    
+      <li>
+        
+          
+
+
+  
+  
+<span class=nav__sub-title>
+  <a href="/navi-portfolios/">Portfolio ★</a>
+  
+</span>
+        
+
+
+        
+
+<ul class="nav__items" 
+  id="Category-navi-portfolios-" 
+  
+  
+    
+    style="display: none;" 
+   
+> 
+        
+        </ul>
+
+      </li>
+    
+      <li>
+        
+          
+
+
+  
+  
+<span class=nav__sub-title>
+  <a href="/Posts/Memo/">Memo</a>
+  
+</span>
+        
+
+
+        
+
+<ul class="nav__items" 
+  id="Category-Posts-Memo-" 
+  
+  
+    
+    style="display: none;" 
+   
+> 
+        
+        </ul>
+
+      </li>
+    
+      <li>
+        
+          
+
+
+  
+  
+<span class=nav__sub-title>
+  <a href="/navi-tags/">Tags</a>
+  
+</span>
+        
+
+
+        
+
+<ul class="nav__items" 
+  id="Category-navi-tags-" 
+  
+  
+    
+    style="display: none;" 
+   
+> 
+        
+        </ul>
+
+      </li>
+    
+      <li>
+        
+          
+
+
+  
+  
+<span class=nav__sub-title>
+  <a href="/navi-categories/">Categories</a>
+  
+    <button class="nav__sub-button" onclick="fn_spread(`-navi-categories-`);"> 
+    <i class="fas fa-angle-up" id="Icon" ></i> </button>
+  
+</span>
+        
+
+
+        
+
+<ul class="nav__items" 
+  id="Category-navi-categories-" 
+  
+  
+    
+    style="display: block;"
+   
+> 
+        
+          <li> 
+            
+
+
+  
+  
+<span class=nav__sub-title2>
+  <a href="/Posts/Algorithm/" class="active">Algorithm</a>
+  
+    <button class="nav__sub-button" onclick="fn_spread(`-Posts-Algorithm-`);"> 
+    <i class="fas fa-angle-up" id="Icon-Posts-Algorithm-" ></i> </button>
+  
+</span>
+            
+
+<ul class="nav__items" 
+  id="Category-Posts-Algorithm-" 
+  
+  
+    
+    style="display: block;"
+   
+> 
+              
+              <li> 
+                  
+
+
+  
+  
+<span class=nav__sub-title3>
+  <a href="/Posts/Algorithm/BOJ-Gold/">BOJ-Gold</a>
+  
+</span> 
+              </li>
+              
+              <li> 
+                  
+
+
+  
+  
+<span class=nav__sub-title3>
+  <a href="/Posts/Algorithm/BOJ-Platinum/" class="active">BOJ-Platinum</a>
+  
+</span> 
+              </li>
+              
+              <li> 
+                  
+
+
+  
+  
+<span class=nav__sub-title3>
+  <a href="/Posts/Algorithm/BOJ-Silver/">BOJ-Silver</a>
+  
+</span> 
+              </li>
+              
+              <li> 
+                  
+
+
+  
+  
+<span class=nav__sub-title3>
+  <a href="/Posts/Algorithm/Algorithms%20Concept/">Algorithms Concept</a>
+  
+</span> 
+              </li>
+              
+            </ul>
+          </li>
+        
+          <li> 
+            
+
+
+  
+  
+<span class=nav__sub-title2>
+  <a href="/Posts/Book/">Book</a>
+  
+    <button class="nav__sub-button" onclick="fn_spread(`-Posts-Book-`);"> 
+    <i class="fas fa-angle-up" id="Icon-Posts-Book-" ></i> </button>
+  
+</span>
+            
+
+<ul class="nav__items" 
+  id="Category-Posts-Book-" 
+  
+  
+    
+    style="display: none;" 
+   
+> 
+              
+              <li> 
+                  
+
+
+  
+  
+<span class=nav__sub-title3>
+  <a href="/Posts/Book/C++PrimerPlus/">C++PrimerPlus</a>
+  
+</span> 
+              </li>
+              
+              <li> 
+                  
+
+
+  
+  
+<span class=nav__sub-title3>
+  <a href="/Posts/Book/UE4-Scripting-with-C++-Cookbook/">UE4-Scripting-with-C++-Cookbook</a>
+  
+</span> 
+              </li>
+              
+            </ul>
+          </li>
+        
+          <li> 
+            
+
+
+  
+  
+<span class=nav__sub-title2>
+  <a href="/Posts/c++/">c++</a>
+  
+</span>
+            
+
+<ul class="nav__items" 
+  id="Category-Posts-c++-" 
+  
+  
+    
+    style="display: none;" 
+   
+> 
+              
+            </ul>
+          </li>
+        
+          <li> 
+            
+
+
+  
+  
+<span class=nav__sub-title2>
+  <a href="/Posts/Graphics/">Graphics</a>
+  
+</span>
+            
+
+<ul class="nav__items" 
+  id="Category-Posts-Graphics-" 
+  
+  
+    
+    style="display: none;" 
+   
+> 
+              
+            </ul>
+          </li>
+        
+          <li> 
+            
+
+
+  
+  
+<span class=nav__sub-title2>
+  <a href="/Posts/Jekyll/">Jekyll</a>
+  
+</span>
+            
+
+<ul class="nav__items" 
+  id="Category-Posts-Jekyll-" 
+  
+  
+    
+    style="display: none;" 
+   
+> 
+              
+            </ul>
+          </li>
+        
+          <li> 
+            
+
+
+  
+  
+<span class=nav__sub-title2>
+  <a href="/Posts/Math/">Math</a>
+  
+</span>
+            
+
+<ul class="nav__items" 
+  id="Category-Posts-Math-" 
+  
+  
+    
+    style="display: none;" 
+   
+> 
+              
+            </ul>
+          </li>
+        
+          <li> 
+            
+
+
+  
+  
+<span class=nav__sub-title2>
+  <a href="/Posts/Memo/">Memo</a>
+  
+</span>
+            
+
+<ul class="nav__items" 
+  id="Category-Posts-Memo-" 
+  
+  
+    
+    style="display: none;" 
+   
+> 
+              
+            </ul>
+          </li>
+        
+          <li> 
+            
+
+
+  
+  
+<span class=nav__sub-title2>
+  <a href="/Posts/OS/">OS</a>
+  
+</span>
+            
+
+<ul class="nav__items" 
+  id="Category-Posts-OS-" 
+  
+  
+    
+    style="display: none;" 
+   
+> 
+              
+            </ul>
+          </li>
+        
+          <li> 
+            
+
+
+  
+  
+<span class=nav__sub-title2>
+  <a href="/Posts/Portfolio/">Portfolio</a>
+  
+</span>
+            
+
+<ul class="nav__items" 
+  id="Category-Posts-Portfolio-" 
+  
+  
+    
+    style="display: none;" 
+   
+> 
+              
+            </ul>
+          </li>
+        
+          <li> 
+            
+
+
+  
+  
+<span class=nav__sub-title2>
+  <a href="/Posts/System%20Hacking/">System Hacking</a>
+  
+</span>
+            
+
+<ul class="nav__items" 
+  id="Category-Posts-System Hacking-" 
+  
+  
+    
+    style="display: none;" 
+   
+> 
+              
+            </ul>
+          </li>
+        
+          <li> 
+            
+
+
+  
+  
+<span class=nav__sub-title2>
+  <a href="/Posts/UE4/">UE4</a>
+  
+    <button class="nav__sub-button" onclick="fn_spread(`-Posts-UE4-`);"> 
+    <i class="fas fa-angle-up" id="Icon-Posts-UE4-" ></i> </button>
+  
+</span>
+            
+
+<ul class="nav__items" 
+  id="Category-Posts-UE4-" 
+  
+  
+    
+    style="display: none;" 
+   
+> 
+              
+              <li> 
+                  
+
+
+  
+  
+<span class=nav__sub-title3>
+  <a href="/Posts/UE4/ALS/">ALS</a>
+  
+</span> 
+              </li>
+              
+            </ul>
+          </li>
+        
+        </ul>
+
+      </li>
+    
+  </ul>
+  <h1></h1>
+</nav>
+
+          
+        
+    </div>
+
+
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="BOJ 1201) NMK">
+    <meta itemprop="description" content="구성적 문제">
+    <meta itemprop="datePublished" content="2021-10-20T00:00:00+09:00">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">BOJ 1201) NMK
+</h1>
+          
+
+
+
+<nav class="breadcrumbs">
+  <i class="fas fa-fw fa-folder-open" aria-hidden="true"></i>
+  <ol itemscope itemtype="https://schema.org/BreadcrumbList">
+    
+    
+    
+    
+
+        
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+            <a href="http://localhost:4000/" itemprop="item"><span itemprop="name">Home</span></a>
+            <meta itemprop="position" content="1" />
+        </li>
+        <span class="sep">/</span>
+        
+        
+        
+          
+          <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+              <a href="/posts/"><span itemprop="name">Posts</span></a>
+              <meta itemprop="position" content="1" />
+          </li>
+          <span class="sep">/</span>
+        
+
+    
+
+        
+        
+        
+          
+          <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+              <a href="/posts/algorithm/"><span itemprop="name">Algorithm</span></a>
+              <meta itemprop="position" content="1" />
+          </li>
+          <span class="sep">/</span>
+        
+
+    
+
+        
+        
+        
+          
+          <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+              <a href="/posts/algorithm/boj-platinum/"><span itemprop="name">Boj-platinum</span></a>
+              <meta itemprop="position" content="1" />
+          </li>
+          <span class="sep">/</span>
+        
+
+    
+
+        
+        
+        
+        
+
+    
+  </ol>
+</nav>
+
+<!--
+<nav class="breadcrumbs">
+  <i class="fas fa-fw fa-folder-open" aria-hidden="true"></i>
+  <ol itemscope itemtype="https://schema.org/BreadcrumbList" >
+    
+    
+    
+      
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <a href="http://localhost:4000/" itemprop="item"><span itemprop="name">Home</span></a>
+          <meta itemprop="position" content="1" />
+        </li>
+        <span class="sep">/</span>
+      
+      
+        
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+            <a href="/navi-categories/#posts" itemprop="item"><span itemprop="name">Posts</span></a>
+            <meta itemprop="position" content="2" />
+        </li>
+        <span class="sep">/</span>
+      
+    
+      
+      
+        
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+            <a href="/navi-categories/#algorithm" itemprop="item"><span itemprop="name">Algorithm</span></a>
+            <meta itemprop="position" content="3" />
+        </li>
+        <span class="sep">/</span>
+      
+    
+      
+      
+        
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+            <a href="/navi-categories/#boj-platinum" itemprop="item"><span itemprop="name">Boj platinum</span></a>
+            <meta itemprop="position" content="4" />
+        </li>
+        <span class="sep">/</span>
+      
+    
+      
+      
+        <li class="current">BOJ 1201) NMK</li>
+      
+    
+  </ol>
+</nav>
+-->
+          
+
+    <p class="page__meta" style="margin-top: 0.5em; orphans: 0; widows: 0;">
+        
+
+        
+
+        
+        
+        
+        <span class="page__meta-readtime">
+            <i class="far fa-clock" aria-hidden="true"></i>
+            
+            5 분 소요
+            
+        </span>
+        
+    </p>
+
+
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+          <aside class="sidebar__right sticky">
+            <nav class="toc">
+              <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> On This Page</h4></header>
+              <ul class="toc__menu"><li><a href="#lis-lds-만들기">LIS, LDS 만들기</a><ul><li><a href="#코드">코드</a></li><li><a href="#시간-복잡도">시간 복잡도</a></li><li><a href="#설명">설명</a></li></ul></li></ul>
+             
+            </nav>
+          </aside>
+        
+        <h2 id="lis-lds-만들기">LIS, LDS 만들기</h2>
+
+<p><a href="https://www.acmicpc.net/problem/1201">문제 사이트</a></p>
+
+<h3 id="코드">코드</h3>
+
+<figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+	<span class="n">fastio</span><span class="p">;</span>
+
+	<span class="kt">int</span> <span class="n">n</span><span class="p">,</span> <span class="n">m</span><span class="p">,</span> <span class="n">k</span><span class="p">;</span>
+	<span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">n</span> <span class="o">&gt;&gt;</span> <span class="n">m</span> <span class="o">&gt;&gt;</span> <span class="n">k</span><span class="p">;</span>
+	<span class="k">if</span> <span class="p">(</span><span class="n">n</span> <span class="o">&lt;</span> <span class="n">m</span> <span class="o">+</span> <span class="n">k</span> <span class="o">-</span> <span class="mi">1</span> <span class="o">||</span> <span class="n">n</span> <span class="o">&gt;</span> <span class="n">m</span> <span class="o">*</span> <span class="n">k</span> <span class="p">)</span> <span class="p">{</span>
+		<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+		<span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+	<span class="p">}</span>
+	<span class="n">vector</span><span class="o">&lt;</span><span class="n">deque</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;&gt;</span> <span class="n">parts</span><span class="p">(</span><span class="n">m</span><span class="p">);</span>
+	<span class="kt">int</span> <span class="n">cur</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+	<span class="k">for</span> <span class="p">(;</span> <span class="n">cur</span> <span class="o">&lt;=</span> <span class="n">k</span><span class="p">;</span> <span class="n">cur</span><span class="o">++</span><span class="p">)</span> <span class="n">parts</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="n">push_front</span><span class="p">(</span><span class="n">cur</span><span class="p">);</span>
+	<span class="k">if</span> <span class="p">(</span><span class="n">m</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">)</span>
+	<span class="p">{</span>
+		<span class="kt">int</span> <span class="n">p_i</span> <span class="o">=</span> <span class="p">(</span><span class="n">n</span> <span class="o">-</span> <span class="n">k</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">m</span> <span class="o">-</span> <span class="mi">1</span><span class="p">);</span>
+		<span class="kt">int</span> <span class="n">left</span> <span class="o">=</span> <span class="p">(</span><span class="n">n</span> <span class="o">-</span> <span class="n">k</span><span class="p">)</span> <span class="o">%</span> <span class="p">(</span><span class="n">m</span> <span class="o">-</span> <span class="mi">1</span><span class="p">);</span>
+		<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">m</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+		<span class="p">{</span>
+			<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">p_i</span> <span class="o">&amp;&amp;</span> <span class="n">cur</span> <span class="o">&lt;=</span> <span class="n">n</span><span class="p">;</span> <span class="n">j</span><span class="o">++</span><span class="p">,</span> <span class="n">cur</span><span class="o">++</span><span class="p">)</span>
+				<span class="n">parts</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">push_front</span><span class="p">(</span><span class="n">cur</span><span class="p">);</span>
+			<span class="k">if</span> <span class="p">(</span><span class="n">cur</span> <span class="o">&lt;=</span> <span class="n">n</span> <span class="o">&amp;&amp;</span> <span class="n">left</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span>
+			<span class="p">{</span>
+				<span class="n">parts</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">push_front</span><span class="p">(</span><span class="n">cur</span><span class="o">++</span><span class="p">);</span>
+				<span class="n">left</span><span class="o">--</span><span class="p">;</span>
+			<span class="p">}</span>
+		<span class="p">}</span>
+	<span class="p">}</span>
+	<span class="k">for</span> <span class="p">(</span><span class="k">auto</span><span class="o">&amp;</span> <span class="n">p</span> <span class="o">:</span> <span class="n">parts</span><span class="p">)</span>
+		<span class="k">for</span> <span class="p">(</span><span class="k">auto</span><span class="o">&amp;</span> <span class="n">c</span> <span class="o">:</span> <span class="n">p</span><span class="p">)</span>
+			<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">c</span> <span class="o">&lt;&lt;</span> <span class="sc">' '</span><span class="p">;</span>
+<span class="p">}</span></code></pre></figure>
+
+<h3 id="시간-복잡도">시간 복잡도</h3>
+
+<p>O(n)</p>
+
+<h3 id="설명">설명</h3>
+
+<h4 id="나이브한-풀이-">나이브한 풀이 <br /></h4>
+
+<p>부분을 m 개로 나눠서 각 부분에는 감소만하게, 부분끼리의 최댓값은 증가하게 만듬.</p>
+
+<p>예를들어</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>13 5 4
+4 3 2 1 / 6 5 / 8 7 / 10 9 / 13 12 11
+</code></pre></div></div>
+
+<p>이렇게 됨.</p>
+
+<p>불가능한 경우는 m, k 를 이용해 만들 수 있는 수열의 최대/최솟값을 통해 구함.</p>
+
+<ul>
+  <li>최솟값
+    <ul>
+      <li>최솟값의 경우는 <code class="language-plaintext highlighter-rouge">m + k - 1</code> 임.</li>
+      <li>왜냐하면 <code class="language-plaintext highlighter-rouge">증가하는 구간 -&gt; 감소하는 구간</code> 혹은 그 역에서 숫자 하나는 공유되기 때문임.</li>
+    </ul>
+  </li>
+  <li>최댓값
+    <ul>
+      <li>최댓값의 경우 위의 부분들마다 숫자를 꽉꽉 채워넣는 경우가 됨.</li>
+      <li>그래서 최댓값의 경우 <code class="language-plaintext highlighter-rouge">m*k</code> 가 됨.</li>
+    </ul>
+  </li>
+</ul>
+
+<h4 id="엄밀한-풀이-">엄밀한 풀이 <br /></h4>
+
+<p>수열을 위와 같은 방법으로 구성하는 방법 외에 다양한 방법이 있음.(필요조건이 아님)</p>
+
+<p>그렇기 때문에 m, k 가 주어졌을 때 불가능한 경우가 아니면 반드시 위처럼 수열을 구성할 수 있다는 보장이 필요함.</p>
+
+<p>그건…</p>
+
+        
+      </section>
+      
+      <footer class="page__meta">
+        
+        
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> 태그: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/navi-tags/#ps-constructive" class="page__taxonomy-item" rel="tag">PS. Constructive</a>
+    
+    </span>
+  </p>
+
+
+
+
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> 카테고리: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/navi-categories/#algorithm" class="page__taxonomy-item" rel="tag">Algorithm</a><span class="sep">, </span>
+    
+      <a href="/navi-categories/#boj-platinum" class="page__taxonomy-item" rel="tag">BOJ-Platinum</a><span class="sep">, </span>
+    
+      <a href="/navi-categories/#posts" class="page__taxonomy-item" rel="tag">Posts</a>
+    
+    </span>
+  </p>
+
+
+        
+
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> 업데이트:</strong> <time datetime="2021-10-20T00:00:00+09:00">October 20, 2021</time></p>
+
+
+      </footer>
+
+      
+
+      
+  <nav class="pagination">
+    
+      <a href="/posts/algorithm/boj-gold/BOJ-1167)-%ED%8A%B8%EB%A6%AC%EC%9D%98%EC%A7%80%EB%A6%84/" class="pagination--pager" title="BOJ 1167) 트리의지름
+">이전</a>
+    
+    
+      <a href="/posts/book/ue4-scripting-with-c++-cookbook/ch09-UI/" class="pagination--pager" title="ch09 UI
+">다음</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h4 class="page__related-title">관련</h4>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/Posts/Portfolio/DirectX/screenshot2.png" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/posts/portfolio/DirectX-3D/" rel="permalink">DirectX 3D
+</a>
+      
+    </h2>
+    
+
+
+    <p class="archive__item-excerpt" itemprop="description">DirectX Project. Plan to make Unreal like results
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/Posts/Portfolio/UE4-CPP/screenshot2.png" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/posts/portfolio/UE4-CPP/" rel="permalink">UE4 CPP
+</a>
+      
+    </h2>
+    
+
+
+    <p class="archive__item-excerpt" itemprop="description">UE4 Toy Project
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/Posts/Portfolio/UE4-Blueprint/screenshot2.png" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/posts/portfolio/UE4-Blueprint/" rel="permalink">UE4 Blueprint
+</a>
+      
+    </h2>
+    
+
+
+    <p class="archive__item-excerpt" itemprop="description">UE4 Toy Game using Blueprint only.
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/posts/graphics/Graphics-Memo/" rel="permalink">Graphics Memo
+</a>
+      
+    </h2>
+    
+
+    <p class="page__meta" style="margin-top: 0.5em; orphans: 0; widows: 0;">
+        
+
+        
+
+        
+        
+        
+        <span class="page__meta-readtime">
+            <i class="far fa-clock" aria-hidden="true"></i>
+            
+            최대 1 분 소요
+            
+        </span>
+        
+    </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">복붙용
+</p>
+  </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+  
+</div>
+
+    </div>
+
+    
+    <div class="search-content">
+      <div class="search-content__inner-wrap"><form class="search-content__form" onkeydown="return event.key != 'Enter';">
+    <label class="sr-only" for="search">
+      Enter your search term...
+    </label>
+    <input type="search" id="search" class="search-input" tabindex="-1" placeholder="검색어를 입력하세요..." />
+  </form>
+  <div id="results" class="results"></div></div>
+
+    </div>
+    
+
+    
+      <script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+  TeX: {
+  equationNumbers: {
+  autoNumber: "AMS"
+  }
+  },
+  tex2jax: {
+  inlineMath: [ ['$', '$'] ],
+  displayMath: [ ['$$', '$$'] ],
+  processEscapes: true,
+  }
+
+  });
+  MathJax.Hub.Register.MessageHook("Math Processing Error",function (message) {
+  alert("Math Processing Error: "+message[1]);
+  });
+  MathJax.Hub.Register.MessageHook("TeX Jax - parse error",function (message) {
+  alert("Math Processing Error: "+message[1]);
+  });
+</script>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>팔로우:</strong></li>
+    
+
+    
+
+    
+      <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> 피드</a></li>
+    
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2022 Mona04. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+
+
+
+
+<script src="/assets/js/lunr/lunr.min.js"></script>
+<script src="/assets/js/lunr/lunr-store.js"></script>
+<script src="/assets/js/lunr/lunr-en.js"></script>
+
+
+
+
+    
+  <script>
+    var disqus_config = function () {
+      this.page.url = "http://localhost:4000/posts/algorithm/boj-platinum/BOJ-1201)-NMK/";  /* Replace PAGE_URL with your page's canonical URL variable */
+      this.page.identifier = "/posts/algorithm/boj-platinum/BOJ-1201)-NMK"; /* Replace PAGE_IDENTIFIER with your page's unique identifier variable */
+    };
+    (function() { /* DON'T EDIT BELOW THIS LINE */
+      var d = document, s = d.createElement('script');
+      s.src = 'https://https-mona04-github-io.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+  
+
+
+
+
+
+  </body>
+</html>

@@ -1,0 +1,1574 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.24.0 by Michael Rose
+  Copyright 2013-2020 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="ko" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>            ch16 string _ Log      Study      </title>
+<meta name="description" content="c++ 기초플러스 16장 요약본">
+
+
+  <meta name="author" content="Mona04">
+  
+  <meta property="article:author" content="Mona04">
+  
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="ko">
+<meta property="og:site_name" content="Log | Study">
+<meta property="og:title" content="ch16 string">
+<meta property="og:url" content="http://localhost:4000/posts/book/c++primerplus/ch16-string/">
+
+
+  <meta property="og:description" content="c++ 기초플러스 16장 요약본">
+
+
+
+  <meta property="og:image" content="http://localhost:4000/assets/images/logo.png">
+
+
+
+
+
+  <meta property="article:published_time" content="2021-09-24T00:00:00+09:00">
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="http://localhost:4000/posts/book/c++primerplus/ch16-string/">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": "Mona04",
+      "url": "http://localhost:4000/"
+    
+  }
+</script>
+
+
+  <meta name="google-site-verification" content="F2oPZSOAKlxw2iAayxs8nQmb9hCG1xbwGenRruCQrVU" />
+
+
+
+
+
+  <meta name="naver-site-verification" content="0a38bc87a52a81a820d109d26a2039d3b5c93382">
+
+
+<!-- end _includes/seo.html -->
+
+
+
+  <link href="/feed.xml" type="application/atom+xml" rel="alternate" title="Log | Study Feed">
+
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css"></noscript>
+
+
+
+    <!-- start custom head snippets -->
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+<!-- end custom head snippets -->
+
+<script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+<script>mermaid.initialize({ startOnLoad: true });</script>
+<script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
+
+<script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
+<script>
+    function fn_spread(id) {
+        if ($('#Category' + id).is(":visible") && $('#Category' + id).css("overflow") != "hidden")
+        {
+            $('#Category' + id).stop().slideUp();
+            $('#Category' + id).css("max-height", "0%");
+            $('#Category' + id).css("opacity", "0%");
+            $('#Category' + id).css("z-index", "10");
+            $('#Category' + id).css("overflow", "hidden");
+            $('#Category' + id).css("display", "none");
+
+            $('#Icon' + id).toggleClass("fas fa-angle-up");
+        }
+        else
+        {
+            $('#Category' + id).stop().slideDown({
+                complete: function () {
+                    $('#Category' + id).css("overflow", "visible");
+                }
+            });
+            $('#Category' + id).css("max-height", "100%");
+            $('#Category' + id).css("opacity", "100%");
+            $('#Category' + id).css("z-index", "0");
+            $('#Category' + id).css("overflow", "visible");
+            $('#Category' + id).css("display", "block");
+
+            $('#Icon' + id).toggleClass("fas fa-angle-down");
+        }
+    }
+</script>
+  </head>
+
+  <body class="layout--single single">
+    <nav class="skip-links">
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          Log | Study
+          
+        </a>
+        <ul class="visible-links"></ul>
+        
+        <button class="search__toggle" type="button">
+          <span class="visually-hidden">Toggle search</span>
+          <i class="fas fa-search"></i>
+        </button>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">토글 메뉴</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+
+<div id="main" role="main">
+  
+    <div class="sidebar sticky">
+        
+
+
+<div itemscope itemtype="https://schema.org/Person">
+
+  
+    <div class="author__avatar">
+      
+        <img src="/assets/images/Profile.jpg" alt="Mona04" itemprop="image">
+      
+    </div>
+  
+
+  <div class="author__content">
+    
+      <h3 class="author__name" itemprop="name">Mona04</h3>
+    
+    
+      <div class="author__bio" itemprop="description">
+        <p>개발자가 되자</p>
+
+      </div>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">팔로우</button>
+    <ul class="author__urls social-icons">
+      
+        <li itemprop="homeLocation" itemscope itemtype="https://schema.org/Place">
+          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name">Seoul.Korea</span>
+        </li>
+      
+
+      
+        
+          
+        
+          
+        
+      
+
+      
+
+      
+        <li>
+          <a href="mailto:moksha1905@gmail.com">
+            <meta itemprop="email" content="moksha1905@gmail.com" />
+            <i class="fas fa-fw fa-envelope-square" aria-hidden="true"></i><span class="label">이메일</span>
+          </a>
+        </li>
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+        <li>
+          <a href="https://github.com/Mona04" itemprop="sameAs" rel="nofollow noopener noreferrer">
+            <i class="fab fa-fw fa-github" aria-hidden="true"></i><span class="label">GitHub</span>
+          </a>
+        </li>
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+
+          
+          
+            
+          
+          
+          
+          
+          
+            
+
+<nav class="nav__list">
+  
+  <input id="ac-toc" name="accordion-toc" type="checkbox" />
+  <label for="ac-toc">토글 메뉴</label>
+  <ul class="nav__items">
+    
+      <li>
+        
+          
+
+
+  
+  
+<span class=nav__sub-title>
+  <a href="/navi-portfolios/">Portfolio ★</a>
+  
+</span>
+        
+
+
+        
+
+<ul class="nav__items" 
+  id="Category-navi-portfolios-" 
+  
+  
+    
+    style="display: none;" 
+   
+> 
+        
+        </ul>
+
+      </li>
+    
+      <li>
+        
+          
+
+
+  
+  
+<span class=nav__sub-title>
+  <a href="/Posts/Memo/">Memo</a>
+  
+</span>
+        
+
+
+        
+
+<ul class="nav__items" 
+  id="Category-Posts-Memo-" 
+  
+  
+    
+    style="display: none;" 
+   
+> 
+        
+        </ul>
+
+      </li>
+    
+      <li>
+        
+          
+
+
+  
+  
+<span class=nav__sub-title>
+  <a href="/navi-tags/">Tags</a>
+  
+</span>
+        
+
+
+        
+
+<ul class="nav__items" 
+  id="Category-navi-tags-" 
+  
+  
+    
+    style="display: none;" 
+   
+> 
+        
+        </ul>
+
+      </li>
+    
+      <li>
+        
+          
+
+
+  
+  
+<span class=nav__sub-title>
+  <a href="/navi-categories/">Categories</a>
+  
+    <button class="nav__sub-button" onclick="fn_spread(`-navi-categories-`);"> 
+    <i class="fas fa-angle-up" id="Icon" ></i> </button>
+  
+</span>
+        
+
+
+        
+
+<ul class="nav__items" 
+  id="Category-navi-categories-" 
+  
+  
+    
+    style="display: block;"
+   
+> 
+        
+          <li> 
+            
+
+
+  
+  
+<span class=nav__sub-title2>
+  <a href="/Posts/Algorithm/">Algorithm</a>
+  
+    <button class="nav__sub-button" onclick="fn_spread(`-Posts-Algorithm-`);"> 
+    <i class="fas fa-angle-up" id="Icon-Posts-Algorithm-" ></i> </button>
+  
+</span>
+            
+
+<ul class="nav__items" 
+  id="Category-Posts-Algorithm-" 
+  
+  
+    
+    style="display: none;" 
+   
+> 
+              
+              <li> 
+                  
+
+
+  
+  
+<span class=nav__sub-title3>
+  <a href="/Posts/Algorithm/BOJ-Gold/">BOJ-Gold</a>
+  
+</span> 
+              </li>
+              
+              <li> 
+                  
+
+
+  
+  
+<span class=nav__sub-title3>
+  <a href="/Posts/Algorithm/BOJ-Platinum/">BOJ-Platinum</a>
+  
+</span> 
+              </li>
+              
+              <li> 
+                  
+
+
+  
+  
+<span class=nav__sub-title3>
+  <a href="/Posts/Algorithm/BOJ-Silver/">BOJ-Silver</a>
+  
+</span> 
+              </li>
+              
+              <li> 
+                  
+
+
+  
+  
+<span class=nav__sub-title3>
+  <a href="/Posts/Algorithm/Algorithms%20Concept/">Algorithms Concept</a>
+  
+</span> 
+              </li>
+              
+            </ul>
+          </li>
+        
+          <li> 
+            
+
+
+  
+  
+<span class=nav__sub-title2>
+  <a href="/Posts/Book/" class="active">Book</a>
+  
+    <button class="nav__sub-button" onclick="fn_spread(`-Posts-Book-`);"> 
+    <i class="fas fa-angle-up" id="Icon-Posts-Book-" ></i> </button>
+  
+</span>
+            
+
+<ul class="nav__items" 
+  id="Category-Posts-Book-" 
+  
+  
+    
+    style="display: block;"
+   
+> 
+              
+              <li> 
+                  
+
+
+  
+  
+<span class=nav__sub-title3>
+  <a href="/Posts/Book/C++PrimerPlus/" class="active">C++PrimerPlus</a>
+  
+</span> 
+              </li>
+              
+              <li> 
+                  
+
+
+  
+  
+<span class=nav__sub-title3>
+  <a href="/Posts/Book/UE4-Scripting-with-C++-Cookbook/">UE4-Scripting-with-C++-Cookbook</a>
+  
+</span> 
+              </li>
+              
+            </ul>
+          </li>
+        
+          <li> 
+            
+
+
+  
+  
+<span class=nav__sub-title2>
+  <a href="/Posts/c++/">c++</a>
+  
+</span>
+            
+
+<ul class="nav__items" 
+  id="Category-Posts-c++-" 
+  
+  
+    
+    style="display: none;" 
+   
+> 
+              
+            </ul>
+          </li>
+        
+          <li> 
+            
+
+
+  
+  
+<span class=nav__sub-title2>
+  <a href="/Posts/Graphics/">Graphics</a>
+  
+</span>
+            
+
+<ul class="nav__items" 
+  id="Category-Posts-Graphics-" 
+  
+  
+    
+    style="display: none;" 
+   
+> 
+              
+            </ul>
+          </li>
+        
+          <li> 
+            
+
+
+  
+  
+<span class=nav__sub-title2>
+  <a href="/Posts/Jekyll/">Jekyll</a>
+  
+</span>
+            
+
+<ul class="nav__items" 
+  id="Category-Posts-Jekyll-" 
+  
+  
+    
+    style="display: none;" 
+   
+> 
+              
+            </ul>
+          </li>
+        
+          <li> 
+            
+
+
+  
+  
+<span class=nav__sub-title2>
+  <a href="/Posts/Math/">Math</a>
+  
+</span>
+            
+
+<ul class="nav__items" 
+  id="Category-Posts-Math-" 
+  
+  
+    
+    style="display: none;" 
+   
+> 
+              
+            </ul>
+          </li>
+        
+          <li> 
+            
+
+
+  
+  
+<span class=nav__sub-title2>
+  <a href="/Posts/Memo/">Memo</a>
+  
+</span>
+            
+
+<ul class="nav__items" 
+  id="Category-Posts-Memo-" 
+  
+  
+    
+    style="display: none;" 
+   
+> 
+              
+            </ul>
+          </li>
+        
+          <li> 
+            
+
+
+  
+  
+<span class=nav__sub-title2>
+  <a href="/Posts/OS/">OS</a>
+  
+</span>
+            
+
+<ul class="nav__items" 
+  id="Category-Posts-OS-" 
+  
+  
+    
+    style="display: none;" 
+   
+> 
+              
+            </ul>
+          </li>
+        
+          <li> 
+            
+
+
+  
+  
+<span class=nav__sub-title2>
+  <a href="/Posts/Portfolio/">Portfolio</a>
+  
+</span>
+            
+
+<ul class="nav__items" 
+  id="Category-Posts-Portfolio-" 
+  
+  
+    
+    style="display: none;" 
+   
+> 
+              
+            </ul>
+          </li>
+        
+          <li> 
+            
+
+
+  
+  
+<span class=nav__sub-title2>
+  <a href="/Posts/System%20Hacking/">System Hacking</a>
+  
+</span>
+            
+
+<ul class="nav__items" 
+  id="Category-Posts-System Hacking-" 
+  
+  
+    
+    style="display: none;" 
+   
+> 
+              
+            </ul>
+          </li>
+        
+          <li> 
+            
+
+
+  
+  
+<span class=nav__sub-title2>
+  <a href="/Posts/UE4/">UE4</a>
+  
+    <button class="nav__sub-button" onclick="fn_spread(`-Posts-UE4-`);"> 
+    <i class="fas fa-angle-up" id="Icon-Posts-UE4-" ></i> </button>
+  
+</span>
+            
+
+<ul class="nav__items" 
+  id="Category-Posts-UE4-" 
+  
+  
+    
+    style="display: none;" 
+   
+> 
+              
+              <li> 
+                  
+
+
+  
+  
+<span class=nav__sub-title3>
+  <a href="/Posts/UE4/ALS/">ALS</a>
+  
+</span> 
+              </li>
+              
+            </ul>
+          </li>
+        
+        </ul>
+
+      </li>
+    
+  </ul>
+  <h1></h1>
+</nav>
+
+          
+        
+    </div>
+
+
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="ch16 string">
+    <meta itemprop="description" content="c++ 기초플러스 16장 요약본">
+    <meta itemprop="datePublished" content="2021-09-24T00:00:00+09:00">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">ch16 string
+</h1>
+          
+
+
+
+<nav class="breadcrumbs">
+  <i class="fas fa-fw fa-folder-open" aria-hidden="true"></i>
+  <ol itemscope itemtype="https://schema.org/BreadcrumbList">
+    
+    
+    
+    
+
+        
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+            <a href="http://localhost:4000/" itemprop="item"><span itemprop="name">Home</span></a>
+            <meta itemprop="position" content="1" />
+        </li>
+        <span class="sep">/</span>
+        
+        
+        
+          
+          <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+              <a href="/posts/"><span itemprop="name">Posts</span></a>
+              <meta itemprop="position" content="1" />
+          </li>
+          <span class="sep">/</span>
+        
+
+    
+
+        
+        
+        
+          
+          <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+              <a href="/posts/book/"><span itemprop="name">Book</span></a>
+              <meta itemprop="position" content="1" />
+          </li>
+          <span class="sep">/</span>
+        
+
+    
+
+        
+        
+        
+          
+          <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+              <a href="/posts/book/c++primerplus/"><span itemprop="name">C++primerplus</span></a>
+              <meta itemprop="position" content="1" />
+          </li>
+          <span class="sep">/</span>
+        
+
+    
+
+        
+        
+        
+        
+
+    
+  </ol>
+</nav>
+
+<!--
+<nav class="breadcrumbs">
+  <i class="fas fa-fw fa-folder-open" aria-hidden="true"></i>
+  <ol itemscope itemtype="https://schema.org/BreadcrumbList" >
+    
+    
+    
+      
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <a href="http://localhost:4000/" itemprop="item"><span itemprop="name">Home</span></a>
+          <meta itemprop="position" content="1" />
+        </li>
+        <span class="sep">/</span>
+      
+      
+        
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+            <a href="/navi-categories/#posts" itemprop="item"><span itemprop="name">Posts</span></a>
+            <meta itemprop="position" content="2" />
+        </li>
+        <span class="sep">/</span>
+      
+    
+      
+      
+        
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+            <a href="/navi-categories/#book" itemprop="item"><span itemprop="name">Book</span></a>
+            <meta itemprop="position" content="3" />
+        </li>
+        <span class="sep">/</span>
+      
+    
+      
+      
+        
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+            <a href="/navi-categories/#c++primerplus" itemprop="item"><span itemprop="name">C++primerplus</span></a>
+            <meta itemprop="position" content="4" />
+        </li>
+        <span class="sep">/</span>
+      
+    
+      
+      
+        <li class="current">ch16 string</li>
+      
+    
+  </ol>
+</nav>
+-->
+          
+
+    <p class="page__meta" style="margin-top: 0.5em; orphans: 0; widows: 0;">
+        
+
+        
+
+        
+        
+        
+        <span class="page__meta-readtime">
+            <i class="far fa-clock" aria-hidden="true"></i>
+            
+            28 분 소요
+            
+        </span>
+        
+    </p>
+
+
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+          <aside class="sidebar__right sticky">
+            <nav class="toc">
+              <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> On This Page</h4></header>
+              <ul class="toc__menu"><li><a href="#string">String</a><ul><li><a href="#생성자">생성자</a></li><li><a href="#기타">기타</a></li><li><a href="#성능고려">성능고려</a></li><li><a href="#basic_string">basic_string</a></li></ul></li><li><a href="#smart-pointer">Smart Pointer</a><ul><li><a href="#auto_ptr">auto_ptr</a></li><li><a href="#unique_ptr-shared_ptr">unique_ptr, shared_ptr</a></li></ul></li><li><a href="#stl">STL</a><ul><li><a href="#찍먹">찍먹</a></li><li><a href="#generic-programing">Generic Programing</a></li><li><a href="#initializer-list">Initializer List</a></li></ul></li></ul>
+             
+            </nav>
+          </aside>
+        
+        <h2 id="string">String</h2>
+
+<h3 id="생성자">생성자</h3>
+
+<figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="kt">void</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+	<span class="n">string</span> <span class="n">a</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="sc">'a'</span><span class="p">);</span>              <span class="c1">// string(size_type n, char c);</span>
+	<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">a</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>             <span class="c1">// aaaaa</span>
+	<span class="n">string</span> <span class="n">b</span><span class="p">(</span><span class="s">"abcefg"</span><span class="p">,</span> <span class="mi">3</span><span class="p">);</span>         <span class="c1">// string(const char* s, size_type n);</span>
+	<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">b</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>             <span class="c1">// abc</span>
+	<span class="n">string</span> <span class="n">c</span><span class="p">(</span><span class="n">b</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">);</span>             <span class="c1">// string(const string&amp; str, size_type pos, size_type npos);</span>
+	<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">c</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>             <span class="c1">// bc</span>
+	<span class="n">string</span> <span class="n">d</span><span class="p">(</span><span class="n">a</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span> <span class="n">a</span><span class="p">.</span><span class="n">end</span><span class="p">());</span>  <span class="c1">// string(Iter begin, Iter end);</span>
+	<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">d</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>             <span class="c1">// aaaaa</span>
+	<span class="n">string</span> <span class="n">e</span> <span class="o">=</span> <span class="p">{</span> <span class="sc">'a'</span><span class="p">,</span> <span class="sc">'b'</span> <span class="p">};</span>       <span class="c1">// string(initializer_list&lt;char&gt; il);</span>
+	<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">e</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>              <span class="c1">// ab</span>
+<span class="p">}</span></code></pre></figure>
+
+<p>string 다들 써봤을 거임.</p>
+
+<p>위는 그나마 좀 안쓰는 놈들 정리해 놨음.</p>
+
+<ol>
+  <li>a 는 c 로 n 개 초기화.</li>
+  <li>b 는 s 에서 n 개만큼 초기화하되 널문자가 너머는 쓰레기문자가 들어감</li>
+  <li>c 는 str 의 pos 인덱스에서 npos 인덱스 까지 복사함. 범위가 초과하던가 하면 터짐.</li>
+  <li>d 는 string 도 stl 의 container 임을 보여주는 iterator 를 이용한 초기화</li>
+  <li>e 는 intializer_list 를 이용한 초기화. initializer_list <code class="language-plaintext highlighter-rouge">{}</code> 이거로 초기화하는 것으로 자세한건 밑에 설명함</li>
+</ol>
+
+<h3 id="기타">기타</h3>
+
+<p><code class="language-plaintext highlighter-rouge">getline, get</code> 이런거 봐도 까먹음. 쉽게 쓰라고 준 <code class="language-plaintext highlighter-rouge">cin &gt;&gt;</code> 이나 잘 쓰자.</p>
+
+<p><code class="language-plaintext highlighter-rouge">find(), find_first_of(), compare(), insert()</code> 이런 잡다한 기능이 많으니 필요할 때 검색해서 쓰자. 그리고 복잡한 조작은 정규표현식 써야함.</p>
+
+<p>근데 일반적 stl container 와 달리 <code class="language-plaintext highlighter-rouge">find() != string::npos</code> 이렇게 써야하는게 특이함. 이때 <code class="language-plaintext highlighter-rouge">string::npos</code> 는 보통 <code class="language-plaintext highlighter-rouge">unsigned __int64</code> 의 -1 인 값으로 부호없는 자료형이라 자료형 최댓값임</p>
+
+<h3 id="성능고려">성능고려</h3>
+
+<p><code class="language-plaintext highlighter-rouge">+</code> 로 문자열 더하면 좌우변 길이만큼 오래걸림.</p>
+
+<p><code class="language-plaintext highlighter-rouge">+=</code> 는 <code class="language-plaintext highlighter-rouge">append()</code>를 호출하는데 벡터에 <code class="language-plaintext highlighter-rouge">push_back()</code> 할 때 <code class="language-plaintext highlighter-rouge">capacity()</code> 랑 <code class="language-plaintext highlighter-rouge">size()</code> 고려하는거랑 똑같이 상황에 맞게 <code class="language-plaintext highlighter-rouge">reserve()</code> 도 쓰고 하면 됨. <code class="language-plaintext highlighter-rouge">+=</code>으로 10000개 이렇게 넣을거면 공간이 점진적으로 늘어나게 되면 비용이 크니까 한번에 공간할당하고 쓰라는 말.</p>
+
+<h3 id="basic_string">basic_string</h3>
+
+<figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="k">using</span> <span class="n">string</span>  <span class="o">=</span> <span class="n">basic_string</span><span class="o">&lt;</span><span class="kt">char</span><span class="p">,</span> <span class="n">char_traits</span><span class="o">&lt;</span><span class="kt">char</span><span class="o">&gt;</span><span class="p">,</span> <span class="n">allocator</span><span class="o">&lt;</span><span class="kt">char</span><span class="o">&gt;&gt;</span><span class="p">;</span>
+<span class="k">using</span> <span class="n">wstring</span> <span class="o">=</span> <span class="n">basic_string</span><span class="o">&lt;</span><span class="kt">wchar_t</span><span class="p">,</span> <span class="n">char_traits</span><span class="o">&lt;</span><span class="kt">wchar_t</span><span class="o">&gt;</span><span class="p">,</span> <span class="n">allocator</span><span class="o">&lt;</span><span class="kt">wchar_t</span><span class="o">&gt;&gt;</span><span class="p">;</span>
+<span class="cp">#ifdef __cpp_lib_char8_t
+</span><span class="k">using</span> <span class="n">u8string</span> <span class="o">=</span> <span class="n">basic_string</span><span class="o">&lt;</span><span class="n">char8_t</span><span class="p">,</span> <span class="n">char_traits</span><span class="o">&lt;</span><span class="n">char8_t</span><span class="o">&gt;</span><span class="p">,</span> <span class="n">allocator</span><span class="o">&lt;</span><span class="n">char8_t</span><span class="o">&gt;&gt;</span><span class="p">;</span>
+<span class="cp">#endif // __cpp_lib_char8_t
+</span><span class="k">using</span> <span class="n">u16string</span> <span class="o">=</span> <span class="n">basic_string</span><span class="o">&lt;</span><span class="kt">char16_t</span><span class="p">,</span> <span class="n">char_traits</span><span class="o">&lt;</span><span class="kt">char16_t</span><span class="o">&gt;</span><span class="p">,</span> <span class="n">allocator</span><span class="o">&lt;</span><span class="kt">char16_t</span><span class="o">&gt;&gt;</span><span class="p">;</span>
+<span class="k">using</span> <span class="n">u32string</span> <span class="o">=</span> <span class="n">basic_string</span><span class="o">&lt;</span><span class="kt">char32_t</span><span class="p">,</span> <span class="n">char_traits</span><span class="o">&lt;</span><span class="kt">char32_t</span><span class="o">&gt;</span><span class="p">,</span> <span class="n">allocator</span><span class="o">&lt;</span><span class="kt">char32_t</span><span class="o">&gt;&gt;</span><span class="p">;</span></code></pre></figure>
+
+<p>우리가 아는 <code class="language-plaintext highlighter-rouge">string</code> 은 <code class="language-plaintext highlighter-rouge">basic_string</code> 에서 <code class="language-plaintext highlighter-rouge">char</code> 형으로 인스턴스 된것임. 즉 다른 크기의 문자타입에서도 똑같은게 가능하단 것.</p>
+
+<p>trait 은 값비교 같은 때에 쓰는 문자 고유의 특징을 서술하는 클래스로 자기가 직접 basic_string 을 상속시켜서 원하는 문자열 클래스를 만들 때 다시 찾아보자.</p>
+
+<p><code class="language-plaintext highlighter-rouge">allocator&lt;T&gt;</code> 는 기본적으로 <code class="language-plaintext highlighter-rouge">new</code> 와 <code class="language-plaintext highlighter-rouge">delete</code> 을 메모리 관리를 위해 사용함. 커스터마이즈는 필요할때 찾아보자.</p>
+
+<h2 id="smart-pointer">Smart Pointer</h2>
+
+<p>소멸자 자동 호출 귀찮을 때 c++ 이 제공해주는 counter 방식 포인터. <a href="https://woo-dev.tistory.com/61">Counter 방식과 GC 방식이 있음</a></p>
+
+<h3 id="auto_ptr">auto_ptr</h3>
+
+<p>안쓰니까 까먹어도 됨</p>
+
+<p><code class="language-plaintext highlighter-rouge">T</code> 에 <code class="language-plaintext highlighter-rouge">int[]</code> 같은 배열을 넣으면 알아서 <code class="language-plaintext highlighter-rouge">delete[]</code> 를 호출을 못함(아래는 됨)</p>
+
+<p>rvalue 처리를 c++11 을 사용못함.</p>
+
+<h3 id="unique_ptr-shared_ptr">unique_ptr, shared_ptr</h3>
+
+<figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="k">struct</span> <span class="nc">AAA</span> <span class="p">{</span>
+	<span class="o">~</span><span class="n">AAA</span><span class="p">()</span> <span class="p">{</span> <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"소멸자 호출"</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span> <span class="p">}</span>
+<span class="p">};</span>
+
+<span class="kt">void</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+	<span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">AAA</span><span class="o">&gt;</span> <span class="n">shared_a</span> <span class="o">=</span> <span class="n">make_shared</span><span class="o">&lt;</span><span class="n">AAA</span><span class="o">&gt;</span><span class="p">();</span>
+	<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"Counter is"</span> <span class="o">&lt;&lt;</span> <span class="n">shared_a</span><span class="p">.</span><span class="n">use_count</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+	<span class="p">{</span>
+		<span class="n">unique_ptr</span><span class="o">&lt;</span><span class="n">AAA</span><span class="o">&gt;</span> <span class="n">a</span> <span class="o">=</span> <span class="n">make_unique</span><span class="o">&lt;</span><span class="n">AAA</span><span class="o">&gt;</span><span class="p">();</span>
+		<span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">AAA</span><span class="o">&gt;</span> <span class="n">shared_a2</span> <span class="o">=</span> <span class="n">shared_a</span><span class="p">;</span>
+		<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"Counter is"</span> <span class="o">&lt;&lt;</span> <span class="n">shared_a2</span><span class="p">.</span><span class="n">use_count</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+	<span class="p">}</span>
+	<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"Counter is"</span> <span class="o">&lt;&lt;</span> <span class="n">shared_a</span><span class="p">.</span><span class="n">use_count</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+	<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"Block 끝"</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+<span class="p">}</span></code></pre></figure>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Counter is1
+Counter is2
+소멸자 호출
+Counter is1
+Block 끝
+소멸자 호출
+</code></pre></div></div>
+
+<ul>
+  <li>
+    <p>shared / unique ptr 을 만들 땐 <code class="language-plaintext highlighter-rouge">std::make_shared&lt;T&gt;(), std::make_unique&lt;T&gt;()</code> 를 쓰면 됨. 만약 생성하는데 인자가 필요하면 그대로 넣으면 됨. 혹은 <code class="language-plaintext highlighter-rouge">std::unique_ptr(new int)</code> 이렇게 직접 <code class="language-plaintext highlighter-rouge">new</code> 를 넣어서 쓰는 방법이 있지만 번거로우니 잘 안씀.</p>
+  </li>
+  <li>
+    <p>클래스 내의 멤버변수는 객체가 소멸될때 소멸자가 같이 호출되고 스택에 있는 객체는 스택에서 나올 때 소멸자가 호출되는 것을 알고 있을 거임.</p>
+    <ul>
+      <li>생성할 때 counter 가 1이 되고 unique_ptr 은 대입이나 복사가 안되서 counter 는 1에서 고정임.</li>
+      <li>그래서 unique_ptr 은 함수 인자로 전달하거나 하면 참조로 밖에 못보냄</li>
+      <li>이는 대부분 shared_ptr 을 쓰면 적당한 상황임</li>
+      <li>shared_ptr 은 대입이나 복사시 공유하는 counter 를 올리고 각 shared_ptr 이 소멸할 때마다 counter 를 내림. 0이 되면 소멸자를 호출시킴.</li>
+      <li>해당 포인터를 여러군데에서 가져야하면 따라서 shared_ptr 이 적합함.</li>
+    </ul>
+  </li>
+</ul>
+
+<figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="n">std</span><span class="o">::</span><span class="n">unique_ptr</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">Get</span><span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="n">make_unique</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="p">();</span> <span class="p">}</span>
+
+<span class="kt">void</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+	<span class="n">unique_ptr</span> <span class="n">a</span> <span class="o">=</span> <span class="n">Get</span><span class="p">();</span>
+	<span class="n">shared_ptr</span> <span class="n">b</span> <span class="o">=</span> <span class="n">Get</span><span class="p">();</span>
+	<span class="n">unique_ptr</span> <span class="n">c</span> <span class="o">=</span> <span class="n">a</span><span class="p">;</span> <span class="c1">// 에러</span>
+	<span class="n">shared_ptr</span> <span class="n">d</span> <span class="o">=</span> <span class="n">a</span><span class="p">;</span> <span class="c1">// 에러</span>
+<span class="p">}</span></code></pre></figure>
+
+<p>이건 참고로만 알아두면 되는데, unique_ptr 은 rvalue 일때만 리턴값도 되고 생성시 바로 넣을 수도 있고  shared_ptr 과 호환도 됨.</p>
+
+<h2 id="stl">STL</h2>
+
+<h3 id="찍먹">찍먹</h3>
+
+<p><strong>C++ Standard Libary</strong> 의 세부집합으로 일반화 프로그래밍이라는 객체지향 프로그래밍과는 다른 접근의 클래스임.</p>
+
+<p>왜 완전한 객체지향이 아니냐면 예를들어 stl container 마다 <code class="language-plaintext highlighter-rouge">find()</code> 함수를 만드는게 아니라 하나의 <code class="language-plaintext highlighter-rouge">find()</code> 함수로 여러 stl constainer 가 사용하게 함.(즉 캡슐화 이런거 안함)</p>
+
+<p>이때 같은 기능임에도 멤버함수가 있는 경우가 있음. 이건 특정 container 에 최적화된 알고리즘이 있기 때문임. 그러니까 <strong>같은 이름이면 멤버함수 써야함</strong> .</p>
+
+<figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="k">struct</span> <span class="nc">AAA</span> <span class="p">{</span>
+	<span class="kt">int</span> <span class="n">value</span><span class="p">;</span>
+	<span class="n">AAA</span><span class="p">(</span><span class="kt">int</span> <span class="n">v</span><span class="p">)</span> <span class="o">:</span> <span class="n">value</span><span class="p">(</span><span class="n">v</span><span class="p">)</span> <span class="p">{}</span>
+	<span class="kt">void</span> <span class="n">Print</span><span class="p">()</span> <span class="p">{</span> <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">value</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span> <span class="p">}</span>
+	<span class="kt">bool</span> <span class="k">operator</span><span class="o">&lt;</span><span class="p">(</span><span class="k">const</span> <span class="n">AAA</span><span class="o">&amp;</span> <span class="n">in</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="n">value</span> <span class="o">&lt;</span> <span class="n">in</span><span class="p">.</span><span class="n">value</span><span class="p">;</span> <span class="p">}</span>
+<span class="p">};</span>
+
+<span class="kt">void</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+	<span class="n">vector</span><span class="o">&lt;</span><span class="n">AAA</span><span class="o">&gt;</span> <span class="n">a</span> <span class="o">=</span> <span class="p">{</span> <span class="mi">5</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span> <span class="p">};</span>
+	<span class="n">sort</span><span class="p">(</span><span class="n">a</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span> <span class="n">a</span><span class="p">.</span><span class="n">end</span><span class="p">());</span>  <span class="c1">// operator&lt; 기준으로 오름차순으로 함. </span>
+	<span class="n">for_each</span><span class="p">(</span><span class="n">a</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span> <span class="n">a</span><span class="p">.</span><span class="n">end</span><span class="p">(),</span> <span class="p">[](</span><span class="n">AAA</span><span class="o">&amp;</span> <span class="n">a</span><span class="p">)</span> <span class="p">{</span><span class="n">a</span><span class="p">.</span><span class="n">Print</span><span class="p">();</span> <span class="p">});</span>	 <span class="c1">// 12345 출력</span>
+<span class="p">}</span></code></pre></figure>
+
+<p>위는 종종 쓸 수 있는 stl 예시임.</p>
+
+<p><code class="language-plaintext highlighter-rouge">sort</code> 함수 등에는 <strong>strick weak ordering</strong> 을 만족 안하면 뻗는 경우가 종종 있음.</p>
+
+<p>이때 많이 틀리는 부분은 <strong>두 비교 대상이 같은 경우 <code class="language-plaintext highlighter-rouge">&lt;</code>, <code class="language-plaintext highlighter-rouge">&gt;</code> 모두 false 여야 한</strong> 다는 것임.</p>
+
+<p><a href="https://panty.run/strict-weak-ordering/">자세한건 여기</a></p>
+
+<h3 id="generic-programing">Generic Programing</h3>
+
+<p>일반화 프로그래밍의 목적은 데이터형과 무관한 코드를 작성하는 것임.</p>
+
+<p>특히 STL 에서는 <code class="language-plaintext highlighter-rouge">int</code> 같은 container 내부의 자료형 뿐만 아니라 <strong>container 에도 제약받지 않는 코드</strong> 를 작성하기를 원함.</p>
+
+<p>이러한 코드는 밑의 <strong>알고리즘</strong> 에 해당됨</p>
+
+<figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="k">using</span> <span class="n">_Container_base</span> <span class="o">=</span> <span class="n">_Container_base12</span><span class="p">;</span>
+<span class="k">using</span> <span class="n">_Iterator_base</span> <span class="o">=</span> <span class="n">_Iterator_base12</span><span class="p">;</span></code></pre></figure>
+
+<p>이러한 목적을 위해서 Container 가 사용하는 Iterator 가 Container 랑 동등하게 정의 되어 있음.</p>
+
+<h4 id="iterator">Iterator</h4>
+
+<p><a href="http://tcpschool.com/cpp/cpp_iterator_category">잘 정리된거</a></p>
+
+<p>이하는 iterator 를 특징에 따라 크게 5가지로 구분한 것임.(즉 구현 이전의 개념임)</p>
+
+<p>뒤로 갈수록 앞에 것에 기능이 더 붙는 거라 계층적으로 분류한다고도 함.</p>
+
+<p>왜 이걸 알아야하냐면 <code class="language-plaintext highlighter-rouge">sort</code>, <code class="language-plaintext highlighter-rouge">find</code> 같은 <strong>알고리즘에 우리가 쓰려는 container 가 적용가능한가?</strong> 이걸 판단할 때 쓰기 때문임.</p>
+
+<p>다시한번 말하지만 이하는 특성에 따른 분류이고 구현될 iterator 의 요구사항일 뿐임. 예를들어 그냥 포인터는 이하의 모든 분류에 다 들어감</p>
+
+<ul>
+  <li>input iterator</li>
+  <li>output iterator
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">++</code> 로 이동. <code class="language-plaintext highlighter-rouge">(*iter)</code> 로 참조만 가능하거나(전자) 대입만 가능함(후자).</li>
+    </ul>
+  </li>
+  <li>forward iterator
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">++</code> 으로 이동. <code class="language-plaintext highlighter-rouge">(*iter)</code> 로 참조 및 대입 가능. (input + outout 이라 보면 됨)</li>
+      <li>iterator 를 메모리에 저장해놓고 동일한 값을 여러번 참조할 수 있어야함</li>
+      <li>다중 패스 알고리즘 가능</li>
+    </ul>
+  </li>
+  <li>bidirectional iterator
+    <ul>
+      <li>forward 에 더해서 <code class="language-plaintext highlighter-rouge">--</code> 로 뒤로 가기도 됨.</li>
+      <li><code class="language-plaintext highlighter-rouge">rbegin()</code>, <code class="language-plaintext highlighter-rouge">rend()</code> 이런걸 지원하는 container 가 이를 사용함</li>
+    </ul>
+  </li>
+  <li>random access iterator
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">[]</code> 나 <code class="language-plaintext highlighter-rouge">iterator + 10</code> 같을걸 통해 임의의 원소에 들어갈 수 있음.</li>
+      <li>vector 나 deque 등이 이러한 iterator 를 적용함.</li>
+    </ul>
+  </li>
+</ul>
+
+<figure class="highlight"><pre><code class="language-c--" data-lang="c++">	<span class="k">template</span> <span class="o">&lt;</span><span class="k">class</span> <span class="nc">_FwdIt</span><span class="p">,</span> <span class="k">class</span> <span class="nc">_Ty</span><span class="p">&gt;</span>
+	<span class="n">_NODISCARD</span> <span class="n">_FwdIt</span> <span class="nf">upper_bound</span><span class="p">(</span><span class="n">_FwdIt</span> <span class="n">_First</span><span class="p">,</span> <span class="n">_FwdIt</span> <span class="n">_Last</span><span class="p">,</span> <span class="k">const</span> <span class="n">_Ty</span><span class="o">&amp;</span> <span class="n">_Val</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// find first element that _Val is before, using operator&lt;</span>
+    <span class="k">return</span> <span class="n">_STD</span> <span class="n">upper_bound</span><span class="p">(</span><span class="n">_First</span><span class="p">,</span> <span class="n">_Last</span><span class="p">,</span> <span class="n">_Val</span><span class="p">,</span> <span class="n">less</span><span class="o">&lt;&gt;</span><span class="p">());</span>
+	<span class="p">}</span>
+
+<span class="k">template</span> <span class="o">&lt;</span><span class="k">class</span> <span class="nc">_RanIt</span><span class="p">&gt;</span>
+<span class="kt">void</span> <span class="nf">sort</span><span class="p">(</span><span class="k">const</span> <span class="n">_RanIt</span> <span class="n">_First</span><span class="p">,</span> <span class="k">const</span> <span class="n">_RanIt</span> <span class="n">_Last</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// order [_First, _Last), using operator&lt;</span>
+    <span class="n">_STD</span> <span class="n">sort</span><span class="p">(</span><span class="n">_First</span><span class="p">,</span> <span class="n">_Last</span><span class="p">,</span> <span class="n">less</span><span class="o">&lt;&gt;</span><span class="p">());</span>
+<span class="p">}</span></code></pre></figure>
+
+<p>실제로 어떻게 되어있나 보려면 container 보단 알고리즘을 찾아보면 됨</p>
+
+<p>예를들어 <code class="language-plaintext highlighter-rouge">upper_bound</code>에서 <code class="language-plaintext highlighter-rouge">_Fwdit</code> 이 forward iterator 의 약자임</p>
+
+<p><code class="language-plaintext highlighter-rouge">sort</code> 에서 <code class="language-plaintext highlighter-rouge">_Ranit</code> 은 random iterator 의 약자임.</p>
+
+<p>만약 <code class="language-plaintext highlighter-rouge">unordered_map</code> 을 <code class="language-plaintext highlighter-rouge">sort</code> 함수로 정렬할 수 있나? 생각해보면 재는 bidirectional 이라 레벨이 딸려서 못쓰네 이렇게 판단할 수 있음. (당연히 Hash 함수로 연결되니 못하는거지만)</p>
+
+<h4 id="container">Container</h4>
+
+<ul>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">vector, map, biset, list</code> 같은 애들임.</p>
+  </li>
+  <li>
+    <p>복사생성, 대입이 가능한 단일형의 다른 객체나 값들을 저장하는 객체임.</p>
+  </li>
+  <li>
+    <p>자기가 소멸하면 안의 데이터도 소멸함.</p>
+  </li>
+  <li>
+    <p>포인터를 추상화한 Iterator 가 있어서 자기 내부의 데이터를 순회할 수 있어야함.</p>
+  </li>
+  <li>
+    <p>비교나 대입 등에 필요한 시간복잡도는 안의 내부의 데이터나 상황에 따라 상식적으로 판단해보자.</p>
+  </li>
+  <li>
+    <p>혹시 내가 container 에 따른 대입/삽입/삭제/비교의 시간복잡도를 모른다고 하면 1278부터 읽어보길 권함.</p>
+  </li>
+</ul>
+
+<h4 id="functor">Functor</h4>
+
+<ul>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">operator()</code> 가 사용가능한 객체. 특히 <code class="language-plaintext highlighter-rouge">operator()</code> 를 오버로딩한 클래스를 말함.</p>
+  </li>
+  <li>
+    <p>stl 내부에선 많이 씀.</p>
+  </li>
+  <li>
+    <p>외부에서는 펑크터나 어탭터 이런건 복잡해서 그냥 람다나 함수포인터 씀.</p>
+  </li>
+  <li>
+    <p>알고리즘에서 Predicate, Binary_Predicate 이라는 이름의 인자가 있을 것임. 얘네는 자주 보이는 펑크터인데, 전자는 bool 값을 리턴하는 단항 함수를 넣으란 거고 후자는 bool 값을 리턴하는 이항 함수를 넣으라는 것임.</p>
+  </li>
+</ul>
+
+<figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="k">namespace</span> <span class="n">std</span> <span class="p">{</span>
+	<span class="k">template</span><span class="o">&lt;</span><span class="p">&gt;</span> <span class="k">struct</span> <span class="nc">hash</span><span class="o">&lt;</span><span class="n">AAA</span><span class="o">&gt;</span> <span class="p">{</span>
+		<span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="k">operator</span><span class="p">()(</span><span class="k">const</span> <span class="n">VISIT</span><span class="o">&amp;</span> <span class="n">in</span><span class="p">)</span> <span class="k">const</span> <span class="k">noexcept</span> <span class="p">{</span> <span class="k">return</span> <span class="p">(</span><span class="n">in</span><span class="p">.</span><span class="n">val</span><span class="p">)</span> <span class="o">%</span> <span class="mi">100070</span> <span class="o">+</span> <span class="n">in</span><span class="p">.</span><span class="n">k</span><span class="p">;</span> <span class="p">}</span>
+	<span class="p">};</span></code></pre></figure>
+
+<p>위는 펑크터가 어떻게 쓰이는지 보여주려고 들고온 예시임.</p>
+
+<p>unordered_set 등에서 해시펑션을 펑크터로 쓰고 그 클래스가 hash 임</p>
+
+<p>위는 그 hash 클래스를 AAA 타입에 대해서 명시적 특수화 한 것.</p>
+
+<p>그럼 stl 은 AAA 에 대해서 해시값을 얻을 때 위를 적용할 것임.</p>
+
+<p>만약 저게 없으면 우리는 <code class="language-plaintext highlighter-rouge">unordered_set&lt;AAA&gt;</code> 를 사용하지 못함</p>
+
+<h4 id="알고리즘">알고리즘</h4>
+
+<p><code class="language-plaintext highlighter-rouge">find(), sort(), copy(),</code> 등이 포함됨. 필요할 때 검색해서 쓰면 됨.</p>
+
+<p>앞에서 말했듯이 특정 container 에 종속되지 않고 앞에서 설명한 iterator 의 분류에 따른 적절한 iterator 만 받으면 잘 수행해줌.</p>
+
+<p>앞에서 말햇듯 특정 container 의 메소드가 같은 역할을 하면 알고리즘보단 메소드가 더 나음.</p>
+
+<h3 id="initializer-list">Initializer List</h3>
+
+<p><a href="https://modoocode.com/286">책안보고 이거만 봐도 됨</a></p>
+
+<figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="k">struct</span> <span class="nc">AAA</span> <span class="p">{</span>
+	<span class="kt">int</span> <span class="n">value1</span><span class="p">;</span>
+	<span class="kt">float</span> <span class="n">value2</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="k">struct</span> <span class="nc">BBB</span> <span class="p">{</span>
+	<span class="kt">int</span> <span class="n">value1</span><span class="p">[</span><span class="mi">5</span><span class="p">];</span>
+	<span class="n">BBB</span><span class="p">(</span><span class="k">const</span> <span class="n">initializer_list</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;&amp;</span> <span class="n">li</span><span class="p">)</span> <span class="p">{</span>
+		<span class="k">if</span> <span class="p">(</span><span class="n">li</span><span class="p">.</span><span class="n">size</span><span class="p">()</span> <span class="o">&lt;</span> <span class="mi">5</span><span class="p">)</span> <span class="k">return</span><span class="p">;</span>
+		<span class="n">copy</span><span class="p">(</span><span class="n">li</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span> <span class="n">li</span><span class="p">.</span><span class="n">begin</span><span class="p">()</span> <span class="o">+</span> <span class="mi">5</span><span class="p">,</span> <span class="n">value1</span><span class="p">);</span>
+	<span class="p">}</span>
+<span class="p">};</span>
+
+<span class="kt">void</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+	<span class="n">AAA</span> <span class="n">aaa</span> <span class="o">=</span> <span class="p">{</span> <span class="mi">1</span><span class="p">,</span> <span class="mf">3.14</span><span class="n">f</span> <span class="p">};</span>            <span class="c1">// uniform initialize</span>
+	<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">aaa</span><span class="p">.</span><span class="n">value1</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span> <span class="o">&lt;&lt;</span> <span class="n">aaa</span><span class="p">.</span><span class="n">value2</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+	<span class="n">BBB</span> <span class="n">bbb</span> <span class="o">=</span> <span class="p">{</span> <span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span> <span class="p">};</span>       <span class="c1">// initializer_list </span>
+	<span class="n">BBB</span> <span class="n">bbb</span> <span class="o">=</span> <span class="p">{</span> <span class="mi">1</span><span class="p">,</span> <span class="mf">2.2</span> <span class="p">};</span>               <span class="c1">// narrow conversion 이라 안됨</span>
+	<span class="n">for_each</span><span class="p">(</span><span class="n">bbb</span><span class="p">.</span><span class="n">value1</span><span class="p">,</span> <span class="n">bbb</span><span class="p">.</span><span class="n">value1</span> <span class="o">+</span> <span class="mi">5</span><span class="p">,</span> <span class="p">[](</span><span class="kt">int</span> <span class="n">a</span><span class="p">)</span> <span class="p">{</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">a</span><span class="p">;</span> <span class="p">});</span>
+<span class="p">}</span></code></pre></figure>
+
+<ul>
+  <li>
+    <p>uniform initialize 와 비슷한데 <strong>narrow conversion</strong> 을 못함.</p>
+  </li>
+  <li>
+    <p>그리고 initializer_list 로 생성자를 오버로딩하면 uniform initialize 는 못쓰게 됨.</p>
+  </li>
+  <li>
+    <p>얘네도 container 라서 반복자도 있고 <code class="language-plaintext highlighter-rouge">size()</code> 도 있음</p>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">auto a = {1,2,3};</code> 이러면 자료형이 initializer_list 임.</p>
+  </li>
+</ul>
+
+        
+      </section>
+      
+      <footer class="page__meta">
+        
+        
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> 태그: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/navi-tags/#c" class="page__taxonomy-item" rel="tag">c++</a>
+    
+    </span>
+  </p>
+
+
+
+
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> 카테고리: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/navi-categories/#book" class="page__taxonomy-item" rel="tag">Book</a><span class="sep">, </span>
+    
+      <a href="/navi-categories/#c-primerplus" class="page__taxonomy-item" rel="tag">C++PrimerPlus</a><span class="sep">, </span>
+    
+      <a href="/navi-categories/#posts" class="page__taxonomy-item" rel="tag">Posts</a>
+    
+    </span>
+  </p>
+
+
+        
+
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> 업데이트:</strong> <time datetime="2021-09-24T00:00:00+09:00">September 24, 2021</time></p>
+
+
+      </footer>
+
+      
+
+      
+  <nav class="pagination">
+    
+      <a href="/posts/book/c++primerplus/ch15-friend,-except,-ect/" class="pagination--pager" title="ch15 friend, except, ect
+">이전</a>
+    
+    
+      <a href="/posts/book/c++primerplus/ch17-Stream/" class="pagination--pager" title="ch17 Stream
+">다음</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h4 class="page__related-title">관련</h4>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/Posts/Portfolio/DirectX/screenshot2.png" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/posts/portfolio/DirectX-3D/" rel="permalink">DirectX 3D
+</a>
+      
+    </h2>
+    
+
+
+    <p class="archive__item-excerpt" itemprop="description">DirectX Project. Plan to make Unreal like results
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/Posts/Portfolio/UE4-CPP/screenshot2.png" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/posts/portfolio/UE4-CPP/" rel="permalink">UE4 CPP
+</a>
+      
+    </h2>
+    
+
+
+    <p class="archive__item-excerpt" itemprop="description">UE4 Toy Project
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/Posts/Portfolio/UE4-Blueprint/screenshot2.png" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/posts/portfolio/UE4-Blueprint/" rel="permalink">UE4 Blueprint
+</a>
+      
+    </h2>
+    
+
+
+    <p class="archive__item-excerpt" itemprop="description">UE4 Toy Game using Blueprint only.
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/posts/graphics/Graphics-Memo/" rel="permalink">Graphics Memo
+</a>
+      
+    </h2>
+    
+
+    <p class="page__meta" style="margin-top: 0.5em; orphans: 0; widows: 0;">
+        
+
+        
+
+        
+        
+        
+        <span class="page__meta-readtime">
+            <i class="far fa-clock" aria-hidden="true"></i>
+            
+            최대 1 분 소요
+            
+        </span>
+        
+    </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">복붙용
+</p>
+  </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+  
+</div>
+
+    </div>
+
+    
+    <div class="search-content">
+      <div class="search-content__inner-wrap"><form class="search-content__form" onkeydown="return event.key != 'Enter';">
+    <label class="sr-only" for="search">
+      Enter your search term...
+    </label>
+    <input type="search" id="search" class="search-input" tabindex="-1" placeholder="검색어를 입력하세요..." />
+  </form>
+  <div id="results" class="results"></div></div>
+
+    </div>
+    
+
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>팔로우:</strong></li>
+    
+
+    
+
+    
+      <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> 피드</a></li>
+    
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2022 Mona04. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+
+
+
+
+<script src="/assets/js/lunr/lunr.min.js"></script>
+<script src="/assets/js/lunr/lunr-store.js"></script>
+<script src="/assets/js/lunr/lunr-en.js"></script>
+
+
+
+
+    
+  <script>
+    var disqus_config = function () {
+      this.page.url = "http://localhost:4000/posts/book/c++primerplus/ch16-string/";  /* Replace PAGE_URL with your page's canonical URL variable */
+      this.page.identifier = "/posts/book/c++primerplus/ch16 string"; /* Replace PAGE_IDENTIFIER with your page's unique identifier variable */
+    };
+    (function() { /* DON'T EDIT BELOW THIS LINE */
+      var d = document, s = d.createElement('script');
+      s.src = 'https://https-mona04-github-io.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+  
+
+
+
+
+
+  </body>
+</html>

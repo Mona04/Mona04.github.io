@@ -1,0 +1,1577 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.24.0 by Michael Rose
+  Copyright 2013-2020 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="ko" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>            StackFrame, Calling Convention _ Log      Study      </title>
+<meta name="description" content="Stack Frame 와 Calling Convention">
+
+
+  <meta name="author" content="Mona04">
+  
+  <meta property="article:author" content="Mona04">
+  
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="ko">
+<meta property="og:site_name" content="Log | Study">
+<meta property="og:title" content="StackFrame, Calling Convention">
+<meta property="og:url" content="http://localhost:4000/posts/system%20hacking/c++/StackFrame,-Calling-Convention/">
+
+
+  <meta property="og:description" content="Stack Frame 와 Calling Convention">
+
+
+
+  <meta property="og:image" content="http://localhost:4000/assets/images/logo.png">
+
+
+
+
+
+  <meta property="article:published_time" content="2022-01-24T00:00:00+09:00">
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="http://localhost:4000/posts/system%20hacking/c++/StackFrame,-Calling-Convention/">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": "Mona04",
+      "url": "http://localhost:4000/"
+    
+  }
+</script>
+
+
+  <meta name="google-site-verification" content="F2oPZSOAKlxw2iAayxs8nQmb9hCG1xbwGenRruCQrVU" />
+
+
+
+
+
+  <meta name="naver-site-verification" content="0a38bc87a52a81a820d109d26a2039d3b5c93382">
+
+
+<!-- end _includes/seo.html -->
+
+
+
+  <link href="/feed.xml" type="application/atom+xml" rel="alternate" title="Log | Study Feed">
+
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css"></noscript>
+
+
+
+    <!-- start custom head snippets -->
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+<!-- end custom head snippets -->
+
+<script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+<script>mermaid.initialize({ startOnLoad: true });</script>
+<script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
+
+<script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
+<script>
+    function fn_spread(id) {
+        if ($('#Category' + id).is(":visible") && $('#Category' + id).css("overflow") != "hidden")
+        {
+            $('#Category' + id).stop().slideUp();
+            $('#Category' + id).css("max-height", "0%");
+            $('#Category' + id).css("opacity", "0%");
+            $('#Category' + id).css("z-index", "10");
+            $('#Category' + id).css("overflow", "hidden");
+            $('#Category' + id).css("display", "none");
+
+            $('#Icon' + id).toggleClass("fas fa-angle-up");
+        }
+        else
+        {
+            $('#Category' + id).stop().slideDown({
+                complete: function () {
+                    $('#Category' + id).css("overflow", "visible");
+                }
+            });
+            $('#Category' + id).css("max-height", "100%");
+            $('#Category' + id).css("opacity", "100%");
+            $('#Category' + id).css("z-index", "0");
+            $('#Category' + id).css("overflow", "visible");
+            $('#Category' + id).css("display", "block");
+
+            $('#Icon' + id).toggleClass("fas fa-angle-down");
+        }
+    }
+</script>
+  </head>
+
+  <body class="layout--single single">
+    <nav class="skip-links">
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          Log | Study
+          
+        </a>
+        <ul class="visible-links"></ul>
+        
+        <button class="search__toggle" type="button">
+          <span class="visually-hidden">Toggle search</span>
+          <i class="fas fa-search"></i>
+        </button>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">토글 메뉴</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+
+<div id="main" role="main">
+  
+    <div class="sidebar sticky">
+        
+
+
+<div itemscope itemtype="https://schema.org/Person">
+
+  
+    <div class="author__avatar">
+      
+        <img src="/assets/images/Profile.jpg" alt="Mona04" itemprop="image">
+      
+    </div>
+  
+
+  <div class="author__content">
+    
+      <h3 class="author__name" itemprop="name">Mona04</h3>
+    
+    
+      <div class="author__bio" itemprop="description">
+        <p>개발자가 되자</p>
+
+      </div>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">팔로우</button>
+    <ul class="author__urls social-icons">
+      
+        <li itemprop="homeLocation" itemscope itemtype="https://schema.org/Place">
+          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name">Seoul.Korea</span>
+        </li>
+      
+
+      
+        
+          
+        
+          
+        
+      
+
+      
+
+      
+        <li>
+          <a href="mailto:moksha1905@gmail.com">
+            <meta itemprop="email" content="moksha1905@gmail.com" />
+            <i class="fas fa-fw fa-envelope-square" aria-hidden="true"></i><span class="label">이메일</span>
+          </a>
+        </li>
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+        <li>
+          <a href="https://github.com/Mona04" itemprop="sameAs" rel="nofollow noopener noreferrer">
+            <i class="fab fa-fw fa-github" aria-hidden="true"></i><span class="label">GitHub</span>
+          </a>
+        </li>
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+
+          
+          
+            
+          
+          
+          
+          
+          
+            
+
+<nav class="nav__list">
+  
+  <input id="ac-toc" name="accordion-toc" type="checkbox" />
+  <label for="ac-toc">토글 메뉴</label>
+  <ul class="nav__items">
+    
+      <li>
+        
+          
+
+
+  
+  
+<span class=nav__sub-title>
+  <a href="/navi-portfolios/">Portfolio ★</a>
+  
+</span>
+        
+
+
+        
+
+<ul class="nav__items" 
+  id="Category-navi-portfolios-" 
+  
+  
+    
+    style="display: none;" 
+   
+> 
+        
+        </ul>
+
+      </li>
+    
+      <li>
+        
+          
+
+
+  
+  
+<span class=nav__sub-title>
+  <a href="/Posts/Memo/">Memo</a>
+  
+</span>
+        
+
+
+        
+
+<ul class="nav__items" 
+  id="Category-Posts-Memo-" 
+  
+  
+    
+    style="display: none;" 
+   
+> 
+        
+        </ul>
+
+      </li>
+    
+      <li>
+        
+          
+
+
+  
+  
+<span class=nav__sub-title>
+  <a href="/navi-tags/">Tags</a>
+  
+</span>
+        
+
+
+        
+
+<ul class="nav__items" 
+  id="Category-navi-tags-" 
+  
+  
+    
+    style="display: none;" 
+   
+> 
+        
+        </ul>
+
+      </li>
+    
+      <li>
+        
+          
+
+
+  
+  
+<span class=nav__sub-title>
+  <a href="/navi-categories/">Categories</a>
+  
+    <button class="nav__sub-button" onclick="fn_spread(`-navi-categories-`);"> 
+    <i class="fas fa-angle-up" id="Icon" ></i> </button>
+  
+</span>
+        
+
+
+        
+
+<ul class="nav__items" 
+  id="Category-navi-categories-" 
+  
+  
+    
+    style="display: block;"
+   
+> 
+        
+          <li> 
+            
+
+
+  
+  
+<span class=nav__sub-title2>
+  <a href="/Posts/Algorithm/">Algorithm</a>
+  
+    <button class="nav__sub-button" onclick="fn_spread(`-Posts-Algorithm-`);"> 
+    <i class="fas fa-angle-up" id="Icon-Posts-Algorithm-" ></i> </button>
+  
+</span>
+            
+
+<ul class="nav__items" 
+  id="Category-Posts-Algorithm-" 
+  
+  
+    
+    style="display: none;" 
+   
+> 
+              
+              <li> 
+                  
+
+
+  
+  
+<span class=nav__sub-title3>
+  <a href="/Posts/Algorithm/BOJ-Gold/">BOJ-Gold</a>
+  
+</span> 
+              </li>
+              
+              <li> 
+                  
+
+
+  
+  
+<span class=nav__sub-title3>
+  <a href="/Posts/Algorithm/BOJ-Platinum/">BOJ-Platinum</a>
+  
+</span> 
+              </li>
+              
+              <li> 
+                  
+
+
+  
+  
+<span class=nav__sub-title3>
+  <a href="/Posts/Algorithm/BOJ-Silver/">BOJ-Silver</a>
+  
+</span> 
+              </li>
+              
+              <li> 
+                  
+
+
+  
+  
+<span class=nav__sub-title3>
+  <a href="/Posts/Algorithm/Algorithms%20Concept/">Algorithms Concept</a>
+  
+</span> 
+              </li>
+              
+            </ul>
+          </li>
+        
+          <li> 
+            
+
+
+  
+  
+<span class=nav__sub-title2>
+  <a href="/Posts/Book/">Book</a>
+  
+    <button class="nav__sub-button" onclick="fn_spread(`-Posts-Book-`);"> 
+    <i class="fas fa-angle-up" id="Icon-Posts-Book-" ></i> </button>
+  
+</span>
+            
+
+<ul class="nav__items" 
+  id="Category-Posts-Book-" 
+  
+  
+    
+    style="display: none;" 
+   
+> 
+              
+              <li> 
+                  
+
+
+  
+  
+<span class=nav__sub-title3>
+  <a href="/Posts/Book/C++PrimerPlus/">C++PrimerPlus</a>
+  
+</span> 
+              </li>
+              
+              <li> 
+                  
+
+
+  
+  
+<span class=nav__sub-title3>
+  <a href="/Posts/Book/UE4-Scripting-with-C++-Cookbook/">UE4-Scripting-with-C++-Cookbook</a>
+  
+</span> 
+              </li>
+              
+            </ul>
+          </li>
+        
+          <li> 
+            
+
+
+  
+  
+<span class=nav__sub-title2>
+  <a href="/Posts/c++/">c++</a>
+  
+</span>
+            
+
+<ul class="nav__items" 
+  id="Category-Posts-c++-" 
+  
+  
+    
+    style="display: none;" 
+   
+> 
+              
+            </ul>
+          </li>
+        
+          <li> 
+            
+
+
+  
+  
+<span class=nav__sub-title2>
+  <a href="/Posts/Graphics/">Graphics</a>
+  
+</span>
+            
+
+<ul class="nav__items" 
+  id="Category-Posts-Graphics-" 
+  
+  
+    
+    style="display: none;" 
+   
+> 
+              
+            </ul>
+          </li>
+        
+          <li> 
+            
+
+
+  
+  
+<span class=nav__sub-title2>
+  <a href="/Posts/Jekyll/">Jekyll</a>
+  
+</span>
+            
+
+<ul class="nav__items" 
+  id="Category-Posts-Jekyll-" 
+  
+  
+    
+    style="display: none;" 
+   
+> 
+              
+            </ul>
+          </li>
+        
+          <li> 
+            
+
+
+  
+  
+<span class=nav__sub-title2>
+  <a href="/Posts/Math/">Math</a>
+  
+</span>
+            
+
+<ul class="nav__items" 
+  id="Category-Posts-Math-" 
+  
+  
+    
+    style="display: none;" 
+   
+> 
+              
+            </ul>
+          </li>
+        
+          <li> 
+            
+
+
+  
+  
+<span class=nav__sub-title2>
+  <a href="/Posts/Memo/">Memo</a>
+  
+</span>
+            
+
+<ul class="nav__items" 
+  id="Category-Posts-Memo-" 
+  
+  
+    
+    style="display: none;" 
+   
+> 
+              
+            </ul>
+          </li>
+        
+          <li> 
+            
+
+
+  
+  
+<span class=nav__sub-title2>
+  <a href="/Posts/OS/">OS</a>
+  
+</span>
+            
+
+<ul class="nav__items" 
+  id="Category-Posts-OS-" 
+  
+  
+    
+    style="display: none;" 
+   
+> 
+              
+            </ul>
+          </li>
+        
+          <li> 
+            
+
+
+  
+  
+<span class=nav__sub-title2>
+  <a href="/Posts/Portfolio/">Portfolio</a>
+  
+</span>
+            
+
+<ul class="nav__items" 
+  id="Category-Posts-Portfolio-" 
+  
+  
+    
+    style="display: none;" 
+   
+> 
+              
+            </ul>
+          </li>
+        
+          <li> 
+            
+
+
+  
+  
+<span class=nav__sub-title2>
+  <a href="/Posts/System%20Hacking/">System Hacking</a>
+  
+</span>
+            
+
+<ul class="nav__items" 
+  id="Category-Posts-System Hacking-" 
+  
+  
+    
+    style="display: none;" 
+   
+> 
+              
+            </ul>
+          </li>
+        
+          <li> 
+            
+
+
+  
+  
+<span class=nav__sub-title2>
+  <a href="/Posts/UE4/">UE4</a>
+  
+    <button class="nav__sub-button" onclick="fn_spread(`-Posts-UE4-`);"> 
+    <i class="fas fa-angle-up" id="Icon-Posts-UE4-" ></i> </button>
+  
+</span>
+            
+
+<ul class="nav__items" 
+  id="Category-Posts-UE4-" 
+  
+  
+    
+    style="display: none;" 
+   
+> 
+              
+              <li> 
+                  
+
+
+  
+  
+<span class=nav__sub-title3>
+  <a href="/Posts/UE4/ALS/">ALS</a>
+  
+</span> 
+              </li>
+              
+            </ul>
+          </li>
+        
+        </ul>
+
+      </li>
+    
+  </ul>
+  <h1></h1>
+</nav>
+
+          
+        
+    </div>
+
+
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="StackFrame, Calling Convention">
+    <meta itemprop="description" content="Stack Frame 와 Calling Convention">
+    <meta itemprop="datePublished" content="2022-01-24T00:00:00+09:00">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">StackFrame, Calling Convention
+</h1>
+          
+
+
+
+<nav class="breadcrumbs">
+  <i class="fas fa-fw fa-folder-open" aria-hidden="true"></i>
+  <ol itemscope itemtype="https://schema.org/BreadcrumbList">
+    
+    
+    
+    
+
+        
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+            <a href="http://localhost:4000/" itemprop="item"><span itemprop="name">Home</span></a>
+            <meta itemprop="position" content="1" />
+        </li>
+        <span class="sep">/</span>
+        
+        
+        
+          
+          <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+              <a href="/posts/"><span itemprop="name">Posts</span></a>
+              <meta itemprop="position" content="1" />
+          </li>
+          <span class="sep">/</span>
+        
+
+    
+
+        
+        
+        
+          
+          <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+              <a href="/posts/system%20hacking/"><span itemprop="name">System hacking</span></a>
+              <meta itemprop="position" content="1" />
+          </li>
+          <span class="sep">/</span>
+        
+
+    
+
+        
+        
+        
+          
+          <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+              <a href="/posts/system%20hacking/c++/"><span itemprop="name">C++</span></a>
+              <meta itemprop="position" content="1" />
+          </li>
+          <span class="sep">/</span>
+        
+
+    
+
+        
+        
+        
+        
+
+    
+  </ol>
+</nav>
+
+<!--
+<nav class="breadcrumbs">
+  <i class="fas fa-fw fa-folder-open" aria-hidden="true"></i>
+  <ol itemscope itemtype="https://schema.org/BreadcrumbList" >
+    
+    
+    
+      
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <a href="http://localhost:4000/" itemprop="item"><span itemprop="name">Home</span></a>
+          <meta itemprop="position" content="1" />
+        </li>
+        <span class="sep">/</span>
+      
+      
+        
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+            <a href="/navi-categories/#posts" itemprop="item"><span itemprop="name">Posts</span></a>
+            <meta itemprop="position" content="2" />
+        </li>
+        <span class="sep">/</span>
+      
+    
+      
+      
+        
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+            <a href="/navi-categories/#system-hacking" itemprop="item"><span itemprop="name">System hacking</span></a>
+            <meta itemprop="position" content="3" />
+        </li>
+        <span class="sep">/</span>
+      
+    
+      
+      
+        
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+            <a href="/navi-categories/#c++" itemprop="item"><span itemprop="name">C++</span></a>
+            <meta itemprop="position" content="4" />
+        </li>
+        <span class="sep">/</span>
+      
+    
+      
+      
+        <li class="current">StackFrame, Calling Convention</li>
+      
+    
+  </ol>
+</nav>
+-->
+          
+
+    <p class="page__meta" style="margin-top: 0.5em; orphans: 0; widows: 0;">
+        
+
+        
+
+        
+        
+        
+        <span class="page__meta-readtime">
+            <i class="far fa-clock" aria-hidden="true"></i>
+            
+            20 분 소요
+            
+        </span>
+        
+    </p>
+
+
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+          <aside class="sidebar__right sticky">
+            <nav class="toc">
+              <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> On This Page</h4></header>
+              <ul class="toc__menu"><li><a href="#stack-frame">Stack Frame</a><ul><li><a href="#코드">코드</a></li><li><a href="#개념-">개념 </a></li><li><a href="#call-">Call </a></li><li><a href="#prolog-">Prolog </a></li><li><a href="#local-variable-">Local Variable </a></li><li><a href="#epilog-">Epilog </a></li></ul></li><li><a href="#calling-convention">Calling Convention</a><ul><li><a href="#코드-1">코드</a></li><li><a href="#개념--1">개념 </a></li><li><a href="#cdecl">cdecl</a></li><li><a href="#stdcall">stdcall</a></li><li><a href="#thiscall">thiscall</a></li></ul></li></ul>
+             
+            </nav>
+          </aside>
+        
+        <h2 id="stack-frame">Stack Frame</h2>
+
+<h3 id="코드">코드</h3>
+
+<figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="cp">#include &lt;stdio.h&gt;
+</span>
+<span class="n">__attribute__</span><span class="p">((</span><span class="n">cdecl</span><span class="p">))</span> <span class="kt">int</span> <span class="nf">Callee</span><span class="p">(</span><span class="kt">int</span> <span class="n">a</span><span class="p">,</span> <span class="kt">int</span> <span class="n">b</span><span class="p">,</span> <span class="kt">int</span> <span class="n">c</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">"%d %d %d"</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">);</span>
+    <span class="k">return</span> <span class="n">a</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="nf">Caller</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="kt">int</span> <span class="n">a</span><span class="p">[</span><span class="mi">8</span><span class="p">];</span>
+    <span class="n">a</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="n">Callee</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">a</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">a</span><span class="p">[</span><span class="mi">2</span><span class="p">]);</span>
+<span class="p">}</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="n">Caller</span><span class="p">();</span>
+<span class="p">}</span></code></pre></figure>
+
+<p>위 코드를 64bit x86-64 환경인 우분투에서 <code class="language-plaintext highlighter-rouge">gcc -m32 -fno-stack-protector -fno-pic -g -o ex ex.cpp</code> 로 빌드함.</p>
+
+<p>그리고 gbd 를 사용해 어셈블리를 분석하면 아래와 같음</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Caller()
+
+push   ebp           // prolog
+mov    ebp, esp      // prolog, update ebp
+sub    esp, 0x28     // make stack space
+mov    ecx, 0x0
+mov    eax, 0x20
+and eax, 0xfffffffc
+mov    edx, eax
+mov    eax, 0x0
+mov    DWORD PTR[ebp + eax * 1 - 0x28], ecx
+add    eax, 0x4
+cmp    eax, edx
+jb     0x8048461 &lt; Caller + 26 &gt;
+mov    DWORD PTR[ebp - 0x28], 0x1    // a[0] = 1
+mov    DWORD PTR[ebp - 0x24], 0x2    // a[1] = 2
+mov    DWORD PTR[ebp - 0x20], 0x3    // a[2] = 3
+mov    ecx, DWORD PTR[ebp - 0x20]
+mov    edx, DWORD PTR[ebp - 0x24]
+mov    eax, DWORD PTR[ebp - 0x28]
+sub    esp, 0x4                      // not relevent with parameter
+push   ecx                           // parameter push
+push   edx                           // parameter push
+push   eax                           // parameter push
+call   0x8048426 &lt; Callee &gt;          // funcion call
+add    esp, 0x10                     // parameter clear (0x4 + 4*3)
+mov    DWORD PTR[ebp - 0x1c], eax    // a[4] = return
+nop
+leave   // epilog
+ret     // epilog
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Callee()
+
+push   ebp           // prolog
+mov    ebp, esp      // prolog, update ebp
+sub    esp, 0x8
+push   DWORD PTR[ebp + 0x10]      // parameter a push
+push   DWORD PTR[ebp + 0xc]       // parameter b push
+push   DWORD PTR[ebp + 0x8]       // parameter c push 
+push   0x650                      // parameter loc of "%d %d %d" push
+call   0x542 &lt; Callee + 21 &gt;      // Function Call
+add    esp, 0x10                  // Clear Stack for Parameters
+mov    eax, DWORD PTR[ebp + 0x8]  // return a;
+leave              // epilog
+ret                // epilog
+</code></pre></div></div>
+
+<p><a href="https://en.wikipedia.org/wiki/X86_calling_conventions">Wiki</a> 에서 자세한 어셈블리 분석을 볼 수 있음.</p>
+
+<h3 id="개념-">개념 <br /></h3>
+
+<p><strong>함수 호출 시 스택 영역에 저장되는 함수의 호출 정보를 Stack Frame 이라고 함</strong></p>
+
+<ul>
+  <li>Caller / Callee
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">Func()</code> 함수를 <code class="language-plaintext highlighter-rouge">Main()</code> 에서 호출하고 있음.</li>
+      <li>이때 <code class="language-plaintext highlighter-rouge">Main()</code> 을  <strong>Caller</strong> 라고 부르고  <code class="language-plaintext highlighter-rouge">Func()</code> 을 <strong>Callee</strong> 라고 함.<br /><br /></li>
+    </ul>
+  </li>
+  <li>Littile Endian 주의
+    <ul>
+      <li>헷갈리기 쉬운데 <a href="http://www.tcpschool.com/c/c_refer_endian">Little Endian 참고</a></li>
+      <li>지금은 x86-64 를 쓰므로 Little Endian 임</li>
+      <li>Stack 이 <strong>주소가 작아질수록 스택이 쌓이게 됨</strong></li>
+      <li>=&gt; <code class="language-plaintext highlighter-rouge">sub</code> 가 스택을 쌓는거고 <code class="language-plaintext highlighter-rouge">add</code> 가 스택을 빼는 것임 <br /><br /></li>
+    </ul>
+  </li>
+  <li>기본적으로 2개의 값이 Stack 에 저장됨.
+    <ol>
+      <li><strong>IP(<code class="language-plaintext highlighter-rouge">rip</code>/<code class="language-plaintext highlighter-rouge">eip</code>)</strong>
+        <ul>
+          <li><code class="language-plaintext highlighter-rouge">call</code> 명령어 시 <code class="language-plaintext highlighter-rouge">push eip</code> 가 수행된 후 Callee 로 점프함.</li>
+          <li>Callee 가 끝날 때의 <code class="language-plaintext highlighter-rouge">ret</code> 명령시  <code class="language-plaintext highlighter-rouge">pop eip</code> 과 <code class="language-plaintext highlighter-rouge">jmp eip</code> 가 수행됨</li>
+        </ul>
+      </li>
+      <li><strong>SFP(Stack Frame Pointer)</strong>
+        <ul>
+          <li>Caller 의 StackFrame 시작주소 혹은 Caller 의 <code class="language-plaintext highlighter-rouge">ebp</code> 를 말함.</li>
+          <li>StackFrame 생성마다 스택에 저장되고 끝나면 다시 꺼냄.</li>
+        </ul>
+      </li>
+    </ol>
+
+    <ul>
+      <li>Buffer Overflow 등으로 위 값들을 변경하면 의도치 않은 작동을 가능하게 함. <br /><br /></li>
+    </ul>
+  </li>
+  <li>Top of StackFrame 은 레지스터에서 계속 업데이트가 됨
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">esp</code>/<code class="language-plaintext highlighter-rouge">rsp</code> 가 StackFrame 의 Top 을 가르킴.</li>
+      <li>Callee 의 SFP 가 Caller 의 Top of StackFrame 이라 스택에 저장할 필요는 없음  <br /><br /></li>
+    </ul>
+  </li>
+  <li>함수 내부의 <code class="language-plaintext highlighter-rouge">{ ... }</code> 같은 __Block Scope 는 스택과 비슷한 역할을 하지만 스택과 관련이 없음. <a href="https://softwareengineering.stackexchange.com/questions/125792/in-c-c-are-block-scope-variables-stacked-only-if-the-block-is-executed">관련질문</a></li>
+</ul>
+
+<p><br />이하는 함수를 호출할 때 일어나는 순서대로 구분한 것임. <br /></p>
+
+<h3 id="call-">Call <br /></h3>
+
+<p>Parameter 를 Register 또는 Stack 에 집어 넣고  <code class="language-plaintext highlighter-rouge">call [주소]</code> 가 수행됨.</p>
+
+<p>크게 2가지 동작을 함</p>
+<ol>
+  <li><code class="language-plaintext highlighter-rouge">push eip</code></li>
+  <li><code class="language-plaintext highlighter-rouge">jmp [주소]</code></li>
+</ol>
+
+<h3 id="prolog-"><strong>Prolog</strong> <br /></h3>
+
+<p>함수 앞부분에 나오는 <code class="language-plaintext highlighter-rouge">push ebp</code> 와 <code class="language-plaintext highlighter-rouge">move ebp, esp</code> 구문임.</p>
+
+<ol>
+  <li><code class="language-plaintext highlighter-rouge">push ebp</code> 를 하면 <code class="language-plaintext highlighter-rouge">ebp</code> 가 스택에 저장되고 <code class="language-plaintext highlighter-rouge">esp</code> 가 포인터 크기만큼 감소함</li>
+  <li><code class="language-plaintext highlighter-rouge">move ebp, esp</code> 를 하면 Caller 에서의 Top 인 <code class="language-plaintext highlighter-rouge">esp</code> 가 Callee 의 돌아갈 주소가 될 <code class="language-plaintext highlighter-rouge">ebp</code> 에 저장됨.</li>
+</ol>
+
+<h3 id="local-variable-">Local Variable <br /></h3>
+
+<p>함수 시작부분에 <code class="language-plaintext highlighter-rouge">sub esp, 0x28</code> 의 구문을 통해 스택공간을 확보함</p>
+<ul>
+  <li>컴파일러 옵션에 따른 더미공간 + Local Variable Size 만큼 공간이 확보됨</li>
+  <li>Caller 를 보면 <code class="language-plaintext highlighter-rouge">int a[8]</code> 덕분에 <code class="language-plaintext highlighter-rouge">4*8 = 0x20</code>만큼이 필요함</li>
+  <li>그럼 나머지 <code class="language-plaintext highlighter-rouge">0x08</code> 은 더미임
+    <ul>
+      <li>Local Variable 이 없는 Callee 를 보면 <code class="language-plaintext highlighter-rouge">sub esp, 0x8</code> 을 확인 가능</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="epilog-"><strong>Epilog</strong> <br /></h3>
+
+<p>함수 끝부분에 나오는 <code class="language-plaintext highlighter-rouge">leave</code> 와 <code class="language-plaintext highlighter-rouge">ret</code> 를 말함</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">leave</code> 는 두가지 명령어의 축약으로 Prolog 의 정확한 역임
+    <ol>
+      <li><code class="language-plaintext highlighter-rouge">mov esp, ebp</code>
+        <ul>
+          <li><code class="language-plaintext highlighter-rouge">esp</code> 를 조작하지 않았다면 생략되기도 함.</li>
+        </ul>
+      </li>
+      <li><code class="language-plaintext highlighter-rouge">pop ebp</code></li>
+    </ol>
+  </li>
+  <li><code class="language-plaintext highlighter-rouge">ret</code> 는 CALL 명령어에 의해 호출된 Callee 에서 Caller 로 복귀하는데 사용됨.
+    <ol>
+      <li><code class="language-plaintext highlighter-rouge">pop eip</code></li>
+      <li><code class="language-plaintext highlighter-rouge">jmp eip</code></li>
+    </ol>
+  </li>
+</ul>
+
+<h2 id="calling-convention">Calling Convention</h2>
+
+<h3 id="코드-1">코드</h3>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Caller()
+
+~
+sub    esp,0x4      // not relevent with parameter
+push   ecx
+push   edx
+push   eax
+call   0x8048426 &lt;Callee(int, int, int)&gt;
+add    esp,0x4      // not relevent with parameter
+~
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Callee()
+
+~
+leave
+ret    0xc        // Clear stack for parameters
+</code></pre></div></div>
+
+<p>위는 원래 코드에서 호출규약만 <code class="language-plaintext highlighter-rouge">stdcall</code> 로 바꾼 걸 분석한 것임.</p>
+
+<h3 id="개념--1">개념 <br /></h3>
+
+<p>함수가 Parameter 등을 어떻게 전달하고 원상태로 돌리는지에 관한 규약</p>
+<ul>
+  <li><strong>parameters</strong>, return values, return addresses and scope links 등의 정보가</li>
+  <li>registers, stack or memory etc. 같은 장소에 저장되어</li>
+  <li><strong>함수 호출을 준비하고 호출 전 환경으로 복귀하는</strong> 방법</li>
+</ul>
+
+<p><strong>기본적으로 x64 에서는 적용되지 않고 x86 에서만 적용됨</strong></p>
+<ul>
+  <li>x64 기본적으로 Register 를 쓴 후 미리 확보해놓은 Stack 에 나머지를 넣는 방식을 사용함.</li>
+  <li>즉 이하에서 말하는 내용은 x64 에서는 적용안되며,  <a href="https://docs.microsoft.com/ko-kr/cpp/cpp/vectorcall?view=msvc-170"><code class="language-plaintext highlighter-rouge">vectorcall</code></a> 등이 적용가능함(Arm 제외)</li>
+</ul>
+
+<p>호출규약은 엄청 많은데 스택정리가 어떻게 되는지 위주로 여기서 살펴보려함</p>
+
+<p>자세한 차이는 <a href="https://minusi.tistory.com/entry/%ED%95%A8%EC%88%98-%ED%98%B8%EC%B6%9C-%EA%B7%9C%EC%95%BDCalling-Convention">위키 번역한 블로그</a> 나 <a href="https://en.wikipedia.org/wiki/Calling_convention">위키</a> 참고.</p>
+
+<h3 id="cdecl">cdecl</h3>
+
+<ul>
+  <li>
+    <p>C Declaration 의 약자로 x86 환경에서 기본적으로 사용됨</p>
+  </li>
+  <li>인수는 오른쪽에서 왼쪽 순서대로 들어감.
+    <ul>
+      <li>레지스터에 넣는경우(fastcall 등) 를 빼면 거의 이 순서임.<br /><br /></li>
+    </ul>
+  </li>
+  <li><strong>스택정리를 Caller 가 함</strong>
+    <ul>
+      <li>Caller 가 <code class="language-plaintext highlighter-rouge">push</code> 를 통해 변수를 Stack 에 넣고</li>
+      <li>Caller 가<code class="language-plaintext highlighter-rouge">add esp, 0x10</code> 을 통해 파라미터를 넣은 공간을 비움</li>
+      <li>스택을 정리하는 코드가 호출때마다 있어서 용량이 약간 큼</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="stdcall"><a href="https://docs.microsoft.com/en-us/cpp/cpp/stdcall?view=msvc-170">stdcall</a></h3>
+
+<ul>
+  <li><strong>ARM 이 아닌 x86 에서만 가능</strong> 하고 나머지에선 씹힘</li>
+  <li>WinApi, DirectX Api 등 MS 제공 API 에서 주로 사용됨
+    <ul>
+      <li>멤버함수에 <code class="language-plaintext highlighter-rouge">stdcall</code> 를 쓰기도 하는데 자세한건 <code class="language-plaintext highlighter-rouge">thiscall</code> 참고</li>
+    </ul>
+  </li>
+  <li>
+    <p>인수는 오른쪽에서 왼쪽 순서대로 들어감</p>
+  </li>
+  <li><strong>스택정리를 Callee 가 함</strong>
+    <ul>
+      <li>Caller 가 <code class="language-plaintext highlighter-rouge">push</code> 를 통해서 변수를 Stack 에 넣고</li>
+      <li>Callee 가 <code class="language-plaintext highlighter-rouge">ret 0xc</code> 를 통해서 스택을 정리함
+        <ul>
+          <li>인자가 있어서 <code class="language-plaintext highlighter-rouge">ret</code> 에 추가로 <code class="language-plaintext highlighter-rouge">add esp, 0xc</code> 를 하는 것임.</li>
+        </ul>
+      </li>
+      <li>그래서 가변인자를 사용할 수 없음</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="thiscall"><a href="https://docs.microsoft.com/en-us/cpp/cpp/thiscall?view=msvc-170">thiscall</a></h3>
+
+<p><strong>ARM 이 아닌 x86 의 비정적 멤버함수</strong> 에서만 기본으로 적용되어 있음.</p>
+<ul>
+  <li>즉 c++ 만 가능하며</li>
+  <li>x64, ARM 환경에서는 무시되고</li>
+  <li>따로 안적으면 적용됨</li>
+</ul>
+
+<p>어셈블리는 아래처럼 나타나며, 위는 적용안된 Ubuntu, 아래는 적용된 MSVN 환경임.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>lea eax, this-pointer
+push eax
+call memberfunc
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>lea ecx, this-pointer
+call memberfunc
+</code></pre></div></div>
+
+<p>위처럼 함수호출 전에 <code class="language-plaintext highlighter-rouge">this</code> 포인터를 레지스터에 넣는다는 것이 핵심임.</p>
+<ul>
+  <li>어떤 레지스터인지, 인수정리는 누가 하는지는 컴파일러마다 다름
+    <ul>
+      <li>VS 에서 실험한 결과는 Callee 가 정리하고 으로 쓰면 Caller 가 정리함</li>
+    </ul>
+  </li>
+</ul>
+
+<p>다음과 같은 경우는 <code class="language-plaintext highlighter-rouge">thiscall</code> 이 적용이 안됨</p>
+<ol>
+  <li>x64, ARM 환경이거나</li>
+  <li><code class="language-plaintext highlighter-rouge">...</code> 를 붙이거나</li>
+  <li><code class="language-plaintext highlighter-rouge">cdecl</code>, <code class="language-plaintext highlighter-rouge">stdcall</code> 를 명시적으로 쓰는 경우</li>
+</ol>
+
+<p>그런경우 위의 어셈블러가 보여주듯 <code class="language-plaintext highlighter-rouge">this</code> 를 <strong>레지스터가 아니라 Stack 에 넣고</strong> , 인수정리는 각 호출규약이 하듯 처리함.</p>
+<ul>
+  <li>DirectX 등을 보면 이런 경우가 많음</li>
+</ul>
+
+        
+      </section>
+      
+      <footer class="page__meta">
+        
+        
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> 태그: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/navi-tags/#c" class="page__taxonomy-item" rel="tag">c++</a><span class="sep">, </span>
+    
+      <a href="/navi-tags/#thread" class="page__taxonomy-item" rel="tag">thread</a>
+    
+    </span>
+  </p>
+
+
+
+
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> 카테고리: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/navi-categories/#c" class="page__taxonomy-item" rel="tag">c++</a><span class="sep">, </span>
+    
+      <a href="/navi-categories/#posts" class="page__taxonomy-item" rel="tag">Posts</a><span class="sep">, </span>
+    
+      <a href="/navi-categories/#system-hacking" class="page__taxonomy-item" rel="tag">System Hacking</a>
+    
+    </span>
+  </p>
+
+
+        
+
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> 업데이트:</strong> <time datetime="2022-01-24T00:00:00+09:00">January 24, 2022</time></p>
+
+
+      </footer>
+
+      
+
+      
+  <nav class="pagination">
+    
+      <a href="/posts/system%20hacking/Virtual-Linux-Setting/" class="pagination--pager" title="Virtual Linux Setting
+">이전</a>
+    
+    
+      <a href="/posts/system%20hacking/x86_64-%EB%A0%88%EC%A7%80%EC%8A%A4%ED%84%B0-%EB%A9%94%EB%AA%A8/" class="pagination--pager" title="x86_64 레지스터 메모
+">다음</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h4 class="page__related-title">관련</h4>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/Posts/Portfolio/DirectX/screenshot2.png" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/posts/portfolio/DirectX-3D/" rel="permalink">DirectX 3D
+</a>
+      
+    </h2>
+    
+
+
+    <p class="archive__item-excerpt" itemprop="description">DirectX Project. Plan to make Unreal like results
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/Posts/Portfolio/UE4-CPP/screenshot2.png" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/posts/portfolio/UE4-CPP/" rel="permalink">UE4 CPP
+</a>
+      
+    </h2>
+    
+
+
+    <p class="archive__item-excerpt" itemprop="description">UE4 Toy Project
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/Posts/Portfolio/UE4-Blueprint/screenshot2.png" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/posts/portfolio/UE4-Blueprint/" rel="permalink">UE4 Blueprint
+</a>
+      
+    </h2>
+    
+
+
+    <p class="archive__item-excerpt" itemprop="description">UE4 Toy Game using Blueprint only.
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/posts/graphics/Graphics-Memo/" rel="permalink">Graphics Memo
+</a>
+      
+    </h2>
+    
+
+    <p class="page__meta" style="margin-top: 0.5em; orphans: 0; widows: 0;">
+        
+
+        
+
+        
+        
+        
+        <span class="page__meta-readtime">
+            <i class="far fa-clock" aria-hidden="true"></i>
+            
+            최대 1 분 소요
+            
+        </span>
+        
+    </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">복붙용
+</p>
+  </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+  
+</div>
+
+    </div>
+
+    
+    <div class="search-content">
+      <div class="search-content__inner-wrap"><form class="search-content__form" onkeydown="return event.key != 'Enter';">
+    <label class="sr-only" for="search">
+      Enter your search term...
+    </label>
+    <input type="search" id="search" class="search-input" tabindex="-1" placeholder="검색어를 입력하세요..." />
+  </form>
+  <div id="results" class="results"></div></div>
+
+    </div>
+    
+
+    
+      <script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+  TeX: {
+  equationNumbers: {
+  autoNumber: "AMS"
+  }
+  },
+  tex2jax: {
+  inlineMath: [ ['$', '$'] ],
+  displayMath: [ ['$$', '$$'] ],
+  processEscapes: true,
+  }
+
+  });
+  MathJax.Hub.Register.MessageHook("Math Processing Error",function (message) {
+  alert("Math Processing Error: "+message[1]);
+  });
+  MathJax.Hub.Register.MessageHook("TeX Jax - parse error",function (message) {
+  alert("Math Processing Error: "+message[1]);
+  });
+</script>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>팔로우:</strong></li>
+    
+
+    
+
+    
+      <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> 피드</a></li>
+    
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2022 Mona04. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+
+
+
+
+<script src="/assets/js/lunr/lunr.min.js"></script>
+<script src="/assets/js/lunr/lunr-store.js"></script>
+<script src="/assets/js/lunr/lunr-en.js"></script>
+
+
+
+
+    
+  <script>
+    var disqus_config = function () {
+      this.page.url = "http://localhost:4000/posts/system%20hacking/c++/StackFrame,-Calling-Convention/";  /* Replace PAGE_URL with your page's canonical URL variable */
+      this.page.identifier = "/posts/system%20hacking/c++/StackFrame,-Calling-Convention"; /* Replace PAGE_IDENTIFIER with your page's unique identifier variable */
+    };
+    (function() { /* DON'T EDIT BELOW THIS LINE */
+      var d = document, s = d.createElement('script');
+      s.src = 'https://https-mona04-github-io.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+  
+
+
+
+
+
+  </body>
+</html>

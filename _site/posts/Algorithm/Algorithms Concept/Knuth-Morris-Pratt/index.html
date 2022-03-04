@@ -1,0 +1,1462 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.24.0 by Michael Rose
+  Copyright 2013-2020 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="ko" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>            Knuth Morris Pratt _ Log      Study      </title>
+<meta name="description" content="고급 알고리즘">
+
+
+  <meta name="author" content="Mona04">
+  
+  <meta property="article:author" content="Mona04">
+  
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="ko">
+<meta property="og:site_name" content="Log | Study">
+<meta property="og:title" content="Knuth Morris Pratt">
+<meta property="og:url" content="http://localhost:4000/posts/algorithm/algorithms%20concept/Knuth-Morris-Pratt/">
+
+
+  <meta property="og:description" content="고급 알고리즘">
+
+
+
+  <meta property="og:image" content="http://localhost:4000/assets/images/logo.png">
+
+
+
+
+
+  <meta property="article:published_time" content="2021-09-28T00:00:00+09:00">
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="http://localhost:4000/posts/algorithm/algorithms%20concept/Knuth-Morris-Pratt/">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": "Mona04",
+      "url": "http://localhost:4000/"
+    
+  }
+</script>
+
+
+  <meta name="google-site-verification" content="F2oPZSOAKlxw2iAayxs8nQmb9hCG1xbwGenRruCQrVU" />
+
+
+
+
+
+  <meta name="naver-site-verification" content="0a38bc87a52a81a820d109d26a2039d3b5c93382">
+
+
+<!-- end _includes/seo.html -->
+
+
+
+  <link href="/feed.xml" type="application/atom+xml" rel="alternate" title="Log | Study Feed">
+
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css"></noscript>
+
+
+
+    <!-- start custom head snippets -->
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+<!-- end custom head snippets -->
+
+<script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+<script>mermaid.initialize({ startOnLoad: true });</script>
+<script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
+
+<script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
+<script>
+    function fn_spread(id) {
+        if ($('#Category' + id).is(":visible") && $('#Category' + id).css("overflow") != "hidden")
+        {
+            $('#Category' + id).stop().slideUp();
+            $('#Category' + id).css("max-height", "0%");
+            $('#Category' + id).css("opacity", "0%");
+            $('#Category' + id).css("z-index", "10");
+            $('#Category' + id).css("overflow", "hidden");
+            $('#Category' + id).css("display", "none");
+
+            $('#Icon' + id).toggleClass("fas fa-angle-up");
+        }
+        else
+        {
+            $('#Category' + id).stop().slideDown({
+                complete: function () {
+                    $('#Category' + id).css("overflow", "visible");
+                }
+            });
+            $('#Category' + id).css("max-height", "100%");
+            $('#Category' + id).css("opacity", "100%");
+            $('#Category' + id).css("z-index", "0");
+            $('#Category' + id).css("overflow", "visible");
+            $('#Category' + id).css("display", "block");
+
+            $('#Icon' + id).toggleClass("fas fa-angle-down");
+        }
+    }
+</script>
+  </head>
+
+  <body class="layout--single single">
+    <nav class="skip-links">
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          Log | Study
+          
+        </a>
+        <ul class="visible-links"></ul>
+        
+        <button class="search__toggle" type="button">
+          <span class="visually-hidden">Toggle search</span>
+          <i class="fas fa-search"></i>
+        </button>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">토글 메뉴</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+
+<div id="main" role="main">
+  
+    <div class="sidebar sticky">
+        
+
+
+<div itemscope itemtype="https://schema.org/Person">
+
+  
+    <div class="author__avatar">
+      
+        <img src="/assets/images/Profile.jpg" alt="Mona04" itemprop="image">
+      
+    </div>
+  
+
+  <div class="author__content">
+    
+      <h3 class="author__name" itemprop="name">Mona04</h3>
+    
+    
+      <div class="author__bio" itemprop="description">
+        <p>개발자가 되자</p>
+
+      </div>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">팔로우</button>
+    <ul class="author__urls social-icons">
+      
+        <li itemprop="homeLocation" itemscope itemtype="https://schema.org/Place">
+          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name">Seoul.Korea</span>
+        </li>
+      
+
+      
+        
+          
+        
+          
+        
+      
+
+      
+
+      
+        <li>
+          <a href="mailto:moksha1905@gmail.com">
+            <meta itemprop="email" content="moksha1905@gmail.com" />
+            <i class="fas fa-fw fa-envelope-square" aria-hidden="true"></i><span class="label">이메일</span>
+          </a>
+        </li>
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+        <li>
+          <a href="https://github.com/Mona04" itemprop="sameAs" rel="nofollow noopener noreferrer">
+            <i class="fab fa-fw fa-github" aria-hidden="true"></i><span class="label">GitHub</span>
+          </a>
+        </li>
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+
+          
+          
+            
+          
+          
+          
+          
+          
+            
+
+<nav class="nav__list">
+  
+  <input id="ac-toc" name="accordion-toc" type="checkbox" />
+  <label for="ac-toc">토글 메뉴</label>
+  <ul class="nav__items">
+    
+      <li>
+        
+          
+
+
+  
+  
+<span class=nav__sub-title>
+  <a href="/navi-portfolios/">Portfolio ★</a>
+  
+</span>
+        
+
+
+        
+
+<ul class="nav__items" 
+  id="Category-navi-portfolios-" 
+  
+  
+    
+    style="display: none;" 
+   
+> 
+        
+        </ul>
+
+      </li>
+    
+      <li>
+        
+          
+
+
+  
+  
+<span class=nav__sub-title>
+  <a href="/Posts/Memo/">Memo</a>
+  
+</span>
+        
+
+
+        
+
+<ul class="nav__items" 
+  id="Category-Posts-Memo-" 
+  
+  
+    
+    style="display: none;" 
+   
+> 
+        
+        </ul>
+
+      </li>
+    
+      <li>
+        
+          
+
+
+  
+  
+<span class=nav__sub-title>
+  <a href="/navi-tags/">Tags</a>
+  
+</span>
+        
+
+
+        
+
+<ul class="nav__items" 
+  id="Category-navi-tags-" 
+  
+  
+    
+    style="display: none;" 
+   
+> 
+        
+        </ul>
+
+      </li>
+    
+      <li>
+        
+          
+
+
+  
+  
+<span class=nav__sub-title>
+  <a href="/navi-categories/">Categories</a>
+  
+    <button class="nav__sub-button" onclick="fn_spread(`-navi-categories-`);"> 
+    <i class="fas fa-angle-up" id="Icon" ></i> </button>
+  
+</span>
+        
+
+
+        
+
+<ul class="nav__items" 
+  id="Category-navi-categories-" 
+  
+  
+    
+    style="display: block;"
+   
+> 
+        
+          <li> 
+            
+
+
+  
+  
+<span class=nav__sub-title2>
+  <a href="/Posts/Algorithm/" class="active">Algorithm</a>
+  
+    <button class="nav__sub-button" onclick="fn_spread(`-Posts-Algorithm-`);"> 
+    <i class="fas fa-angle-up" id="Icon-Posts-Algorithm-" ></i> </button>
+  
+</span>
+            
+
+<ul class="nav__items" 
+  id="Category-Posts-Algorithm-" 
+  
+  
+    
+    style="display: block;"
+   
+> 
+              
+              <li> 
+                  
+
+
+  
+  
+<span class=nav__sub-title3>
+  <a href="/Posts/Algorithm/BOJ-Gold/">BOJ-Gold</a>
+  
+</span> 
+              </li>
+              
+              <li> 
+                  
+
+
+  
+  
+<span class=nav__sub-title3>
+  <a href="/Posts/Algorithm/BOJ-Platinum/">BOJ-Platinum</a>
+  
+</span> 
+              </li>
+              
+              <li> 
+                  
+
+
+  
+  
+<span class=nav__sub-title3>
+  <a href="/Posts/Algorithm/BOJ-Silver/">BOJ-Silver</a>
+  
+</span> 
+              </li>
+              
+              <li> 
+                  
+
+
+  
+  
+<span class=nav__sub-title3>
+  <a href="/Posts/Algorithm/Algorithms%20Concept/">Algorithms Concept</a>
+  
+</span> 
+              </li>
+              
+            </ul>
+          </li>
+        
+          <li> 
+            
+
+
+  
+  
+<span class=nav__sub-title2>
+  <a href="/Posts/Book/">Book</a>
+  
+    <button class="nav__sub-button" onclick="fn_spread(`-Posts-Book-`);"> 
+    <i class="fas fa-angle-up" id="Icon-Posts-Book-" ></i> </button>
+  
+</span>
+            
+
+<ul class="nav__items" 
+  id="Category-Posts-Book-" 
+  
+  
+    
+    style="display: none;" 
+   
+> 
+              
+              <li> 
+                  
+
+
+  
+  
+<span class=nav__sub-title3>
+  <a href="/Posts/Book/C++PrimerPlus/">C++PrimerPlus</a>
+  
+</span> 
+              </li>
+              
+              <li> 
+                  
+
+
+  
+  
+<span class=nav__sub-title3>
+  <a href="/Posts/Book/UE4-Scripting-with-C++-Cookbook/">UE4-Scripting-with-C++-Cookbook</a>
+  
+</span> 
+              </li>
+              
+            </ul>
+          </li>
+        
+          <li> 
+            
+
+
+  
+  
+<span class=nav__sub-title2>
+  <a href="/Posts/c++/">c++</a>
+  
+</span>
+            
+
+<ul class="nav__items" 
+  id="Category-Posts-c++-" 
+  
+  
+    
+    style="display: none;" 
+   
+> 
+              
+            </ul>
+          </li>
+        
+          <li> 
+            
+
+
+  
+  
+<span class=nav__sub-title2>
+  <a href="/Posts/Graphics/">Graphics</a>
+  
+</span>
+            
+
+<ul class="nav__items" 
+  id="Category-Posts-Graphics-" 
+  
+  
+    
+    style="display: none;" 
+   
+> 
+              
+            </ul>
+          </li>
+        
+          <li> 
+            
+
+
+  
+  
+<span class=nav__sub-title2>
+  <a href="/Posts/Jekyll/">Jekyll</a>
+  
+</span>
+            
+
+<ul class="nav__items" 
+  id="Category-Posts-Jekyll-" 
+  
+  
+    
+    style="display: none;" 
+   
+> 
+              
+            </ul>
+          </li>
+        
+          <li> 
+            
+
+
+  
+  
+<span class=nav__sub-title2>
+  <a href="/Posts/Math/">Math</a>
+  
+</span>
+            
+
+<ul class="nav__items" 
+  id="Category-Posts-Math-" 
+  
+  
+    
+    style="display: none;" 
+   
+> 
+              
+            </ul>
+          </li>
+        
+          <li> 
+            
+
+
+  
+  
+<span class=nav__sub-title2>
+  <a href="/Posts/Memo/">Memo</a>
+  
+</span>
+            
+
+<ul class="nav__items" 
+  id="Category-Posts-Memo-" 
+  
+  
+    
+    style="display: none;" 
+   
+> 
+              
+            </ul>
+          </li>
+        
+          <li> 
+            
+
+
+  
+  
+<span class=nav__sub-title2>
+  <a href="/Posts/OS/">OS</a>
+  
+</span>
+            
+
+<ul class="nav__items" 
+  id="Category-Posts-OS-" 
+  
+  
+    
+    style="display: none;" 
+   
+> 
+              
+            </ul>
+          </li>
+        
+          <li> 
+            
+
+
+  
+  
+<span class=nav__sub-title2>
+  <a href="/Posts/Portfolio/">Portfolio</a>
+  
+</span>
+            
+
+<ul class="nav__items" 
+  id="Category-Posts-Portfolio-" 
+  
+  
+    
+    style="display: none;" 
+   
+> 
+              
+            </ul>
+          </li>
+        
+          <li> 
+            
+
+
+  
+  
+<span class=nav__sub-title2>
+  <a href="/Posts/System%20Hacking/">System Hacking</a>
+  
+</span>
+            
+
+<ul class="nav__items" 
+  id="Category-Posts-System Hacking-" 
+  
+  
+    
+    style="display: none;" 
+   
+> 
+              
+            </ul>
+          </li>
+        
+          <li> 
+            
+
+
+  
+  
+<span class=nav__sub-title2>
+  <a href="/Posts/UE4/">UE4</a>
+  
+    <button class="nav__sub-button" onclick="fn_spread(`-Posts-UE4-`);"> 
+    <i class="fas fa-angle-up" id="Icon-Posts-UE4-" ></i> </button>
+  
+</span>
+            
+
+<ul class="nav__items" 
+  id="Category-Posts-UE4-" 
+  
+  
+    
+    style="display: none;" 
+   
+> 
+              
+              <li> 
+                  
+
+
+  
+  
+<span class=nav__sub-title3>
+  <a href="/Posts/UE4/ALS/">ALS</a>
+  
+</span> 
+              </li>
+              
+            </ul>
+          </li>
+        
+        </ul>
+
+      </li>
+    
+  </ul>
+  <h1></h1>
+</nav>
+
+          
+        
+    </div>
+
+
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="Knuth Morris Pratt">
+    <meta itemprop="description" content="고급 알고리즘">
+    <meta itemprop="datePublished" content="2021-09-28T00:00:00+09:00">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">Knuth Morris Pratt
+</h1>
+          
+
+
+
+<nav class="breadcrumbs">
+  <i class="fas fa-fw fa-folder-open" aria-hidden="true"></i>
+  <ol itemscope itemtype="https://schema.org/BreadcrumbList">
+    
+    
+    
+    
+
+        
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+            <a href="http://localhost:4000/" itemprop="item"><span itemprop="name">Home</span></a>
+            <meta itemprop="position" content="1" />
+        </li>
+        <span class="sep">/</span>
+        
+        
+        
+          
+          <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+              <a href="/posts/"><span itemprop="name">Posts</span></a>
+              <meta itemprop="position" content="1" />
+          </li>
+          <span class="sep">/</span>
+        
+
+    
+
+        
+        
+        
+          
+          <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+              <a href="/posts/algorithm/"><span itemprop="name">Algorithm</span></a>
+              <meta itemprop="position" content="1" />
+          </li>
+          <span class="sep">/</span>
+        
+
+    
+
+        
+        
+        
+          
+          <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+              <a href="/posts/algorithm/algorithms%20concept/"><span itemprop="name">Algorithms concept</span></a>
+              <meta itemprop="position" content="1" />
+          </li>
+          <span class="sep">/</span>
+        
+
+    
+
+        
+        
+        
+        
+
+    
+  </ol>
+</nav>
+
+<!--
+<nav class="breadcrumbs">
+  <i class="fas fa-fw fa-folder-open" aria-hidden="true"></i>
+  <ol itemscope itemtype="https://schema.org/BreadcrumbList" >
+    
+    
+    
+      
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <a href="http://localhost:4000/" itemprop="item"><span itemprop="name">Home</span></a>
+          <meta itemprop="position" content="1" />
+        </li>
+        <span class="sep">/</span>
+      
+      
+        
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+            <a href="/navi-categories/#posts" itemprop="item"><span itemprop="name">Posts</span></a>
+            <meta itemprop="position" content="2" />
+        </li>
+        <span class="sep">/</span>
+      
+    
+      
+      
+        
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+            <a href="/navi-categories/#algorithm" itemprop="item"><span itemprop="name">Algorithm</span></a>
+            <meta itemprop="position" content="3" />
+        </li>
+        <span class="sep">/</span>
+      
+    
+      
+      
+        
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+            <a href="/navi-categories/#algorithms-concept" itemprop="item"><span itemprop="name">Algorithms concept</span></a>
+            <meta itemprop="position" content="4" />
+        </li>
+        <span class="sep">/</span>
+      
+    
+      
+      
+        <li class="current">Knuth Morris Pratt</li>
+      
+    
+  </ol>
+</nav>
+-->
+          
+
+    <p class="page__meta" style="margin-top: 0.5em; orphans: 0; widows: 0;">
+        
+
+        
+
+        
+        
+        
+        <span class="page__meta-readtime">
+            <i class="far fa-clock" aria-hidden="true"></i>
+            
+            18 분 소요
+            
+        </span>
+        
+    </p>
+
+
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+          <aside class="sidebar__right sticky">
+            <nav class="toc">
+              <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> On This Page</h4></header>
+              <ul class="toc__menu"><li><a href="#kmp">KMP</a><ul><li><a href="#용어">용어</a></li><li><a href="#최소-복잡도">최소 복잡도</a></li><li><a href="#발상">발상</a></li><li><a href="#failtb">FailTB</a></li><li><a href="#비교">비교</a></li><li><a href="#최악의-경우">최악의 경우</a></li></ul></li></ul>
+             
+            </nav>
+          </aside>
+        
+        <h2 id="kmp">KMP</h2>
+
+<p><a href="https://m.blog.naver.com/kks227/220917078260">이거보다가 이해안되서 정리함</a></p>
+
+<p><a href="https://www.acmicpc.net/problem/1786">해당 문제는 이거임</a></p>
+
+<h3 id="용어">용어</h3>
+
+<p>단어 찾기 하는데 찾을 글자를 편의상 <strong>P(Pattern 약자)</strong> 라고 하고 찾을 텍스트를 <strong>T(Text 약자)</strong> 라고 하겠음.</p>
+
+<p>글자의 길이는 <strong>len(P)</strong> 처럼 앞에 len 을 붙여서 최소한의 용어로 설명하겠음.</p>
+
+<h3 id="최소-복잡도">최소 복잡도</h3>
+
+<p>T 의 0번 글자부터 P가 맞는지 비교를 해야하는게 당연할 것임.</p>
+
+<p>이때 매번 T의 길이만큼 비교를 하게되면 <strong>O(len(T) * len(P))</strong> 가 되서 답이 없음.</p>
+
+<p>대신 T 를 하나씩 보면서 알게된 정보를 통해서 <strong>O(len(T) + len(P))</strong> 로 검색을 끝내는게 목표임. (뭔 글자인지도 모르고 검색을 할 순 없으므로 <strong>O(len(T) + len(P))</strong> 는 최소치임.)</p>
+
+<h3 id="발상">발상</h3>
+
+<p>기본적으로 P 와 T 를 한글자씩 비교해야함</p>
+
+<p>만약 <strong>임의의 수 n</strong> 만큼 비교가 성공했다고 해보자.</p>
+
+<p>n == <strong>len(T)</strong> 라면 찾기에 성공한 것임.</p>
+
+<p>n &lt; <strong>len(T)</strong> 라면 찾기에 실패한 것임.</p>
+
+<p>이때 실패했을 때 우리는 n 개까지는 성공했다는 걸 알고 있음. 이걸 이용해야함.</p>
+
+<h4 id="case-1">case 1.</h4>
+
+<p>P = <strong>abcab</strong> , T =  <strong>abcdef</strong> 라고 해보자.</p>
+
+<ul>
+  <li>
+    <p><strong>P[0] == T[0] == ‘a’</strong> =&gt; 누적 1.</p>
+  </li>
+  <li>
+    <p><strong>P[1] == T[1] == ‘b’</strong> =&gt; 누적 2.</p>
+  </li>
+  <li>
+    <p><strong>P[2] == T[2] == ‘c’</strong> =&gt; 누적 3.</p>
+  </li>
+  <li>
+    <p><strong>P[3] != T[3] == ‘d’</strong> =&gt; 누적 3 에서 틀림.</p>
+  </li>
+</ul>
+
+<p>그럼 다음 스텝은 어떻게 해야할까?</p>
+
+<p>여기서 우리는 직관적으로 <strong>T의 4번째 글자부터 P 의 첫번째글자부터 다시 비교해야함</strong> 을 알 수 있음.</p>
+
+<ul>
+  <li>
+    <p><strong>P[0] != T[3] == ‘d’</strong> =&gt; 누적 0</p>
+  </li>
+  <li>
+    <p><strong>P[0] != T[4] == ‘e’</strong> =&gt; 누적 0</p>
+  </li>
+  <li>
+    <p>…</p>
+  </li>
+</ul>
+
+<p>즉 이 경우에는 누적 스택인 3만큼 P 의 비교 인덱스를 줄였음을 알 수 있음. ( 3 =&gt; 0 )</p>
+
+<h4 id="case-2">case 2.</h4>
+
+<p>P = <strong>abaa</strong> , T =  <strong>ababaa</strong> 라고 해보자.</p>
+
+<ul>
+  <li>
+    <p><strong>P[0] == T[0] == ‘a’</strong> =&gt; 누적 1. (“a” 겹침)</p>
+  </li>
+  <li>
+    <p><strong>P[1] == T[1] == ‘b’</strong> =&gt; 누적 2. (“ab” 겹침)</p>
+  </li>
+  <li>
+    <p><strong>P[2] == T[2] == ‘a’</strong> =&gt; 누적 3. (“aba” 겹침)</p>
+  </li>
+  <li>
+    <p><strong>P[3] != T[3] == ‘b’</strong> =&gt; 누적 3 에서 틀림.</p>
+  </li>
+</ul>
+
+<p>그럼 다음 스텝은 어떻게 해야할까? (다음은 P 를 몇번째부터 비교하면 될때)</p>
+
+<p>여기서 우리는 직관적으로 <strong>P[1]</strong> 부터 다시 비교하면 될거라고 생각할 수 있음.</p>
+
+<ul>
+  <li>
+    <p><strong>P[1] == T[3] == ‘b’</strong> =&gt; 누적 2.  (“ab” 겹침)</p>
+  </li>
+  <li>
+    <p><strong>P[2] == T[4] == ‘a’</strong> =&gt; 누적 3.  (“aba” 겹침)</p>
+  </li>
+  <li>
+    <p>…</p>
+  </li>
+</ul>
+
+<p>이번에는 누적된 값만큼 뒤로 가지 않음.</p>
+
+<p>대신 “ab” 가 겹치는 것을 확인했기 때문에 “ab” 이후에 “aa” 가 오는지 다시 확인을 하는 것임.</p>
+
+<h4 id="case-3">case 3.</h4>
+
+<p>P = <strong>abaabaa</strong> , T =  <strong>abaababaabaa</strong> 라고 해보자. 그리고 5번째까진 스킵하겠음.</p>
+
+<ul>
+  <li>
+    <p><strong>P[5] == T[5] == ‘a’</strong> =&gt; 누적 6.</p>
+  </li>
+  <li>
+    <p><strong>P[6] != T[6] == ‘b’</strong> =&gt; 누적 6 에서 틀림. (“abaaba” 가 겹쳤음)</p>
+  </li>
+  <li>
+    <p><strong>P[2] != T[6] == ‘b’</strong> =&gt; 누적 3 에서 틀림. (“aba” 가 겹쳤음)</p>
+  </li>
+  <li>
+    <p><strong>P[1] == T[6] == ‘b’</strong> =&gt; 누적 2. (“ab” 가 겹침)</p>
+  </li>
+</ul>
+
+<p>이번엔 비교과정이 더 길어졌음.</p>
+
+<p>누적된 부분이 “abaaba” 이고 다음 부분이 ‘a’ 가 아니라 ‘b’ 라서 틀리게 되었음.</p>
+
+<p>그런데 “abaaba” 는 “aba/aba” 로 쪼갤 수 있음. <strong>앞부분은 P 의 시작이 “aba” 로 시작함을 보장함. 뒷부분은 “aba_” 가 지금 찾고있는 텍스트의 끝임을 알 수 있음</strong>.</p>
+
+<p>그럼 누적치가 3이고 P 의 시작처럼 <strong>“aba” + “a” 가 오는지 확인하면</strong> 누적치가 4일 거임. 그런데 아님.</p>
+
+<p>“aba” 는 다시  “a/b/a” 로 나눌 수 있고 <strong>P 의 시작은 “ab” __ 가 맞으며, __지금 찾는 부분은 “a_“</strong> 임을 알 수 있음. 만약 다음이 “b” 이면 누적치가 2가 될 것이고 이게 맞음.</p>
+
+<p>그래서 “ab” 가 누적임을 알 수 있었음.</p>
+
+<p>그리고 우리는 “abaaba” 부터  P 의 앞부분에 오는애와 지금 찾고있는 T 의 글자를 <strong>재귀적으로 반복</strong> 해서 찾는 과정을 거쳤음.</p>
+
+<h3 id="failtb">FailTB</h3>
+
+<p>위처럼 <strong>P</strong> 의 누적된 부분에서 <strong>앞부분과 뒷부분의 겹치는 부분이 있다면 그부분부터 다시 비교</strong> 하면 했던 비교를 또 할 필요가 없어짐.</p>
+
+<p>이때 <strong>앞부분은 P 의 시작부분</strong> 이고  <strong>뒷부분은 T 에서 앞부분과 겹칠것으로 예상되는 부분</strong> 임.</p>
+
+<p>앞부분이 또 겹치는 부분이 있다면 <strong>그것의 앞부분은 전체의 앞부분과 똑같고, 그것의 뒷부분은 전체의 뒷부분과 똑같음</strong>.</p>
+
+<p>즉 <em>앞부분은 P 의 시작부분이고 뒷부분은 T 에서 앞부분과 겹칠것으로 예상되는 부분임.</em> 은 항상 성립해서 재귀적으로 살펴볼 수 있음.</p>
+
+<p>그럼 우린 T 에서 성립 가능한 앞부분마다 비교해야할 인덱스를 알아두면 이 작업을 편하게 할 수 있을거임.</p>
+
+<figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="kt">int</span> <span class="nf">MakeFailTB</span><span class="p">(</span><span class="kt">char</span> <span class="n">Tc</span><span class="p">,</span> <span class="k">const</span> <span class="n">string</span><span class="o">&amp;</span> <span class="n">P</span><span class="p">,</span> <span class="kt">int</span> <span class="n">j</span><span class="p">)</span>
+<span class="p">{</span>
+	<span class="k">if</span> <span class="p">(</span><span class="n">Tc</span> <span class="o">==</span> <span class="n">P</span><span class="p">[</span><span class="n">j</span><span class="p">])</span> <span class="k">return</span> <span class="n">j</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
+	<span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">j</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+	<span class="k">else</span> <span class="k">return</span> <span class="n">MakeFailTB</span><span class="p">(</span><span class="n">Tc</span><span class="p">,</span> <span class="n">P</span><span class="p">,</span> <span class="n">failTB</span><span class="p">[</span><span class="n">j</span><span class="o">-</span><span class="mi">1</span><span class="p">]);</span>
+<span class="p">}</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+	<span class="p">...</span>
+	<span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">P</span><span class="p">.</span><span class="n">size</span><span class="p">();</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+		<span class="n">j</span> <span class="o">=</span> <span class="n">failTB</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">MakeFailTB</span><span class="p">(</span><span class="n">P</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">P</span><span class="p">,</span> <span class="n">j</span><span class="p">);</span>
+<span class="p">}</span></code></pre></figure>
+
+<p>만약 P가 해당 인덱스에서 비교에 실패하면, 다음은 어디서부터 비교할건가 저장한 테이블을 <strong>failTB</strong> 라고 하겠음. (failTB[4]==2 이면 4에서 다르면 P[2] 랑 다시 비교 시작)</p>
+
+<p>j 는 <strong>앞부분의 끝</strong> 을 나타내고  i 는 <strong>뒷부분의 끝</strong> 을 말함. 지금 비교해야하는 앞과 뒷부분의 인덱스임.</p>
+
+<p><strong>앞부분</strong>, <strong>뒷부분</strong> 으로 나뉘는건 길이가 2부터 가능하니까 <code class="language-plaintext highlighter-rouge">i=1, j=0</code> 로 시작함.</p>
+
+<p><code class="language-plaintext highlighter-rouge">failTB[i]</code> 는 끝부분이 i 일때 다음은 어디서부터 비교할지라고 해석할 수 있음. 이는 곧 앞부분의 끝이기도 함( <code class="language-plaintext highlighter-rouge">j</code> ).</p>
+
+<figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">P</span><span class="p">.</span><span class="n">size</span><span class="p">();</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+<span class="p">{</span>
+	<span class="k">while</span> <span class="p">(</span><span class="n">j</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="n">P</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">!=</span> <span class="n">P</span><span class="p">[</span><span class="n">j</span><span class="p">])</span> <span class="n">j</span> <span class="o">=</span> <span class="n">failTB</span><span class="p">[</span><span class="n">j</span> <span class="o">-</span> <span class="mi">1</span><span class="p">];</span>
+	<span class="k">if</span> <span class="p">(</span><span class="n">P</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="n">P</span><span class="p">[</span><span class="n">j</span><span class="p">])</span> <span class="n">failTB</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="o">++</span><span class="n">j</span><span class="p">;</span>
+	<span class="k">else</span> <span class="n">failTB</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span></code></pre></figure>
+
+<p>위 재귀식을 반복문을 바꾸면 위와 같음.</p>
+
+<h3 id="비교">비교</h3>
+
+<figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">r</span><span class="p">;</span>
+<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">T</span><span class="p">.</span><span class="n">size</span><span class="p">();</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+<span class="p">{</span>
+	<span class="k">while</span> <span class="p">(</span><span class="n">j</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="n">T</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">!=</span> <span class="n">P</span><span class="p">[</span><span class="n">j</span><span class="p">])</span> <span class="n">j</span> <span class="o">=</span> <span class="n">failTB</span><span class="p">[</span><span class="n">j</span> <span class="o">-</span> <span class="mi">1</span><span class="p">];</span>
+	<span class="k">if</span> <span class="p">(</span><span class="n">T</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="n">P</span><span class="p">[</span><span class="n">j</span><span class="p">])</span> <span class="p">{</span>
+		<span class="k">if</span> <span class="p">(</span><span class="n">j</span> <span class="o">==</span> <span class="n">P</span><span class="p">.</span><span class="n">size</span><span class="p">()</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+			<span class="n">r</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">i</span> <span class="o">-</span> <span class="n">j</span> <span class="o">+</span> <span class="mi">1</span><span class="p">);</span>
+			<span class="n">j</span> <span class="o">=</span> <span class="n">failTB</span><span class="p">[</span><span class="n">j</span><span class="p">];</span>
+		<span class="p">}</span>
+		<span class="k">else</span> <span class="n">j</span><span class="o">++</span><span class="p">;</span>
+	<span class="p">}</span>
+<span class="p">}</span></code></pre></figure>
+
+<p>failTB 구할 때와 똑같음.</p>
+
+<p>앞부분과 뒷부분의 끝이 다르면 앞에서 구한 failTB 를 이용해 앞부분과 뒷부분이 겹치는 가장 긴부분을 찾아냄.</p>
+
+<p>문자를 다 찾았을 때 <code class="language-plaintext highlighter-rouge">j = failTB[j]</code> 가 중요한 부분.</p>
+
+<h3 id="최악의-경우">최악의 경우</h3>
+
+<p>“aaaaaa” 같은 경우는 <code class="language-plaintext highlighter-rouge">FailTB[i] == i</code> 라서 최악의 경우를 만들게 됨.</p>
+
+<p>“aaaaaaaaabaaa” 같은게 T 고 “aaaaa” 가 P 라고 생각하자.</p>
+
+<p>한번 비교를 실패하면 “aaaa_” 를 비교 “aaa_” 를 비교 … 그 끝에 겹치는 앞부분이 없다는걸 알게됨.</p>
+
+<figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="k">if</span> <span class="p">(</span><span class="n">failTB</span><span class="p">[</span><span class="n">P</span><span class="p">.</span><span class="n">size</span><span class="p">()</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="n">P</span><span class="p">.</span><span class="n">size</span><span class="p">()</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+	<span class="n">fill</span><span class="p">(</span><span class="n">failTB</span><span class="p">,</span> <span class="n">failTB</span> <span class="o">+</span> <span class="n">P</span><span class="p">.</span><span class="n">size</span><span class="p">()</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span></code></pre></figure>
+
+<p>그래서 위 코드를 추가하면 좋음(별 차이는 안남)</p>
+
+<p>이때 모든 글자가 다 맞았을 때의 failTB 는 사용하니 0으로 하면 안됨.</p>
+
+
+        
+      </section>
+      
+      <footer class="page__meta">
+        
+        
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> 태그: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/navi-tags/#ps-kmp" class="page__taxonomy-item" rel="tag">PS. KMP</a><span class="sep">, </span>
+    
+      <a href="/navi-tags/#ps-string" class="page__taxonomy-item" rel="tag">PS. String</a>
+    
+    </span>
+  </p>
+
+
+
+
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> 카테고리: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/navi-categories/#algorithm" class="page__taxonomy-item" rel="tag">Algorithm</a><span class="sep">, </span>
+    
+      <a href="/navi-categories/#algorithms-concept" class="page__taxonomy-item" rel="tag">Algorithms Concept</a><span class="sep">, </span>
+    
+      <a href="/navi-categories/#posts" class="page__taxonomy-item" rel="tag">Posts</a>
+    
+    </span>
+  </p>
+
+
+        
+
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> 업데이트:</strong> <time datetime="2021-09-28T00:00:00+09:00">September 28, 2021</time></p>
+
+
+      </footer>
+
+      
+
+      
+  <nav class="pagination">
+    
+      <a href="/posts/jekyll/Jekyll-%EA%B5%AC%EC%B6%95%EA%B4%80%EB%A0%A8/" class="pagination--pager" title="Jekyll 구축관련
+">이전</a>
+    
+    
+      <a href="/posts/algorithm/boj-gold/BOJ-14601)-%EC%83%A4%EC%9B%8C%EC%8B%A4-%EB%B0%94%EB%8B%A5-%EA%B9%94%EA%B8%B0/" class="pagination--pager" title="BOJ 14601) 샤워실 바닥 깔기
+">다음</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h4 class="page__related-title">관련</h4>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/Posts/Portfolio/DirectX/screenshot2.png" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/posts/portfolio/DirectX-3D/" rel="permalink">DirectX 3D
+</a>
+      
+    </h2>
+    
+
+
+    <p class="archive__item-excerpt" itemprop="description">DirectX Project. Plan to make Unreal like results
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/Posts/Portfolio/UE4-CPP/screenshot2.png" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/posts/portfolio/UE4-CPP/" rel="permalink">UE4 CPP
+</a>
+      
+    </h2>
+    
+
+
+    <p class="archive__item-excerpt" itemprop="description">UE4 Toy Project
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/Posts/Portfolio/UE4-Blueprint/screenshot2.png" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/posts/portfolio/UE4-Blueprint/" rel="permalink">UE4 Blueprint
+</a>
+      
+    </h2>
+    
+
+
+    <p class="archive__item-excerpt" itemprop="description">UE4 Toy Game using Blueprint only.
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/posts/graphics/Graphics-Memo/" rel="permalink">Graphics Memo
+</a>
+      
+    </h2>
+    
+
+    <p class="page__meta" style="margin-top: 0.5em; orphans: 0; widows: 0;">
+        
+
+        
+
+        
+        
+        
+        <span class="page__meta-readtime">
+            <i class="far fa-clock" aria-hidden="true"></i>
+            
+            최대 1 분 소요
+            
+        </span>
+        
+    </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">복붙용
+</p>
+  </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+  
+</div>
+
+    </div>
+
+    
+    <div class="search-content">
+      <div class="search-content__inner-wrap"><form class="search-content__form" onkeydown="return event.key != 'Enter';">
+    <label class="sr-only" for="search">
+      Enter your search term...
+    </label>
+    <input type="search" id="search" class="search-input" tabindex="-1" placeholder="검색어를 입력하세요..." />
+  </form>
+  <div id="results" class="results"></div></div>
+
+    </div>
+    
+
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>팔로우:</strong></li>
+    
+
+    
+
+    
+      <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> 피드</a></li>
+    
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2022 Mona04. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+
+
+
+
+<script src="/assets/js/lunr/lunr.min.js"></script>
+<script src="/assets/js/lunr/lunr-store.js"></script>
+<script src="/assets/js/lunr/lunr-en.js"></script>
+
+
+
+
+    
+  <script>
+    var disqus_config = function () {
+      this.page.url = "http://localhost:4000/posts/algorithm/algorithms%20concept/Knuth-Morris-Pratt/";  /* Replace PAGE_URL with your page's canonical URL variable */
+      this.page.identifier = "/posts/algorithm/algorithms%20concept/Knuth-Morris-Pratt"; /* Replace PAGE_IDENTIFIER with your page's unique identifier variable */
+    };
+    (function() { /* DON'T EDIT BELOW THIS LINE */
+      var d = document, s = d.createElement('script');
+      s.src = 'https://https-mona04-github-io.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+  
+
+
+
+
+
+  </body>
+</html>

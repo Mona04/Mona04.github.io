@@ -1,0 +1,1557 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.24.0 by Michael Rose
+  Copyright 2013-2020 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="ko" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>            BOJ 2618) 경찰차 _ Log      Study      </title>
+<meta name="description" content="점화식이 까다로운 문제">
+
+
+  <meta name="author" content="Mona04">
+  
+  <meta property="article:author" content="Mona04">
+  
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="ko">
+<meta property="og:site_name" content="Log | Study">
+<meta property="og:title" content="BOJ 2618) 경찰차">
+<meta property="og:url" content="http://localhost:4000/posts/algorithm/boj-platinum/BOJ-2618)-%EA%B2%BD%EC%B0%B0%EC%B0%A8/">
+
+
+  <meta property="og:description" content="점화식이 까다로운 문제">
+
+
+
+  <meta property="og:image" content="http://localhost:4000/assets/images/logo.png">
+
+
+
+
+
+  <meta property="article:published_time" content="2021-11-10T00:00:00+09:00">
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="http://localhost:4000/posts/algorithm/boj-platinum/BOJ-2618)-%EA%B2%BD%EC%B0%B0%EC%B0%A8/">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": "Mona04",
+      "url": "http://localhost:4000/"
+    
+  }
+</script>
+
+
+  <meta name="google-site-verification" content="F2oPZSOAKlxw2iAayxs8nQmb9hCG1xbwGenRruCQrVU" />
+
+
+
+
+
+  <meta name="naver-site-verification" content="0a38bc87a52a81a820d109d26a2039d3b5c93382">
+
+
+<!-- end _includes/seo.html -->
+
+
+
+  <link href="/feed.xml" type="application/atom+xml" rel="alternate" title="Log | Study Feed">
+
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css"></noscript>
+
+
+
+    <!-- start custom head snippets -->
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+<!-- end custom head snippets -->
+
+<script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+<script>mermaid.initialize({ startOnLoad: true });</script>
+<script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
+
+<script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
+<script>
+    function fn_spread(id) {
+        if ($('#Category' + id).is(":visible") && $('#Category' + id).css("overflow") != "hidden")
+        {
+            $('#Category' + id).stop().slideUp();
+            $('#Category' + id).css("max-height", "0%");
+            $('#Category' + id).css("opacity", "0%");
+            $('#Category' + id).css("z-index", "10");
+            $('#Category' + id).css("overflow", "hidden");
+            $('#Category' + id).css("display", "none");
+
+            $('#Icon' + id).toggleClass("fas fa-angle-up");
+        }
+        else
+        {
+            $('#Category' + id).stop().slideDown({
+                complete: function () {
+                    $('#Category' + id).css("overflow", "visible");
+                }
+            });
+            $('#Category' + id).css("max-height", "100%");
+            $('#Category' + id).css("opacity", "100%");
+            $('#Category' + id).css("z-index", "0");
+            $('#Category' + id).css("overflow", "visible");
+            $('#Category' + id).css("display", "block");
+
+            $('#Icon' + id).toggleClass("fas fa-angle-down");
+        }
+    }
+</script>
+  </head>
+
+  <body class="layout--single single">
+    <nav class="skip-links">
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          Log | Study
+          
+        </a>
+        <ul class="visible-links"></ul>
+        
+        <button class="search__toggle" type="button">
+          <span class="visually-hidden">Toggle search</span>
+          <i class="fas fa-search"></i>
+        </button>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">토글 메뉴</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+
+<div id="main" role="main">
+  
+    <div class="sidebar sticky">
+        
+
+
+<div itemscope itemtype="https://schema.org/Person">
+
+  
+    <div class="author__avatar">
+      
+        <img src="/assets/images/Profile.jpg" alt="Mona04" itemprop="image">
+      
+    </div>
+  
+
+  <div class="author__content">
+    
+      <h3 class="author__name" itemprop="name">Mona04</h3>
+    
+    
+      <div class="author__bio" itemprop="description">
+        <p>개발자가 되자</p>
+
+      </div>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">팔로우</button>
+    <ul class="author__urls social-icons">
+      
+        <li itemprop="homeLocation" itemscope itemtype="https://schema.org/Place">
+          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name">Seoul.Korea</span>
+        </li>
+      
+
+      
+        
+          
+        
+          
+        
+      
+
+      
+
+      
+        <li>
+          <a href="mailto:moksha1905@gmail.com">
+            <meta itemprop="email" content="moksha1905@gmail.com" />
+            <i class="fas fa-fw fa-envelope-square" aria-hidden="true"></i><span class="label">이메일</span>
+          </a>
+        </li>
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+        <li>
+          <a href="https://github.com/Mona04" itemprop="sameAs" rel="nofollow noopener noreferrer">
+            <i class="fab fa-fw fa-github" aria-hidden="true"></i><span class="label">GitHub</span>
+          </a>
+        </li>
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+
+          
+          
+            
+          
+          
+          
+          
+          
+            
+
+<nav class="nav__list">
+  
+  <input id="ac-toc" name="accordion-toc" type="checkbox" />
+  <label for="ac-toc">토글 메뉴</label>
+  <ul class="nav__items">
+    
+      <li>
+        
+          
+
+
+  
+  
+<span class=nav__sub-title>
+  <a href="/navi-portfolios/">Portfolio ★</a>
+  
+</span>
+        
+
+
+        
+
+<ul class="nav__items" 
+  id="Category-navi-portfolios-" 
+  
+  
+    
+    style="display: none;" 
+   
+> 
+        
+        </ul>
+
+      </li>
+    
+      <li>
+        
+          
+
+
+  
+  
+<span class=nav__sub-title>
+  <a href="/Posts/Memo/">Memo</a>
+  
+</span>
+        
+
+
+        
+
+<ul class="nav__items" 
+  id="Category-Posts-Memo-" 
+  
+  
+    
+    style="display: none;" 
+   
+> 
+        
+        </ul>
+
+      </li>
+    
+      <li>
+        
+          
+
+
+  
+  
+<span class=nav__sub-title>
+  <a href="/navi-tags/">Tags</a>
+  
+</span>
+        
+
+
+        
+
+<ul class="nav__items" 
+  id="Category-navi-tags-" 
+  
+  
+    
+    style="display: none;" 
+   
+> 
+        
+        </ul>
+
+      </li>
+    
+      <li>
+        
+          
+
+
+  
+  
+<span class=nav__sub-title>
+  <a href="/navi-categories/">Categories</a>
+  
+    <button class="nav__sub-button" onclick="fn_spread(`-navi-categories-`);"> 
+    <i class="fas fa-angle-up" id="Icon" ></i> </button>
+  
+</span>
+        
+
+
+        
+
+<ul class="nav__items" 
+  id="Category-navi-categories-" 
+  
+  
+    
+    style="display: block;"
+   
+> 
+        
+          <li> 
+            
+
+
+  
+  
+<span class=nav__sub-title2>
+  <a href="/Posts/Algorithm/" class="active">Algorithm</a>
+  
+    <button class="nav__sub-button" onclick="fn_spread(`-Posts-Algorithm-`);"> 
+    <i class="fas fa-angle-up" id="Icon-Posts-Algorithm-" ></i> </button>
+  
+</span>
+            
+
+<ul class="nav__items" 
+  id="Category-Posts-Algorithm-" 
+  
+  
+    
+    style="display: block;"
+   
+> 
+              
+              <li> 
+                  
+
+
+  
+  
+<span class=nav__sub-title3>
+  <a href="/Posts/Algorithm/BOJ-Gold/">BOJ-Gold</a>
+  
+</span> 
+              </li>
+              
+              <li> 
+                  
+
+
+  
+  
+<span class=nav__sub-title3>
+  <a href="/Posts/Algorithm/BOJ-Platinum/" class="active">BOJ-Platinum</a>
+  
+</span> 
+              </li>
+              
+              <li> 
+                  
+
+
+  
+  
+<span class=nav__sub-title3>
+  <a href="/Posts/Algorithm/BOJ-Silver/">BOJ-Silver</a>
+  
+</span> 
+              </li>
+              
+              <li> 
+                  
+
+
+  
+  
+<span class=nav__sub-title3>
+  <a href="/Posts/Algorithm/Algorithms%20Concept/">Algorithms Concept</a>
+  
+</span> 
+              </li>
+              
+            </ul>
+          </li>
+        
+          <li> 
+            
+
+
+  
+  
+<span class=nav__sub-title2>
+  <a href="/Posts/Book/">Book</a>
+  
+    <button class="nav__sub-button" onclick="fn_spread(`-Posts-Book-`);"> 
+    <i class="fas fa-angle-up" id="Icon-Posts-Book-" ></i> </button>
+  
+</span>
+            
+
+<ul class="nav__items" 
+  id="Category-Posts-Book-" 
+  
+  
+    
+    style="display: none;" 
+   
+> 
+              
+              <li> 
+                  
+
+
+  
+  
+<span class=nav__sub-title3>
+  <a href="/Posts/Book/C++PrimerPlus/">C++PrimerPlus</a>
+  
+</span> 
+              </li>
+              
+              <li> 
+                  
+
+
+  
+  
+<span class=nav__sub-title3>
+  <a href="/Posts/Book/UE4-Scripting-with-C++-Cookbook/">UE4-Scripting-with-C++-Cookbook</a>
+  
+</span> 
+              </li>
+              
+            </ul>
+          </li>
+        
+          <li> 
+            
+
+
+  
+  
+<span class=nav__sub-title2>
+  <a href="/Posts/c++/">c++</a>
+  
+</span>
+            
+
+<ul class="nav__items" 
+  id="Category-Posts-c++-" 
+  
+  
+    
+    style="display: none;" 
+   
+> 
+              
+            </ul>
+          </li>
+        
+          <li> 
+            
+
+
+  
+  
+<span class=nav__sub-title2>
+  <a href="/Posts/Graphics/">Graphics</a>
+  
+</span>
+            
+
+<ul class="nav__items" 
+  id="Category-Posts-Graphics-" 
+  
+  
+    
+    style="display: none;" 
+   
+> 
+              
+            </ul>
+          </li>
+        
+          <li> 
+            
+
+
+  
+  
+<span class=nav__sub-title2>
+  <a href="/Posts/Jekyll/">Jekyll</a>
+  
+</span>
+            
+
+<ul class="nav__items" 
+  id="Category-Posts-Jekyll-" 
+  
+  
+    
+    style="display: none;" 
+   
+> 
+              
+            </ul>
+          </li>
+        
+          <li> 
+            
+
+
+  
+  
+<span class=nav__sub-title2>
+  <a href="/Posts/Math/">Math</a>
+  
+</span>
+            
+
+<ul class="nav__items" 
+  id="Category-Posts-Math-" 
+  
+  
+    
+    style="display: none;" 
+   
+> 
+              
+            </ul>
+          </li>
+        
+          <li> 
+            
+
+
+  
+  
+<span class=nav__sub-title2>
+  <a href="/Posts/Memo/">Memo</a>
+  
+</span>
+            
+
+<ul class="nav__items" 
+  id="Category-Posts-Memo-" 
+  
+  
+    
+    style="display: none;" 
+   
+> 
+              
+            </ul>
+          </li>
+        
+          <li> 
+            
+
+
+  
+  
+<span class=nav__sub-title2>
+  <a href="/Posts/OS/">OS</a>
+  
+</span>
+            
+
+<ul class="nav__items" 
+  id="Category-Posts-OS-" 
+  
+  
+    
+    style="display: none;" 
+   
+> 
+              
+            </ul>
+          </li>
+        
+          <li> 
+            
+
+
+  
+  
+<span class=nav__sub-title2>
+  <a href="/Posts/Portfolio/">Portfolio</a>
+  
+</span>
+            
+
+<ul class="nav__items" 
+  id="Category-Posts-Portfolio-" 
+  
+  
+    
+    style="display: none;" 
+   
+> 
+              
+            </ul>
+          </li>
+        
+          <li> 
+            
+
+
+  
+  
+<span class=nav__sub-title2>
+  <a href="/Posts/System%20Hacking/">System Hacking</a>
+  
+</span>
+            
+
+<ul class="nav__items" 
+  id="Category-Posts-System Hacking-" 
+  
+  
+    
+    style="display: none;" 
+   
+> 
+              
+            </ul>
+          </li>
+        
+          <li> 
+            
+
+
+  
+  
+<span class=nav__sub-title2>
+  <a href="/Posts/UE4/">UE4</a>
+  
+    <button class="nav__sub-button" onclick="fn_spread(`-Posts-UE4-`);"> 
+    <i class="fas fa-angle-up" id="Icon-Posts-UE4-" ></i> </button>
+  
+</span>
+            
+
+<ul class="nav__items" 
+  id="Category-Posts-UE4-" 
+  
+  
+    
+    style="display: none;" 
+   
+> 
+              
+              <li> 
+                  
+
+
+  
+  
+<span class=nav__sub-title3>
+  <a href="/Posts/UE4/ALS/">ALS</a>
+  
+</span> 
+              </li>
+              
+            </ul>
+          </li>
+        
+        </ul>
+
+      </li>
+    
+  </ul>
+  <h1></h1>
+</nav>
+
+          
+        
+    </div>
+
+
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="BOJ 2618) 경찰차">
+    <meta itemprop="description" content="점화식이 까다로운 문제">
+    <meta itemprop="datePublished" content="2021-11-10T00:00:00+09:00">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">BOJ 2618) 경찰차
+</h1>
+          
+
+
+
+<nav class="breadcrumbs">
+  <i class="fas fa-fw fa-folder-open" aria-hidden="true"></i>
+  <ol itemscope itemtype="https://schema.org/BreadcrumbList">
+    
+    
+    
+    
+
+        
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+            <a href="http://localhost:4000/" itemprop="item"><span itemprop="name">Home</span></a>
+            <meta itemprop="position" content="1" />
+        </li>
+        <span class="sep">/</span>
+        
+        
+        
+          
+          <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+              <a href="/posts/"><span itemprop="name">Posts</span></a>
+              <meta itemprop="position" content="1" />
+          </li>
+          <span class="sep">/</span>
+        
+
+    
+
+        
+        
+        
+          
+          <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+              <a href="/posts/algorithm/"><span itemprop="name">Algorithm</span></a>
+              <meta itemprop="position" content="1" />
+          </li>
+          <span class="sep">/</span>
+        
+
+    
+
+        
+        
+        
+          
+          <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+              <a href="/posts/algorithm/boj-platinum/"><span itemprop="name">Boj-platinum</span></a>
+              <meta itemprop="position" content="1" />
+          </li>
+          <span class="sep">/</span>
+        
+
+    
+
+        
+        
+        
+        
+
+    
+  </ol>
+</nav>
+
+<!--
+<nav class="breadcrumbs">
+  <i class="fas fa-fw fa-folder-open" aria-hidden="true"></i>
+  <ol itemscope itemtype="https://schema.org/BreadcrumbList" >
+    
+    
+    
+      
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <a href="http://localhost:4000/" itemprop="item"><span itemprop="name">Home</span></a>
+          <meta itemprop="position" content="1" />
+        </li>
+        <span class="sep">/</span>
+      
+      
+        
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+            <a href="/navi-categories/#posts" itemprop="item"><span itemprop="name">Posts</span></a>
+            <meta itemprop="position" content="2" />
+        </li>
+        <span class="sep">/</span>
+      
+    
+      
+      
+        
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+            <a href="/navi-categories/#algorithm" itemprop="item"><span itemprop="name">Algorithm</span></a>
+            <meta itemprop="position" content="3" />
+        </li>
+        <span class="sep">/</span>
+      
+    
+      
+      
+        
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+            <a href="/navi-categories/#boj-platinum" itemprop="item"><span itemprop="name">Boj platinum</span></a>
+            <meta itemprop="position" content="4" />
+        </li>
+        <span class="sep">/</span>
+      
+    
+      
+      
+        <li class="current">BOJ 2618) 경찰차</li>
+      
+    
+  </ol>
+</nav>
+-->
+          
+
+    <p class="page__meta" style="margin-top: 0.5em; orphans: 0; widows: 0;">
+        
+
+        
+
+        
+        
+        
+        <span class="page__meta-readtime">
+            <i class="far fa-clock" aria-hidden="true"></i>
+            
+            21 분 소요
+            
+        </span>
+        
+    </p>
+
+
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+          <aside class="sidebar__right sticky">
+            <nav class="toc">
+              <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> On This Page</h4></header>
+              <ul class="toc__menu"><li><a href="#dp">DP</a><ul><li><a href="#방법-0">방법 0</a></li><li><a href="#방법-1">방법 1</a></li><li><a href="#방법-2">방법 2</a></li></ul></li></ul>
+             
+            </nav>
+          </aside>
+        
+        <h2 id="dp">DP</h2>
+
+<p><a href="https://www.acmicpc.net/problem/status/2618">문제 사이트</a></p>
+
+<h3 id="방법-0">방법 0</h3>
+
+<p>Gridy 방법으로 푸는 방법은 통하지 않음.</p>
+
+<p>왜냐하면 경찰차 둘로부터 거리가 같은 경우 어느걸 먼저 선택할지 정할 수 없어서 모두 고려해야하기 때문임.</p>
+
+<h3 id="방법-1">방법 1</h3>
+
+<h4 id="코드">코드</h4>
+
+<figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="cp">#define INT_MAX 200000000
+</span><span class="k">struct</span> <span class="nc">LOC</span> <span class="p">{</span>
+	<span class="n">LOC</span><span class="p">()</span> <span class="o">:</span> <span class="n">x</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span> <span class="n">y</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="p">{}</span>
+	<span class="n">LOC</span><span class="p">(</span><span class="kt">int</span> <span class="n">x</span><span class="p">,</span> <span class="kt">int</span> <span class="n">y</span><span class="p">)</span> <span class="o">:</span> <span class="n">x</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="n">y</span><span class="p">(</span><span class="n">y</span><span class="p">)</span> <span class="p">{}</span>
+	<span class="kt">int</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">;</span>
+<span class="p">};</span>
+<span class="n">vector</span><span class="o">&lt;</span><span class="n">LOC</span><span class="o">&gt;</span> <span class="n">locs</span><span class="p">;</span>
+<span class="kt">int</span> <span class="nf">Dist</span><span class="p">(</span><span class="k">const</span> <span class="n">LOC</span><span class="o">&amp;</span> <span class="n">in1</span><span class="p">,</span> <span class="k">const</span> <span class="n">LOC</span><span class="o">&amp;</span> <span class="n">in2</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="n">abs</span><span class="p">(</span><span class="n">in1</span><span class="p">.</span><span class="n">x</span> <span class="o">-</span> <span class="n">in2</span><span class="p">.</span><span class="n">x</span><span class="p">)</span> <span class="o">+</span> <span class="n">abs</span><span class="p">(</span><span class="n">in1</span><span class="p">.</span><span class="n">y</span> <span class="o">-</span> <span class="n">in2</span><span class="p">.</span><span class="n">y</span><span class="p">);</span> <span class="p">}</span>
+<span class="n">LOC</span><span class="o">&amp;</span> <span class="n">GetLocA</span><span class="p">(</span><span class="kt">int</span> <span class="n">idx</span><span class="p">)</span> <span class="p">{</span>
+	<span class="k">if</span> <span class="p">(</span><span class="n">idx</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="k">return</span> <span class="n">locs</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
+	<span class="k">return</span> <span class="n">locs</span><span class="p">[</span><span class="n">idx</span> <span class="o">+</span> <span class="mi">1</span><span class="p">];</span>
+<span class="p">}</span>
+<span class="n">LOC</span><span class="o">&amp;</span> <span class="n">GetLocB</span><span class="p">(</span><span class="kt">int</span> <span class="n">idx</span><span class="p">)</span> <span class="p">{</span>
+	<span class="k">if</span> <span class="p">(</span><span class="n">idx</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="k">return</span> <span class="n">locs</span><span class="p">[</span><span class="mi">1</span><span class="p">];</span>
+	<span class="k">return</span> <span class="n">locs</span><span class="p">[</span><span class="n">idx</span> <span class="o">+</span> <span class="mi">1</span><span class="p">];</span>
+<span class="p">}</span>
+
+<span class="kt">int</span> <span class="n">dp</span><span class="p">[</span><span class="mi">1001</span><span class="p">][</span><span class="mi">1001</span><span class="p">];</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+	<span class="kt">int</span> <span class="n">n</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">tmp1</span><span class="p">,</span> <span class="n">tmp2</span><span class="p">;</span>
+	<span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">n</span> <span class="o">&gt;&gt;</span> <span class="n">t</span><span class="p">;</span>
+	<span class="n">locs</span><span class="p">.</span><span class="n">emplace_back</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+	<span class="n">locs</span><span class="p">.</span><span class="n">emplace_back</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">n</span><span class="p">);</span>
+	<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">t</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+	<span class="p">{</span>
+		<span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">tmp1</span> <span class="o">&gt;&gt;</span> <span class="n">tmp2</span><span class="p">;</span>
+		<span class="n">locs</span><span class="p">.</span><span class="n">emplace_back</span><span class="p">(</span><span class="n">tmp1</span><span class="p">,</span> <span class="n">tmp2</span><span class="p">);</span>
+	<span class="p">}</span>
+
+	<span class="c1">// DP Calc</span>
+	<span class="n">dp</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">Dist</span><span class="p">(</span><span class="n">locs</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">locs</span><span class="p">[</span><span class="mi">2</span><span class="p">]);</span>
+	<span class="n">dp</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">Dist</span><span class="p">(</span><span class="n">locs</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">locs</span><span class="p">[</span><span class="mi">2</span><span class="p">]);</span>
+	<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">t</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+	<span class="p">{</span>
+		<span class="c1">// Make dp[0~i-2][i]</span>
+		<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span> <span class="n">j</span><span class="o">++</span><span class="p">)</span>
+			<span class="n">dp</span><span class="p">[</span><span class="n">j</span><span class="p">][</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">dp</span><span class="p">[</span><span class="n">j</span><span class="p">][</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">Dist</span><span class="p">(</span><span class="n">GetLocA</span><span class="p">(</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">),</span> <span class="n">GetLocA</span><span class="p">(</span><span class="n">i</span><span class="p">));</span>
+	
+		<span class="c1">// Make dp[i-1][i]</span>
+		<span class="n">tmp1</span> <span class="o">=</span> <span class="n">INT_MAX</span><span class="p">;</span>
+		<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span> <span class="n">j</span><span class="o">++</span><span class="p">)</span>
+		<span class="p">{</span>
+			<span class="n">tmp2</span> <span class="o">=</span> <span class="n">dp</span><span class="p">[</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">+</span> <span class="n">Dist</span><span class="p">(</span><span class="n">GetLocA</span><span class="p">(</span><span class="n">j</span><span class="p">),</span> <span class="n">GetLocA</span><span class="p">(</span><span class="n">i</span><span class="p">));</span>
+			<span class="k">if</span> <span class="p">(</span><span class="n">tmp2</span> <span class="o">&lt;</span> <span class="n">tmp1</span><span class="p">)</span>
+				<span class="n">dp</span><span class="p">[</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">][</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">tmp1</span> <span class="o">=</span> <span class="n">tmp2</span><span class="p">;</span>
+		<span class="p">}</span>
+	
+		<span class="c1">// Make dp[i][0~i-2]</span>
+		<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span> <span class="n">j</span><span class="o">++</span><span class="p">)</span>
+			<span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">dp</span><span class="p">[</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">+</span> <span class="n">Dist</span><span class="p">(</span><span class="n">GetLocB</span><span class="p">(</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">),</span> <span class="n">GetLocB</span><span class="p">(</span><span class="n">i</span><span class="p">));</span>
+	
+		<span class="c1">// Make dp[i][i-1]</span>
+		<span class="n">tmp1</span> <span class="o">=</span> <span class="n">INT_MAX</span><span class="p">;</span>
+		<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span> <span class="n">j</span><span class="o">++</span><span class="p">)</span>
+		<span class="p">{</span>
+			<span class="n">tmp2</span> <span class="o">=</span> <span class="n">dp</span><span class="p">[</span><span class="n">j</span><span class="p">][</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">Dist</span><span class="p">(</span><span class="n">GetLocB</span><span class="p">(</span><span class="n">j</span><span class="p">),</span> <span class="n">GetLocB</span><span class="p">(</span><span class="n">i</span><span class="p">));</span>
+			<span class="k">if</span> <span class="p">(</span><span class="n">tmp2</span> <span class="o">&lt;</span> <span class="n">tmp1</span><span class="p">)</span>
+				<span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">tmp1</span> <span class="o">=</span> <span class="n">tmp2</span><span class="p">;</span>
+		<span class="p">}</span>
+	<span class="p">}</span>
+	
+	<span class="c1">// Cost</span>
+	<span class="kt">int</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">;</span>
+	<span class="kt">int</span> <span class="n">r</span> <span class="o">=</span> <span class="n">INT_MAX</span><span class="p">;</span>
+	<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">t</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+	<span class="p">{</span>
+		<span class="n">r</span> <span class="o">=</span> <span class="n">min</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">t</span><span class="p">]);</span>
+		<span class="k">if</span> <span class="p">(</span><span class="n">r</span> <span class="o">==</span> <span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">t</span><span class="p">])</span> <span class="p">{</span>
+			<span class="n">x</span> <span class="o">=</span> <span class="n">t</span><span class="p">;</span> <span class="n">y</span> <span class="o">=</span> <span class="n">i</span><span class="p">;</span>
+		<span class="p">}</span>
+		<span class="n">r</span> <span class="o">=</span> <span class="n">min</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">dp</span><span class="p">[</span><span class="n">t</span><span class="p">][</span><span class="n">i</span><span class="p">]);</span>
+		<span class="k">if</span> <span class="p">(</span><span class="n">r</span> <span class="o">==</span> <span class="n">dp</span><span class="p">[</span><span class="n">t</span><span class="p">][</span><span class="n">i</span><span class="p">])</span> <span class="p">{</span>
+			<span class="n">x</span> <span class="o">=</span> <span class="n">i</span><span class="p">;</span> <span class="n">y</span> <span class="o">=</span> <span class="n">t</span><span class="p">;</span>
+		<span class="p">}</span>
+	<span class="p">}</span>
+	<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">r</span> <span class="o">&lt;&lt;</span> <span class="sc">'\n'</span><span class="p">;</span>
+	
+	<span class="c1">// Trace</span>
+	<span class="n">vector</span><span class="o">&lt;</span><span class="kt">char</span><span class="o">&gt;</span> <span class="n">ans</span><span class="p">;</span>
+	<span class="k">while</span> <span class="p">(</span><span class="n">x</span> <span class="o">+</span> <span class="n">y</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span>
+	<span class="p">{</span>
+		<span class="k">if</span> <span class="p">(</span><span class="n">x</span> <span class="o">&gt;</span> <span class="n">y</span><span class="p">)</span>
+		<span class="p">{</span>
+			<span class="n">ans</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="sc">'1'</span><span class="p">);</span>
+			<span class="k">if</span> <span class="p">(</span><span class="n">x</span> <span class="o">&gt;</span> <span class="n">y</span> <span class="o">+</span> <span class="mi">1</span> <span class="o">||</span> <span class="n">y</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
+				<span class="n">x</span><span class="o">--</span><span class="p">;</span>
+			<span class="k">else</span> <span class="p">{</span>
+				<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">y</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+				<span class="p">{</span>
+					<span class="k">if</span> <span class="p">(</span> <span class="n">dp</span><span class="p">[</span><span class="n">y</span><span class="p">][</span><span class="n">x</span><span class="p">]</span> <span class="o">==</span> <span class="n">dp</span><span class="p">[</span><span class="n">y</span><span class="p">][</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="n">Dist</span><span class="p">(</span><span class="n">GetLocA</span><span class="p">(</span><span class="n">i</span><span class="p">),</span> <span class="n">GetLocA</span><span class="p">(</span><span class="n">x</span><span class="p">)))</span>
+						<span class="n">x</span> <span class="o">=</span> <span class="n">i</span><span class="p">;</span>
+				<span class="p">}</span>
+			<span class="p">}</span>
+		<span class="p">}</span>
+		<span class="k">else</span>
+		<span class="p">{</span>
+			<span class="n">ans</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="sc">'2'</span><span class="p">);</span>
+			<span class="k">if</span> <span class="p">(</span><span class="n">y</span> <span class="o">&gt;</span> <span class="n">x</span> <span class="o">+</span> <span class="mi">1</span> <span class="o">||</span> <span class="n">x</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
+				<span class="n">y</span><span class="o">--</span><span class="p">;</span>
+			<span class="k">else</span> <span class="p">{</span>
+				<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">x</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+				<span class="p">{</span>
+					<span class="k">if</span> <span class="p">(</span><span class="n">dp</span><span class="p">[</span><span class="n">y</span><span class="p">][</span><span class="n">x</span><span class="p">]</span> <span class="o">==</span> <span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">x</span><span class="p">]</span> <span class="o">+</span> <span class="n">Dist</span><span class="p">(</span><span class="n">GetLocB</span><span class="p">(</span><span class="n">i</span><span class="p">),</span> <span class="n">GetLocB</span><span class="p">(</span><span class="n">y</span><span class="p">)))</span>
+						<span class="n">y</span> <span class="o">=</span> <span class="n">i</span><span class="p">;</span>
+				<span class="p">}</span>
+			<span class="p">}</span>
+		<span class="p">}</span>
+	<span class="p">}</span>
+	
+	<span class="k">for</span> <span class="p">(</span><span class="k">auto</span> <span class="n">i</span> <span class="o">=</span> <span class="n">ans</span><span class="p">.</span><span class="n">rbegin</span><span class="p">();</span> <span class="n">i</span> <span class="o">!=</span> <span class="n">ans</span><span class="p">.</span><span class="n">rend</span><span class="p">();</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+		<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="o">*</span><span class="n">i</span> <span class="o">&lt;&lt;</span> <span class="sc">'\n'</span><span class="p">;</span>
+<span class="p">}</span></code></pre></figure>
+
+<h4 id="시간-복잡도">시간 복잡도</h4>
+
+<p>O(n^2)</p>
+
+<h4 id="공간-복잡도">공간 복잡도</h4>
+
+<p>O(n^2)</p>
+
+<h4 id="설명">설명</h4>
+
+<p><code class="language-plaintext highlighter-rouge">dp[y][x]</code> 를 경찰차 A 가 마지막으로 출동한 사건이 <code class="language-plaintext highlighter-rouge">x</code>, 경찰차 B 가 마지막으로 출동한 사건이 <code class="language-plaintext highlighter-rouge">y</code> 라고 해석함.</p>
+
+<p>이때 동시에 출동할 순 없으므로 <code class="language-plaintext highlighter-rouge">x != y</code> 가 만족되어야 함.</p>
+
+<p>이때 두가지 성질이 나타남.</p>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">abs(x-y) &gt; 1</code> 의 경우 가장 최근에 출동한 차가 또 출동한 경우가 됨.</li>
+  <li><code class="language-plaintext highlighter-rouge">abs(x-y) == 1</code> 의 경우 가장 최근에 출동한 차는 출동하지 않음
+    <ul>
+      <li>그래서 최근에 출동하지 않은 차가 언제 출동했는지 모든 경우를 다 고려함</li>
+    </ul>
+  </li>
+</ul>
+
+<p>위 성질을 통해서 <code class="language-plaintext highlighter-rouge">dp</code> 를 채우고 값 trace 의 경우 역추적을 함.</p>
+
+<h5 id="개고생-기록">개고생 기록</h5>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>tmp1 = INT_MAX;
+for (int i = 0; i &lt; x; i++)
+{
+	tmp2 = dp[i][x] + Dist(GetLocB(i), GetLocB(y));
+	if (tmp2 &lt; tmp1)
+	{
+		tmp1 = tmp2;
+		y = i;
+	}
+}
+</code></pre></div></div>
+
+<p>Trace 를 할 때 위처럼 구했는데 답이 안나온다고 몇시간을 헤멨음.</p>
+
+<p>알고보니 <code class="language-plaintext highlighter-rouge">y</code> 를 <code class="language-plaintext highlighter-rouge">tmp2</code> 계산할 때 사용하는데, 최솟값 업데이트 때 <code class="language-plaintext highlighter-rouge">y</code> 를 수정해서 그런거였음.</p>
+
+<h3 id="방법-2">방법 2</h3>
+
+<h4 id="코드-1">코드</h4>
+
+<figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="cp">#define INT_MAX 200000000
+</span><span class="k">struct</span> <span class="nc">LOC</span> <span class="p">{</span>
+	<span class="n">LOC</span><span class="p">()</span> <span class="o">:</span> <span class="n">x</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span> <span class="n">y</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="p">{}</span>
+	<span class="n">LOC</span><span class="p">(</span><span class="kt">int</span> <span class="n">x</span><span class="p">,</span> <span class="kt">int</span> <span class="n">y</span><span class="p">)</span> <span class="o">:</span> <span class="n">x</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="n">y</span><span class="p">(</span><span class="n">y</span><span class="p">)</span> <span class="p">{}</span>
+	<span class="kt">int</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">;</span>
+<span class="p">};</span>
+<span class="n">LOC</span> <span class="n">locs</span><span class="p">[</span><span class="mi">1001</span><span class="p">];</span>
+<span class="n">LOC</span><span class="o">&amp;</span> <span class="n">GetLoc</span><span class="p">(</span><span class="kt">int</span> <span class="n">idx</span><span class="p">,</span> <span class="kt">int</span> <span class="n">isB</span><span class="p">)</span> <span class="p">{</span> <span class="k">if</span> <span class="p">(</span><span class="n">idx</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="k">return</span> <span class="n">locs</span><span class="p">[</span><span class="n">isB</span><span class="p">];</span> <span class="k">return</span> <span class="n">locs</span><span class="p">[</span><span class="n">idx</span> <span class="o">+</span> <span class="mi">1</span><span class="p">];</span> <span class="p">}</span>
+<span class="kt">int</span> <span class="nf">Dist</span><span class="p">(</span><span class="k">const</span> <span class="n">LOC</span><span class="o">&amp;</span> <span class="n">in1</span><span class="p">,</span> <span class="k">const</span> <span class="n">LOC</span><span class="o">&amp;</span> <span class="n">in2</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="n">abs</span><span class="p">(</span><span class="n">in1</span><span class="p">.</span><span class="n">x</span> <span class="o">-</span> <span class="n">in2</span><span class="p">.</span><span class="n">x</span><span class="p">)</span> <span class="o">+</span> <span class="n">abs</span><span class="p">(</span><span class="n">in1</span><span class="p">.</span><span class="n">y</span> <span class="o">-</span> <span class="n">in2</span><span class="p">.</span><span class="n">y</span><span class="p">);</span> <span class="p">}</span>
+
+
+<span class="kt">int</span> <span class="n">dp</span><span class="p">[</span><span class="mi">1001</span><span class="p">][</span><span class="mi">2</span><span class="p">];</span> <span class="c1">// dp[x][cop] =&gt; x is last moved idx of other cop </span>
+<span class="kt">int</span> <span class="n">his</span><span class="p">[</span><span class="mi">1001</span><span class="p">][</span><span class="mi">2</span><span class="p">];</span>
+<span class="kt">char</span> <span class="n">ans</span><span class="p">[</span><span class="mi">1001</span><span class="p">];</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+	<span class="kt">int</span> <span class="n">n</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">tmp1</span><span class="p">,</span> <span class="n">tmp2</span><span class="p">;</span>
+	<span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">n</span> <span class="o">&gt;&gt;</span> <span class="n">t</span><span class="p">;</span>
+	<span class="n">locs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span> <span class="p">};</span>
+	<span class="n">locs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span> <span class="n">n</span><span class="p">,</span> <span class="n">n</span> <span class="p">};</span>
+	<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">t</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+	<span class="p">{</span>
+		<span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">tmp1</span> <span class="o">&gt;&gt;</span> <span class="n">tmp2</span><span class="p">;</span>
+		<span class="n">locs</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span> <span class="n">tmp1</span><span class="p">,</span> <span class="n">tmp2</span> <span class="p">};</span>
+	<span class="p">}</span>
+
+	<span class="c1">// Initial DP</span>
+	<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">cop</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">cop</span> <span class="o">&lt;</span> <span class="mi">2</span><span class="p">;</span> <span class="n">cop</span><span class="o">++</span><span class="p">)</span>
+		<span class="n">dp</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="n">cop</span><span class="p">]</span> <span class="o">=</span> <span class="n">Dist</span><span class="p">(</span><span class="n">GetLoc</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">cop</span><span class="p">),</span> <span class="n">GetLoc</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">cop</span><span class="p">));</span>
+	
+	<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">t</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+	<span class="p">{</span>
+		<span class="c1">// Update If other is moved before and this is to move</span>
+		<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">cop</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">cop</span> <span class="o">&lt;</span> <span class="mi">2</span><span class="p">;</span> <span class="n">cop</span><span class="o">++</span><span class="p">)</span>
+		<span class="p">{</span>
+			<span class="n">dp</span><span class="p">[</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">][</span><span class="n">cop</span><span class="p">]</span> <span class="o">=</span> <span class="n">INT_MAX</span><span class="p">;</span>
+			<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span> <span class="n">j</span><span class="o">++</span><span class="p">)</span>
+			<span class="p">{</span>
+				<span class="n">tmp1</span> <span class="o">=</span> <span class="n">dp</span><span class="p">[</span><span class="n">j</span><span class="p">][</span><span class="o">!</span><span class="n">cop</span><span class="p">]</span> <span class="o">+</span> <span class="n">Dist</span><span class="p">(</span><span class="n">GetLoc</span><span class="p">(</span><span class="n">j</span><span class="p">,</span> <span class="n">cop</span><span class="p">),</span> <span class="n">GetLoc</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">cop</span><span class="p">));</span>
+				<span class="k">if</span> <span class="p">(</span><span class="n">tmp1</span> <span class="o">&lt;</span> <span class="n">dp</span><span class="p">[</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">][</span><span class="n">cop</span><span class="p">])</span>
+				<span class="p">{</span>
+					<span class="n">dp</span><span class="p">[</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">][</span><span class="n">cop</span><span class="p">]</span> <span class="o">=</span> <span class="n">tmp1</span><span class="p">;</span>
+					<span class="n">his</span><span class="p">[</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">][</span><span class="n">cop</span><span class="p">]</span> <span class="o">=</span> <span class="n">j</span><span class="p">;</span>
+				<span class="p">}</span>
+			<span class="p">}</span>
+		<span class="p">}</span>
+		<span class="c1">// Update If other is not moved before and this is to move</span>
+		<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">cop</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">cop</span> <span class="o">&lt;</span> <span class="mi">2</span><span class="p">;</span> <span class="n">cop</span><span class="o">++</span><span class="p">)</span>
+			<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span> <span class="n">j</span><span class="o">++</span><span class="p">)</span>
+				<span class="n">dp</span><span class="p">[</span><span class="n">j</span><span class="p">][</span><span class="n">cop</span><span class="p">]</span> <span class="o">+=</span> <span class="n">Dist</span><span class="p">(</span><span class="n">GetLoc</span><span class="p">(</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">cop</span><span class="p">),</span> <span class="n">GetLoc</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">cop</span><span class="p">));</span>
+	<span class="p">}</span>
+	
+	<span class="kt">int</span> <span class="n">r</span> <span class="o">=</span> <span class="n">INT_MAX</span><span class="p">;</span> <span class="kt">int</span> <span class="n">ans_idx</span><span class="p">,</span> <span class="n">ans_cop</span><span class="p">;</span>
+	<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">t</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+		<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">cop</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">cop</span> <span class="o">&lt;</span> <span class="mi">2</span><span class="p">;</span> <span class="n">cop</span><span class="o">++</span><span class="p">)</span>
+		<span class="p">{</span>
+			<span class="k">if</span> <span class="p">(</span><span class="n">r</span> <span class="o">&gt;</span> <span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">cop</span><span class="p">])</span>
+			<span class="p">{</span>
+				<span class="n">r</span> <span class="o">=</span> <span class="n">min</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">cop</span><span class="p">]);</span>
+				<span class="n">ans_idx</span> <span class="o">=</span> <span class="n">i</span><span class="p">;</span>
+				<span class="n">ans_cop</span> <span class="o">=</span> <span class="n">cop</span><span class="p">;</span>
+			<span class="p">}</span>
+		<span class="p">}</span>
+	
+	<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">r</span> <span class="o">&lt;&lt;</span> <span class="sc">'\n'</span><span class="p">;</span>
+	
+	<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">t</span><span class="p">;</span> <span class="n">i</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span><span class="o">--</span><span class="p">)</span>
+	<span class="p">{</span>
+		<span class="k">if</span> <span class="p">(</span><span class="n">i</span> <span class="o">==</span> <span class="n">ans_idx</span><span class="p">)</span> <span class="p">{</span>
+			<span class="n">ans_idx</span> <span class="o">=</span> <span class="n">his</span><span class="p">[</span><span class="n">ans_idx</span><span class="p">][</span><span class="n">ans_cop</span><span class="p">];</span>
+			<span class="n">ans_cop</span> <span class="o">=</span> <span class="o">!</span><span class="n">ans_cop</span><span class="p">;</span>
+		<span class="p">}</span>
+		<span class="n">ans</span><span class="p">[</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">ans_cop</span> <span class="o">?</span> <span class="sc">'2'</span> <span class="o">:</span> <span class="sc">'1'</span><span class="p">;</span>
+	<span class="p">}</span>
+	
+	<span class="k">for</span> <span class="p">(</span><span class="k">auto</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">t</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+		<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">ans</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&lt;&lt;</span> <span class="sc">'\n'</span><span class="p">;</span>
+
+<span class="p">}</span></code></pre></figure>
+
+<h4 id="시간-복잡도-1">시간 복잡도</h4>
+
+<p>O(n^2),</p>
+
+<h4 id="공간-복잡도-1">공간 복잡도</h4>
+
+<p>O(n)</p>
+
+<h4 id="설명-1">설명</h4>
+
+<p>방법 1 에서 점화식을 잘 보자.</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>		// Make dp[0~i-2][i]
+		for (int j = 0; j &lt; i - 1; j++)
+			dp[j][i] = dp[j][i - 1] + Dist(GetLocA(i - 1), GetLocA(i));
+	
+		// Make dp[i-1][i]
+		tmp1 = INT_MAX;
+		for (int j = 0; j &lt; i - 1; j++)
+		{
+			tmp2 = dp[i - 1][j] + Dist(GetLocA(j), GetLocA(i));
+			if (tmp2 &lt; tmp1)
+				dp[i - 1][i] = tmp1 = tmp2;
+		}
+</code></pre></div></div>
+
+<p><code class="language-plaintext highlighter-rouge">i-1</code> 이 중복되는 것이 보임?</p>
+
+<p>우리에게 필요한 것은 가장 최근에 경찰차를 움직이고 남은 정보이기 때문에 그런 것임.</p>
+
+<p>그렇기 때문에 우리는 공간복잡도를 선형으로 줄일 수 있음.</p>
+
+<p>즉 방법1 에서 배열의 크기를 줄이고 경로 추적용으로 배열을 추가로 두기만 하면 됨.</p>
+
+<p>그러면 <code class="language-plaintext highlighter-rouge">dp[x][cop]</code> 은  <code class="language-plaintext highlighter-rouge">x</code>보다 큰 값인 가장 최근 사건에 <code class="language-plaintext highlighter-rouge">cop</code> 이 움직였고 <code class="language-plaintext highlighter-rouge">cop</code> 말고 다른 경찰차가 마지막으로 움직인게 <code class="language-plaintext highlighter-rouge">x</code> 라는 말이 됨.</p>
+
+
+        
+      </section>
+      
+      <footer class="page__meta">
+        
+        
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> 태그: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/navi-tags/#ps-dp" class="page__taxonomy-item" rel="tag">PS. DP</a>
+    
+    </span>
+  </p>
+
+
+
+
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> 카테고리: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/navi-categories/#algorithm" class="page__taxonomy-item" rel="tag">Algorithm</a><span class="sep">, </span>
+    
+      <a href="/navi-categories/#boj-platinum" class="page__taxonomy-item" rel="tag">BOJ-Platinum</a><span class="sep">, </span>
+    
+      <a href="/navi-categories/#posts" class="page__taxonomy-item" rel="tag">Posts</a>
+    
+    </span>
+  </p>
+
+
+        
+
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> 업데이트:</strong> <time datetime="2021-11-10T00:00:00+09:00">November 10, 2021</time></p>
+
+
+      </footer>
+
+      
+
+      
+  <nav class="pagination">
+    
+      <a href="/posts/algorithm/boj-platinum/BOJ-11438)-LCA/" class="pagination--pager" title="BOJ 11438) LCA
+">이전</a>
+    
+    
+      <a href="/posts/ue4/World-Machine/" class="pagination--pager" title="World Machine
+">다음</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h4 class="page__related-title">관련</h4>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/Posts/Portfolio/DirectX/screenshot2.png" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/posts/portfolio/DirectX-3D/" rel="permalink">DirectX 3D
+</a>
+      
+    </h2>
+    
+
+
+    <p class="archive__item-excerpt" itemprop="description">DirectX Project. Plan to make Unreal like results
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/Posts/Portfolio/UE4-CPP/screenshot2.png" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/posts/portfolio/UE4-CPP/" rel="permalink">UE4 CPP
+</a>
+      
+    </h2>
+    
+
+
+    <p class="archive__item-excerpt" itemprop="description">UE4 Toy Project
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/Posts/Portfolio/UE4-Blueprint/screenshot2.png" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/posts/portfolio/UE4-Blueprint/" rel="permalink">UE4 Blueprint
+</a>
+      
+    </h2>
+    
+
+
+    <p class="archive__item-excerpt" itemprop="description">UE4 Toy Game using Blueprint only.
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/posts/graphics/Graphics-Memo/" rel="permalink">Graphics Memo
+</a>
+      
+    </h2>
+    
+
+    <p class="page__meta" style="margin-top: 0.5em; orphans: 0; widows: 0;">
+        
+
+        
+
+        
+        
+        
+        <span class="page__meta-readtime">
+            <i class="far fa-clock" aria-hidden="true"></i>
+            
+            최대 1 분 소요
+            
+        </span>
+        
+    </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">복붙용
+</p>
+  </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+  
+</div>
+
+    </div>
+
+    
+    <div class="search-content">
+      <div class="search-content__inner-wrap"><form class="search-content__form" onkeydown="return event.key != 'Enter';">
+    <label class="sr-only" for="search">
+      Enter your search term...
+    </label>
+    <input type="search" id="search" class="search-input" tabindex="-1" placeholder="검색어를 입력하세요..." />
+  </form>
+  <div id="results" class="results"></div></div>
+
+    </div>
+    
+
+    
+      <script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+  TeX: {
+  equationNumbers: {
+  autoNumber: "AMS"
+  }
+  },
+  tex2jax: {
+  inlineMath: [ ['$', '$'] ],
+  displayMath: [ ['$$', '$$'] ],
+  processEscapes: true,
+  }
+
+  });
+  MathJax.Hub.Register.MessageHook("Math Processing Error",function (message) {
+  alert("Math Processing Error: "+message[1]);
+  });
+  MathJax.Hub.Register.MessageHook("TeX Jax - parse error",function (message) {
+  alert("Math Processing Error: "+message[1]);
+  });
+</script>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>팔로우:</strong></li>
+    
+
+    
+
+    
+      <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> 피드</a></li>
+    
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2022 Mona04. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+
+
+
+
+<script src="/assets/js/lunr/lunr.min.js"></script>
+<script src="/assets/js/lunr/lunr-store.js"></script>
+<script src="/assets/js/lunr/lunr-en.js"></script>
+
+
+
+
+    
+  <script>
+    var disqus_config = function () {
+      this.page.url = "http://localhost:4000/posts/algorithm/boj-platinum/BOJ-2618)-%EA%B2%BD%EC%B0%B0%EC%B0%A8/";  /* Replace PAGE_URL with your page's canonical URL variable */
+      this.page.identifier = "/posts/algorithm/boj-platinum/BOJ-2618)-경찰차"; /* Replace PAGE_IDENTIFIER with your page's unique identifier variable */
+    };
+    (function() { /* DON'T EDIT BELOW THIS LINE */
+      var d = document, s = d.createElement('script');
+      s.src = 'https://https-mona04-github-io.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+  
+
+
+
+
+
+  </body>
+</html>
