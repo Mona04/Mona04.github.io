@@ -30,9 +30,11 @@ masthead_title           : # overrides the website title displayed in the masthe
 # breadcrumbs            : false # true, false (default)
 words_per_minute         : 50   #최대 1분 소요 이런거 확인할 때 씀
 comments:
-  provider               : "disqus" # false (default), "disqus", "discourse", "facebook", "staticman", "staticman_v2", "utterances", "giscus", "custom"
-  disqus:
-    shortname            : "https-mona04-github-io" # https://help.disqus.com/customer/portal/articles/466208-what-s-a-shortname-
+  provider               : "utterances" # false (default), "disqus", "discourse", "facebook", "staticman", "staticman_v2", "utterances", "giscus", "custom"
+  utterances:
+    theme                : "github-dark" # "github-light"
+    issue_term           : "pathname"
+    #shortname            : "https-mona04-github-io" # https://help.disqus.com/customer/portal/articles/466208-what-s-a-shortname-
 reCaptcha:
   siteKey                :
   secret                 :
