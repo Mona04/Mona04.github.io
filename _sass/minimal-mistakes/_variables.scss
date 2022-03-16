@@ -42,6 +42,8 @@ $type-size-5: 1em !default; // ~16px
 $type-size-6: 0.75em !default; // ~12px
 $type-size-7: 0.6875em !default; // ~11px
 $type-size-8: 0.625em !default; // ~10px
+$type-size-5-2: 0.9em !default; // ~10px
+$type-size-4-2: 1.1em !default; // ~10px
 
 /* headline scale */
 $h-size-1: 1.5em !default; // ~25.008px
@@ -156,7 +158,7 @@ $max-width: $x-large !default;
    ========================================================================== */
 
 $right-sidebar-width-narrow: 170px !default;
-$right-sidebar-width: 230px !default;
+$right-sidebar-width: 210px !default;
 $right-sidebar-width-wide: 260px !default;
 // $right-sidebar-width-narrow: 200px !default;
 // $right-sidebar-width: 300px !default;

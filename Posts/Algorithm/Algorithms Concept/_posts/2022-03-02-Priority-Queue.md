@@ -1,7 +1,7 @@
 ---
 excerpt: "우선순위 큐"
 categories: Algorithm
-tag: [PS. UnionFind, PS. DFS]
+tag: [PS. Data Structure]
 use_math: true
 ---
 
@@ -33,11 +33,11 @@ struct PQ
 			cur = next, next >>= 1;
 		}		
 	}
-
+	
 	T Pop()
 	{
 		if (end <= 1) return {};
-
+	
 		T res = heap[1].v;
 		heap[1].v = heap[--end].v;
 		int cur = 1, next = cur << 1;
@@ -57,7 +57,6 @@ struct PQ
 ### 설명
 
 혹시 쓸지 몰라서 저장함
-
 
 
 

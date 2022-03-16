@@ -1,6 +1,6 @@
 ---
 excerpt: "고급 알고리즘"
-tag: [PS. KMP, PS. String]
+tag: [PS. KMP]
 ---
 ## KMP
 
