@@ -1,9 +1,9 @@
 {% assign node = include.node %}
+{% assign NodeUpper = node.url | upcase | replace: "/", "-" | replace: " ", "_" | replace: "%20", "_"%}
+{% assign PageUpper = page.url | upcase | replace: "/", "-" | replace: " ", "_" | replace: "%20", "_"%}
 
 <ul class="nav__items" 
-  id="{{"Category" | append: node.url | replace: "/", "-"}}" 
-  {% assign PageUpper = page.url | upcase %}
-  {% assign NodeUpper = node.url | upcase %}
+  id="{{"Category" | append: NodeUpper }}" 
   {% if PageUpper contains NodeUpper %}  
     style="display: block;" spreaded = "true"
   {% elsif PageUpper contains "PORTFOLIO" %}  

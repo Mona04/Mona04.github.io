@@ -63,6 +63,8 @@ Jerkll 는 디렉토리에 따라 Category 를 자동으로 분류함.
 
 ```style``` 이라는 문자열을 인자로 받는데 Catelogy Level 에 따라 ```margin-right```, ```font-size``` 등을 바꾸기 위해 사용됨.
 
+```id``` 를 접두사와 url 로 연결해 Category 와 Button 을 연결하는데 id 는 valid character set 이 한정되어서 ```replace``` 를 해줘야 함.
+
 #### icon
 
 접혀져 있는지에 따라 아이콘을 바꿔줘야 있어보임.

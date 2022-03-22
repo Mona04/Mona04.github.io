@@ -28,27 +28,38 @@ navi:
         url: /Posts/Algorithm/
         children:
 
+          - title: "Algorithms Concept"
+            url: /Posts/Algorithm/Algorithms Concept/
           - title: "BOJ-Gold"
             url: /Posts/Algorithm/BOJ-Gold/
           - title: "BOJ-Platinum"
             url: /Posts/Algorithm/BOJ-Platinum/
           - title: "BOJ-Silver"
             url: /Posts/Algorithm/BOJ-Silver/
-          - title: "Algorithms Concept"
-            url: /Posts/Algorithm/Algorithms Concept/
+
+
       - title: "Book"
         url: /Posts/Book/
         children:
 
           - title: "C++PrimerPlus"
             url: /Posts/Book/C++PrimerPlus/
-          - title: "UE4-Scripting-with-C++-Cookbook"
-            url: /Posts/Book/UE4-Scripting-with-C++-Cookbook/
+          - title: "UE4 Scripting with C++ Cookbook"
+            url: /Posts/Book/UE4 Scripting with C++ Cookbook/
           - title: "뇌를자극하는C샵"
             url: /Posts/Book/뇌를자극하는C샵/
 
+
       - title: "c++"
         url: /Posts/c++/
+      - title: "c sharp"
+        url: /Posts/c sharp/
+        children:
+
+          - title: "WPF"
+            url: /Posts/c sharp/WPF/
+
+
       - title: "Graphics"
         url: /Posts/Graphics/
       - title: "Jekyll"
@@ -59,8 +70,7 @@ navi:
         url: /Posts/Memo/
       - title: "OS"
         url: /Posts/OS/
-      - title: "Portfolio"
-        url: /Posts/Portfolio/
+
       - title: "System Hacking"
         url: /Posts/System Hacking/
       - title: "UE4"
@@ -69,3 +79,8 @@ navi:
 
           - title: "ALS"
             url: /Posts/UE4/ALS/
+
+
+
+
+

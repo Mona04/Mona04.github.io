@@ -11,11 +11,13 @@ sidebar:
 <div>
 {% assign entries_layout = 'grid' %}
 {% for category in site.categories %}
-  {% if category[0] == "UE4-Scripting-with-C++-Cookbook"%}
+  {% if category[0] == "DirectX"%}
       <h2 class="archive__subtitle">{{ category[0] }}</h2>
       <div class="entries-{{ entries_layout }}">
         {% for post in category.last %}
-          {% include archive-single.html type=entries_layout %}
+          {% if post.categories.last == "DirectX" %}
+            {% include archive-single.html type=entries_layout %}
+          {% endif %}
         {% endfor %}
       </div>
       <a href="#page-title" class="back-to-top">{{ site.data.ui-text[site.locale].back_to_top | default: 'Back to Top' }} &uarr;</a>
