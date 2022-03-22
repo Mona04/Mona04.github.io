@@ -5,35 +5,46 @@
 <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
 <script>mermaid.initialize({ startOnLoad: true });</script>
 <script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
-
 <script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
-<script>
-    function fn_spread(id) {
-        if ($('#Category' + id).is(":visible") && $('#Category' + id).css("overflow") != "hidden")
-        {
-            $('#Category' + id).stop().slideUp();
-            $('#Category' + id).css("max-height", "0%");
-            $('#Category' + id).css("opacity", "0%");
-            $('#Category' + id).css("z-index", "10");
-            $('#Category' + id).css("overflow", "hidden");
-            $('#Category' + id).css("display", "none");
 
-            $('#Icon' + id).toggleClass("fas fa-angle-up");
+<script>
+    var style_spreaded = { "is_spreaded" : true };
+
+    function fn_spread(id) {
+        var child = $('#Category' + id);
+        var icon = $('#Icon' + id);
+        var auto_h = child.css("display", "block").css('overflow', 'visible').css('height', 'auto').height(); 
+
+        if (child.attr('spreaded') == "true")
+        {
+            child.attr('spreaded', 'false');
+
+            child.height(auto_h).stop(true, false).clearQueue().animate({ height: 0 },
+                {
+                    duration: 400, complete: function () {
+                        child.css('height', 0).css('height', 'auto');  // hidden => height() make wrong value
+
+                        child.css('overflow', 'hidden').css("display", "none").css("opacity", "0%").css("z-index", "10").css("max-height", "0%");
+                    }
+                });
+
+            icon.toggleClass("fas fa-angle-up");
         }
         else
         {
-            $('#Category' + id).stop().slideDown({
-                complete: function () {
-                    $('#Category' + id).css("overflow", "visible");
-                }
-            });
-            $('#Category' + id).css("max-height", "100%");
-            $('#Category' + id).css("opacity", "100%");
-            $('#Category' + id).css("z-index", "0");
-            $('#Category' + id).css("overflow", "visible");
-            $('#Category' + id).css("display", "block");
+            child.attr('spreaded', 'true');
 
-            $('#Icon' + id).toggleClass("fas fa-angle-down");
+            // without max-height make overlaped results as minimal-mistakes toggle button do somthing.
+            child.css("opacity", "100%").css("z-index", "0").css("max-height", "100%");
+
+            child.height(0).stop(true, false).clearQueue().animate({ height: auto_h },
+                {
+                    duration: 400, complete: function () {
+                        child.css('height', auto_h).css('height', 'auto');
+                    }
+                });
+
+            icon.toggleClass("fas fa-angle-down");
         }
     }
 </script>

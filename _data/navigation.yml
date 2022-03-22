@@ -44,6 +44,9 @@ navi:
             url: /Posts/Book/C++PrimerPlus/
           - title: "UE4-Scripting-with-C++-Cookbook"
             url: /Posts/Book/UE4-Scripting-with-C++-Cookbook/
+          - title: "뇌를자극하는C샵"
+            url: /Posts/Book/뇌를자극하는C샵/
+
       - title: "c++"
         url: /Posts/c++/
       - title: "Graphics"

@@ -5,11 +5,11 @@
   {% assign PageUpper = page.url | upcase %}
   {% assign NodeUpper = node.url | upcase %}
   {% if PageUpper contains NodeUpper %}  
-    style="display: block;"
+    style="display: block;" spreaded = "true"
   {% elsif PageUpper contains "PORTFOLIO" %}  
     style="display: none;" 
   {% elsif NodeUpper contains "NAVI-CATEGORIES" and PageUpper contains "POSTS"%}  
-    style="display: block;"
+    style="display: block;" spreaded = "true"
   {% else %}  
     style="display: none;" 
   {% endif %} 
