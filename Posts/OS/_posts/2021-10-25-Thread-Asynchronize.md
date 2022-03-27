@@ -1,6 +1,6 @@
 ---
-excerpt: "OS 의 멀티스레드 동기화"
-tag: [c++, os]
+excerpt: "멀티스레드 동기화"
+tag: [c++, Thread]
 use_math: true
 ---
 

@@ -1,7 +1,7 @@
 ---
 excerpt: "Cycle 찾기"
 categories: Algorithm
-tag: [PS. Knuth Optimazation]
+tag: [PS. Knuth Optimization]
 use_math: true
 ---
 
@@ -49,7 +49,7 @@ int main()
 		rangeCache[0] = 0;
 		for (int i = 0; i < n; i++)
 			rangeCache[i+1] = rangeCache[i] + files[i];
-
+	
 		for (int offset = 2; offset <= n; offset++)
 			for (int i = 0; i <= n - offset; i++)
 			{
@@ -72,5 +72,4 @@ int main()
 }
 
 {% endhighlight %}
-
 

@@ -48,11 +48,13 @@ navi:
             url: /Posts/Book/UE4 Scripting with C++ Cookbook/
           - title: "뇌를자극하는C샵"
             url: /Posts/Book/뇌를자극하는C샵/
+          - title: "Assential C# 6"
+            url: /Posts/Book/Essential C sharp 6/   
 
 
       - title: "c++"
         url: /Posts/c++/
-      - title: "c sharp"
+      - title: "c#"
         url: /Posts/c sharp/
         children:
 
