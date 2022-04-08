@@ -11,10 +11,8 @@ use_math: true
 
 ## [파스칼의 삼각형](https://en.wikipedia.org/wiki/Pascal%27s_triangle)
 
-> $$\begin{multline} \shoveleft
-\left(\begin{matrix}n \\ k \end{matrix}\right) = 
-\left(\begin{matrix}n-1 \\ k-1 \end{matrix}\right) +
-\left(\begin{matrix}n-1 \\ k \end{matrix}\right)
+> $$\begin{multline} \shoveleft 
+\binom{n}{k} = \binom{n-1}{k-1} + \binom{n-1}{k}
 \end{multline}$$
 
 위의 점화식으로 구성하는 배열로 ```n``` 제곱의 ```k``` 번째 항의 이항계수가 됨.
@@ -70,7 +68,7 @@ int main()
 		div = div * (n-i+1) % MOD;
 	}
 	ans = ans * ModInv(div) % MOD;
-
+	
 	cout << ans;
 }
 {% endhighlight c++ %}
@@ -136,15 +134,15 @@ int main()
     cin >> n >> k;
 
     int ans = 1;
-	for (int i = 2; i <= sqrt(n); i++)    // n 의 최대 약수가 sqrt(n) 이므로
-		if(!prime_net[i])                 // 이미 체크되었으면 배수는 이미 체크됨 
-			for (int j = i + i; j <= n; j += i)
-				prime_net[j] = true;
-
+    for (int i = 2; i <= sqrt(n); i++)    // n 의 최대 약수가 sqrt(n) 이므로
+    	if(!prime_net[i])                 // 이미 체크되었으면 배수는 이미 체크됨 
+    		for (int j = i + i; j <= n; j += i)
+    			prime_net[j] = true;
+    
     for (int p = 2; p <= n; p++)
         if (!prime_net[p])
         	ans = ans * Pow(p, Find(n, p) - Find(k, p) - Find(n - k, p)) % (int)(1e9+7);
-
+    
     cout << ans;
 }
 
@@ -188,7 +186,7 @@ $$ \sum_{n=0}^{m} { \left(  _{m}\mathrm{C}_{n}  x^n  \right) } \equiv
 \prod_{i=0}^{k} { \sum_{n_i = 0}^{m_i} { _{m_i}\mathrm{C}_{n_i} x^{n_i p^i} }  } \equiv
 \sum_{n=0}^{m} { \left(  \prod_{i=0}^{k} {  _{m_i}\mathrm{C}_{n_i}  } \right) x^n}
 \pmod{p}  $$
- 
+
 [위키](https://ko.wikipedia.org/wiki/%EB%A4%BC%EC%B9%B4%EC%9D%98_%EC%A0%95%EB%A6%AC)에서 다른건 다 이해가 되는데 두군데 막혔던 부분이 있었다.
 
 ##### $$n_i$$ 에 대해서
@@ -269,11 +267,11 @@ int main()
 
     ll m, n, mod = 10007;
     cin >> m >> n >> mod;
-
+    
     facts[0] = 1;
     for (int i = 1; i <= mod; i++)
         facts[i] = i * facts[i - 1] % mod;
-
+    
     ll ans = 1;
     while (m || n)
     {
@@ -287,11 +285,10 @@ int main()
         ans = ans * facts[M] * ModInv(facts[N], mod) % mod;
         ans = ans * ModInv(facts[M - N], mod) % mod;
     }
-
+    
     cout << ans;
 }
 
 {% endhighlight c++ %}
 </details>
-
 

@@ -13,7 +13,7 @@ body {
   padding: 0;
   color: $text-color;
   font-family: $global-font-family;
-  line-height: 1.7;
+  line-height: 2.0;
 
   &.overflow--hidden {
     /* when primary navigation is visible, the content in the background won't scroll */
@@ -177,6 +177,15 @@ td > code {
     content: "\00a0"; /* non-breaking space*/
   }
 }
+
+th, td {
+    height: 50px;
+    font-size: $type-size-4-2;
+}
+td > code, th > code {
+    font-size: $type-size-5-2;
+}
+
 
 /* horizontal rule */
 
