@@ -19,9 +19,14 @@ navi:
     url: /Posts/Memo/
   - title: Tags
     url: /navi-tags/
+    children:
+    - title: PS-Tags
+      url: /navi-tags-ps/
+    - title: General-Tags
+      url: /navi-tags-ge/
+
   - title: Categories
     url: /navi-categories/
-
     children:
 
       - title: "Algorithm"
