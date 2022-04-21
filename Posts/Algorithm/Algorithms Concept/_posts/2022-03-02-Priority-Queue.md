@@ -81,7 +81,7 @@ struct PQ
 	int end = 1;
 
 	inline bool Empty() const { return end <= 1; }
-	inline T Top() const { return heap[end - 1].key->v; }
+	inline T Top() const { return heap[1].key->v; }
 	inline int TopKey() const { return heap[1].key - keys; }
 	
 	inline void Swap(int a, int b)
