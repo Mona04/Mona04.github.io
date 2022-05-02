@@ -37,11 +37,14 @@ navi:
             url: /Posts/Algorithm/Algorithms Concept/
           - title: "BOJ-Gold"
             url: /Posts/Algorithm/BOJ-Gold/
-          - title: "BOJ-Platinum"
-            url: /Posts/Algorithm/BOJ-Platinum/
           - title: "BOJ-Silver"
             url: /Posts/Algorithm/BOJ-Silver/
-
+          - title: "BOJ-Platinum"
+            url: /Posts/Algorithm/BOJ-Platinum/
+          - title: "BOJ-Diamond"
+            url: /Posts/Algorithm/BOJ-Diamond/
+          - title: "Leet-Medium"
+            url: /Posts/Algorithm/Leet-Medium/
 
       - title: "Book"
         url: /Posts/Book/
