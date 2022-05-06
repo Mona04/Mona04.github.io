@@ -29,9 +29,64 @@ use_math: true
 
 ## Tree
 
-[SNS](https://www.acmicpc.net/problem/2533), [우수마을](https://www.acmicpc.net/problem/1949), [트리의 독립집합](https://www.acmicpc.net/problem/2213). 
+[트리의 독립집합](https://www.acmicpc.net/problem/2213). 
 
 트리에서의 다이나믹 프로그래밍으로 풀 수 있다.
+
+<details>
+<summary>위 문제 정답 코드</summary><br/>
+{% highlight c++ %}
+
+int weights[10001], dp[10001][2];
+vector<int> lines[10001], ans;
+
+int Find(int cur, int parent, int bSelect)
+{
+	if (dp[cur][bSelect]) return dp[cur][bSelect];
+
+	dp[cur][bSelect] = bSelect ? weights[cur] : 0;
+	for (auto l : lines[cur])
+	{
+		if (l == parent) continue;
+		if (bSelect) dp[cur][bSelect] += Find(l, cur, false);
+		else {
+			dp[cur][bSelect] += max(Find(l, cur, false), Find(l, cur, true));
+		}
+	}
+	return dp[cur][bSelect];
+}
+
+void Print(int cur, int parent, int bSelect)
+{
+	if (bSelect) ans.push_back(cur);
+
+	for (auto l : lines[cur])
+		if (l != parent)
+	    	Print(l, cur, bSelect ? false :  dp[l][1] > dp[l][0]);
+}
+
+int main()
+{
+    int n; cin >> n;
+	for (int i = 1; i <= n; i++)  cin >> weights[i];
+	for (int i = 0; i < n - 1; i++)
+	{
+		int tmp1, tmp2;
+		cin >> tmp1 >> tmp2;
+		lines[tmp1].push_back(tmp2);
+		lines[tmp2].push_back(tmp1);
+	}
+
+	cout << max(Find(1, -1, false), Find(1, -1, true)) << '\n';
+	Print(1, -1, dp[1][1] > dp[1][0]);
+	
+	sort(ans.begin(), ans.end());
+	for (auto l : ans)
+		cout << l << ' ';
+}
+
+{% endhighlight%}
+</details>
 
 
 
@@ -58,22 +113,23 @@ use_math: true
 
 #### 구성적 증거
 
-Minimum Vertex Cover 를 구하는 방법은  [Wiki 의 구성적 증거](https://en.wikipedia.org/wiki/K%C5%91nig%27s_theorem_(graph_theory)#Proofs) 파트에서 나와있다. 짧은 내용이지만 정리하기 위해 설명하겠다. 우선 $$L$$ 의 exposed vertex 에서 시작하는 Alternative Path 를 이하에서 그냥 Alternative Path 라고 하자(간선 하나도 포함). 총 2단계로 증명이 된다. 
-1. 그래프의 모든 Alternative Path 를 이루는 정점의 집합을 $$Z$$ 라고 하면 모든 간선은 $$K = (L \backslash Z) \cup (R \cap Z)$$ 에 연결되어 있으므로 $$K$$ 는 Vertex Cover 이다.
+Minimum Vertex Cover 를 구하는 방법은  [Wiki 의 구성적 증거](https://en.wikipedia.org/wiki/K%C5%91nig%27s_theorem_(graph_theory)#Proofs) 파트에서 나와있다. 짧은 내용이지만 헷갈리기 때문에 설명하겠다. 우선 __$$L$$ 의 exposed vertex 에서 시작하는 Alternative Path 를 Z-Path 라고 하자(간선 하나도 포함).__  논의 대상은 __이분최대매칭이 완료된 그래프__ 이다.  총 2단계로 증명이 된다. 
+1. 그래프의 모든 Z-Path 를 이루는 정점의 집합을 $$Z$$ 라고 하면 모든 간선은 $$K = (L \backslash Z) \cup (R \cap Z)$$ 에 연결되어 있으므로 $$K$$ 는 Vertex Cover 이다.
 2. $$(L \backslash Z)$$ 와 $$(R \cap Z)$$ 간을 매칭하는 간선이 없으며, 각각의 집합을 이루는 모든 정점이 매칭된 정점이므로 $$\vert K \vert $$ 가 최대 매칭의 크기와 같게된다. 곧 Minimum Vertex Cover 임이 증명되었다.
 
-1번을 증명하기 위해서는 모든 간선을 Alternative Path 인지 아닌지로 나눈다. 만약 Alternative Path 라면 그 간선의 $$R$$ 부분은  $$(R \cap Z)$$ 에 속하는 것이 정의 상 자명하다. 만약 아니면 바로 판단하기가 힘드므로 경우를 매칭하는 간선인지 아닌지로 또 나눈다.
-
 <details>
-<summary>자세한 부분 메모</summary><br/>
+<summary>자세한 증명 메모</summary><br/>
+<div markdown="1">
 
-매칭하는 간선의 경우 양끝의 정점은 모두 Alternative Path 에 속할 수 없다(곧 ```L\Z``` 이다.). 왜냐하면 L 부분이 exposed vertex 가 될 수 없으므로 Alternative Path 가 연결될려면 R 부분으로 Alternative Path 인 forward edge 가 오는 경우 뿐인데, 그러면 지금 논의되는 간선이 곧바로 Alternative Path 가 되므로 모순이기 때문이다. <br/><br/>
+1번은 자명하고 2번을 증명하기 위해서는 모든 간선을 Z-Path 인지 아닌지로 나눈다. 만약 Z-Path 라면 그 간선의 $$R$$ 부분은  $$(R \cap Z)$$ 에 속하고 $$L$$ 부분은 $$(\mathrm{L} \backslash \mathrm{Z})$$ 에 속하지 않는 것이 정의 상 자명하다. 만약  Z-Path 가 아니라면 바로 판단하기가 힘드므로 경우를 매칭하는 간선인지 아닌지로 또 나눈다. 
 
-매칭하지 않는 간선의 경우 L 부분의 정점은 Alternative Path 에 속할 수 없다. 왜냐하면 L 부분이 exposed vertex 가 될 수 없으므로 L 부분과 Alternative Path 가 연결되는 경우는 L 부분과 매칭하는 Backward Edge 가 Alternative Path 인 경우 뿐인데, 그러면 지금 논의되는 간선과 곧바로 이으면 Alternative Path 가 되므로 모순이기 때문이다. <br/>
-덧붙여 R 부분의 정점은 Alternative Path 에 속할 수 있는데, ```5 : 1``` 로 매칭시키는 것이 그 예이다.  <br/><br/>
+ Z-Path 가 아니고 매칭하는 간선의 경우, 간선을 이루는 양끝의 정점은 모두 Z-Path 에 속할 수 없다 (곧 $$(\mathrm{L} \backslash \mathrm{Z})$$ 이다.). 이를 보이자면, $$L$$ 부분이 exposed vertex 가 아니므로 이 간선은 Z-Path 의 시작점이 될 수 없다. 그래서 만약  $$L$$ 부분이 Z-Path 와 연결되려면 Z-Path 인 backward edge 와 연결되는 경우 뿐인데, 이는 한 정점이 두개의 backward edge 를 만들 수 없으므로 불가능이다. 한편 $$R$$ 부분으로 Z-Path 인 forward edge 가 온다면 지금 논의되는 간선이 곧바로 Z-Path 가 되므로 모순이다. 
 
-위 두 경우에서 모두 해당되는 간선의 L 쪽 정점은 ```L\Z``` 에 속하게 된다. 
+ Z-Path 가 아니고 매칭하지 않는 간선의 경우 역시 마찬가지이다. 왜냐하면 $$L$$ 부분이 exposed vertex 가 될 수 없으므로(그러면 위의 정의상 Z-Path 이다.) $$L$$ 부분과 Z-Path 가 연결되는 경우는 $$L$$ 부분과 매칭하는 backward edge 가 Z-Path 인 경우 뿐인데, 그러면 지금 논의되는 간선과 곧바로 이으면 Z-Path 가 되므로 모순이기 때문이다. 또한 $$R$$ 부분에 Z-Path 인 backward edge 가 연결된다면 비슷하게 모순을 이끌어 낼 수 있다.
 
+그러므로 Z-Path 가 아닌 간선을 이루는 $$L$$ 쪽 정점만  $$(\mathrm{L} \backslash \mathrm{Z})$$  에 속하게 된다 . 따라서 위 증명에서 $$(L \backslash Z)$$ 와 $$(R \cap Z)$$ 를 동시에 만족하는 간선은 없음이 드러났다. 즉 두 그룹을 잇는 간선이 없다는 것이다. 이러한 Vertex Cover 의 크기는 최대매칭과 같게 되고 곧 Minimal Vertex Cover 가 된다.
+
+</div>
 </details><br/>
 
 관련문제로 [최소 버텍스 커버 문제](https://www.acmicpc.net/status?user_id=dh0450&problem_id=2051&from_mine=1) 가 있으니 연습해보자.
