@@ -1,5 +1,5 @@
 ---
-excerpt: "Quaternion 의 회전이 어떻게 이루어질까"
+excerpt: "Quaternion 의 공식들, 특히 회전이 왜 그렇게 나왔는지에 대한 정리"
 categories: Math
 tag: []
 use_math: true
@@ -18,17 +18,17 @@ use_math: true
 + 절댓값 $$r$$ 과 편각 $$\theta$$ 을 통해 나타내면 $$ x = r(\cos\theta + i\sin\theta ) $$
 + r 은 따로 빠지기 때문에 1로 둬도 상관이 없음.
 + 두 수의 곱을 한다면 <br/> <br/>
-$$\begin{multline} 
-a = \cos\alpha + i\sin\alpha,    \quad   
-b = \cos\beta + i\sin\beta         \\ \\ \shoveleft
-a \times b = (\cos\alpha + i\sin\alpha) \times (\cos\beta + i\sin\beta)  \\ \shoveleft
-= \cos\alpha\cos\beta - \sin\alpha\sin\beta + i(\sin\alpha\cos\beta + \cos\alpha\sin\beta) \\ \shoveleft
-= \cos(\alpha + \beta) + i(sin(\alpha + \beta))   \\ \\ \shoveleft
-\frac{a}{b} = \frac{ \cos\alpha + i\sin\alpha}{\cos\beta + i\sin\beta }   
-= (\cos\alpha + i\sin\alpha)(\cos\beta - i\sin\beta)  \\ \shoveleft
-=  \cos\alpha\cos\beta + \sin\alpha\sin\beta + i(\sin\alpha\cos\beta - \cos\alpha\sin\beta)    \\ \shoveleft
-= \cos(\alpha - \beta) + i(sin(\alpha - \beta))   \\ \\ \shoveleft
-\end{multline}$$
+  $$\begin{multline} 
+  a = \cos\alpha + i\sin\alpha,    \quad   
+  b = \cos\beta + i\sin\beta         \\ \\ \shoveleft
+  a \times b = (\cos\alpha + i\sin\alpha) \times (\cos\beta + i\sin\beta)  \\ \shoveleft
+  = \cos\alpha\cos\beta - \sin\alpha\sin\beta + i(\sin\alpha\cos\beta + \cos\alpha\sin\beta) \\ \shoveleft
+  = \cos(\alpha + \beta) + i(sin(\alpha + \beta))   \\ \\ \shoveleft
+  \frac{a}{b} = \frac{ \cos\alpha + i\sin\alpha}{\cos\beta + i\sin\beta }   
+  = (\cos\alpha + i\sin\alpha)(\cos\beta - i\sin\beta)  \\ \shoveleft
+  =  \cos\alpha\cos\beta + \sin\alpha\sin\beta + i(\sin\alpha\cos\beta - \cos\alpha\sin\beta)    \\ \shoveleft
+  = \cos(\alpha - \beta) + i(sin(\alpha - \beta))   \\ \\ \shoveleft
+  \end{multline}$$
   + 삼각함수의 덧셈공식을 사용하면 간단하게 정리할 수 있음.
   + 복소수의 곱과 나눗셈은 편각의 합이 됨을 알 수 있음. => __회전__
 
@@ -68,21 +68,23 @@ $$\begin{align}&(a_1a_2 - (b_1b_2 + c_1c_2),\ a_1b_2 + b_1a_2,\ a_1c_2 + c_1a_2,
 
 ## Quaternion 의 정의 <br/>
 
+__(주의) 쿼터니온은 벡터와 달리 스칼라와 비슷하게 표기를 하므로 맥락에 맞게 구별해야함__
+
 다음과 같이 정의됨
   + $$\begin{multline} 
-  q = w + xi + yj + zk = (w, \vec{v})  \\ \\ \shoveleft
-  i^2 = j^2 = k^2 = ijk = -1                \\ \\ \shoveleft
-  q_1 \times q_2 = (w_1, \vec{v_1}) \times (w_2, \vec{v_2})     \\ \shoveleft
-  = \left(\begin{array}{cc}
-   w_1w_2 - x_1x_2 - y_1y_2 - z_1z_2  \\
-   x_1w_2 + w_1x_2 - z_1y_2 + y_1z_2 \\
-   y_1w_2 + z_1x_2 + w_1y_2 - x_1z_2  \\
-   z_1w_2 - y_1x_2 + x_1y_2 + w_1z_2 \\
-   \end{array}\right)   \\ \shoveleft
-  = (w_1w_2 - \vec{v_1} \cdot \vec{v_2}, \  w_1\vec{v_2} + w_2\vec{v_1} + \vec{v_1} \times \vec{ v_2} )   \\ \\ \shoveleft
-  \hat{q} = (w, -x, -y, -z)    \\ \\ \shoveleft
-  q^{-1} = \frac{w - xi -yj -zk}{w^2 + x^2 + y^2 + z^2} = \frac{\hat{q}}{\|q\|}  \quad q \times q^{-1} = 1
-  \end{multline} $$ 
+    q = w + xi + yj + zk = (w, \vec{v})  \\ \\ \shoveleft
+    i^2 = j^2 = k^2 = ijk = -1                \\ \\ \shoveleft
+    q_1 \times q_2 = (w_1, \vec{v_1}) \times (w_2, \vec{v_2})     \\ \shoveleft
+    = \left(\begin{array}{cc}
+      w_1w_2 - x_1x_2 - y_1y_2 - z_1z_2  \\
+      x_1w_2 + w_1x_2 - z_1y_2 + y_1z_2 \\
+      y_1w_2 + z_1x_2 + w_1y_2 - x_1z_2  \\
+      z_1w_2 - y_1x_2 + x_1y_2 + w_1z_2 \\
+      \end{array}\right)   \\ \shoveleft
+    = (w_1w_2 - \vec{v_1} \cdot \vec{v_2}, \  w_1\vec{v_2} + w_2\vec{v_1} + \vec{v_1} \times \vec{ v_2} )   \\ \\ \shoveleft
+    \hat{q} = (w, -x, -y, -z)    \\ \\ \shoveleft
+    q^{-1} = \frac{w - xi -yj -zk}{w^2 + x^2 + y^2 + z^2} = \frac{\hat{q}}{\|q\|}  \quad q \times q^{-1} = 1
+    \end{multline} $$ 
   + $$w$$ 는 Scalar Part, $$\vec{v}$$ 는 Vector Part 라고 부름
   + $$ij, ik \dots $$ 등은 위 항등식을 통해 간단히 증명해서 쓰면 됨
   + Cross 계산 때문에 __결합법칙은 성립하고 교환법칙은 성립하지 않음__
@@ -111,7 +113,7 @@ q = w + xi + yj + zk
 [참고](https://www.youtube.com/watch?v=88BA8aO3qXA)
 
 __Fully Imaginary Quaternion__ 은 Scalar Part 가 0 인 Quaternion 임
-+ 이 경우 결합법칙이 성립함 <br/> <br/> $$\begin{multline} 
++ 이 경우 교환법칙이 성립함 <br/> <br/> $$\begin{multline} 
 q_1 = (0, \vec{v_1}), \quad q_2 = (0,\vec{v_2})   \\ \shoveleft
 q_1 \times q_2 = - \vec{v_1} \cdot \vec{v_2}  = q_2 \times q_1 \\ \\
 \end{multline}$$
@@ -127,7 +129,7 @@ q^{2n} = (- \|\vec{v}\|^2)^n  \quad q^{2n-1} =  (-\|\vec{v}\|^{n-1})^2 q   \\ \\
   1 - \frac{\|v\|^2}{2!} + \frac{\|v\|^4}{4!} - \frac{\|v\|^6}{6!} \dots = \cos(\|v\|)  \\ \shoveleft
   \frac{1}{\|v\|} \left(\|v\| - \frac{\|v\|^3}{3!} + \frac{\|v\|^5}{5!} - \frac{\|v\|^7}{7!} \right)v  \dots = \sin(\|v\|) \frac{v}{\|v\|}   \\ \shoveleft
   e^q =  \cos(\|v\|) + \frac{\sin(\|v\|)}{\|v\|}(xi + yj + zk)   \\ \shoveleft
-\end{multline}$$ 
+  \end{multline}$$ 
 
 ### Euler's Formula 를 사용하는 방법 <br/>
 
@@ -137,20 +139,20 @@ q^{2n} = (- \|\vec{v}\|^2)^n  \quad q^{2n-1} =  (-\|\vec{v}\|^{n-1})^2 q   \\ \\
 + $$\begin{multline} 
    r = \pm \sqrt{x^2 + y^2 + z^2} , \ \ (\frac{xi + yj + zk}{r})^2 = -1  \\ \shoveleft  
    q = w + xi+yj+zk = w + r \frac{xi + yj + zk}{r}  
-\end{multline}$$ 
+   \end{multline}$$ 
 + $$\begin{multline} 
   e^q = e^{w + r\sqrt{-1}} = e^we^{r\sqrt{-1}} = e^w(cos(r) + \sqrt{-1} sin(r) )       \\ \shoveleft
   =  e^w\left(\cos{r} + \frac{\sin{r}}{r}(xi + yj + zk) \right)
-\end{multline}$$
+  \end{multline}$$
 
 ### $$\Theta$$ 와 연결
 
 Quaternion $$q = (0, x, y, z) = (0, \vec{v})$$ 이 있어서 $$ x^2 + y^2 + z^2 = 1 $$ 를 만족할 때
  + $$\begin{multline} 
-  e^{\theta q} = e^{\theta x i + \theta y j + \theta z k  }   \\ \shoveleft
-  = \cos{\theta} + \frac{\sin{\theta} }{\theta}(\theta x i + \theta y j + \theta z k ) \quad \dots (\theta \neq 0)  \\ \shoveleft
-  =  \cos{\theta}  + \sin\theta (xi + yi + zi) = \cos{\theta}  + \sin\theta \ \vec{v}
-\end{multline}$$
+    e^{\theta q} = e^{\theta x i + \theta y j + \theta z k  }   \\ \shoveleft
+    = \cos{\theta} + \frac{\sin{\theta} }{\theta}(\theta x i + \theta y j + \theta z k ) \quad \dots (\theta \neq 0)  \\ \shoveleft
+    =  \cos{\theta}  + \sin\theta (xi + yi + zi) = \cos{\theta}  + \sin\theta \ \vec{v}
+    \end{multline}$$
  + 예외인 0에서도 계산해보면 연속함수임을 알 수 있음
 
 ## Quaternion and Rotation
@@ -164,35 +166,35 @@ $$ v = (0, \vec{v}) $$ 과 크기가 1인 $$n = (0, \vec{n}) $$  가 있어 $$\v
 + $$\begin{multline} 
   \vec{v} = \vec{v_{\perp}} + \vec{v_{\parallel}}   \\ \shoveleft
   \vec{v_{\parallel}}  = ( \vec{n} \cdot \vec{v} ) \vec{v}   ,\quad \vec{v_{\perp}} =  \vec{v} - \vec{v_{\parallel}} 
-\end{multline}$$
+  \end{multline}$$
 
 추가로 네가지 성질이 필요함
-+ 첫째는 Scalar Part 가 0 이라 성립하는 $$ \vec{n} \times \vec{v_{\perp} } = nv_{\perp} $$ 
++ 첫째는 Scalar Part 가 0 이라 벡터 외적을 쿼터니온 곱으로 바꾼 $$ \vec{n} \times \vec{v_{\perp} } = nv_{\perp} $$
 + 둘째는 위의 __Euler's formular__
 + 셋째는  $$ e^{\theta n}v_{\parallel} = v_{\parallel}e^{\theta n} $$
   +  $$\begin{multline} 
    ( \cos{\theta}, \sin\theta\vec{n})(0, \vec{v_{\parallel}} ) = (0, \vec{v_{\parallel}} )( \cos{\theta}, \sin{\theta}\vec{n})  \\ \shoveleft
-   (0, \cos{\theta} \vec{v_{\parallel}} + \sin\theta\vec{n} \times  \vec{v_{\parallel}} ) = (0, \cos{\theta} \vec{v_{\parallel}} +  \vec{v_{\parallel}} \times \sin{\theta}\vec{n} ) = (0,  \cos{\theta} \vec{v_{\parallel}} )
-\end{multline}$$
-+ 넷째는 $$ e^{\theta n}v_{\perp} = v_{\perp}e^{-\theta n} $$
+    (0, \cos{\theta} \vec{v_{\parallel}} + \sin\theta\vec{n} \times  \vec{v_{\parallel}} ) = (0, \cos{\theta} \vec{v_{\parallel}} +  \vec{v_{\parallel}} \times \sin{\theta}\vec{n} ) = (0,  \cos{\theta} \vec{v_{\parallel}} )
+    \end{multline}$$
++ 넷째는 $$ e^{\theta \vec{n}}v_{\perp} = v_{\perp}e^{-\theta \vec{n}} $$
   +  $$\begin{multline} 
    ( \cos{\theta}, \sin\theta\vec{n})(0, \vec{v_{\perp}} ) = (0, \vec{v_{\perp}} )( \cos{(-\theta)}, \sin{(-\theta)}\vec{n})  \\ \shoveleft
-   (0, \cos{\theta} \vec{v_{\perp}} + \sin\theta\vec{n} \times  \vec{v_{\perp}} ) = (0, \cos{(-\theta)} \vec{v_{\perp}} +  \vec{v_{\perp}} \times \sin{(-\theta)}\vec{n} )     \\ \shoveleft
-   (0, \cos{\theta} \vec{v_{\perp}} + \sin\theta\vec{n} \times  \vec{v_{\perp}} ) = (0, \cos{\theta} \vec{v_{\perp}} - \vec{v_{\perp}} \times \sin{\theta}\vec{n} )   \\ \shoveleft
-   (0, \cos{\theta} \vec{v_{\perp}} + \sin\theta\vec{n} \times  \vec{v_{\perp}} ) = (0, \cos{\theta} \vec{v_{\perp}} + \sin\theta\vec{n} \times  \vec{v_{\perp}} )    \\ \shoveleft
-\end{multline}$$
+    (0, \cos{\theta} \vec{v_{\perp}} + \sin\theta\vec{n} \times  \vec{v_{\perp}} ) = (0, \cos{(-\theta)} \vec{v_{\perp}} +  \vec{v_{\perp}} \times \sin{(-\theta)}\vec{n} )     \\ \shoveleft
+    (0, \cos{\theta} \vec{v_{\perp}} + \sin\theta\vec{n} \times  \vec{v_{\perp}} ) = (0, \cos{\theta} \vec{v_{\perp}} - \vec{v_{\perp}} \times \sin{\theta}\vec{n} )   \\ \shoveleft
+    (0, \cos{\theta} \vec{v_{\perp}} + \sin\theta\vec{n} \times  \vec{v_{\perp}} ) = (0, \cos{\theta} \vec{v_{\perp}} + \sin\theta\vec{n} \times  \vec{v_{\perp}} )    \\ \shoveleft
+    \end{multline}$$
 
 
-우리가 할 $$\vec{n}$$ 을 축으로한 임의의 $$\vec{v}$$ 에 대한 회전은
+우리가 할 $$\vec{n}$$ 을 축으로한 임의의 $$\vec{v}$$ 의 회전은
 1. $$\vec{n}$$ __을 노말로 갖고 원점을 지나는 평면 상__ 에서 회전 후
 2. 회전에 영향없는  $$\vec{v_{\parallel}}$$ 를 더해 완성됨
 
 +  $$\begin{multline} 
   \vec{v}' = \vec{v_{\parallel}} + \cos{\theta}\ \vec{v_{\perp}} + \sin{\theta}( \vec{n} \times \vec{v_{\perp} })  \\  \shoveleft
-  = \vec{v_{\parallel}} + \cos{\theta}\ \vec{v_{\perp}} + \sin{\theta}(nv_{\perp})  \\  \shoveleft
+  = \vec{v_{\parallel}} + \cos{\theta}\ \vec{v_{\perp}} + \sin{\theta}(n  v_{\perp})  \\  \shoveleft
   = \vec{v_{\parallel}} + (\cos{\theta} + \sin{\theta}n )v_{\perp}  \\  \shoveleft
   = v_{\parallel} + e^{\theta n} v_{\perp}  \\  \shoveleft
-\end{multline}$$
+  \end{multline}$$
 
 + $$\begin{multline} 
   \vec{v}' =  v_{\parallel} + e^{\theta n} v_{\perp} \\  \shoveleft
@@ -201,7 +203,7 @@ $$ v = (0, \vec{v}) $$ 과 크기가 1인 $$n = (0, \vec{n}) $$  가 있어 $$\v
   =  e^{\frac{\theta}{2} n}( v_{\perp} + v_{\parallel} ) e^{-\frac{\theta}{2} n}  \\  \shoveleft
   =  e^{\frac{\theta}{2} n} \  v \  e^{-\frac{\theta}{2} n}  \\  \shoveleft
   = qv\hat{q}
-\end{multline}$$
+  \end{multline}$$
 
 이렇게 해서 우리가 알고있는 쿼터니온 회전이 나오게 됨.
 
