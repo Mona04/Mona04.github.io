@@ -14,3 +14,4 @@ use_math: true
 
 ## Polar Decomposition
 
+[Paper](file:///C:/Users/dh045/Desktop/SGA/%EC%9E%90%EB%A3%8C/polar-decomp.pdf)

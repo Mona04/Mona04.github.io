@@ -1,6 +1,5 @@
 ---
 excerpt: "변수가 하나인 n차 다항식의 해를 구하는 방법"
-categories: Math
 tag: []
 use_math: true
 ---

@@ -1,7 +1,7 @@
 ---
 excerpt: "Quaternion 의 공식들, 특히 회전이 왜 그렇게 나왔는지에 대한 정리"
 categories: Math
-tag: []
+tag: [Quaternion]
 use_math: true
 ---
 
@@ -145,7 +145,7 @@ q^{2n} = (- \|\vec{v}\|^2)^n  \quad q^{2n-1} =  (-\|\vec{v}\|^{n-1})^2 q   \\ \\
   =  e^w\left(\cos{r} + \frac{\sin{r}}{r}(xi + yj + zk) \right)
   \end{multline}$$
 
-### $$\Theta$$ 와 연결
+### [Versor Form](https://en.wikipedia.org/wiki/Versor)
 
 Quaternion $$q = (0, x, y, z) = (0, \vec{v})$$ 이 있어서 $$ x^2 + y^2 + z^2 = 1 $$ 를 만족할 때
  + $$\begin{multline} 
@@ -154,6 +154,7 @@ Quaternion $$q = (0, x, y, z) = (0, \vec{v})$$ 이 있어서 $$ x^2 + y^2 + z^2 
     =  \cos{\theta}  + \sin\theta (xi + yi + zi) = \cos{\theta}  + \sin\theta \ \vec{v}
     \end{multline}$$
  + 예외인 0에서도 계산해보면 연속함수임을 알 수 있음
+ + 위를 통해 $$i$$ 에서의 Euler Formula 가 Quaternion 으로 확장됨을 확인할 수 있음.
 
 ## Quaternion and Rotation
 
@@ -217,7 +218,15 @@ $$ v = (0, \vec{v}) $$ 과 크기가 1인 $$n = (0, \vec{n}) $$  가 있어 $$\v
   + $$\vec{n_\parallel}$$ 은 앞에서 회전되고 뒤에서 원래대로 돌아가고
   + $$\vec{n_\perp}$$ 은 앞에서 회전되고 뒤에서도 회전되는데
   + 두 성분이 합해진 상태에서 한번에 처리 되는 것.
+3. 덧붙여서
+  + 쿼터니언 간 결합법칙이 성립하므로, 쿼터니언 간의 곱은 회전의 연쇄로 해석할 수 있음.
 
 ## Quaternion To Euler
 
 [이전블로그](https://moksha1905.blogspot.com//search/label/Math?updated-max=2020-07-01T13:15:0%2B09:00&max-results=1&pgno=2)
+
+## 기타
+
+#### 계산성능
+
+[Wiki](https://en.wikipedia.org/wiki/Quaternions_and_spatial_rotation#Performance_comparisons) 를 보면 회전행렬간의 체이닝은 행렬보다 효율적이지만, 벡터 회전은 행렬이 더 효율적이다.

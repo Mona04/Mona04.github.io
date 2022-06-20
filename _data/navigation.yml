@@ -76,6 +76,10 @@ navi:
         url: /Posts/Jekyll/
       - title: "Math"
         url: /Posts/Math/
+        children:
+          - title: "Numerical Method"
+            url: /Posts/Math/Numerical Method/
+
       - title: "Memo"
         url: /Posts/Memo/
       - title: "OS"

@@ -3,7 +3,7 @@ excerpt: "충돌 관련  정리"
 use_math: true
 ---
 
-## Triangle and Line
+## Triangle and Ray
 
 <details>
 <summary> 코드 </summary>
@@ -64,7 +64,7 @@ bool Math::RayTriangleIntersection(
 <summary> 설명 </summary>
 <div markdown="1">
 
-### 설명
+<br/>
 
 DirectX 예제에 [코드](https://gpgstudy.com/forum/viewtopic.php?t=9473) 가 유명한 것으로 알고 있다. 위 코드는 그건 아니고 어디서 본 코드를 약간 변형한 것이다. 이 방법은 [koreascience](http://www.koreascience.or.kr/article/JAKO201209640670424.pdf) 에서 제안한 것처럼 uv 체크만 바꿔서 평행사변형 충돌 체크로 확장 할 수도 있다.
 
@@ -72,7 +72,7 @@ DirectX 예제에 [코드](https://gpgstudy.com/forum/viewtopic.php?t=9473) 가 
 
 #### 평면과의 교점
 
-```normal``` 이 만드는 평면과 ```ray_pos``` 에서 ```ray_dir``` 방향의 반직선과의 교점을 계산한다. 교점계산은 ```normal``` 에 반직선을 투영시켜서 구하며 식은 다음과 같다.
+```normal``` 이 만드는 평면과 ```ray_pos``` 에서 ```ray_dir``` 방향의 반직선과의 교점을 계산한다. 교점계산은 평면에 반직선을 투영시켜서 구하며 식은 다음과 같다.
 
 $$ \mathrm{HitPos} = \mathrm{RayPos} + \vec{\mathrm{RayDir}} 
 \cfrac { \vec{n} \cdot \vec{ (p_0 - RayPos)} } { \vec{n} \cdot \vec{RayDir} } $$
@@ -132,3 +132,87 @@ $$ \begin{multline}
 
 
 
+## Box and Ray
+
+### Kay-Kajiya test (Slab Test)
+
+<details>
+<summary> 코드 </summary>
+<div markdown="1">
+
+{% highlight c++ %}
+
+bool CollideHelpers::Cube2Ray(const UCubeCollider* in, const Ray& ray, float& out_dist)
+{
+	if (!in) return false;
+
+	// initalize
+	const Matrix world = in->GetTransform()->GetWorldMatrix();
+	const Vector3 size = in->size * 0.5f * in->GetTransform()->GetScale();
+	const Vector3 center = in->GetTransform()->GetPosition();
+	const Vector3 axis[3] = { 
+		world.Rotate(Vector3(1, 0, 0)).Normalize(), 
+		world.Rotate(Vector3(0, 1, 0)).Normalize(), 
+		world.Rotate(Vector3(0, 0, 1)).Normalize() };
+	const Vector3 p = center - ray.pos;
+
+	float minValue = -FLT_MAX, maxValue = FLT_MAX;
+
+	// X, Y, Z 축에 대해서 수행
+	for (int i = 0; i < 3; i++)  
+	{
+		float e = Vector3::Dot(axis[i], p);
+		float f = Vector3::Dot(axis[i], ray.dir);
+		if (!Math::IsNearlyZero(f)) {
+			float t1 = (e - size[i]) / f;   // minValue
+			float t2 = (e + size[i]) / f;   // maxValue
+			if (t1 > t2) std::swap(t1, t2); // 회전에 따라 대소역전 보정
+
+			minValue = std::max(minValue, t1);
+			maxValue = std::min(maxValue, t2); 
+
+			if (minValue > maxValue) return false; // Check
+			if (maxValue < 0) return false; 
+		}
+		else if (std::abs(e) >= size[i])
+			return false;
+	}
+	
+	out_dist = minValue;
+
+	return true;
+}
+
+{% endhighlight %}
+
+</div></details>
+
+
+<details>
+<summary> 설명 </summary>
+<div markdown="1">
+
+<br/>
+
+![OBBRAY01](/Posts/Graphics/OBBRay.png)
+
+RealTime Rending 2ed 에서 소개하는 3가지 방법 중 첫번째로 많이 알려져 있다.
+
+우선 두가지 개념을 정의한다.
++ 충돌체크할 박스의 면을 연장시켜서 만든 영역을 __Slab__ 라 하자. (위 그림의 십자가 영역)
++ 박스는 서로 평행한 면이 한쌍씩 있는데, 각각에 겹치는 위치를 ```RayPos``` 부터의 길이를 기준으로 ```MinValue```, ```MaxValue``` 라고 부르자.
+
+전략은 Slab 과 Ray 가 겹치는 구간을 확인하는 것이다. 만약 박스와 충돌한다면 위 그림처럼 ```MinValue``` 들은 ```MaxValue``` 들보다 작게 된다. 이를 체크하는 것이 요지이다.
+
+#### Slab
+
+그럼 어떻게 Slab 과 Ray 간의 교점을 구할까? 사실 교점까지 구할 필요는 없고 ```RayPos``` 부터 교점까지의 길이만 구하면 된다. 그래서 OBB 처럼 Projection 을 응용하면 된다.
+
+우선 ```RayPos```부터 Box 의 Center 까지의 벡터를 구하고, 이를 Box 를 이루는 면에 투영한 길이를 구한다(내적으로 간단히 구해진다). 여기서 박스의 ```Size``` 를 더하고 빼면 Slab 을 이루는 두 면이 투영된 길이가 된다. (위 그림의 빨간선이 이를 나타내는 보조선이다.)
+
+이 길이는 삼각형의 닮을을 사용해서 ```RayDir``` 상의 길이로 바꿀 수 있다. ```RayDir``` 의 길이는 ```1``` 이므로 ```RayDir``` 을 Box 에 면에 투영한 길이를 나누면 된다. 
+
+만약 ```RayDir``` 과 면이 수직하다면 Box 의 ```Size``` 와 Center 까지의 벡터가 투영된 길이를 비교하면 된다. ```Size``` 보다 작야아지 박스 안에 있게된다.
+
+
+</div></details>
