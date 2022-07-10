@@ -1,4 +1,5 @@
 User-agent: *
 Allow: /
+Disallow: /Posts/Memo/
 
 Sitemap: https://mona04.github.io/sitemap.xml
