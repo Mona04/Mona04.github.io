@@ -4,6 +4,7 @@
 
 layout: category
 author_profile: true
+regnerate: true
 sidebar:
   nav: "navi"
 ---

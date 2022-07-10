@@ -15,8 +15,12 @@ main:
 navi:
   - title: Portfolio ★
     url: /navi-portfolios/
+  - title: Scrums ★
+    url: /Posts/Memo/Scrums/
+
   - title: "Memo"
     url: /Posts/Memo/
+
   - title: Tags
     url: /navi-tags/
     children:

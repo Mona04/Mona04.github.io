@@ -4,6 +4,7 @@
 
 layout: home
 author_profile: true
+regenerate: true
 sidebar:
   nav: "navi"
 ---

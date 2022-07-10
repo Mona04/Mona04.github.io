@@ -3,6 +3,7 @@ title: Posts by Tags for General
 layout: tag
 entries_layout: grid
 author_profile: true
+regenerate: true
 sidebar: 
   nav: "navi"
 ---

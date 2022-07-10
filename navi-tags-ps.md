@@ -3,6 +3,7 @@ title: Posts by Tags for PS
 layout: tag
 entries_layout: grid
 author_profile: true
+regenerate: true
 sidebar: 
   nav: "navi"
 ---
