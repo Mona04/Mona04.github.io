@@ -5,17 +5,22 @@ tag: [Jekyll]
 
 ## BreadCrumbs
 
-### 배치
+### 기본
 
-Jerkll 는 ```/~/_posts/posts.md``` 구성으로 되어있으면 앞부분의 디렉토리가 자동으로 Category 로 순서대로 적용됨.
+[BreadCrumbs](https://developers.google.com/search/docs/advanced/structured-data/breadcrumb)는 탐색경로라고도 불리며 SEO(Search Engine Optimization) 중에 하나로 검색을 쉽게 하기 위해 사용된다. 예를들어
+Jerkll 에서 ```/A/B/_posts/posts.md``` 가 있으면 ```A / B / post.md``` 처럼 Directory 구조를 페이지에 두는 것이다. 
 
-이러한 Directory 구조를 보여주는 부분을  Minimal Mistakes Thems 은 미리 만들어 놨음. 
+이러한 것을 Minimal Mistakes Thems 은 미리 만들어 놨다. ```Single.md``` 등을 살펴보면 아래와 같은 부분이 BreadCrumbs 가 삽입되는 부분이다.
 
 ```
 {\% include breadcrumbs.html path=page.path title=page.title %\}
 ```
 
+
+
 <br/>
+
+Linq 구문이므로 우리가 원하는 부분에 임의로 추가할 수도 있고, 해당 파일인 ```breadcrumbs.html``` 을 수정해서 커스타마이즈 할 수 있다.
 
 그 파트를 삽입처리해주는 위 코드를 Layout, Include 등의 어딘가에 추가하면 됨.
 + 개인적으로 ```page__meta.html``` 에 추가하니까 이쁘게 나왔음.
