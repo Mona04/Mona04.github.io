@@ -66,10 +66,13 @@ navi:
 
       - title: "c++"
         url: /Posts/c++/
+        children:
+          - title: "Managed CPP"
+            url: /Posts/c++/Managed CPP/
+
       - title: "c#"
         url: /Posts/c sharp/
         children:
-
           - title: "WPF"
             url: /Posts/c sharp/WPF/
 
