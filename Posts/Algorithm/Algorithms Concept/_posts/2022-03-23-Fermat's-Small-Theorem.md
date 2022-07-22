@@ -52,11 +52,13 @@ int64_t ModInv(int t, int MOD)
 
 ### [Miller-Rabin Primality Test](https://en.wikipedia.org/wiki/Miller%E2%80%93Rabin_primality_test)
 
-> 자연수 $$a$$ 와 소수 $$N=d \times 2^s+1$$, $$(a < N)$$ 에 대해서 다음의 두 식중 하나를 만족함 <br/>
+> 소수 $$N=d \times 2^s+1$$, $$(a < N),\ \text{ where } d \equiv 1 \pmod{2} \text{ and } s > 0$$ 는 자연수인 $$a$$ 에 대해 다음의 두 식중 하나를 만족함 <br/>
 > $$ a^d \equiv 1 \pmod{N} $$  <br/>
 > $$a^{d \times 2^r} \equiv -1 \pmod{N} $$ for some $$r$$, $$(0 \leq r < s)$$ 
 
-증명은 매우 간략하므로 위키를 보면 됨.
+역은 성립하지 않지만 임의의 $$a$$ 에 대해 위를 만족하지 않는 $$N$$ 은 합성수임이 보장됨. 이때의 $$a$$ 를 witness 라고 하며 witness 를 고르는 방법은 위키를 참조.
+
+증명 또한 매우 간략하므로 위키 참조.
 
 <details>
 <summary>Code</summary>
@@ -87,10 +89,10 @@ bool Miller(int n)
 		while (1)
 		{
 			int64_t at = ModPow(a, t, n);
-			if (at == n-1) break;  // s
-			if (t % 2) {
-				if (at != 1 && at != n - 1) 
-					return false;
+			if (at == n-1) break;  // mod 한 값이 -1 이므로 sqrt 끝
+			if(t%2)
+			{
+				if(at != 1) return false;
 				break;
 			}
 			t >>= 1;

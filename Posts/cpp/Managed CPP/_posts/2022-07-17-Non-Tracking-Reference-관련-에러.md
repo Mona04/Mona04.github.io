@@ -1,6 +1,6 @@
 ---
 excerpt: "simple non-tracking reference cannot be bound to an entity on the managed heap. 관련"
-tag: [c++, Json]
+tag: [c++]
 use_math: true
 ---
 

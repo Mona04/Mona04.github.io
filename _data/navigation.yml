@@ -65,17 +65,16 @@ navi:
 
 
       - title: "c++"
-        url: /Posts/c++/
+        url: /Posts/cpp/
         children:
-          - title: "Managed CPP"
-            url: /Posts/c++/Managed CPP/
+          - title: "Managed C++"
+            url: /Posts/cpp/Managed CPP/
 
       - title: "c#"
         url: /Posts/c sharp/
         children:
           - title: "WPF"
             url: /Posts/c sharp/WPF/
-
 
       - title: "Graphics"
         url: /Posts/Graphics/
