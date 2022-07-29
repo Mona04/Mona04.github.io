@@ -1,6 +1,5 @@
 ---
 excerpt: "쿼터니언의 가중평균에 대한 정리"
-categories: Math
 tag: [Quaternion]
 use_math: true
 ---

@@ -1,6 +1,5 @@
 ---
 excerpt: "Matrix Decomposition 기법들 배운대로 추가"
-categories: Math
 tag: [Math for Graphics]
 use_math: true
 ---

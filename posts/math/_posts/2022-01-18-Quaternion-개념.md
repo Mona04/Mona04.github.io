@@ -1,6 +1,5 @@
 ---
 excerpt: "Quaternion 의 공식들, 특히 회전이 왜 그렇게 나왔는지에 대한 정리"
-categories: Math
 tag: [Quaternion]
 use_math: true
 ---

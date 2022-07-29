@@ -1,6 +1,5 @@
 ---
 excerpt: "그래픽스에서 사용되는 보간에 대해서 간단한 정리"
-categories: Math
 tag: [Interpolation, Quaternion]
 use_math: true
 ---
