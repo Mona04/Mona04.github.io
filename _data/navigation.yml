@@ -54,7 +54,7 @@ navi:
             url: /posts/algorithm/leet-medium/
 
       - title: "c++"
-        url: /Posts/cpp/
+        url: /posts/cpp/
         children:
           - title: "Managed C++"
             url: /posts/cpp/managed cpp/
@@ -69,10 +69,10 @@ navi:
         url: /posts/graphics/
 
       - title: "UE4"
-        url: /Posts/ue4/
+        url: /posts/ue4/
         children:
           - title: "als"
-            url: /Posts/ue4/als/
+            url: /posts/ue4/als/
 
       - title: "Jekyll"
         url: /posts/jekyll/
@@ -83,20 +83,20 @@ navi:
             url: /posts/math/numerical method/
 
       - title: "OS"
-        url: /Posts/os/
+        url: /posts/os/
 
       - title: "System Hacking"
-        url: /Posts/system hacking/
+        url: /posts/system hacking/
 
       - title: "Book"
-        url: /posts/book/
+        url: /posts/books/
         children:
           - title: "C++PrimerPlus"
-            url: /posts/book/c++ primer plus/
+            url: /posts/books/c++ primer plus/
           - title: "UE4 Scripting with C++ Cookbook"
-            url: /posts/book/ue4 scripting with c++ cookbook/
+            url: /posts/books/ue4 scripting with c++ cookbook/
           - title: "뇌를자극하는C샵"
-            url: /posts/book/뇌를자극하는C샵/
+            url: /posts/books/뇌를자극하는C샵/
           - title: "Assential C# 6"
-            url: /posts/book/essential c sharp 6/   
+            url: /posts/books/essential csharp 6/   
 
