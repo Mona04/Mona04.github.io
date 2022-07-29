@@ -12,11 +12,11 @@ sidebar:
 <div>
 {% assign entries_layout = 'grid' %}
 {% for category in site.categories %}
-  {% if category[0] == "UE4 Scripting with C++ Cookbook"%}
+  {% if category[0] == "ue4 scripting with c++ cookbook"%}
       <h2 class="archive__subtitle">{{ category[0] }}</h2>
       <div class="entries-{{ entries_layout }}">
         {% for post in category.last %}
-          {% if post.categories.last == "UE4 Scripting with C++ Cookbook" %}
+          {% if post.categories.last == "ue4 scripting with c++ cookbook" %}
             {% include archive-single.html type=entries_layout %}
           {% endif %}
         {% endfor %}

@@ -17,12 +17,12 @@ navi:
     url: /navi-portfolios/
     children:
     - title: DX Mini Engine
-      url: /Posts/Portfolio/DX Mini Engine
+      url: /posts/portfolio/dx mini engine
     - title: Scrums
-      url: /Posts/Memo/Scrums/
+      url: /posts/memo/scrums/
 
-  - title: "Memo"
-    url: /Posts/Memo/
+  - title: "memo"
+    url: /posts/memo/
 
   - title: Tags
     url: /navi-tags/
@@ -37,73 +37,66 @@ navi:
     children:
 
       - title: "Algorithm"
-        url: /Posts/Algorithm/
+        url: /posts/algorithm/
         children:
 
           - title: "Algorithms Concept"
-            url: /Posts/Algorithm/Algorithms Concept/
+            url: /posts/algorithm/algorithms concept/
           - title: "BOJ-Gold"
-            url: /Posts/Algorithm/BOJ-Gold/
+            url: /posts/algorithm/boj-gold/
           - title: "BOJ-Silver"
-            url: /Posts/Algorithm/BOJ-Silver/
+            url: /posts/algorithm/boj-silver/
           - title: "BOJ-Platinum"
-            url: /Posts/Algorithm/BOJ-Platinum/
+            url: /posts/algorithm/boj-platinum/
           - title: "BOJ-Diamond"
-            url: /Posts/Algorithm/BOJ-Diamond/
+            url: /posts/algorithm/boj-diamond/
           - title: "Leet-Medium"
-            url: /Posts/Algorithm/Leet-Medium/
-
-      - title: "Book"
-        url: /Posts/Book/
-        children:
-
-          - title: "C++PrimerPlus"
-            url: /Posts/Book/C++PrimerPlus/
-          - title: "UE4 Scripting with C++ Cookbook"
-            url: /Posts/Book/UE4 Scripting with C++ Cookbook/
-          - title: "뇌를자극하는C샵"
-            url: /Posts/Book/뇌를자극하는C샵/
-          - title: "Assential C# 6"
-            url: /Posts/Book/Essential C sharp 6/   
-
+            url: /posts/algorithm/leet-medium/
 
       - title: "c++"
         url: /Posts/cpp/
         children:
           - title: "Managed C++"
-            url: /Posts/cpp/Managed CPP/
+            url: /posts/cpp/managed cpp/
 
       - title: "c#"
-        url: /Posts/c sharp/
+        url: /posts/c sharp/
         children:
           - title: "WPF"
-            url: /Posts/c sharp/WPF/
+            url: /posts/c sharp/wpf/
 
       - title: "Graphics"
-        url: /Posts/Graphics/
+        url: /posts/graphics/
+
+      - title: "UE4"
+        url: /Posts/ue4/
+        children:
+          - title: "als"
+            url: /Posts/ue4/als/
+
       - title: "Jekyll"
-        url: /Posts/Jekyll/
+        url: /posts/jekyll/
       - title: "Math"
-        url: /Posts/Math/
+        url: /posts/math/
         children:
           - title: "Numerical Method"
-            url: /Posts/Math/Numerical Method/
+            url: /posts/math/numerical method/
 
-      - title: "Memo"
-        url: /Posts/Memo/
       - title: "OS"
-        url: /Posts/OS/
+        url: /Posts/os/
 
       - title: "System Hacking"
-        url: /Posts/System Hacking/
-      - title: "UE4"
-        url: /Posts/UE4/
+        url: /Posts/system hacking/
+
+      - title: "Book"
+        url: /posts/book/
         children:
-
-          - title: "ALS"
-            url: /Posts/UE4/ALS/
-
-
-
-
+          - title: "C++PrimerPlus"
+            url: /posts/book/c++ primer plus/
+          - title: "UE4 Scripting with C++ Cookbook"
+            url: /posts/book/ue4 scripting with c++ cookbook/
+          - title: "뇌를자극하는C샵"
+            url: /posts/book/뇌를자극하는C샵/
+          - title: "Assential C# 6"
+            url: /posts/book/essential c sharp 6/   
 

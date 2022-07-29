@@ -11,11 +11,11 @@ sidebar:
 <div>
 {% assign entries_layout = 'grid' %}
 {% for category in site.categories %}
-  {% if category[0] == "DX Mini Engine"%}
+  {% if category[0] == "dx mini engine"%}
       <h2 class="archive__subtitle">{{ category[0] }}</h2>
       <div class="entries-{{ entries_layout }}">
         {% for post in category.last %}
-          {% if post.categories.last == "DX Mini Engine" %}
+          {% if post.categories.last == "dx mini engine" %}
             {% include archive-single.html type=entries_layout %}
           {% endif %}
         {% endfor %}
