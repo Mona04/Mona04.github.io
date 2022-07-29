@@ -1,6 +1,5 @@
 ---
 excerpt: "Advanced Locomotion System V4 분석 - IK Layer, Overlay Layer"
-categories: UE4
 tag: [UE4]
 ---
 ## Overlay Layer
