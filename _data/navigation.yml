@@ -15,8 +15,11 @@ main:
 navi:
   - title: Portfolio ★
     url: /navi-portfolios/
-  - title: Scrums ★
-    url: /Posts/Memo/Scrums/
+    children:
+    - title: DX Mini Engine
+      url: /Posts/Portfolio/DX Mini Engine
+    - title: Scrums
+      url: /Posts/Memo/Scrums/
 
   - title: "Memo"
     url: /Posts/Memo/
