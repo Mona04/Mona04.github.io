@@ -1,6 +1,5 @@
 ---
 excerpt: "Modular Assets can make weird shadows after Light Build. How to fix? "
-categories: UE4
 tag: [UE4]
 ---
 

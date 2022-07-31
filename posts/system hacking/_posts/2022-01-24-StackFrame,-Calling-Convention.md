@@ -1,6 +1,5 @@
 ---
 excerpt: "Stack Frame 와 Calling Convention"
-categories: [c++]
 tag: [c++, thread]
 use_math: true
 ---

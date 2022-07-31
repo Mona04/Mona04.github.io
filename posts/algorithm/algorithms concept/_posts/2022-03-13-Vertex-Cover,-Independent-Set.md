@@ -1,6 +1,5 @@
 ---
 excerpt: "최대 독립 집합, 최소 버텍스 커버"
-categories: Algorithm
 tag: [PS. Graph, PS. Network Flow]
 use_math: true
 ---

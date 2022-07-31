@@ -1,6 +1,5 @@
 ---
 excerpt: "Curve Tip"
-categories: UE4
 tag: [UE4]
 ---
 

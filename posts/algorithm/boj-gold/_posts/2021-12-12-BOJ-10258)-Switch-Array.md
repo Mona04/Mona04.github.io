@@ -1,6 +1,5 @@
 ---
 excerpt: "발상이 어려운 문제"
-categories: Algorithm
 tag: [PS. 능지]
 use_math: true
 ---

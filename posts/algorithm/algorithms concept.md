@@ -16,9 +16,7 @@ sidebar:
       <h2 class="archive__subtitle">{{ category[0] }}</h2>
       <div class="entries-{{ entries_layout }}">
         {% for post in category.last %}
-          {% if post.categories.last == "algorithms concept" %}
             {% include archive-single.html type=entries_layout %}
-          {% endif %}
         {% endfor %}
       </div>
       <a href="#page-title" class="back-to-top">{{ site.data.ui-text[site.locale].back_to_top | default: 'Back to Top' }} &uarr;</a>

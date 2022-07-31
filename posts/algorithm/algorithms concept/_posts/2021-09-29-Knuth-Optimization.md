@@ -1,6 +1,5 @@
 ---
 excerpt: "Cycle 찾기"
-categories: Algorithm
 tag: [PS. Knuth Optimization]
 use_math: true
 ---

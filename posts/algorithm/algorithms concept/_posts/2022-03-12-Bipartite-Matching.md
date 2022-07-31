@@ -1,6 +1,5 @@
 ---
 excerpt: "이분매칭"
-categories: Algorithm
 tag: [PS. Network Flow]
 use_math: true
 ---

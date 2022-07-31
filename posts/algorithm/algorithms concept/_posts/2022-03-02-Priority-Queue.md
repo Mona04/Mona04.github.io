@@ -1,6 +1,5 @@
 ---
 excerpt: "우선순위 큐"
-categories: Algorithm
 tag: [PS. Data Structure]
 use_math: true
 ---

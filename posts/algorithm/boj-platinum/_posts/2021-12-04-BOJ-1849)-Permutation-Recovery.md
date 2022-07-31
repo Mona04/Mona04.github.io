@@ -1,6 +1,5 @@
 ---
 excerpt: "간단한 응용문제"
-categories: Algorithm
 tag: [PS. Segment Tree]
 use_math: true
 ---

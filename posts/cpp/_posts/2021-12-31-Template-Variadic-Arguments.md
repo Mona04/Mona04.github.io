@@ -1,6 +1,5 @@
 ---
 excerpt: "가변인자 템플릿"
-categories: c++
 tag: [c++, thread]
 use_math: true
 ---

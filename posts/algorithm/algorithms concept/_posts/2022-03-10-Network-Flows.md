@@ -1,6 +1,5 @@
 ---
 excerpt: "최대 유량 문제를 위한 이론과 알고리즘"
-categories: Algorithm
 tag: [PS. Network Flow]
 use_math: true
 ---

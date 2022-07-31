@@ -15,11 +15,7 @@ sidebar:
   {% if category[0] == "boj-silver"%}
       <h2 class="archive__subtitle">{{ category[0] }}</h2>
       <div class="entries-{{ entries_layout }}">
-        {% for post in category.last %}
-          {% if post.categories.last == "boj-silver" %}
-            {% include archive-single.html type=entries_layout %}
-          {% endif %}
-        {% endfor %}
+        {% include archive-single.html type=entries_layout %}
       </div>
       <a href="#page-title" class="back-to-top">{{ site.data.ui-text[site.locale].back_to_top | default: 'Back to Top' }} &uarr;</a>
   {% endif %}

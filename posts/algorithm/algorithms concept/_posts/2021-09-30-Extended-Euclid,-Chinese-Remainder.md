@@ -1,6 +1,5 @@
 ---
 excerpt: "확장 유클리드, 중국인의 나머지 정리"
-categories: Algorithm
 tag: [PS. 정수론]
 use_math: true
 ---

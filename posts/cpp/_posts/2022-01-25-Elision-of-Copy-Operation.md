@@ -1,6 +1,5 @@
 ---
 excerpt: "임시객체를 복사생성자로 쓸 때의 주의점"
-categories: c++
 tag: [c++]
 use_math: true
 ---

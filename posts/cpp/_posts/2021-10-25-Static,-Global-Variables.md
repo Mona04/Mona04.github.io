@@ -1,6 +1,5 @@
 ---
 excerpt: "c++ 의 전역/정적 변수의 초기화에 대해서"
-categories: c++
 tag: [c++]
 use_math: true
 ---

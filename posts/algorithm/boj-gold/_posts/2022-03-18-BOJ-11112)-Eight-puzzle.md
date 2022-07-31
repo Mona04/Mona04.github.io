@@ -1,6 +1,5 @@
 ---
 excerpt: "전처리 안하면 빡센 문제"
-categories: Algorithm
 tag: [PS. Graph]
 use_math: true
 ---

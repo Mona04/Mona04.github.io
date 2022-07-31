@@ -1,6 +1,5 @@
 ---
 excerpt: "Memcpy, Memmove, std::Copy 의 차이점"
-categories: c++
 tag: [c++]
 use_math: true
 ---

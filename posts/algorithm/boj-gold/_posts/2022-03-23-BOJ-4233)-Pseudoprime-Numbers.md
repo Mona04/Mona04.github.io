@@ -1,6 +1,5 @@
 ---
 excerpt: "페르마의 소정리에서 유사소수 판별"
-categories: Algorithm
 tag: [PS. 정수론]
 use_math: true
 ---

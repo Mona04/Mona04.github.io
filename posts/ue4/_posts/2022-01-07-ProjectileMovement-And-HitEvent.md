@@ -1,6 +1,5 @@
 ---
 excerpt: "Projectile Movement and Hit Event"
-categories: UE4
 tag: [UE4]
 ---
 

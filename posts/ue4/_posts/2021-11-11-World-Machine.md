@@ -1,6 +1,5 @@
 ---
 excerpt: "World Machine 에서 Height Map 뽑아서 UE4 에 적용시키기"
-categories: UE4
 tag: [UE4]
 ---
 
