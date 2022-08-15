@@ -1,8 +1,8 @@
 ---
 excerpt: "MiniGame using Cpp Console. This is rather a test for other Portfolios."
 header:
-  teaser: /Posts/Portfolio/Cpp-Console-MiniGame/screenshot2.png
-  overlay_image: /Posts/Portfolio/Cpp-Console-MiniGame/screenshot.png
+  teaser: /posts/portfolio/cpp-console-minigame/screenshot2.png
+  overlay_image: /posts/portfolio/cpp-console-minigame/screenshot.png
   image_description: "In Game Capture."
   actions:
     - label: "Github Repository"
@@ -15,11 +15,11 @@ read_time: false
 
 ## Description
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/cJxZkF73nAk" frameborder="0" allowfullscreen></iframe>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/dJTqeGCJy8k" frameborder="0" allowfullscreen></iframe>
 
 <br/>
 
-[![Technical Documentation](/Posts/Portfolio/Cpp-Console-MiniGame/MiniGame-TD.png)](/Posts/Portfolio/Cpp-Console-MiniGame/MiniGame-TD.pdf){:target="_blank"}
+[![Technical Documentation](/posts/portfolio/cpp-console-miniGame/MiniGame-TD.png)](/posts/portfolio/cpp-console-miniGame/MiniGame-TD.pdf){:target="_blank"}
 
 <br/>
 

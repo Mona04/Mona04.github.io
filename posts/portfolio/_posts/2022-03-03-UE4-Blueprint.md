@@ -1,8 +1,8 @@
 ---
 excerpt: "UE4 Toy Game using Blueprint only."
 header:
-  teaser: /Posts/Portfolio/UE4-Blueprint/screenshot2.png
-  overlay_image: /Posts/Portfolio/UE4-Blueprint/screenshot.png
+  teaser: /posts/portfolio/ue4-blueprint/screenshot2.png
+  overlay_image: /posts/portfolio/ue4-blueprint/screenshot.png
   image_description: "In Game Capture."
 use_math: true
 read_time: false
@@ -14,7 +14,7 @@ read_time: false
 
 <br/>
 
-[![Technical Documentation](/Posts/Portfolio/UE4-Blueprint/TechDoc.png)](/Posts/Portfolio/UE4-Blueprint/TechDoc.pdf){:target="_blank"}
+[![Technical Documentation](/posts/portfolio/ue4-blueprint/TechDoc.png)](/posts/portfolio/ue4-blueprint/TechDoc.pdf){:target="_blank"}
 
 
 

@@ -1,8 +1,8 @@
 ---
 excerpt: "DirectX Project. Plan to make Unreal like results"
 header:
-  teaser: /Posts/Portfolio/DirectX/screenshot2.png
-  overlay_image: /Posts/Portfolio/DirectX/screenshot.png
+  teaser: /posts/portfolio/directX/screenshot2.png
+  overlay_image: /posts/portfolio/directX/screenshot.png
   image_description: "In Game Capture."
   actions:
     - label: "Github Repository"
@@ -14,7 +14,7 @@ read_time: false
 ## Description
 
 
-[![Technical Documentation](/Posts/Portfolio/DirectX/TechDoc.png)](/Posts/Portfolio/DirectX/TechDoc.pdf)
+[![Technical Documentation](/posts/portfolio/directX/TechDoc.png)](/posts/portfolio/directX/TechDoc.pdf)
 
 
 ## Work Records
