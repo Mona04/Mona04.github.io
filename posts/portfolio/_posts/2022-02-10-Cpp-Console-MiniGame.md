@@ -19,7 +19,7 @@ read_time: false
 
 <br/>
 
-[![Technical Documentation](/posts/portfolio/cpp-console-miniGame/MiniGame-TD.png)](/posts/portfolio/cpp-console-miniGame/MiniGame-TD.pdf){:target="_blank"}
+[![Technical Documentation](/posts/portfolio/cpp-console-minigame/MiniGame-TD.png)](/posts/portfolio/cpp-console-minigame/MiniGame-TD.pdf){:target="_blank"}
 
 <br/>
 
