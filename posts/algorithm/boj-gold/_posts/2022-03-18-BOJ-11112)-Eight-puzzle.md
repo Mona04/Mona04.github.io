@@ -1,110 +1,17 @@
 ---
-excerpt: "전처리 안하면 빡센 문제"
+excerpt: "백준 11112. 전처리 안하면 빡센 문제"
 tag: [PS. Graph]
 use_math: true
 ---
 
 ## 문제
 
-[문제 사이트](https://www.acmicpc.net/problem/11112)
-
-### 코드
-
-{% highlight c++ %}
-
-struct E {
-	int g;
-	char state[9]; int void_p;
-};
-
-using Q = queue<E>;
-char dest[9] = { '1', '2', '3', '4', '5', '6', '7', '8', '0' }; int64_t dest_code;
-unordered_map<uint64_t, int> visitTB;
-
-uint64_t Encode(char* s)
-{
-	int res = 0;
-	for (int i = 0, e = 1; i < 9; i++, e *= 10)
-		res += e * (s[i] - '0');
-	return res;
-}
-
-void Insert(Q& q, E& prev, E& cur, int t, int64_t prev_code)
-{
-	swap(cur.state[prev.void_p + t], cur.state[prev.void_p]);
-	int code = Encode(cur.state);
-	if (visitTB.find(code) == visitTB.end())
-	{
-		cur.void_p += t; cur.g = prev.g + 1; 
-		q.push(cur);
-		cur.void_p -= t; cur.g = prev.g; 
-	}
-	swap(cur.state[prev.void_p + t], cur.state[prev.void_p]);
-}
-
-void BFS(E& start)
-{
-	Q q;
-	q.push(start);
-
-	while (!q.empty())
-	{
-		E cur = q.front(); q.pop();
-		int64_t cur_code = Encode(cur.state);
-		if (visitTB.find(cur_code) != visitTB.end()) continue;
-		visitTB[cur_code] = cur.g;
-
-		int x = cur.void_p % 3;
-		int y = cur.void_p / 3;
-		E tmp = cur;
-		if (x > 0) Insert(q, cur, tmp, -1, cur_code);
-		if (x < 2) Insert(q, cur, tmp, 1, cur_code);
-		if (y > 0) Insert(q, cur, tmp, -3, cur_code);
-		if (y < 2) Insert(q, cur, tmp, 3, cur_code);
-	}
-}
-
-int main()
-{
-	fastio;
-
-	int T;
-	cin >> T;
-
-	dest_code = Encode(dest);
-	E start;
-	start.g = 0; start.void_p = 8;
-	copy(dest, dest + 9, start.state);
-	BFS(start);
-    
-	while (T--)
-	{
-		for (int i = 0; i < 9; i++)
-		{
-			cin >> start.state[i];
-			if (start.state[i] == '#')
-				start.state[i] = '0';
-		}
-		auto iter = visitTB.find(Encode(start.state));
-		if (iter != visitTB.end()) cout << iter->second << '\n';
-		else cout << "impossible\n";
-	}
-}
-
-{% endhighlight %}
-
-### 시간 복잡도
-
-O($$9!$$)
-
-그냥 대충 9칸 짜리 조합으로 계산했음.
-
-실제로는 더 작을 것임.
+[백준 11112](https://www.acmicpc.net/problem/11112)
 
 
 ### 설명
 
- 테스트 케이스마다 거리 계산하면 망함., 가능한 모든 경우가 많지 않으므로, 모든 경우에 대해서 가장 짧은 거리를 구해놓고, 테스트 케이스마다 한번에 확인하는 방식으로 처리해야함.
+ 테스트 케이스마다 거리 계산하면 망함. 가능한 모든 경우가 많지 않으므로, 모든 경우에 대해서 가장 짧은 거리를 구해놓고, 테스트 케이스마다 한번에 확인하는 방식으로 처리해야함.
 
  사실 이 문제를 기록하는 이유는 [다른 블로그](https://ddae9.tistory.com/8) 에서 본 Priority Queue + Failed Cases 의 아이디어 때문임. 각각의 최적화가 독립적으로 시행되었을 경우는 TLE 가 나지만, 동시에 처리되었을 경우는 통과함. 
  
@@ -220,3 +127,100 @@ int main()
 
 {% endhighlight %}
 </details>
+
+
+
+### 시간 복잡도
+
+O($$9!$$)
+
+그냥 대충 9칸 짜리 조합으로 계산했음.
+
+실제로는 더 작을 것임.
+
+
+
+### 코드
+
+{% highlight c++ %}
+
+struct E {
+	int g;
+	char state[9]; int void_p;
+};
+
+using Q = queue<E>;
+char dest[9] = { '1', '2', '3', '4', '5', '6', '7', '8', '0' }; int64_t dest_code;
+unordered_map<uint64_t, int> visitTB;
+
+uint64_t Encode(char* s)
+{
+	int res = 0;
+	for (int i = 0, e = 1; i < 9; i++, e *= 10)
+		res += e * (s[i] - '0');
+	return res;
+}
+
+void Insert(Q& q, E& prev, E& cur, int t, int64_t prev_code)
+{
+	swap(cur.state[prev.void_p + t], cur.state[prev.void_p]);
+	int code = Encode(cur.state);
+	if (visitTB.find(code) == visitTB.end())
+	{
+		cur.void_p += t; cur.g = prev.g + 1; 
+		q.push(cur);
+		cur.void_p -= t; cur.g = prev.g; 
+	}
+	swap(cur.state[prev.void_p + t], cur.state[prev.void_p]);
+}
+
+void BFS(E& start)
+{
+	Q q;
+	q.push(start);
+
+	while (!q.empty())
+	{
+		E cur = q.front(); q.pop();
+		int64_t cur_code = Encode(cur.state);
+		if (visitTB.find(cur_code) != visitTB.end()) continue;
+		visitTB[cur_code] = cur.g;
+
+		int x = cur.void_p % 3;
+		int y = cur.void_p / 3;
+		E tmp = cur;
+		if (x > 0) Insert(q, cur, tmp, -1, cur_code);
+		if (x < 2) Insert(q, cur, tmp, 1, cur_code);
+		if (y > 0) Insert(q, cur, tmp, -3, cur_code);
+		if (y < 2) Insert(q, cur, tmp, 3, cur_code);
+	}
+}
+
+int main()
+{
+	fastio;
+
+	int T;
+	cin >> T;
+
+	dest_code = Encode(dest);
+	E start;
+	start.g = 0; start.void_p = 8;
+	copy(dest, dest + 9, start.state);
+	BFS(start);
+    
+	while (T--)
+	{
+		for (int i = 0; i < 9; i++)
+		{
+			cin >> start.state[i];
+			if (start.state[i] == '#')
+				start.state[i] = '0';
+		}
+		auto iter = visitTB.find(Encode(start.state));
+		if (iter != visitTB.end()) cout << iter->second << '\n';
+		else cout << "impossible\n";
+	}
+}
+
+{% endhighlight %}

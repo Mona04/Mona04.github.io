@@ -169,9 +169,11 @@ int main()
 
 #### 설명
 
-> $${}_m \mathrm{C}_{n} \pmod {p} $$ 를 구한다면 $$p$$ 진법으로 $$m$$, $$n$$ 를 다음과 같이 나타낼 수 있고  <br/> <br/>
+> $${}_m \mathrm{C}_{n} \pmod {p} $$ 를 구할 때, $$p$$ 진법으로 $$m$$, $$n$$ 를 다음과 같이 나타낼 수 있으면  <br/> <br/>
 > $$m = m_{k}p^k + m_{k-1}p^{k-1} + m_{k-2}p^{k-2} + \dots + m_{1}p + m_0$$  <br/>
-> $$n = n_{k}p^k + n_{k-1}p^{k-1} + n_{k-2}p^{k-2} + \dots + n_{1}p + n_0$$  <br/> <br/>
+> $$n = n_{k}p^k + n_{k-1}p^{k-1} + n_{k-2}p^{k-2} + \dots + n_{1}p + n_0$$  <br/>
+> $$( m_i \geq n_i \text{ and } 0 \leq i \leq k )$$  <br/>
+> <br/> 
 > $$_m \mathrm{C}_{n} \equiv \prod_{i=0}^{r} { _{m_i} \mathrm{C}_{n_i} } \pmod {p} $$ 가 성립함.
 
 $$ _m \mathrm{C}_{n}$$ 을 구하는데 $$m$$ 이 매우 큰 수이면 Factorial 을 못돌릴 수 없게 됨. 
@@ -181,43 +183,53 @@ $$ _m \mathrm{C}_{n}$$ 을 구하는데 $$m$$ 이 매우 큰 수이면 Factorial
 
 #### 증명 메모
 
-$$ \sum_{n=0}^{m} { \left(  _{m}\mathrm{C}_{n}  x^n  \right) } \equiv
-\prod_{i=0}^{k}{(1 + x^{p^i})^{m_i} }  \equiv 
+> Lemma 1. $$ \quad (1+x)^{p^m} \equiv 1 + x^{p^m}  \pmod{p}$$
+
+$$\binom{m}{n}$$ 은 모두 $$m$$ 의 배수꼴이므로 $$\binom{p^m}{n}$$ 은 $$p$$ 로 나누어 떨어진다.
+
+> Step 1. $$\begin{multline} \\ \shoveleft
+ \sum_{n=0}^{m} { \left(  _{m}\mathrm{C}_{n}  x^n  \right) } \equiv
+\prod_{i=0}^{k}{((1 + x)^{m_i})^{p^i} }  \equiv 
+\prod_{i=0}^{k} { \sum_{n_i = 0}^{m_i} { _{m_i}\mathrm{C}_{n_i} x^{n_i p^i} }  } 
+\pmod{p}  \end{multline}$$
+
+이항정리와 Lemma 1 을 통해 쉽게 도출할 수 있다.
+
+> Step 2. $$\begin{multline} \\ \shoveleft
 \prod_{i=0}^{k} { \sum_{n_i = 0}^{m_i} { _{m_i}\mathrm{C}_{n_i} x^{n_i p^i} }  } \equiv
 \sum_{n=0}^{m} { \left(  \prod_{i=0}^{k} {  _{m_i}\mathrm{C}_{n_i}  } \right) x^n}
-\pmod{p}  $$
+\pmod{p}  \end{multline} $$
 
-[위키](https://ko.wikipedia.org/wiki/%EB%A4%BC%EC%B9%B4%EC%9D%98_%EC%A0%95%EB%A6%AC)에서 다른건 다 이해가 되는데 두군데 막혔던 부분이 있었다.
+[위키](https://ko.wikipedia.org/wiki/%EB%A4%BC%EC%B9%B4%EC%9D%98_%EC%A0%95%EB%A6%AC)에서 다른건 다 이해가 되는데 막혔던 부분이 이곳이다.
+
 
 ##### $$n_i$$ 에 대해서
 
-세번째 등호가 문제인데
 + $$m_i$$ 는 $$m$$ 에 따라 정해진 상수인데 위 식의 $$n$$ 과 $$n_i$$ 는 그렇지 않다.
 + $$n$$ 을 $$p$$ 진법으로 나타낼 때의 $$n_i$$ 는 위 식에서의 $$n_i$$ 과 같은건가?
 
 편한 이해를 위해 예를들어 $$m=11, n=6, p = 7$$ 이라 생각해보자.
 
-$$\begin{multline} \shoveleft \prod_{i=0}^{k}{(1 + x^{p^i})^{m_i} }  \equiv  
+$$\begin{multline} \shoveleft 
+\prod_{i=0}^{k}{((1 + x)^{m_i})^{p^i} }  \equiv  
 \sum_{n_1 = 0}^{1} { _{m_1}\mathrm{C}_{n_1} x^{n_1 p^1} }  \times 
 \sum_{n_0 = 0}^{4} { _{m_0}\mathrm{C}_{n_0} x^{n_0 p^0} } 
 \pmod{p} 
 \end{multline}$$ 
 
-위처럼 나타낼 수 있으며 $$x$$ 의 임의의 승수 $$x^i$$ 는 다음처럼 나타낼 수 있다. 
+위처럼 나타낼 수 있으며 $$x^i$$ 의 계수를 $$a_i(x)$$ 라고 하면 다음처럼 나타낼 수 있다. 
 
 $$\begin{multline} \shoveleft
-x^0 \equiv  {} _{m_1}\mathrm{C}_{0} x^{0 p^1} \times {}_{m_0}\mathrm{C}_{0} x^{0 p^0} \pmod{7} \\  \shoveleft
-x^1 \equiv  {} _{m_1}\mathrm{C}_{0} x^{0 p^1} \times {}_{m_0}\mathrm{C}_{1} x^{1 p^0} \pmod{7} \\ \shoveleft
-x^2 \equiv  {} _{m_1}\mathrm{C}_{0} x^{0 p^1} \times {}_{m_0}\mathrm{C}_{2} x^{2 p^0} \pmod{7} \\  \shoveleft
+a_0(x)x^0 \equiv  {} _{m_1}\mathrm{C}_{0} x^{0 p^1} \times {}_{m_0}\mathrm{C}_{0} x^{0 p^0} \pmod{7} \\  \shoveleft
+a_1(x)x^1 \equiv  {} _{m_1}\mathrm{C}_{0} x^{0 p^1} \times {}_{m_0}\mathrm{C}_{1} x^{1 p^0} \pmod{7} \\ \shoveleft
+a_2(x)x^2 \equiv  {} _{m_1}\mathrm{C}_{0} x^{0 p^1} \times {}_{m_0}\mathrm{C}_{2} x^{2 p^0} \pmod{7} \\  \shoveleft
 \dots \\ \shoveleft
-x^{11} \equiv  {} _{m_1}\mathrm{C}_{1} x^{1 p^1} \times {}_{m_0}\mathrm{C}_{4} x^{4 p^0} \pmod{7} \\  \shoveleft
+a_{11}(x)x^{11} \equiv  {} _{m_1}\mathrm{C}_{1} x^{1 p^1} \times {}_{m_0}\mathrm{C}_{4} x^{4 p^0} \pmod{7} \\  \shoveleft
 \end{multline}$$ 
 
 이처럼 각 $$x^i$$ 를 구하려면 시그마마다 하나씩 꺼내서 곱해야한다. 이때 $$n$$ 이 정해졌다면 각 시그마마다 $$n_i$$ 는 오직 하나이다. 
 
 이런 이유로 $$n$$ 을 $$p$$ 진법을 나태낼 때 쓰인 $$n_i$$ 와 연결이 되는 것이다.
-
-
 
 ##### $$m_i < n_i$$ 의 경우는?
 
@@ -225,9 +237,9 @@ x^{11} \equiv  {} _{m_1}\mathrm{C}_{1} x^{1 p^1} \times {}_{m_0}\mathrm{C}_{4} x
 
 불가능하다. $$m_0 = 4 $$ 라서 범위를 초과하기 때문이다. 
 
-이런 경우는 존재하지 않지만 항등식이 성립해야하므로 $$0$$ 이다.
+하지만 Step 1. 에서 $$a_5(x) \equiv 0 \pmod{7}$$ 임이 보장이 된다.
 
-__즉 $$m_i < n_i$$ 의 경우는 $$_m \mathrm{C}_n \equiv 0 \pmod{p}$$ 이다.__
+그래서 __$$m_i < n_i$$ 의 경우는 $$_m \mathrm{C}_n \equiv 0 \pmod{p}$$ 으로 처리하면 된다.__
 
 
 #### 시간 복잡도
