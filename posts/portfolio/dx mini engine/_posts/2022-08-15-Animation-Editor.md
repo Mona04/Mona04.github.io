@@ -1,6 +1,7 @@
 ---
 excerpt: "Animation Editor and WPF Timelines"
 header:
+  teaser: https://img.youtube.com/vi/Lpcw5k8PHvI/0.jpg
 tags: [WPF]
 
 use_math: true

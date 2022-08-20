@@ -1,6 +1,8 @@
 ---
 excerpt: "DirectX Skeletal Tree View Implement"
 header:
+  teaser: https://img.youtube.com/vi/YBjxSsIhaJU/0.jpg
+tags: [WPF, DirectX]
 
 use_math: true
 ---

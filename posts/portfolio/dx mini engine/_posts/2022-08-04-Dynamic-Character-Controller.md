@@ -1,6 +1,7 @@
 ---
 excerpt: "Bullet Physics Dynmaic Character Controller"
 header:
+  teaser: https://img.youtube.com/vi/kqn6-0zCNJs/0.jpg
 tags: [bullet]
 
 use_math: true
