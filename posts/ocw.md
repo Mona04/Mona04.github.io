@@ -9,16 +9,16 @@ sidebar:
   nav: "navi"
 ---
 
+Open Course Ware 을 듣고 공부한 것을 메모하는 공간입니다.
+
 <div>
 {% assign entries_layout = 'grid' %}
 {% for category in site.categories %}
-  {% if category[0] == "boj-silver"%}
+  {% if category[0] == "ocw"%}
       <h2 class="archive__subtitle">{{ category[0] }}</h2>
       <div class="entries-{{ entries_layout }}">
         {% for post in category.last %}
-          {% if post.categories.last == "boj-silver" %}
-            {% include archive-single.html type=entries_layout %}
-          {% endif %}
+            {% include archive-single.html type=entries_layout %}          
         {% endfor %}
       </div>
       <a href="#page-title" class="back-to-top">{{ site.data.ui-text[site.locale].back_to_top | default: 'Back to Top' }} &uarr;</a>

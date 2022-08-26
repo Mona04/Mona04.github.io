@@ -53,6 +53,12 @@ navi:
           - title: "Leet-Medium"
             url: /posts/algorithm/leet-medium/
 
+      - title: "ocw"
+        url: /posts/ocw/
+        children:
+          - title: "통신이론"
+            url: /posts/ocw/communication theory/
+
       - title: "c++"
         url: /posts/cpp/
         children:
