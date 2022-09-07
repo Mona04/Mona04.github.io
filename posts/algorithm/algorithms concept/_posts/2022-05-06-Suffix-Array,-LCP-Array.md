@@ -1,6 +1,6 @@
 ---
 excerpt: "Suffix Array and Longest Common Prefix Array"
-tag: [PS. String, PS. LCP]
+tag: [PS. String, PS. Suffix/LCP Array]
 use_math: true
 ---
 
@@ -152,7 +152,8 @@ struct SuffixArray
 			swap(tmp, rk);
 		}
 	
-		//Kasai Algorithms
+		// Kasai Algorithms
+		// 여기서는 len 이 1 인경우 rank 가 알파벳 오프셋이 되어 작동하지 않음에 주의
 		int num = 0;
 		for (int i = 0; i < len; i++)
 		{
@@ -231,7 +232,11 @@ for (int i = 0; i < len; i++)
 <div markdown="1">
 <br/>
 
-먼저 가장 긴 Suffix 부터 계산해서 그것의 LCP 인 ```lcp[0]``` 을 구한다. 만약 ```lcp[0]``` 이 0보다 크다면 그것보다 바로 다음으로 긴 Suffix 의 LCP 인 ```lcp[1]``` 은 무조건 ```lcp[0]-1``` 보다 같거나 크다. 예를들어 ```"abcabbc"``` 에서 Suffix Array 를 구하면 다음과 같다.
+```lcp[]``` 는  ```sa[i]``` 와 ```sa[i-1]``` 간의 LCP 를 저장한다. 
+
+작동하는 방식은 다음과 같다. 먼저 가장 긴 Suffix 부터 계산해서 그것의 LCP 를 구한다. 이 값을 ```A``` 라고 하자. 만약 ```A``` 가 0 보다 크다면 그것보다 바로 다음으로 긴 Suffix 는 ```A-1``` 보다 같거나 크다. 이를 고려해 다음 문자열 비교는 ```max(A-1, 0)``` 번째 문자부터 수행한다.
+
+ 이해를 돕기위해 예를들어 ```"abcabbc"``` 에서 Suffix Array 를 구하면 다음과 같다.
 
 ```
 abbc
@@ -243,7 +248,7 @@ c
 cabbc
 ```
 
-여기서 ```lcp[0]``` 은 ```"abcabbc"``` 와 ```"abbc"``` 의 공통부분인 ```len("ab")``` 가 된다. 그럼 ```lcp[1]``` 는 전 Suffix 의 앞글자만 뺀 ```"bcabbc"``` 와 ```"bbc"``` 가 기본적으로 존재하므로 ```len("ab")-1``` 보다 무조건 같거나 크게 된다. 위의 경우 이보다 Prefix 가 더 긴 "bc" 가 존재하므로 ```lcp[1] =len("bc")``` 가 된다.  
+여기서 처음 구한 ```A``` 은 ```"abcabbc"``` 와 ```"abbc"``` 의 공통부분인 ```len("ab")``` 가 된다. 그런데 전 Suffix 의 앞글자만 뺀 ```"bcabbc"``` 와 ```"bbc"``` 도 Suffix 이다. 그래서 다음 순서인 ```"bcabbc"``` 의 LCP 는 ```len("ab")-1``` 보다 무조건 같거나 크다. 이 예제에는 그 사이에 다른 Suffix 가 있어서 LCP 가 이보다 더 긴 ```len("bc")``` 가 된다.
 
 이러한 LCP 값을 추적하는 ```num``` 은 최고 $$2\mathrm{N}$$ 을 넘어서 증가 감소할 수 없으므로 시간복잡도는 O($$\mathrm{N}$$) 이 된다.
 

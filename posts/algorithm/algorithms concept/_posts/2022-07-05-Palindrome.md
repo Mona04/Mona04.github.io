@@ -67,9 +67,8 @@ int main()
 const int MAXIN = 2501;
 char in[MAXIN * 2]; int n;
 int dp[MAXIN*2];
-int dp2[MAXIN];
 
-void Mancher()
+void Manacher()
 {
 	int r = 0, p = 0;
 	for(int i = 0; i < n; i++)
@@ -97,7 +96,9 @@ void Mancher()
 </div>
 </details>
 
-![image01](/Posts/Algorithm/Algorithms Concept/palindrome-01.png){: width="50%" }
+<br/>
+
+![image01](/posts/algorithm/algorithms concept/palindrome-01.png){: width="50%" }
 
 변수의 의미를 먼저 정의를 하자. ```dp[i]``` 는 ```i``` 를 중심으로 한 팰린드롬의 반지름이다. ```r``` 은 현재 구한 펠린드롬의 끝부분의 인덱스 중 최댓값이다.```p``` 는 __기준 팰린드롬의 중심__ 인덱스로 ```r``` 이 업데이트 될 때 같이 바뀐다.
 
