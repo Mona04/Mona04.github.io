@@ -1,6 +1,6 @@
 ---
 excerpt: "이항계수를 푸는 다양한 방법, 루카스의 정리 "
-tag: [PS. 정수론]
+tag: [PS. 정수론, PS. Combinatorics]
 use_math: true
 ---
 

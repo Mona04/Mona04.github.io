@@ -1,6 +1,6 @@
 ---
 excerpt: "백준 3651. 조합을 메모리 안쓰고 오버플러우 안나게 하면서 이분탐색을 돌리는 문제"
-tag: [PS. 정수론]
+tag: [PS. Combinatorics]
 use_math: true
 ---
 

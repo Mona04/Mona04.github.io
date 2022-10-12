@@ -50,12 +50,14 @@ navi:
             url: /posts/algorithm/boj-platinum/
           - title: "BOJ-Diamond"
             url: /posts/algorithm/boj-diamond/
-          - title: "Leet-Medium"
-            url: /posts/algorithm/leet-medium/
+          - title: "Others"
+            url: /posts/algorithm/ps-others/
 
       - title: "ocw"
         url: /posts/ocw/
         children:
+          - title: "Graphics"
+            url: /posts/ocw/graphics-cmu15462/
           - title: "통신이론"
             url: /posts/ocw/communication theory/
 
@@ -74,6 +76,14 @@ navi:
       - title: "Graphics"
         url: /posts/graphics/
 
+      - title: "Math"
+        url: /posts/math/
+        children:
+          - title: "Statistics"
+            url: /posts/math/statistics/
+          - title: "Numerical Method"
+            url: /posts/math/numerical method/
+
       - title: "UE4"
         url: /posts/ue4/
         children:
@@ -81,12 +91,7 @@ navi:
             url: /posts/ue4/als/
 
       - title: "Jekyll"
-        url: /posts/jekyll/
-      - title: "Math"
-        url: /posts/math/
-        children:
-          - title: "Numerical Method"
-            url: /posts/math/numerical method/
+        url: /posts/jekyll/         
 
       - title: "OS"
         url: /posts/os/

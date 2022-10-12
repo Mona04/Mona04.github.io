@@ -120,9 +120,9 @@ void Manacher()
 
 {% highlight c++ %}
     scanf("%s", in); n = strlen(in);
-    for (int i = n-1; i >= 0; i--) in[i<<1] = in[i];
-    for (int i = 0; i < n-1; i++) in[(i<<1)+1] = '#';
-    n = n * 2 - 1;
+    for (int i = n-1; i >= 0; i--) in[(i<<1)+1] = in[i];
+    for (int i = 0; i <= n; i++) in[i<<1] = '#';
+    n = n * 2 + 1;
 {% endhighlight %}
 
 
@@ -130,9 +130,9 @@ void Manacher()
 
 {% highlight c++ %}
 // s, e 는 특수문자 삽입 전 인덱스
-//(s*2 + e*2) / 2
+//(s*2+1 + e*2+1) / 2
 inline bool Chk(int s, int e)
 {
-	return s == e || dp[s + e] >= e - s;
+	return s == e || dp[s + e-1] >= e - s-1;
 }
 {% endhighlight %}
