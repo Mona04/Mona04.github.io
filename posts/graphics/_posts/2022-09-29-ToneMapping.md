@@ -4,6 +4,8 @@ use_math: true
 tag : [Graphics]
 ---
 
+## ToneMapping
+
 ## Eye Adaptation
 
 Auto Exposure 이라고도 불리는 이 기법은 Tone Mapping 과는 별개지만 비슷한 역할을 한다. Pixel 의 Luminance 를 일반적으로 Average Luminance 를 통해 HDR 의 값을 Scaling 을 한다. 

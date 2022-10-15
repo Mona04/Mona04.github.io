@@ -4,27 +4,16 @@ use_math: true
 tag : [Graphics]
 ---
 
-## Rasterizer
-
-참고자료[^1] 에 있는 내용을 주로 정리한 글이다.
-
-DirectX-11 기준으로 Hardware 에서 처리되는 단계가 IA(Input Assembler), Output Stream, Rasterizer, Tesselator, Output Merger 로 총 5가지가 있다. 이중에 Rasterizer 를 알아보자.
-
-### Visiblity Problem
+## Visiblity Problem
 
 2D Texture 에 컴퓨터 내의 공간을 표현한다고 해보자. 각 픽셀이 나타내는 색상을 어떻게 알 수 있을까? 이를 위한 방법은 크게 Ray-Tracing 과 Rasterization 이 있다. 
 + Ray-Tracing 은 각 픽셀마다 픽셀과 (pin-hole) Camera 와의 각도를 이용해서 Ray 의 Camera 와 Light 를 잇는 경로를 추적하는 방법이다. Rasterization 보다 속도면에서 떨어지지만 반사, 간접광 등의 정밀한 Lighting 이 가능하다.
 + Rasterization 은 그려야할 대상을 View-Frustrum 에 투영시킨 후 가장 가까운 대상만을 그리는 기술이다. __Ray-Tracing 이 Camera 에서 Object 로 이동한다면 Rasterization 은 반대방향으로 이동한다고 볼 수 있다.__
 
-아래에서 Rasterization 에 대해 자세히 살펴보자.
+DirectX-11 기준으로 Hardware 에서 처리되는 다섯단계(IA(Input Assembler), Output Stream, Rasterizer, Tesselator, Output Merger) 중 하나인 Rasterizer 의 원리에 대해 알아보자.
 
 
-### Projection
-
-최종적으로 Pixel Shader 에 ```SV_POSITION``` 의 값은 다음과 같다. 
-+ ```SV_POSITION```. ```XY``` 가 Viewport Space 의 좌표
-+ ```Z```. NDC 상의 Depth
-+ ```W```. Viewport Space 의 ```Z``` 값
+## Projection
 
 #### Screen Space(Clip Space)
 
@@ -62,8 +51,15 @@ NDC Space 에서 Viewport Space 로 DirectX 에서 변환하는 코드[^2] 는 �
 
 두가지 특징이 있다. 첫째로 NDC 와 ```Y``` 축이 반대방향이다. 둘째로 빠른 계산 등의 장점을 위해 ```XY``` 좌표는 가장 가까운 정수로 반올림 된다. 즉 __정수값이다.__
 
+#### Ps Params
 
-### Pixel Choosing
+최종적으로 Pixel Shader 에 ```SV_POSITION``` 의 값은 다음과 같다. 
++ ```SV_POSITION```. ```XY``` 가 Viewport Space 의 좌표
++ ```Z```. NDC 상의 Depth
++ ```W```. Viewport Space 의 ```Z``` 값
+
+
+## Pixel Choosing
 
 _1988, Juan Pineda, "A Parallel Algorithm for Polygon Rasterization"_ 가 요즘 사용되는 방법의 기초 아이디어라고 한다.[^1] 이때 사용되는 함수인 Edge Function 은 다음과 같다.
 
@@ -98,7 +94,7 @@ $$C = Z[\cfrac{C_0}{Z_0}(1-q) + \cfrac{C_1}{Z_1}q] $$
 
 
 
-### Depth Sorting
+## Depth Sorting
 
 Rasterization 은 Screen 과 가장 가까운 물체만을 그려야한다. 이를 위한 알고리즘을 visible surface algorithms 이라고 하며 Z-Buffer, Painter Algorithms 등이 해당된다. 보통의 Graphic Cards 는 Z-Buffer Algorithms 만을 지원한다.
 
@@ -108,11 +104,11 @@ Z-Buffer 는 빠르지만 오직 하나의 Depth 만을 유지하기 때문에 �
 
 $$ z := \cfrac{\mathrm{zf}(z-\mathrm{zn})}{(\mathrm{zf}-\mathrm{zn})} $$
 
-DirectX 에서의 Screen Space 에서의 Depth 를 되짚어보자. 이는 __Affine Transformation 으로 상대적 거리를 유지하므로 Linear Interpolation 을 사용할 수 있다.__ 
+DirectX 에서의 Screen Space 에서의 Depth 를 구하는 과정을 되짚어보자.
++  __Affine Transformation 은 상대적 거리를 유지하므로 Linear Interpolation 을 사용할 수 있다.__ 
++ NDC 에서의 Depth 은 다르다. __Perspective Projection 을 Line 은 보존하지만 Distance 는 보존하지 않기 때문이다.__
 
-하지만 NDC 에서의 Depth 로는 불가능하다. __Perspective Projection 을 Line 은 보존하지만 Distance 는 보존하지 않기 때문이다.__
-
-대신 아래의 식을 사용할 수 있다.
+하지만 아래의 식을 사용하면 Linear Interpolation 을 수행할 수 있다.
 
 $$ \cfrac{1}{Z} = \cfrac{1}{Z_0}(1-q) + \cfrac{1}{Z_1}q$$ 
 
