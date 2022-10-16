@@ -13,12 +13,6 @@ read_time: false
 
 ## Description
 
+제작중...
 
-[![Technical Documentation](/posts/portfolio/directX/TechDoc.png)](/posts/portfolio/directX/TechDoc.pdf)
-
-
-## Work Records
-
-작업 틈틈히 기록한 영상들입니다.
-
-[![YoutubeImage](https://img.youtube.com/vi/hBbNriy6ni0/0.jpg)](https://youtu.be/hBbNriy6ni0)
+[진행기록](https://mona04.github.io/posts/portfolio/dx%20mini%20engine/)

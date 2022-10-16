@@ -13,7 +13,7 @@ use_math: true
 
 <br/>
 
-DirectX Porfolio 용으로 제작한 WPF Editor 입니다.
+[DirectX Porfolio](https://mona04.github.io/posts/portfolio/dx%20mini%20engine/) 용으로 제작한 WPF Editor 입니다.
 
 Native C++ 로 작성된 게임로직을 Cpp/Cli Wrapper 로 연결하였습니다.
 
@@ -28,7 +28,7 @@ Native C++ 로 작성된 게임로직을 Cpp/Cli Wrapper 로 연결하였습니�
 
 Nuget Module
 + [AvalonDock](https://github.com/Dirkster99/AvalonDock)
-  + [처음으로 이슈 보낸게 커밋 받아서 자랑](https://github.com/Dirkster99/AvalonDock/issues/344)
+  + [처음으로 이슈 보낸게 Pull 되서 자랑](https://github.com/Dirkster99/AvalonDock/issues/344)
 + ```Xceed.Wpf.Toolkit```
 + ```Microsoft.Wpf.Interop.DirectX-x64```
 + ```Microsoft.Xaml.Behaviors.Wpf```
