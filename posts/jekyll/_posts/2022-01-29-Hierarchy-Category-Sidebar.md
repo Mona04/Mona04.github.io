@@ -19,7 +19,7 @@ Jerkll 는 디렉토리에 따라 Category 를 자동으로 분류함.
 
 => 너무나도 꼬우므로 커스터마이즈를 함.
 
-![완성본](/Posts/Jekyll/category.png){: width="50%" height="50%"}
+![완성본](/posts/jekyll/category.png){: width="50%" height="50%"}
 
 #### 준비사항
 
