@@ -1,6 +1,6 @@
 ---
 excerpt: "WPF 에 DirectX 로 직접 렌더링 하면서 한 삽질"
-tag: [c++, c#, DirectX]
+tag: [c++, c sharp, DirectX]
 use_math: true
 ---
 

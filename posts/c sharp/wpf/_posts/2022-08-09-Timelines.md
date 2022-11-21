@@ -1,6 +1,6 @@
 ---
 excerpt: "WPF 에 Timeline 을 추가하면서 쓰는 메모"
-tag: [c++, c#]
+tag: [c++, c sharp]
 use_math: true
 ---
 
