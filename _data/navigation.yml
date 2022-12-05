@@ -106,8 +106,6 @@ navi:
             url: /posts/books/c++ primer plus/
           - title: "UE4 Scripting with C++ Cookbook"
             url: /posts/books/ue4 scripting with c++ cookbook/
-          - title: "뇌를자극하는C샵"
-            url: /posts/books/뇌를자극하는C샵/
-          - title: "Assential C# 6"
-            url: /posts/books/essential csharp 6/   
+          - title: "C# 관련 책"
+            url: /posts/books/c sharp cook books/
 

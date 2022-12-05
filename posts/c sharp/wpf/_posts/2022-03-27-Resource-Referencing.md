@@ -1,6 +1,6 @@
 ---
 excerpt: "WPF 의 자원참조 방법인 Static/Dynamic Resource 의 특징에 대해서"
-tag: [wpf, storyboard]
+tag: [wpf]
 use_math: true
 ---
 

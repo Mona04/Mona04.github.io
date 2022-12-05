@@ -1,0 +1,61 @@
+---
+excerpt: "시작하세요 C# 10.0 프로그래밍 보고 정리"
+tag: [c sharp]
+use_math: true
+---
+
+## CLI (Common Language Infrastructure) 
+
+CLI 은 국제 표준으로서 다음을 포함한다.
+
+| 약어 | 정의 | 설명 |
+|:-----:|:-------:|:--------|
+|CIL|Common Intermediate Language|CLI 구현 위에서 실행할 수 있는 코드에 대한 명령어를 정의. <br/> 줄여서 IL 이라고 하고 다른 중간 언어들과 구분하기 위해 MSIL 이라고도 함.|
+|CTS|Common Type System|CLI 모듈에서 외부로 노출되는 __Types__ 의 표현과 동작을 정의.<br/> 기본 자료형(e.g. ```int```)부터 복합 자료형(e.g. ```class```) 같은 개념도 포함한다. <br/> 여기에서 정의되지 않은 기능이 구현된 언어는 .Net 과 호환되지 않으며 일부 기능만을 지원하는 것은 가능하다.|
+|CLS|Common Language Specification| CLI 사양에 따라 런타임에서 실행될 수 있게 소스 언어가 __필수적으로 지원해야하는 기능__ |
+|BCL|Base Class Library| CLI 사양의 일부이며 컬렉션, 스레딩, 콘솔 등 기본적 Library 를 정의함. <br/> stl 이랑 비슷한듯|
+|VES|Virtual Execution System|CLI 에 적합하게 컴파일된 프로그램이ㅡ 실행을 관리하기 위한 에이전트|
+|Meta Data|-| Reflection 기능 등을 지원하기 위해 Self-Descriptive 한 정보를 생성해야한다. |
+
+CLI 는 구현에 대해 규정하는게 아니라 동작 사항에 대한 요구사항이다. (대부분의 표준이 하드웨어 종속성을 피하기 위해 구체적 구현까지 언급하지 않는다.).
+
+기계어와 대응되는 IL Code 는 Assembly Language 에 대응되는 언어가 있어서 그 언어를 ```ilasm.exe``` 라는 Compiler 로 IL Code 로 만들 수 있다. 그래서 .Net 호환 언어는 IL Source Code 로 변환하거나 직접적으로 IL Code 로 변환하는 두가지 전략을 이용해 Compile 하고 있다.
+
+### VES (Virtual Execution System)
+
+프로그램을 실행하고 유지하는 Context 로 Java Virtual Machine 과 비슷하다.
++ IL Compiler 가 생성하는 ```exe```/```dll``` 파일은 IL 과 ```exe``` 파일에 있는 VES 로 이루어져 있다. 
++ 프로그램을 로드하고 실행하며, 추가 서비스(GC, 보안) 를 제공한다.
++ JIT(Just In Time) Compiler 를 포함하며 IL 를 기계어로 컴파일 하여 프로그램을 수행한다.
+  + 보통 Runtime 에 수행되며, NGEN 등으로 미리 컴파일 할 수도 있다.
+
+__CLR(Common Language Runtime) 은 VES 와 혼동되서 쓰이는데 MS 에서 구현한 Runtime 이지 CLI 의 일부가 아니다.__
++ 구현은 C# Compiler, Framework Class Library 를 포함하며 Win Desktop CLR, CoreCLR 이 대표적이다.
+
+VES 에 의해 관리되는 코드를 Managed Code 라고 해서 여러 기능을 제공한다.
+
++ GC
+  + CLI 사양에 GC 매커니즘이 포함되지 않음 => 메모리 관리는 결정론적이지 않음.
+  + 대개 세대(0, 1, 2 세대), 표시하고 비우기(빈 공간 압축) 기반의 알고리즘 사용.
++ 형식 안전성
+  + 형식들 간의 변화를 검사해서 Buffer Overrun 같은 보안 이슈 방지
++ CAS(Code Access Security)
+  + 어셈블리 코드가 컴퓨터에서 실행할 권한을 가졌는지 체크
+  + User 권한 뿐만 아니라 누가 코드를 만들었는지, 코드가 어디에 있는지 등을 모두 고려함
++ 플랫폼 이식성
++ 코드 형식 등에 관한 메타데이터 저장
++ 예외 처리
++ 보안 정보에 대한 액세스
++ 스택 워크
++ Aplication Domain
+
+### .Net Framework 와  .Net Core
+
+MS 는 CLR 에 더해서 추가요소를 묶어 .Net Framework 라는 패키지를 만들어 배포한다.
++ 특정 기능을 수행하는 타입 등인 BCL(Base Class Library) 로 ```System.Collections``` 에 있는 컨테이너 등이 해당된다.
++ 부가적인 실행파일
++ GAC(Global Assembly Cache) 는 보통 ```C:\Windows\assembly``` 폴더에 있는 공통적인 어셈블리가 있는 장소이다.
+
+이중에 Window 에 종속적인 것이 .Net Framework 이고 다양한 플랫폼에 적용하기 위해 .Net Core 가 만들어졌다. Common Infrastructure 는 공유하지만 BCL 과 달리 Core Library 를 사용하는 차이가 있어 서로 호환되지 않지만 뒤에 제공한 .NET Standard Library 는 서로 호환된다. 
+
+.NET 5 이후는 둘의 구분이 없어지고 다양한 운영체제가 .NET Standard 위에서 돌아갈 수 있다. WPF 같이 특정 어셈블리를 사용할 경우 특정 운영체제만에 한정되는 방식이다.
