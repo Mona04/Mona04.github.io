@@ -56,6 +56,9 @@ static public implicit operator Won(Yen yen){ ... }
 + ```ToString()```, ```GetType()```, ```Equals()```, ```GetHashCode()``` 등의 함수를 가지며 오버로딩할 수 있다.
   + ```GetHashCode()``` 는 ```Equals()``` 와 밀접하여 클래스를 상속하여 ```Equals()``` 를 재정의하면 ```GetHashCode()``` 도 바꾸라고 컴파일 경고를 준다. Value Type 에서는 기본적으로 값이 같으면 ```GetHashCode()``` 는 같은 값을 내뱉는다.(당연히 역은 성립안함)
 
+Value Type 을 ```object``` 에 넣으면 Boxing 이 일어나며 힙에 메모리가 할당됨에 주의하자. 그래서 ```Console.WriteLine()``` 처럼 Value Type 을 인자로 쓸 수 있으면 오버로딩 등을 사용해서 Boxing 을 피하는 경우가 많다.
+
+
 ### Class
 
 #### Overriding
