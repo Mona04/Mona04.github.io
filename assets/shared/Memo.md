@@ -1,0 +1,1 @@
+Application.Current.Dispatcher.BeginInvoke(DispatcherPriority.ApplicationIdle, act);
