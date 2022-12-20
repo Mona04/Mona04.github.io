@@ -155,5 +155,6 @@ Delegate 의 존재로 다음 3가지 특성을 만족시켜 First-Class Functio
 + Method 의 Params 로  Method 가 가능.
 + Method 의 Member 로 Method 가 가능.
 
+
 ```event``` 는 delegate 를 private 으로 지정하고 메소드를 이용해 외부에서 등록/해재만 가능하게 한 것을 간략하게 한 것에 불과하다. 다시말해 내부에서만 호출 가능한 delegate 패턴을 간략히 한 것이다.
 
