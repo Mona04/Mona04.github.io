@@ -64,6 +64,7 @@ Thread 를 이용해서 동기적 함수를 호출했을 경우 스레드에서 
 
 
 
+
 ## Serialize
 
 기본 Value Type 은 ```System.BitConverter``` 를 이용한다. 복합타입은 ```BinaryFormatter```, ```XmlSerializer```, ```DataContractJsonSerializer``` 등을 이용할 수 있다.
