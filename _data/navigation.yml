@@ -96,6 +96,9 @@ navi:
       - title: "OS"
         url: /posts/os/
 
+      - title: "Network"
+        url: /posts/network/
+
       - title: "System Hacking"
         url: /posts/system hacking/
 
