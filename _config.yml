@@ -80,11 +80,9 @@ analytics:
     tracking_id          : G-6D2Y71R34K
     anonymize_ip         : # true, false (default)
 
-
-# Site Author
 author:
   name            : "Mona04"
-  avatar          : "/assets/images/Profile.jpg" 
+  avatar          : "/assets/images/skybow.jpg" 
   bio              : "개발자가 되자"
   location         : "Seoul.Korea"
   email            : moksha1905@gmail.com
@@ -100,12 +98,9 @@ author:
 # Site Footer
 footer:
   links:
-      # url:
-    #- label: "GitHub"
-    #  icon: "fab fa-fw fa-github"
-      # url:
-    #- label: "GitLab"
-    #  icon: "fab fa-fw fa-gitlab"
+    - url: https://github.com/Mona04
+      label: "GitHub"
+      icon: "fab fa-fw fa-github"
 
 
 # Reading Files

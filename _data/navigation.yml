@@ -66,12 +66,16 @@ navi:
         children:
           - title: "Managed C++"
             url: /posts/cpp/managed cpp/
+          - title: "C++ 관련 책"
+            url: /posts/cpp/c++ cook books/
 
       - title: "c#"
         url: /posts/c sharp/
         children:
           - title: "WPF"
             url: /posts/c sharp/wpf/
+          - title: "C# 관련 책"
+            url: /posts/c sharp/c sharp cook books/
 
       - title: "Graphics"
         url: /posts/graphics/
@@ -105,10 +109,6 @@ navi:
       - title: "Book"
         url: /posts/books/
         children:
-          - title: "C++PrimerPlus"
-            url: /posts/books/c++ primer plus/
           - title: "UE4 Scripting with C++ Cookbook"
             url: /posts/books/ue4 scripting with c++ cookbook/
-          - title: "C# 관련 책"
-            url: /posts/books/c sharp cook books/
 
