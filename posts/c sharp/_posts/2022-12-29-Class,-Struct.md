@@ -127,7 +127,7 @@ record BBB(int a, int b);
 
 {% endhighlight %}
 
-class 를 Value Type 처럼 만드는 경우가 많다. 이때 ```Equals()``` 등에 대해서 재정의를 해야하는데 이게 노가다작업이라 C# 9.0 에서는 ```class``` 대신 ```record``` 를 이용하면 기본 코드를 자동으로 생성해준다.
+Value Object Pattern 을 위해 class 를 쓰는 경우가 많다. 이때 ```Equals()``` 등에 대해서 재정의를 해야하는데 이게 노가다작업이라 C# 9.0 에서는 ```class``` 대신 ```record``` 를 이용하면 기본 코드를 자동으로 생성해준다.
 
 C# 10.0 에선 ```record struct``` 도 가능하게 되었다. 그래서 ```record``` 는 ```record class``` 의 약식이 되었다. 또한 ```struct``` 에서 기본생성자와 필드초기화가 지원되게 되었다.
 
