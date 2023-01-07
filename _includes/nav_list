@@ -5,32 +5,36 @@
   <input id="ac-toc" name="accordion-toc" type="checkbox" />
   <label for="ac-toc">{{ site.data.ui-text[site.locale].menu_label | default: "Toggle Menu" }}</label>
   <ul class="nav__items">
-    {% for nav in navigation %}
-      <li>
-        {% if nav.url %}
-          {% include nav_list_li node=nav style="nav__sub-title" %}
-        {% else %}
-          {% include nav_list_li node=nav style="nav__sub-title" %}
-        {% endif %}
+  {% for nav in navigation %}
+    <li>
+      {% if nav.url %}
+        {% include nav_list_li node=nav style="nav__sub-title" %}
+      {% else %}
+        {% include nav_list_li node=nav style="nav__sub-title" %}
+      {% endif %}
 
-
-        {% include nav_list_ul node=nav %} 
-        {% for nav2 in nav.children %}
-          <li> 
-            {% include nav_list_li node=nav2 style="nav__sub-title2" %}
-            {% include nav_list_ul node=nav2 %} 
-              {% for nav3 in nav2.children %}
-              <li> 
-                  {% include nav_list_li node=nav3 style="nav__sub-title3" %} 
-              </li>
+      {% include nav_list_ul node=nav %} 
+      {% for nav2 in nav.children %}
+        <li> 
+          {% include nav_list_li node=nav2 style="nav__sub-title2" %}
+          {% include nav_list_ul node=nav2 %} 
+          {% for nav3 in nav2.children %}
+            <li> 
+              {% include nav_list_li node=nav3 style="nav__sub-title3" %} 
+              {% include nav_list_ul node=nav3 %} 
+              {% for nav4 in nav3.children %}
+                <li> 
+                    {% include nav_list_li node=nav4 style="nav__sub-title4" %} 
+                </li>
               {% endfor %}
-            </ul>
-          </li>
-        {% endfor %}
-        </ul>
-
-      </li>
-    {% endfor %}
+              </ul>
+            </li>
+          {% endfor %}
+          </ul>
+        </li>
+      {% endfor %}
+      </ul>
+    </li>
+  {% endfor %}
   </ul>
-  <h1></h1>
 </nav>

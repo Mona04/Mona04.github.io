@@ -503,7 +503,7 @@
     font-weight: bold;
 }
 
-.nav__sub-title, .nav__sub-title2, .nav__sub-title3 {
+.nav__sub-title, .nav__sub-title2, .nav__sub-title3, .nav__sub-title4 {
     display: block;
     margin: 0.5rem 0;
     padding: 0.25rem 0;
@@ -524,6 +524,11 @@
     margin-left: 2em;
     font-size: $type-size-8;
     font-weight: normal;
+}
+.nav__sub-title4 {
+  margin-left: 3em;
+  font-size: $type-size-8;
+  font-weight: normal;
 }
 
 .nav__sub-button {

@@ -61,24 +61,35 @@ navi:
           - title: "통신이론"
             url: /posts/ocw/communication theory/
 
-      - title: "c++"
-        url: /posts/cpp/
+      - title: "Languages"
+        url: /posts/programming language/
         children:
-          - title: "Managed C++"
-            url: /posts/cpp/managed cpp/
-          - title: "C++ 관련 책"
-            url: /posts/cpp/c++ cook books/
+          - title: "c++"
+            url: /posts/programming language/cpp/
+            children:
+              - title: "Managed C++"
+                url: /posts/programming language/cpp/managed cpp/
+              - title: "C++ 관련 책"
+                url: /posts/programming language/cpp/c++ cook books/
+          - title: "c#"
+            url: /posts/programming language/c sharp/
+            children:
+              - title: "WPF"
+                url: /posts/programming language/c sharp/wpf/
+              - title: "C# 관련 책"
+                url: /posts/programming language/c sharp/c sharp cook books/
 
-      - title: "c#"
-        url: /posts/c sharp/
+      - title: "Compute Science"
+        url: /posts/computer science/
         children:
-          - title: "WPF"
-            url: /posts/c sharp/wpf/
-          - title: "C# 관련 책"
-            url: /posts/c sharp/c sharp cook books/
-
-      - title: "Graphics"
-        url: /posts/graphics/
+          - title: "Graphics"
+            url: /posts/computer science/graphics/
+          - title: "OS"
+            url: /posts/computer science/os/
+          - title: "Network"
+            url: /posts/computer science/network/
+          - title: "Software Engineering"
+            url: /posts/computer science/software engineering/
 
       - title: "Math"
         url: /posts/math/
@@ -96,12 +107,6 @@ navi:
 
       - title: "Jekyll"
         url: /posts/jekyll/         
-
-      - title: "OS"
-        url: /posts/os/
-
-      - title: "Network"
-        url: /posts/network/
 
       - title: "System Hacking"
         url: /posts/system hacking/
