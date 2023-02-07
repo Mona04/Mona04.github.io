@@ -136,7 +136,7 @@ C# 10.0 에선 ```record struct``` 도 가능하게 되었다. 그래서 ```reco
 
 ## 참고자료
 
-[시작하세요 C# 10 프로그래밍]((https://www.aladin.co.kr/shop/wproduct.aspx?ItemId=303298623))
+[시작하세요 C# 10 프로그래밍](https://www.aladin.co.kr/shop/wproduct.aspx?ItemId=303298623)
 
 [닷넷의 관리 포인터와 System.TypeReference](https://www.sysnet.pe.kr/2/0/11529)
 
