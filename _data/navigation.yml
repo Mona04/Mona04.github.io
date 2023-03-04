@@ -99,11 +99,16 @@ navi:
           - title: "Numerical Method"
             url: /posts/math/numerical method/
 
-      - title: "UE4"
-        url: /posts/ue4/
+      - title: "Game Engine"
+        url: /posts/game engine/
         children:
-          - title: "als"
-            url: /posts/ue4/als/
+          - title: "UE4"
+            url: /posts/game engine/ue4/
+            children:
+              - title: "als"
+                url: /posts/game engine/ue4/als/
+          - title: "관련 책"
+            url: /posts/game engine/cook books/
 
       - title: "Jekyll"
         url: /posts/jekyll/         
