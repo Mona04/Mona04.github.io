@@ -1,6 +1,6 @@
 ---
 excerpt: "Universal Hash Function, "
-tag: [hash]
+tag: [PS. hash]
 use_math: true
 ---
 
@@ -44,6 +44,9 @@ $$
 
 위의 예시에서 간단하게 Linked List 로 Hash Collision 을 해결하는 경우를 생각해보자. 특정 key 에서 Linked List 의 평균 길이는 어떻게 될까? 이는 이항분포의 근사를 생각하면 확률이 $$\frac{2}{m}$$ 이고 시행횟수가 $$n$$ 이므로 평균적으로 $$\mathrm{O}(2\alpha)$$ 가 됨을 알 수 있다. 이는 Hash Function 의 목표인 Load Factor 와 근사한 수치이므로 평균적으로 좋은 성능을 보인다는 뜻이 된다.
 
+
+
+## Perfect Hashing
 
 
 ## 참고자료
