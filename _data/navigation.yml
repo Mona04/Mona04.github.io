@@ -90,6 +90,8 @@ navi:
             url: /posts/computer science/network/
           - title: "Software Engineering"
             url: /posts/computer science/software engineering/
+          - title: "System Hacking"
+            url: /posts/computer science/system hacking/
 
       - title: "Math"
         url: /posts/math/
@@ -113,11 +115,8 @@ navi:
       - title: "Jekyll"
         url: /posts/jekyll/         
 
-      - title: "System Hacking"
-        url: /posts/system hacking/
-
-      - title: "Book"
-        url: /posts/books/
+      - title: "Readings"
+        url: /posts/readings/
         children:
           - title: "UE4 Scripting with C++ Cookbook"
             url: /posts/books/ue4 scripting with c++ cookbook/
