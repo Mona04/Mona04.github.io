@@ -6,7 +6,23 @@ use_math: true
 
 ## Rabin Carp
 
-[BOG 16916 부분문자열](https://www.acmicpc.net/problem/16916)
+$$S$$ is a string of length $$N$$ and $$P$$ is a pattern string of length $$M$$. How to know does $$P$$ exist in the $$S$$?
+ 
+Brute Force 방법을 사용한다면 O($$NM$$) 이 된다. 패턴 매칭을 위한 문자열 비교의 시간복잡도가 O($$M$$) 이나 되기 때문에 매우 느린방법이다.
+
+Rabin Carp 의 방법은 Hash Function 을 이용해 True Positive 와 False Positive 경우에만 문자열 비교를 하게하여 확률적으로 문자열 비교를 상수시간으로 만든다. 
++ 랜덤한 Input 을 가정하면 해시 값이 같을 확률이 $$1/M$$ 이고 문자열 비교의 시간복잡도는 O($$M$$) 이므로 평균 시간복잡도는 O($$1$$) 이 된다. 
++ Rolling Hash Function 을 이용해 연속된 Substring 간의 Hash Value 를 상수시간에 구한다. 
+
+최악의 경우 O($$NM$$) 이나 대개의 경우 O($$M+N$$) 에 가까울 것이므로 매우 빠른 속도를 기대할 수 있다. 또한 알고리즘 특성 상 매칭되는 횟수를 구하는 경우 그 횟수에 비례해 시간복잡도가 복잡해지므로 주의해야한다.
+
+
+#### 예제
+
+[BOG 16916 부분문자열](https://www.acmicpc.net/problem/16916) 문제를 통해 살펴보자.
+
+<details>
+<summary>코드</summary>
 
 {% highlight c++ %}
 
@@ -97,5 +113,4 @@ int main()
 
 {% endhighlight %}
 
-
-https://www.acmicpc.net/problem/6206
+</details>
