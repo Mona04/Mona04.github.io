@@ -52,13 +52,18 @@ int64_t ModInv(int t, int MOD)
 
 ### [Miller-Rabin Primality Test](https://en.wikipedia.org/wiki/Miller%E2%80%93Rabin_primality_test)
 
-> 소수 $$N=d \times 2^s+1$$, $$(a < N),\ \text{ where } d \equiv 1 \pmod{2} \text{ and } s > 0$$ 는 자연수인 $$a$$ 에 대해 다음의 두 식중 하나를 만족함 <br/>
+> A prime number $$N=d \times 2^s+1$$ where $$s > 0$$, $$d$$ is odd number, $$a$$ called a base is coprime to $$N$$ and $$(a < N)$$ 는 다음의 두 식중 하나를 만족하며, 역은 성립하지 않는다. <br/>
 > $$ a^d \equiv 1 \pmod{N} $$  <br/>
 > $$a^{d \times 2^r} \equiv -1 \pmod{N} $$ for some $$r$$, $$(0 \leq r < s)$$ 
 
-역은 성립하지 않지만 임의의 $$a$$ 에 대해 위를 만족하지 않는 $$N$$ 은 합성수임이 보장됨. 이때의 $$a$$ 를 witness 라고 하며 witness 를 고르는 방법은 위키를 참조.
 
-증명 또한 매우 간략하므로 위키 참조.
+위 조건을 만족하는 수를 _Strong Probable Prime_ 이라고 하고, 이 중에 합성수인 수를 Strong Pseudo Prime 이라고 한다.
+
+어떤 합성수 $$N'$$ 에 대해 위 테스트를 통과시키지 않는 $$a$$ 를 _witness_ for the compositeness of $$N'$$ 이라고 한다. 모든 합성수는 하나 이상의 witness 를 가지고 있음이 알려져 있으므로 적절한 $$a$$ 의 집합을 찾는 것이 중요하다. 
+
+기본적으로 역이 성립하지 않지만 몇개의 bases 에 대해서 테스트를 반복하면 상당히 큰 범위 내에서 역이 만족된다. 잘 알려진 집합은 위키를 참고.
+
+증명은 매우 간략하므로 위키 참조.
 
 <details>
 <summary>Code</summary>
