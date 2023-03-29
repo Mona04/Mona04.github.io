@@ -1,6 +1,6 @@
 ---
 excerpt: "Rabin Karp 알고리즘"
-tag: [PS. hash, PS. string]
+tag: [hash, PS. string]
 use_math: true
 ---
 

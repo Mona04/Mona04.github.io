@@ -1,26 +1,32 @@
 ---
 excerpt: "Universal Hash Function, "
-tag: [PS. hash]
+tag: [hash]
 use_math: true
 ---
 
 ## 전제
 
-Total Count of Items is $$n$$. Hash Tables Size is $$m$$. Load Factor is $$\alpha = \frac{n}{m}$$.
+Total Count of Items is $$n$$. Hash Tables Size is $$m$$. Load Factor is $$\alpha = \frac{n}{m}$$. A set of keys is $$U$$.
 
-## Universal Hash Function
+## [Universal Hashing](https://en.wikipedia.org/wiki/Universal_hashing)
 
 Fixed Hash Function 의 치명적인 단점이 있다. 아무리 잘 디자인 된 Hash Function 이라도 악성 유저가 그 Function 을 알고 있으면 최악의 Input 을 만들어 공격하는 Algorithmic Complexity Attack 에 취약해진다. 
 
-이를 해결하기 위해 Data 가 랜덤하다는 가정을 버린다. 대신 Hash Function 을 특정한 조건을 만족하는 Function Set 에서 랜덤하게 선택하도록 한다. 시스템이 컨트롤 불가능한 Data 에는 아무런 가정을 하지 않고 컨트롤 가능한 Hash Function 에 랜덤을 부과하는 것이다. 이러한 기법을 Universal Hash Function 이라고 하고 평균적인 성능이 좋다.
+이를 해결하기 위해 Data 가 랜덤하다는 가정을 버린다. 대신 Hash Function 을 특정한 조건을 만족하는 Function Set 에서 랜덤하게 선택하도록 한다. 시스템이 컨트롤 불가능한 Data 에는 아무런 가정을 하지 않고 컨트롤 가능한 Hash Function 에 랜덤을 부과하는 것이다. 이러한 기법을 Universal Hash Function 이라고 하고 평균적인 성능이 좋다. 
+
+또한 $$m$$ 을 유지한 채로 Rehashing 을 할 수 있게 된다.
 
 이때 필요한 조건은 다음과 같다.
 
 ### Universal Property (Weak) 
 
-Family of Hash Functions $$\mathcal{H} : \{h_1 .... h_N \}$$, where $$h_i : \text{keys} \rightarrow \{0,...,m-1\}$$.
+Family of Hash Functions $$\mathcal{H} : \{h_1 .... h_N \}$$, where $$h_i : U \rightarrow \{0,...,m-1\}$$ statisfy __Universal Property__ if
 
-> $$H$$ should satisfy __Universal Property__ that $$\forall{h \in \mathcal{H}},\; \forall{k_1, k_2}\quad P(h(k_1) = h(k_2)) \leq \frac{c}{m} $$ where $$c$$ is constant and mostly 1.
+> $$\forall x,y \in U, \; x \neq y : \quad
+\lvert \{ h \in H : h(x) = h(y) \} \rvert 
+\leq c\frac{\lvert H \rvert}{m}$$
+
+$$c$$ is constant and mostly 1.
 
 여기에 대한 간단한 예로는 다음이 있다.
 
