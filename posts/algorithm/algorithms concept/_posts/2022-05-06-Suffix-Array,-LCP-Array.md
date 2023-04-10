@@ -1,6 +1,6 @@
 ---
 excerpt: "Suffix Array and Longest Common Prefix Array"
-tag: [PS. String, PS. Suffix/LCP Array]
+tag: [PS. String, PS. suffix/lcp array]
 use_math: true
 ---
 
