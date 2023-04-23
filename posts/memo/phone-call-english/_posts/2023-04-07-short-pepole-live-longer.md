@@ -11,3 +11,7 @@ The spine is heavily loaded.
 Being tall increases your risk of scoliosis.
 
 the relationship between height and health
+
+That's all my fault.
+
+obesity 옵제비티

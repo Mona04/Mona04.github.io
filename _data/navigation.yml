@@ -90,6 +90,8 @@ navi:
             url: /posts/computer science/network/
           - title: "Software Engineering"
             url: /posts/computer science/software engineering/
+          - title: "Computer Architecture"
+            url: /posts/computer science/computer architecture/ 
           - title: "System Hacking"
             url: /posts/computer science/system hacking/
 
