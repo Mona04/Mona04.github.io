@@ -163,7 +163,7 @@ public:
 private:
 	void LazyPropa(int x, int s, int e, T v)
 	{
-		nodes[x] = nodes[x] + (e - s + 1) * v; // lazy auto 0
+		nodes[x] = nodes[x] + (e - s + 1) * v; // 기존 업데이트에 겹쳐서 업데이트 중
 		if (s != e) {
 			nodes[2 * x].LazyPropa(v);
 			nodes[2 * x + 1].LazyPropa(v);
@@ -187,7 +187,8 @@ private:
 	
 	Node<T> Query_Recursive(int x, int s, int e)
 	{
-		LazyPropa(x, s, e, nodes[x].lazy);
+		if (nodes[x].Lazy())
+			LazyPropa(x, s, e, nodes[x].lazy);
 	
 		if (_t2 < s || e < _t1) return T();
 		if (_t1 <= s && e <= _t2) return nodes[x];
