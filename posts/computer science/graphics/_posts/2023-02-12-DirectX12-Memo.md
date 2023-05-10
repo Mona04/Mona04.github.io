@@ -19,6 +19,8 @@ tag : [Graphics, DirectX]
 
 Vertex Buffer 의 Slot 은 보통은 많이 있으면 성능상 좋지 않다. 보통은 대개 1~3 개를 사용한다.
 
+Constant Buffer 역시 성능상의 이유로 쉐이더가 5개 미만 사용하는 것을 권한다.^[dxtex1](p327)
+
 hlsl 은 matrix 저장 순서가 [column major](https://learn.microsoft.com/ko-kr/windows/win32/direct3dhlsl/dx-graphics-hlsl-per-component-math?redirectedfrom=MSDN#matrix-ordering) 이다. 그래서 ```m[0][0]```, ```m[1][0]``` 이런식으로 저장되는데 cpu 에선 보통 row major 방식을 많이 써서 Transposed 된 듯한 느낌을 준다.
 
 ```wrl.h``` 의 ```Microsoft::WRL::ComPtr``` 을 이용해 Com Smart Pointer 를 이용할 수 있다.
@@ -63,5 +65,5 @@ Compute / 3D Rendering 에서 GPU 의 다른 부분을 쓸 수도 있기 때문�
 
 [MSDN Direct3D Learning](https://learn.microsoft.com/en-us/windows/win32/direct3d12/direct3d-12-graphics)
 
-[DirectX12 를 이용한 게임프로그래밍 입문](https://www.hanbit.co.kr/store/books/look.php?p_code=B5088646371)
+^[dxtex1]: [DirectX12 를 이용한 게임프로그래밍 입문](https://www.hanbit.co.kr/store/books/look.php?p_code=B5088646371)
 
