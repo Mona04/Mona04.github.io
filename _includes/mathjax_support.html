@@ -19,5 +19,14 @@
   alert("Math Processing Error: "+message[1]);
   });
 </script>
+
+<!-- https://stackoverflow.com/questions/48136559/mathjax-how-to-change-text-size -->
+<script>
+  window.MathJax = {
+    chtml: { scale: 1.2 },
+    svg: {   scale: 1.2  }
+  };
+</script>
+
 <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
 <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
