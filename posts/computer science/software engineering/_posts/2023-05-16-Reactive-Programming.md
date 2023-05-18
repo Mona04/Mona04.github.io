@@ -4,6 +4,10 @@ tag: [design pattern]
 use_math: true
 ---
 
+## [Reactive Programming](https://en.wikipedia.org/wiki/Reactive_programming)
+
+
+
 ## Hot and cold observables
 
 {% highlight c# %}
@@ -57,10 +61,25 @@ c : 0
 ...
 ```
 
-하지만 보통
+하지만 만약 ```Publish()``` 를 하게 된다면 다음과 같게 된다.
 
+```
+Produce Data 2
+a : 3
+b : 3
+c : 3
+Produce Data 3
+a : 4
+b : 4
+c : 4
+...
+```
+
+후자의 경우가 Hot Observable 이다.
 
 
 ## 참고자료
+
+[andrestaltz, The introduction to Reactive Programming you've been missing](https://gist.github.com/staltz/868e7e9bc2a7b8c1f754)
 
 [SO. what-are-the-hot-and-cold-observables](https://stackoverflow.com/questions/2521277/what-are-the-hot-and-cold-observables)
