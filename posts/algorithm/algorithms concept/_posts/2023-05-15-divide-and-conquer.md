@@ -73,9 +73,13 @@ $$
 
 여기서 지수의 크기가 어떻게 결정되는지 살펴보면 위 공식이 어떻게 나오는지 이해할 수 있다.
 
+## 성능향상
 
+$$n^c$$ 의 경우 대부분 Brute Force 와 시간복잡도가 크게 다르지 않다.
 
+하지만 로직을 최적화하여 위 공식에서의 $$a$$ 를 줄이면 상당한 성능향상을 보일 수 있다.
 
+이에 대한 예시로 행렬의 곱셈을 빨리 수행하는 [Strassen algorithm](https://en.wikipedia.org/wiki/Strassen_algorithm), 큰수의 곱셈을 빨리 수행하는 Karatsuba algorithm 등이 있다.
 
 
 
