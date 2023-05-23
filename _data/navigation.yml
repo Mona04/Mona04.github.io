@@ -92,6 +92,8 @@ navi:
             url: /posts/computer science/software engineering/
           - title: "Computer Architecture"
             url: /posts/computer science/computer architecture/ 
+          - title: "Theory of Computation"
+            url: /posts/computer science/theory of computation/
           - title: "System Hacking"
             url: /posts/computer science/system hacking/
 
