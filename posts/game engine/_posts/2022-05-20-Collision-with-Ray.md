@@ -1,6 +1,7 @@
 ---
 excerpt: "충돌 관련  정리"
 use_math: true
+tags: [collision]
 ---
 
 ## Triangle and Ray
