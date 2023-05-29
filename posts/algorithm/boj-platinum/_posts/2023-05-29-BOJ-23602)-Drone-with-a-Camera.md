@@ -68,7 +68,7 @@ int main()
     double ans3 = sqrt((vx) * (vx)+(vy) * (vy));
     double ans = max(ans1, max(ans2, ans3));
 
-    // 평항하지 않는다면
+    // 평행하지 않는다면
     if (a1 * b2 - a2 * b1 != 0)
     {
         // p = 두 선의 교점
