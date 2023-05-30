@@ -57,28 +57,6 @@ proof 는 Input 외에 문제를 풀기위해 주어지는 추가적인 정보�
 
 NP 에서는 답이 "no" 인 input 에 대해서 verifier 는 선형시간 내에 "no" 를 주게 된다. 
 
-
-#### NP-Complete
-
-> Problem A, B 가 있어서 A 를 풀기위해 B 를 서브루틴으로 사용하고 나머지 과정은 선형시간 내에 동작하는 알고리즘이 있다고 하자. 그럼 A can reduce in polynomial time to B.
-
-+ 만약 B 를 선형시간 내에 풀 수 있으면 A 역시 마찬가지다.
-+ 대우로 A 가 선형시간 내에 풀 수 없으면 B 역시 마찬가지다.
-
-> An NP problem $$A$$ is NP-Complete if $$\forall {B \in \mathit{NP}}$$ can reduce in polynomial time to $$A$$.
-
-+ $$A \in P \rightarrow NP = P$$ 가 성립한다.
-+ $$NP$$ 의 문제 중 하나라도 선형시간에 풀 수 없으면 $$A \notin NP$$ 이고 곧 $$NP \neq P$$ 이다.
-+ If a NP-Complete problem can reduce in polynomial time to B and B is NP, them B also NP Complete.
-
-NP-Complete Problem 은 많이 있다. 대표적으로는 Cook-Levin Theorem 으로 증명된  3-CNF-SAT 문제가 있다. (ex. ```(a or b or c) and (d or e or f) and ...```).
-
-
-
-
-
-
-
 #### Quantum Computer
 
 NTM 의 경우 양자컴퓨터에서 일부 가능한데, 그렇다고 DTM 에서 불가능한 계산을 할 수 있진 않다. Non-deterministic 한 절차는 DTM 에서 bfs 등으로 전부 해보면 되기 때문이다.
@@ -87,8 +65,44 @@ NTM 의 경우 양자컴퓨터에서 일부 가능한데, 그렇다고 DTM 에�
 
 
 
+### NP-Complete
+
+> Problem A, B 가 있어서 A 를 풀기위해 B 를 서브루틴으로 사용하고 나머지 과정은 선형시간 내에 동작하는 알고리즘이 있다고 하자. 그럼 A can reduce in polynomial time to B.
+
++ 만약 B 를 선형시간 내에 풀 수 있으면 A 역시 마찬가지다.
++ 대우로 A 가 선형시간 내에 풀 수 없으면 B 역시 마찬가지다.
+
+> A NP problem $$A$$ is NP-Complete if $$\forall {B \in \mathit{NP}}$$ can reduce in polynomial time to $$A$$.
+
++ $$A \in P \rightarrow NP = P$$ 가 성립한다.
++ $$A$$ 를 포함한 $$NP$$ 의 문제 중 하나라도 선형시간에 풀 수 없으면 $$A \notin NP$$ 이고 곧 $$NP \neq P$$ 이다. 그래서 NP-Complete 는 NP 중 가장 어려운 문제라고 말할 수 있다.
+
+
+#### Examples
+
+NP-Complete Problem 은 많이 있다. 대표적으로는 Cook-Levin Theorem 으로 증명된  3-CNF-SAT 문제가 있다. (ex. ```(a or b or c) and (d or e or f) and ...```).
+
+If a NP-Complete problem can reduce in polynomial time to B and B is NP, them B also NP Complete. 그래서 다른 문제가 NP-Complete 인지 보이는 것은 이미 주어진 NP-Complete 문제가 있다면 쉽게 보일 수 있다.
+
+그래프에서 서로 직접 연결된 정점 그룹을 clique 라고 한다. 그래프가 주어졌을 때 크기가 k 보다 큰 clique 가 존재하는지를 묻는 문제가 k-clique 이다. 이 문제는 3-CNF-CAT 문제로부터 reduce 되고 NP 임은 쉽게 보일 수 있어 NP-Complete 다.
+
+K-Vertex Cover 문제 역시 NP-Complete 이다. 주어진 graph 에 대한 k-clique 문제는 complement graph(기존 그래프와 정점은 동일하나 간선은 기존 그래프에서 존재하지 않는 것들로 이루어짐) 대한 k-vertex cover 문제와 같음 보여서 reduction 이 가능하다.
+
+0-1 Integer Linear Programming.
+
+배낭문제도 NP-Complete 이다. 
+
+
+
+### NP-Hard
+
+
+
+
+
 ## 참고자료 및 각주
 
+Dynamic Programming, Greedy Algorithms, University of Colorado Boulder, Cousera
 
 [^wiki_decidability]: [wiki decidability](https://en.wikipedia.org/wiki/Decidability_(logic))
 
