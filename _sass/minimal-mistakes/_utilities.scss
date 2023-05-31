@@ -518,6 +518,13 @@ body:hover .visually-hidden button {
 .footnote {
   color: mix(#fff, $gray, 25%);
   text-decoration: none;
+
+  // custom
+  margin-top: 0;
+  margin-bottom: 0;
+  font-size: $type-size-6 !important;
+  list-style-type: decimal;
+  padding-inline-start: 2em;
 }
 
 .footnotes {
@@ -527,7 +534,7 @@ body:hover .visually-hidden button {
   li,
   p {
     margin-bottom: 0;
-    font-size: $type-size-6;
+    font-size: $type-size-6;    
   }
 }
 

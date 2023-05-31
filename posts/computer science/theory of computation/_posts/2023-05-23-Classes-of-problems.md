@@ -49,7 +49,7 @@ $$R_\text{Yes} = \{ (s, r) \in R  \; \vert \; r = \text{Yes} \}$$ is
 
 그렇지 않은 문제를 Un-Decidable Problem 이라고 한다. 대표적으로 [Halting Problem](https://en.wikipedia.org/wiki/Halting_problem) 이 있다. 
 
-흥미롭게 baba is you 도 un-decidable 하다. halting problem 으로 reduce 되는 어떤 문제가 baba is you 로 다시 reduce 되기 때문이다[^babaisyou].
+흥미롭게 baba is you 도 un-decidable 하다. halting problem $$\leq_{P}$$ 어떤 문제 $$\leq_{P}$$ baba is you 가 성립하기 때문이다[^babaisyou].
 
 
 
@@ -75,9 +75,7 @@ NP 에서는 답이 "no" 인 input 에 대해서 verifier 는 선형시간 내�
 
 #### Quantum Computer
 
-NTM 의 경우 양자컴퓨터에서 일부 가능한데, 그렇다고 DTM 에서 불가능한 계산을 할 수 있진 않다. Non-deterministic 한 절차는 DTM 에서 bfs 등으로 전부 해보면 되기 때문이다.
-
-Heisenberg's uncertainty principle. 위치와 속력을 동시에 측정할 수 없을 뿐더러 확률적이다.
+NTM 의 경우 양자컴퓨터에서 일부 가능한데, 그렇다고 DTM 에서 불가능한 계산을 할 수 있진 않다. Non-deterministic 한 절차는 countable 하므로 DTM 에서 bfs 등으로 전부 해보면 되기 때문이다.
 
 
 
@@ -86,18 +84,19 @@ Heisenberg's uncertainty principle. 위치와 속력을 동시에 측정할 수 
 > A NP problem $$A$$ is NP-Complete if $$\forall {B \in \mathit{NP}}$$ can reduce in polynomial time to $$A$$.
 
 + $$A \in P \rightarrow NP = P$$ 가 성립한다.
-+ $$A$$ 를 포함한 $$NP$$ 의 문제 중 하나라도 선형시간에 풀 수 없으면 $$A \notin NP$$ 이고 곧 $$NP \neq P$$ 이다. 그래서 NP-Complete 는 NP 중 가장 어려운 문제라고 말할 수 있다.
++ $$A$$ 를 포함한 $$NP$$ 의 문제 중 하나라도 선형시간에 풀 수 없으면 $$A \notin NP$$ 이고 곧 $$NP \neq P$$ 이다.
++ NP-Complete 는 NP 중 가장 어려운 문제라고 말할 수 있다.
 
 
 #### Examples
 
-NP-Complete Problem 은 많이 있다. 대표적으로는 Cook-Levin Theorem 으로 증명된  3-CNF-SAT 문제가 있다. (ex. ```(a or b or c) and (d or e or f) and ...```).
+If a NP-Complete problem can reduce in polynomial time to B and B is NP, then B also NP Complete. 그래서 다른 문제가 NP-Complete 인지 보이는 것은 이미 주어진 NP-Complete 문제가 있다면 쉽게 보일 수 있다.
 
-If a NP-Complete problem can reduce in polynomial time to B and B is NP, them B also NP Complete. 그래서 다른 문제가 NP-Complete 인지 보이는 것은 이미 주어진 NP-Complete 문제가 있다면 쉽게 보일 수 있다.
+reduction 없이 NP-Complete 라고 증명된 문제는 Cook-Levin Theorem 으로 증명된  3-CNF-SAT 문제가 대표적이다. (ex. ```(a or b or c) and (d or e or f) and ...```).  SAT 을 사용하여 많은 문제들이 NP-Complete 임이 증명된다.
 
 그래프에서 서로 직접 연결된 정점 그룹을 clique 라고 한다. 그래프가 주어졌을 때 크기가 k 보다 큰 clique 가 존재하는지를 묻는 문제가 k-clique 이다. 이 문제는 3-CNF-CAT 문제로부터 reduce 되고 NP 임은 쉽게 보일 수 있어 NP-Complete 다.
 
-k 이상의 independent set 이 있냐는 문제 역시 NP-Complete 이다. k-clique 가 존재하는 graph 면 그것의 complement graph 는 k 이상의 independent set 이 존재하고 그 역도 성립한다. 이를 이용해 reduction 을 쉽게 진행할 수 있기 때문이다. 같은 방법으로 k-vertex cover 문제도 NP-Complete 이다.
+k 이상의 independent set 이 있냐는 문제 역시 NP-Complete 이다. k-clique 가 존재하는 graph 면 그것의 complement graph 는 k 이상의 independent set 이 존재하고 그 역도 성립한다. 이를 이용해 reduction 을 쉽게 진행할 수 있다. k-vertex cover 문제도 비슷한 방법으로 NP-Complete 임을 보일 수 있다.
 
 0-1 Integer Linear Programming.
 
@@ -109,21 +108,30 @@ k 이상의 independent set 이 있냐는 문제 역시 NP-Complete 이다. k-cl
 
 ### NP-Hard
 
+> H is NP-hard when for every problem L in NP, there is a polynomial-time many-one reduction from L to H.[^wiki_np_hard]
+
+np-complete 에서 np 라는 조건만 빼면 같다. 그래서 어떤 문제가 NP-Hard 인지 보이려면 np-complete 문제에서 polynomial-time reduction 이 가능한지 보이면 된다.
+
+대표적인 NP-Hard 문제는 Halting Problem 이다. 증명은 간단하다. NP-Complete 인 SAT 문제를 푸는 알고리즘은 존재한다. 이를 변형해서 SAT 가 "yes" 이면 "yes" 를 아니면 무한루프를 도는 프로그램을 만들 수 있다. 이제 이 프로그램을 Input 으로 Halting Problem 을 풀면 SAT 문제를 풀 수 있다. 
 
 
 
 
 ## 참고자료
+ 
+<p class="footnote" role="doc-endnotes">
+Dynamic Programming, Greedy Algorithms, University of Colorado Boulder, Cousera
+<br/>
+<a href="https://stackoverflow.com/questions/1857244/what-are-the-differences-between-np-np-complete-and-np-hard">
+SO. What are the differences between NP, NP-Complete and NP-Hard?
+</a>
+</p>
 
-<div class="footnotes" role="doc-endnotes">
-  Dynamic Programming, Greedy Algorithms, University of Colorado Boulder, Cousera
+[^wiki_decidability]: [wiki. decidability](https://en.wikipedia.org/wiki/Decidability_(logic))
 
-  [SO. What are the differences between NP, NP-Complete and NP-Hard?](https://stackoverflow.com/questions/1857244/what-are-the-differences-between-np-np-complete-and-np-hard)
-</div>
+[^wiki_np]: [wiki. np](https://en.wikipedia.org/wiki/NP_(complexity))
 
-[^wiki_decidability]: [wiki decidability](https://en.wikipedia.org/wiki/Decidability_(logic))
-
-[^wiki_np]: [wiki np](https://en.wikipedia.org/wiki/NP_(complexity))
+[^wiki_np_hard]: [wiki. np hard](https://en.wikipedia.org/wiki/NP-hardness)
 
 [^babaisyou]: [Jonathan Geller. Baba is You is Undecidable. 2022.](https://arxiv.org/abs/2205.00127)
 
