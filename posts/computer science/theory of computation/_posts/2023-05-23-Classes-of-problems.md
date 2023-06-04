@@ -63,6 +63,8 @@ Decidable 문제 중에 얼마나 빨리 풀 수 있는지에 따라 다시 분�
 ### NP
 
 Non-deterministic Polynomial Time Problem 의 약자로, DTM 을 이용한 정의와 [NTM](https://en.wikipedia.org/wiki/Nondeterministic_Turing_machine) 을 이용한 정의가 있다.
++ NTM 의 경우 DTM 에서 불가능한 계산을 할 수 있진 않다. Non-deterministic 한 절차는 countable 하므로 DTM 에서 bfs 등으로 전부 해보면 되기 때문이다.
+
 > 
 + NP is the set of decision problems for which the problem instances, where the answer is "yes", have _proofs_ verifiable in polynomial time by a deterministic Turing machine.[^wiki_np]
 + NP is the set of decision problems verifiable in polynomial time by a nondeterministic Turing machine.[^wiki_np]
@@ -73,9 +75,6 @@ proof 는 Input 외에 문제를 풀기위해 주어지는 추가적인 정보�
 
 NP 에서는 답이 "no" 인 input 에 대해서 verifier 는 선형시간 내에 "no" 를 주게 된다. 
 
-#### Quantum Computer
-
-NTM 의 경우 양자컴퓨터에서 일부 가능한데, 그렇다고 DTM 에서 불가능한 계산을 할 수 있진 않다. Non-deterministic 한 절차는 countable 하므로 DTM 에서 bfs 등으로 전부 해보면 되기 때문이다.
 
 
 
