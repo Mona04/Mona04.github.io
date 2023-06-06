@@ -4,9 +4,27 @@ tags: []
 use_math: true
 ---
 
+## 튜토리얼
+
+다음 순서대로 읽어보길 추천한다.
+
+[qubit. donghwi.dev](https://qubit.donghwi.dev/)
+
+[양자역학 기획 기사, postechian(2022)](https://postechian.postech.ac.kr/2022s-3-%EC%96%91%EC%9E%90-%EC%BB%B4%ED%93%A8%ED%84%B0%EC%9D%98-%EB%AF%B8%EB%9E%98/)
+
+[김한영, horizon, 양자 알고리즘의 세계](https://horizon.kias.re.kr/14565/)
+
+
+그리고 [ibm, quantum-computing](https://quantum-computing.ibm.com/composer/docs/iqx)에서 양자컴퓨터의 회로에대한 기본적인 이해와 그래픽 코딩을 해볼 수 있다.
+
+
+
+
 ## Quantum Information
 
-전자는 네가지의 양자수 (주양자수, 부양자수, 자기양자수, 스핀 양자수) 가 존재하고 우리가 지금 관심있는 것은 스핀이다. 스핀은 관측하기 전까지는 스핀 up/down 을 같은 확률로 중첩된 상태로 존재한다. 
+전자는 네가지의 양자수 (주양자수, 부양자수, 자기양자수, 스핀 양자수) 가 존재하고 우리가 지금 관심있는 것은 스핀이다. 
+
+스핀은 관측하기 전까지는 그 상태의 확률함수만을 알 수 있다.
 
 이러한 상태를 고전 컴퓨터의 bit 처럼 나타내는 개념이 바로 qubit 이다. 
 
@@ -15,7 +33,7 @@ use_math: true
 
 Qubit 을 표기하기 위해 [Bra-Ket Notation](https://en.wikipedia.org/wiki/Bra%E2%80%93ket_notation) 을 사용한다. row-vector 는 ```bra```$$\bra{}$$ 로 column-vector 는 ```ket```$$\ket{}$$ 으로 표기되는 것을 시작으로 많은 특징이 있다.
 
-관측가능한 상태인 Pure Position(state) 은 $$\ket{0}, \ket{1}$$ 처럼 표기한다. n 개의 qubit 에 대해서도 마찬가지로, 예를들어 2 개의 qubits 의 Pure Position 은 $$\ket{00}, \ket{10}, \ket{01}, \ket{11}$$ 가 있다. 각각 vector 의 자리와 대응된다.
+관측가능한 상태인 Pure Position(state) 은 $$\ket{0}, \ket{1}$$ 처럼 표기한다. n 개의 qubit 에 대해서도 마찬가지로, 예를들어 2 개의 qubits 의 Pure Position 은 $$\ket{00}, \ket{10}, \ket{01}, \ket{11}$$ 가 있다. 각각 vector 의 자리와 대응된다. 편의상 이진수가 아니라 $$\ket{0}, \ket{1}, \ket{2}, \ket{3}$$ 처럼 십진수로 보통 쓴다.
 
 Pure Position 이 확률로 중첩된 Super Position 은 $$a_1\ket{0} + a_2\ket{1}$$ 처럼 vector 와 같이 표기한다. 이때 각 계수의 제곱을 그 Position 이 될 확률로 생각한다. 이는 Norm 이 1 이라는 것과 같다.
 
@@ -66,7 +84,11 @@ operator 은 unitary matrix 이어야 한다. 간단하게 말하면 실수계�
 
 n 개의 qubit 에 대한 operator matrix 의 크기는 $$2^n \times 2^n$$ 임에 유의하자.
 
-대표적인 연산 중 하나인 Hadamard Gate 의 1 qubit 버전은 다음과 같다.
+양자컴퓨터와 달리 Classical Computer 의 Logic Gate 는 irreversible 하다. reversible 한 버전을 만들 수 있지만 이점은 현재로서 단점을 상회하지 않아 잘 쓰이지 않는다.[^csrev]
+
+universal irreversible gate 로는 [toffoli gate](https://en.wikipedia.org/wiki/Toffoli_gate) 가 대표적이다. 이때 1개 이상의 추가 큐빗이 gate 에 추가되어 더 복잡하다.
+
+#### Hadmard Gate
 
 $$ 
 \cfrac{1}{\sqrt{2}} 
@@ -76,7 +98,8 @@ $$
 \end{bmatrix} 
 $$
 
-Classical Computer 의 Logic Gate 는 irreversible 하다. reversible 한 버전을 만들 수 있지만 이점은 현재로서 단점을 상회하지 않는다.[^csrev] 하지만 양자컴퓨터에선 필수적으로 사용된다. universal irreversible gate 로는 [toffoli gate](https://en.wikipedia.org/wiki/Toffoli_gate) 가 대표적이다. 이때 1개 이상의 추가 큐빗이 gate 에 추가되어 더 복잡하다.
+양자중첩을 시켜주는 게이트다.
+
 
 
 
@@ -102,22 +125,62 @@ Classical Computer 의 Logic Gate 는 irreversible 하다. reversible 한 버전
 
 ### Deutsch-Jozsa Algorithm
 
-### Grover's Search Algorithm
 
-$$n$$ bit 크기의 input 중에서 하나에 대해서만 1 을 출력하는 함수 $$f$$ 가 있다고 하자. $$f(x) = 1$$ 을 만족하는 $$x$$ 를 찾기위한 브루트포스 알고리즘의 시간복잡도는 $$\mathrm{O}(2^n)$$ 이 된다.
-
-$$\cfrac{1}{\sqrt{2^3}}(\ket{000} + \ket{001} ... \ket{111})$$
-
-그리고 이는 옵티멀하다고 알려져있다.
 
 
 ### Shor's algorithm
 
-쿼
+NP 문제인 소인수분해 문제를 선형시간에 푸는 알고리즘이다. 보안에서 사용되는 RSA 암호는 소인수분해를 사용하므로 이 알고리즘으로 양자컴퓨터가 컴퓨터 보안에 크게 영향을 미치게 된다.
 
-소인수분해 문제는 NP 이지만 NPC 가 아니다. 보안에서 사용되는 RSA 암호는 소인수분해와 관련되므로 양자컴퓨터는 
+다만 소인수분해 문제는 NP 이지만 NPC 가 아니다. 따라서 NP=P 와 관련은 없다.
 
-양자컴퓨터로 NPC 문제를 선형시간에 풀 수 있는지는 모른다. 
+자세한 과정은 [김한영, horizon, 양자 알고리즘: 소인수 분해 알고리즘](https://horizon.kias.re.kr/14195/) 를 살펴보자.
+
+
+
+### [Grover's Search Algorithm](https://en.wikipedia.org/wiki/Grover%27s_algorithm)
+
+> $$N$$ 개의 input $$X$$ 와 함수 $$f: X \rightarrow \{0, 1\} $$ 에 대해서 $$f(x) = 1$$ 을 만족하는 한개의 $$x \in X $$ 가 있을 때, $$x$$ 는 무엇인가?
+
+$$f$$ 의 시간복잡도를 $$\mathrm{O}(\alpha(N))$$ 라고 하자. 정답을 찾기위한 브루트포스 알고리즘의 시간복잡도는 $$\mathrm{O}(\alpha(N) 2^N)$$ 이 된다. 하지만 Grover's Search Algorithm 을 사용하면 $$\mathrm{O}(\alpha(n) \sqrt{2^N}$$ 가 가능하다.
+
+많은 자료에서 자세히 설명하고 있으므로 여기선 내가 헷갈렸던 부분을 위주로 메모한다.
+
+#### Oracle 에 대해
+
+이 알고리즘은 정답을 제외한 uniform superposition $$s'$$ 에 대한 대칭연산을 수행하는 $$U$$ 를 사전에 요구한다. 그러면 정답을 알기위해 사전에 정답을 알아야 한다는 말인가? 그렇지 않다. U 는 quantum circut 이면 충분하다. 
+
+간단한 SAT 를 푸는 Circuit 에 대한 예시를 살펴보자.[^satoracle]
+
+
+
+#### 시간복잡도에 대해
+
+uniform superposition $$s$$ 와 정답을 제외하고 uniform superposition $$s'$$ 사이의 각도 $$\theta$$ 의 크기는 직접 dot 을 해보면 알 수 있다.
+
+$$
+\begin{multline} 
+\bra{w}\ket{s'}
+ = \cos{\theta} 
+= \sqrt{1-\sin{\theta}^2} 
+=  \cfrac{N - 1}{\sqrt{(N)}\sqrt{(N-1)}} = \sqrt{1 - \cfrac{1}{N}} 
+
+\\ \shoveleft
+\sin{\theta} = \cfrac{1}{\sqrt{N}}
+\\ \shoveleft
+
+\lim_{\theta \rightarrow 0}{\frac{\sin{\theta}}{\theta}} 
+= \lim_{\theta \rightarrow 0}{\cfrac{\frac{1}{\sqrt{N}}}{\theta}} = 1
+
+\end{multline}
+$$
+
+따라서 $$N$$ 이 매우 큰 경우 $$\theta \simeq 1/\sqrt{N}$$ 라고 볼 수 있다. 그러므로 $$\pi/2$$ 도를 한번에 $$2\theta$$ 만큼 좁혀지므로 반복회수는 최대 $$\pi/4 \sqrt{N})$$ 가 된다. 이 이상 반복하면 정답일 확률이 오히려 줄어든다.
+
+이는 여전히 NP 를 선형시간에 풀지 못한다. 하지만 더 빠르다.
+
+또한 이러한 시간복잡도가 최적이라고 알려져있다. 많은 자료에서 이를 언급하므로 따로 링크는 안달겠다.
+
 
 
 
@@ -125,21 +188,14 @@ $$\cfrac{1}{\sqrt{2^3}}(\ket{000} + \ket{001} ... \ket{111})$$
  
 <p class="footnote" role="doc-endnotes">
 Dynamic Programming, Greedy Algorithms, University of Colorado Boulder, Cousera
-
-<a href="https://qubit.donghwi.dev/">qubit. donghwi.dev</a>
-
-<a href="https://postechian.postech.ac.kr/2022s-3-%EC%96%91%EC%9E%90-%EC%BB%B4%ED%93%A8%ED%84%B0%EC%9D%98-%EB%AF%B8%EB%9E%98/">양자역학 기획 기사, postechian(2022)</a>
-
-
+<br/>
 <a href="https://horizon.kias.re.kr/14565/">
 김한영, horizon, 양자 알고리즘: 소인수 분해 알고리즘
 </a>
-<a href="https://horizon.kias.re.kr/14565/">
-김한영, horizon, 양자 알고리즘의 세계
-</a>
-
 </p>
 
 [^kpsbell]: [배준우, kps(2022), 벨 부등식, 얽힘, 그리고 양자 정보](https://webzine.kps.or.kr/?p=5_view&idx=16792)
 
 [^csrev]: [cs, Why are reversible gates not used?](https://cs.stackexchange.com/questions/38049/why-are-reversible-gates-not-used)
+
+[^satoracle]: [Alessandro Berti, Behind Oracles: Grover’s Algorithm](https://towardsdatascience.com/behind-oracles-grovers-algorithm-amplitude-amplification-46b928b46f1e)

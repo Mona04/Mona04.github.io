@@ -115,7 +115,6 @@ np-complete 에서 np 라는 조건만 빼면 같다. 그래서 어떤 문제가
 
 
 
-
 ## 참고자료
  
 <p class="footnote" role="doc-endnotes">
