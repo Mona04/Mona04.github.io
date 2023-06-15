@@ -1,6 +1,6 @@
 ---
 excerpt: "Convex Hull 과 연관된 기법들"
-tag: [PS. Geometry]
+tag: [PS. geometry, PS. convex hull]
 use_math: true
 ---
 
